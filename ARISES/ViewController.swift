@@ -27,8 +27,9 @@ class ViewController: UIViewController {
         if ColourBox.backgroundColor == #colorLiteral(red: 0.9882352941, green: 0.1411764706, blue: 0.8823529412, alpha: 1) {
             ColourBox.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         } else {
-            ColourBox.backgroundColor = #colorLiteral(red: 0.9882352941, green: 0.1411764706, blue: 0.8823529412, alpha: 1) 
+            ColourBox.backgroundColor = #colorLiteral(red: 0.9882352941, green: 0.1411764706, blue: 0.8823529412, alpha: 1)
         }
+        
     }
     @IBAction func ColourButton2(_ sender: UIButton) {
         if ColourBox.backgroundColor == #colorLiteral(red: 0.05098039216, green: 0.2235294118, blue: 0.9843137255, alpha: 1) {
