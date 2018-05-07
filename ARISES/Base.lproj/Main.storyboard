@@ -1,24 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ARISES" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dgI-iz-IjB">
+                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hl4-5Q-cfs">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="363"/>
+                                        <color key="backgroundColor" red="0.80381389983406482" green="0.75196188959366406" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="ColourButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vCG-VO-OLt"/>
+                                        </connections>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="IcT-ze-w6M">
+                                        <rect key="frame" x="0.0" y="371" width="375" height="363"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dSq-av-TKd">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="177.66666666666666"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCf-r0-azr">
+                                                        <rect key="frame" x="0.0" y="0.0" width="183.66666666666666" height="177.66666666666666"/>
+                                                        <color key="backgroundColor" red="1" green="0.0" blue="0.89014852887667839" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <connections>
+                                                            <action selector="ColourButton1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tSb-OO-c7s"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ZZ-xW-qgf">
+                                                        <rect key="frame" x="191.66666666666663" y="0.0" width="183.33333333333337" height="177.66666666666666"/>
+                                                        <color key="backgroundColor" red="0.0" green="0.1678815008725163" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <connections>
+                                                            <action selector="ColourButton2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y1S-Jc-VG3"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Lh7-1g-2gY">
+                                                <rect key="frame" x="0.0" y="185.66666666666663" width="375" height="177.33333333333337"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g22-4s-JMW">
+                                                        <rect key="frame" x="0.0" y="0.0" width="183.66666666666666" height="177.33333333333334"/>
+                                                        <color key="backgroundColor" red="0.031446518732400897" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <connections>
+                                                            <action selector="ColourButton3:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UwD-zK-al9"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JuD-3e-Oe2">
+                                                        <rect key="frame" x="191.66666666666663" y="0.0" width="183.33333333333337" height="177.33333333333334"/>
+                                                        <color key="backgroundColor" red="1" green="0.52603019736082257" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <connections>
+                                                            <action selector="ColourButton4:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vAY-SR-fAP"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dgI-iz-IjB" secondAttribute="bottom" id="EI6-d2-tFy"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dgI-iz-IjB" secondAttribute="trailing" id="JuB-py-fSI"/>
+                            <constraint firstItem="dgI-iz-IjB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="M6H-pp-SNK"/>
+                            <constraint firstItem="dgI-iz-IjB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="f2J-Pn-ZbS"/>
+                            <constraint firstItem="dgI-iz-IjB" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="nrJ-O5-tAA"/>
+                            <constraint firstItem="dgI-iz-IjB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qI8-u2-aFa"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="Button1" destination="xCf-r0-azr" id="X0a-uh-9yK"/>
+                        <outlet property="Button2" destination="2ZZ-xW-qgf" id="Z6i-Bg-8sg"/>
+                        <outlet property="Button3" destination="g22-4s-JMW" id="KNd-do-gTL"/>
+                        <outlet property="Button4" destination="JuD-3e-Oe2" id="mwA-QK-PtD"/>
+                        <outlet property="ColourBox" destination="Hl4-5Q-cfs" id="WJm-bk-SrL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="133.74384236453201"/>
         </scene>
     </scenes>
 </document>
