@@ -19,3 +19,13 @@
 - *ensure only one view expanded at a time - AFTER taking pics for Bob*
 - AutoLayout for all
 
+## Agreed Design Compromises
+### Bifocal
+- Main view is a day graph, swipe between, locked to day
+- *unlockable from day view to allow predictions at night*
+- Side sections show summary information for previous days
+- Button to go to current day
+### Nav bar
+- Make both tabs and squares 
+- 
+

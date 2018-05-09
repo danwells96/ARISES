@@ -68,8 +68,8 @@
 			isa = PBXGroup;
 			children = (
 				375587C5209E086C00594532 /* AppDelegate.swift */,
-				375587CC209E086D00594532 /* Assets.xcassets */,
 				375587CE209E086D00594532 /* LaunchScreen.storyboard */,
+				375587CC209E086D00594532 /* Assets.xcassets */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
