@@ -22,13 +22,12 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dgI-iz-IjB">
                                 <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hl4-5Q-cfs">
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XVP-5d-AnS">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="363"/>
-                                        <color key="backgroundColor" red="0.80381389983406482" green="0.75196188959366406" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
-                                            <action selector="ColourButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vCG-VO-OLt"/>
+                                            <segue destination="Gek-kn-7BY" kind="embed" id="Eb4-f3-6f0"/>
                                         </connections>
-                                    </button>
+                                    </containerView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="IcT-ze-w6M">
                                         <rect key="frame" x="0.0" y="371" width="375" height="363"/>
                                         <subviews>
@@ -91,12 +90,25 @@
                         <outlet property="Button2" destination="2ZZ-xW-qgf" id="Z6i-Bg-8sg"/>
                         <outlet property="Button3" destination="g22-4s-JMW" id="KNd-do-gTL"/>
                         <outlet property="Button4" destination="JuD-3e-Oe2" id="mwA-QK-PtD"/>
-                        <outlet property="ColourBox" destination="Hl4-5Q-cfs" id="WJm-bk-SrL"/>
+                        <outlet property="topContainer" destination="XVP-5d-AnS" id="wCH-dI-1Ji"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="133.74384236453201"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="OwN-qR-azS">
+            <objects>
+                <viewController id="Gek-kn-7BY" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ib9-xt-U3a">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="363"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sC4-Ge-Xby" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
 </document>

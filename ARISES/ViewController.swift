@@ -18,6 +18,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var Button3: UIButton!
     @IBOutlet weak var Button4: UIButton!
     
+    @IBOutlet weak var topContainer: UIView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -52,6 +55,8 @@ class ViewController: UIViewController {
             ColourBox.backgroundColor = #colorLiteral(red: 0.9921568627, green: 0.5254901961, blue: 0.1411764706, alpha: 1)
         }
     }
+    
+    
 }
 
 
