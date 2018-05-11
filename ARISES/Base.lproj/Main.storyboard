@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KPv-Kq-kTr">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,31 +10,152 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Exercise-->
         <scene sceneID="uJh-Xb-nux">
             <objects>
-                <viewController id="XYs-Le-Lsy" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a6u-Ge-pDb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="ViewControllerExercise" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XYs-Le-Lsy" userLabel="Exercise" customClass="ViewControllerExercise" customModule="ARISES" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zyy-O1-S5c">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ubw-Aa-7jz">
-                                <rect key="frame" x="0.0" y="729" width="375" height="49"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <items>
-                                    <tabBarItem systemItem="favorites" id="QBz-HA-oZG"/>
-                                    <tabBarItem systemItem="more" id="hQJ-SQ-7Ly"/>
-                                </items>
-                            </tabBar>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wrr-OY-rFh">
+                                <rect key="frame" x="0.0" y="44" width="375" height="290"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <segue destination="mcx-Z4-Rt0" kind="embed" id="UGb-sC-lAo"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="w4R-pf-PJG"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Exercise" id="K2V-fc-xrE"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="a6u-Ge-pDb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-728" y="-174"/>
+            <point key="canvasLocation" x="-2153" y="-18"/>
+        </scene>
+        <!--Food-->
+        <scene sceneID="Ozh-Hi-GuO">
+            <objects>
+                <viewController storyboardIdentifier="ViewControllerFood" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BrE-Jk-aYO" userLabel="Food" customClass="ViewControllerFood" customModule="ARISES" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lov-G9-QLQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="92i-xD-Wjo">
+                                <rect key="frame" x="0.0" y="44" width="375" height="290"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <segue destination="mcx-Z4-Rt0" kind="embed" id="rxc-Yq-zqs"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="g4w-dK-hbH"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Food" id="qJS-Rc-B49"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9qt-sJ-J4P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2153" y="-766"/>
+        </scene>
+        <!--Advice-->
+        <scene sceneID="dj8-IC-JRT">
+            <objects>
+                <viewController storyboardIdentifier="ViewControllerAdvice" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UST-Hx-xai" userLabel="Advice" customClass="ViewControllerAdvice" customModule="ARISES" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8db-52-cQR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AKw-RF-F5O">
+                                <rect key="frame" x="0.0" y="44" width="375" height="290"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <segue destination="mcx-Z4-Rt0" kind="embed" id="b3b-Dg-NeK"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="R3F-X6-bug"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Advice" id="kr0-zz-yZH"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gvF-Oi-oWA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-316" y="-17"/>
+        </scene>
+        <!--Health-->
+        <scene sceneID="zlf-3e-zrn">
+            <objects>
+                <viewController storyboardIdentifier="ViewControllerHealth" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wEB-fN-c4T" userLabel="Health" customClass="ViewControllerHealth" customModule="ARISES" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9VF-7y-tHc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aq7-W3-BOQ">
+                                <rect key="frame" x="0.0" y="44" width="375" height="290"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <segue destination="mcx-Z4-Rt0" kind="embed" id="MDj-64-tBx"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="9zl-nb-tYq"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Health" id="E7m-TR-mCK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oP1-7J-BaW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-316" y="-766"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="6X7-Y8-thI">
+            <objects>
+                <tabBarController id="KPv-Kq-kTr" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ta9-oA-rAz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="UST-Hx-xai" kind="relationship" relationship="viewControllers" id="Xlv-ln-q1A"/>
+                        <segue destination="XYs-Le-Lsy" kind="relationship" relationship="viewControllers" id="K8d-WB-Hvw"/>
+                        <segue destination="wEB-fN-c4T" kind="relationship" relationship="viewControllers" id="8xE-uw-EGr"/>
+                        <segue destination="BrE-Jk-aYO" kind="relationship" relationship="viewControllers" id="KB0-nZ-STy"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6ab-rZ-a7A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1269" y="-425"/>
+        </scene>
+        <!--View Controller Graph-->
+        <scene sceneID="P6m-VC-Drh">
+            <objects>
+                <viewController storyboardIdentifier="ViewControllerGraph" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mcx-Z4-Rt0" customClass="ViewControllerGraph" customModule="ARISES" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ozo-fW-QTd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="243"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholderGraph.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="u5Y-mA-1Ha">
+                                <rect key="frame" x="16" y="10" width="343" height="215"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <size key="freeformSize" width="375" height="243"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="00n-4X-Qh4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1270.4000000000001" y="-930.29556650246309"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="placeholderGraph.jpg" width="288" height="157"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="rxc-Yq-zqs"/>
+    </inferredMetricsTieBreakers>
 </document>

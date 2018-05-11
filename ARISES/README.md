@@ -1,5 +1,5 @@
-#  Nav Section
-## Stage One (Wednesday)
+# 'Nav Section'
+# Stage One - Squares (Wednesday)
 
 ## MVC Split 
 ### Model
@@ -12,3 +12,31 @@
 - Buttons to select section
 - Actions to adjust section size
 - Make "options" appear/disappear
+
+### Update 
+- Placeholders for section contents
+
+# Stage Two - Tabs (Monday)
+
+### Current
+- Autolayout .XIB
+- Interact with graph controller from tab views
+### Model
+- None
+### View 
+- Tabs
+- Switching between tabs
+- Simulated notification area for tabs
+- Placeholder content views
+- Buttons/ Pickers placed
+- Symbols
+### Controller
+- Pickers connected
+- Swipe to change tab
+- Buttons to change tabs
+### Apple Guidelines
+- Check conditions for app store acceptance
+
+
+
+
