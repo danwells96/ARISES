@@ -20,10 +20,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wrr-OY-rFh">
-                                <rect key="frame" x="0.0" y="44" width="375" height="290"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="320"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <segue destination="mcx-Z4-Rt0" kind="embed" id="UGb-sC-lAo"/>
+                                    <segue destination="mcx-Z4-Rt0" kind="embed" id="Jkd-o6-6Ei"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -44,8 +44,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="92i-xD-Wjo">
-                                <rect key="frame" x="0.0" y="44" width="375" height="290"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="320"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <segue destination="mcx-Z4-Rt0" kind="embed" id="rxc-Yq-zqs"/>
                                 </connections>
@@ -69,8 +69,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AKw-RF-F5O">
-                                <rect key="frame" x="0.0" y="44" width="375" height="290"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="320"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <segue destination="mcx-Z4-Rt0" kind="embed" id="b3b-Dg-NeK"/>
                                 </connections>
@@ -83,7 +83,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gvF-Oi-oWA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-316" y="-17"/>
+            <point key="canvasLocation" x="-316" y="-18"/>
         </scene>
         <!--Health-->
         <scene sceneID="zlf-3e-zrn">
@@ -94,8 +94,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aq7-W3-BOQ">
-                                <rect key="frame" x="0.0" y="44" width="375" height="290"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="320"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <segue destination="mcx-Z4-Rt0" kind="embed" id="MDj-64-tBx"/>
                                 </connections>
@@ -120,15 +120,15 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="UST-Hx-xai" kind="relationship" relationship="viewControllers" id="Xlv-ln-q1A"/>
-                        <segue destination="XYs-Le-Lsy" kind="relationship" relationship="viewControllers" id="K8d-WB-Hvw"/>
-                        <segue destination="wEB-fN-c4T" kind="relationship" relationship="viewControllers" id="8xE-uw-EGr"/>
-                        <segue destination="BrE-Jk-aYO" kind="relationship" relationship="viewControllers" id="KB0-nZ-STy"/>
+                        <segue destination="BrE-Jk-aYO" kind="relationship" relationship="viewControllers" id="Ezx-GC-FoU"/>
+                        <segue destination="wEB-fN-c4T" kind="relationship" relationship="viewControllers" id="AhP-Rp-2W5"/>
+                        <segue destination="XYs-Le-Lsy" kind="relationship" relationship="viewControllers" id="5zN-lk-zfk"/>
+                        <segue destination="UST-Hx-xai" kind="relationship" relationship="viewControllers" id="DSM-uS-HRT"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ab-rZ-a7A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1269" y="-425"/>
+            <point key="canvasLocation" x="-4106" y="-355"/>
         </scene>
         <!--View Controller Graph-->
         <scene sceneID="P6m-VC-Drh">
@@ -140,7 +140,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholderGraph.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="u5Y-mA-1Ha">
                                 <rect key="frame" x="16" y="10" width="343" height="215"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -149,13 +149,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="00n-4X-Qh4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1270.4000000000001" y="-930.29556650246309"/>
+            <point key="canvasLocation" x="-1225" y="-354"/>
         </scene>
     </scenes>
     <resources>
         <image name="placeholderGraph.jpg" width="288" height="157"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rxc-Yq-zqs"/>
+        <segue reference="b3b-Dg-NeK"/>
     </inferredMetricsTieBreakers>
 </document>

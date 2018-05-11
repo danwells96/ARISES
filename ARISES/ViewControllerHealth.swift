@@ -15,17 +15,6 @@ class ViewControllerHealth: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.view.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
-        /*
-         //Instantiate graph XIB
-         if let graphView = Bundle.main.loadNibNamed("graphView", owner: self, options: nil)?.first as? graphView {
-         
-         //TODO: layout graph view
-         //graphView.constraints
-         self.view.addSubview(graphView)
-         }
-         */
     }
     
     //MARK: Actions
