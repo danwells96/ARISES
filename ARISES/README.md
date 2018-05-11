@@ -19,8 +19,11 @@
 # Stage Two - Tabs (Monday)
 
 ### Current
-- Autolayout .XIB
+- Autolayout graph container 
 - Interact with graph controller from tab views
+- Icons
+- Colour Scheme
+- Swipe between tabs
 ### Model
 - None
 ### View 
