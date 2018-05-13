@@ -13,7 +13,6 @@
         <!--Exercise-->
         <scene sceneID="uJh-Xb-nux">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="a6u-Ge-pDb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="ViewControllerExercise" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XYs-Le-Lsy" userLabel="Exercise" customClass="ViewControllerExercise" customModule="ARISES" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zyy-O1-S5c">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
@@ -32,6 +31,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Exercise" id="K2V-fc-xrE"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a6u-Ge-pDb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2153" y="-18"/>
         </scene>
@@ -45,7 +45,7 @@
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="92i-xD-Wjo">
                                 <rect key="frame" x="0.0" y="44" width="375" height="320"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <segue destination="mcx-Z4-Rt0" kind="embed" id="rxc-Yq-zqs"/>
                                 </connections>
@@ -144,6 +144,7 @@
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <viewLayoutGuide key="safeArea" id="ML5-WT-Vok"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="00n-4X-Qh4" userLabel="First Responder" sceneMemberID="firstResponder"/>
