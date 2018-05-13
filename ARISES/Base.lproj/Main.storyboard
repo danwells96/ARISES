@@ -19,10 +19,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wrr-OY-rFh">
-                                <rect key="frame" x="0.0" y="44" width="375" height="320"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="318"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <segue destination="mcx-Z4-Rt0" kind="embed" id="Jkd-o6-6Ei"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OpH-Sn-x99">
+                                <rect key="frame" x="0.0" y="370" width="375" height="85"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="Thr-tB-sQf" kind="embed" id="jq7-tM-CWr"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -44,10 +51,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="92i-xD-Wjo">
-                                <rect key="frame" x="0.0" y="44" width="375" height="320"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="318"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <segue destination="mcx-Z4-Rt0" kind="embed" id="rxc-Yq-zqs"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lHl-FJ-wZu">
+                                <rect key="frame" x="0.0" y="370" width="375" height="85"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="Thr-tB-sQf" kind="embed" id="cnV-ZO-thN"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -69,10 +83,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AKw-RF-F5O">
-                                <rect key="frame" x="0.0" y="44" width="375" height="320"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="318"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <segue destination="mcx-Z4-Rt0" kind="embed" id="b3b-Dg-NeK"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K0E-J5-qZw">
+                                <rect key="frame" x="0.0" y="370" width="375" height="85"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="Thr-tB-sQf" kind="embed" id="2Ed-QE-2gK"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -94,10 +115,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aq7-W3-BOQ">
-                                <rect key="frame" x="0.0" y="44" width="375" height="320"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="318"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <segue destination="mcx-Z4-Rt0" kind="embed" id="MDj-64-tBx"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8VL-Uf-Rki">
+                                <rect key="frame" x="0.0" y="370" width="375" height="85"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="Thr-tB-sQf" kind="embed" id="cqh-eX-fbG"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -108,7 +136,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oP1-7J-BaW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-316" y="-766"/>
+            <point key="canvasLocation" x="-316" y="-766.25615763546796"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="6X7-Y8-thI">
@@ -135,11 +163,11 @@
             <objects>
                 <viewController storyboardIdentifier="ViewControllerGraph" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mcx-Z4-Rt0" userLabel="Graph" customClass="ViewControllerGraph" customModule="ARISES" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ozo-fW-QTd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="318"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholderGraph.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="u5Y-mA-1Ha">
-                                <rect key="frame" x="16" y="28" width="343" height="258"/>
+                                <rect key="frame" x="16" y="28" width="343" height="256"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                         </subviews>
@@ -151,11 +179,33 @@
             </objects>
             <point key="canvasLocation" x="-1226.4000000000001" y="-354.67980295566502"/>
         </scene>
+        <!--Dashboard-->
+        <scene sceneID="cBR-p9-F4P">
+            <objects>
+                <viewController storyboardIdentifier="ViewControllerDashboard" title="Dashboard" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Thr-tB-sQf" userLabel="Dashboard" customClass="ViewControllerDashboard" customModule="ARISES" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="In3-mM-0pF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dpb-zJ-OAO">
+                                <rect key="frame" x="16" y="27" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s3Z-kJ-PB0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1226.4000000000001" y="-962.4384236453202"/>
+        </scene>
     </scenes>
     <resources>
         <image name="placeholderGraph.jpg" width="288" height="157"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rxc-Yq-zqs"/>
+        <segue reference="2Ed-QE-2gK"/>
+        <segue reference="b3b-Dg-NeK"/>
     </inferredMetricsTieBreakers>
 </document>
