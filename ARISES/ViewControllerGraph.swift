@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import SwiftCharts
 
 class ViewControllerGraph: UIViewController {
     
