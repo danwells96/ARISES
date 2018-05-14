@@ -18,9 +18,11 @@
 		378C2A9D20A5C61100CAD45E /* ViewControllerExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C2A9C20A5C61100CAD45E /* ViewControllerExercise.swift */; };
 		378C2A9F20A5C61F00CAD45E /* ViewControllerAdvice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C2A9E20A5C61F00CAD45E /* ViewControllerAdvice.swift */; };
 		378C2AA320A5DE5300CAD45E /* ViewControllerGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C2AA220A5DE5300CAD45E /* ViewControllerGraph.swift */; };
+		7885EA2F424F54689B6A7255 /* Pods_ARISES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A3EDB77FDAB283896F0693B /* Pods_ARISES.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D0A69492DB133B7AC1DC186 /* Pods-ARISES.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARISES.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARISES/Pods-ARISES.debug.xcconfig"; sourceTree = "<group>"; };
 		37124ECD20A89C3B0075E7D7 /* ViewControllerDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerDashboard.swift; sourceTree = "<group>"; };
 		371470F820A082A600AB76EF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		375587C2209E086C00594532 /* ARISES.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARISES.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -35,6 +37,8 @@
 		378C2A9C20A5C61100CAD45E /* ViewControllerExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExercise.swift; sourceTree = "<group>"; };
 		378C2A9E20A5C61F00CAD45E /* ViewControllerAdvice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAdvice.swift; sourceTree = "<group>"; };
 		378C2AA220A5DE5300CAD45E /* ViewControllerGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerGraph.swift; sourceTree = "<group>"; };
+		7A3EDB77FDAB283896F0693B /* Pods_ARISES.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARISES.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		958DAAB730EE589AF68D4DBD /* Pods-ARISES.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARISES.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARISES/Pods-ARISES.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,17 +46,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7885EA2F424F54689B6A7255 /* Pods_ARISES.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		19BA737C829218599FE10B09 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0D0A69492DB133B7AC1DC186 /* Pods-ARISES.debug.xcconfig */,
+				958DAAB730EE589AF68D4DBD /* Pods-ARISES.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		375587B9209E086C00594532 = {
 			isa = PBXGroup;
 			children = (
 				375587C4209E086C00594532 /* ARISES */,
 				375587C3209E086C00594532 /* Products */,
+				19BA737C829218599FE10B09 /* Pods */,
+				F3186C3B9236DB0740B9AC44 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,6 +108,14 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F3186C3B9236DB0740B9AC44 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7A3EDB77FDAB283896F0693B /* Pods_ARISES.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -99,9 +123,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 375587D4209E086D00594532 /* Build configuration list for PBXNativeTarget "ARISES" */;
 			buildPhases = (
+				893E4C2F1DED8D23D44DA75E /* [CP] Check Pods Manifest.lock */,
 				375587BE209E086C00594532 /* Sources */,
 				375587BF209E086C00594532 /* Frameworks */,
 				375587C0209E086C00594532 /* Resources */,
+				27AFFAE885E6FBD33E4536B7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -158,6 +184,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		27AFFAE885E6FBD33E4536B7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ARISES/Pods-ARISES-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwiftCharts/SwiftCharts.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftCharts.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ARISES/Pods-ARISES-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		893E4C2F1DED8D23D44DA75E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ARISES-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		375587BE209E086C00594532 /* Sources */ = {
@@ -312,14 +377,12 @@
 		};
 		375587D5209E086D00594532 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0D0A69492DB133B7AC1DC186 /* Pods-ARISES.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ARISES/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Imperial.ARISES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -329,14 +392,12 @@
 		};
 		375587D6209E086D00594532 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 958DAAB730EE589AF68D4DBD /* Pods-ARISES.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ARISES/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Imperial.ARISES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
