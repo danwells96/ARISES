@@ -10,13 +10,41 @@ import UIKit
 
 class ViewControllerFood: UIViewController {
 
-    //MARK: Properties
+    @IBOutlet weak var foodTimeField: UITextField!
+    
+    var foodTimePicker = UIDatePicker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        createFoodTimePicker()
+    }
+    
+    func createFoodTimePicker(){
+        
+        let doneButtonBar = UIToolbar()
+        doneButtonBar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneWithPicker))
+        doneButtonBar.setItems([doneButton], animated: false)
+        
+        foodTimeField.inputAccessoryView = doneButtonBar
+        foodTimeField.inputView = foodTimePicker
+        
+        foodTimePicker.datePickerMode = .time
+    }
+    
+    @objc func doneWithPicker(){
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .none
+        dateFormatter.timeStyle = .short
+        
+        foodTimeField.text = dateFormatter.string(from: foodTimePicker.date)
+        self.view.endEditing(true)
     }
 
-    //MARK: Actions
+    
+   
 }
 
 
