@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 import SwiftCharts
 
 
@@ -21,15 +22,36 @@ class ViewController: UIViewController {
     @IBOutlet weak var Button4: UIButton!
     
     @IBOutlet weak var chartView: ChartBaseView!
-    private var chart: LineChart? // arc
+       
+    private var chart: Chart?
     private var didLayout: Bool = false
     
-    @IBOutlet weak var sideView: UIView!
-   
+    
+    
+    @IBOutlet weak var sideView2: CustomView!
+    @IBOutlet weak var sideView: CustomView!
+    
+    @IBOutlet weak var rightView: CustomView!
+    //        {
+//        didSet{
+//            let swipe = UISwipeGestureRecognizer(target: self, action: Selector, "nextCard")
+//            swipe.direction = [.left, .right]
+//            sideView.addGestureRecognizer(swipe)
+//
+//        }
+//    }
+//    @objc func nextCard(){
+//    }
+//
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.sideView.transform = __CGAffineTransformMake(1, 0.8, 0, 1, 0, -6)
-        
+        self.sideView.transform = __CGAffineTransformMake(1, 0.8, 0, 1, 0, 2)
+
+        self.sideView2.transform = __CGAffineTransformMake(1, 0.8, 0, 1, 0, 0)
+
+        self.rightView.transform = __CGAffineTransformMake(1, -0.8, 0, 1, 0, 0)
+
         // for rotating the chart when in horizontal view
         NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
@@ -41,7 +63,17 @@ class ViewController: UIViewController {
             self.initChart()
         }
     }
-  
+   
+    func csv(data: String) -> [[String]]{
+    
+        var result: [[String]] = []
+        let rows = data.components(separatedBy: ("\n"))
+        for row in rows{
+            let columns = row.components(separatedBy: "\t")
+            result.append(columns)
+        }
+        return result
+    }
     private func initChart(){
         var chartSettings = ChartSettings()
         chartSettings.leading = 10
@@ -56,17 +88,68 @@ class ViewController: UIViewController {
         chartSettings.spacingBetweenAxesY = 8
         chartSettings.labelsSpacing = 0
         
+        /*let file: FileHandle? = FileHandle(forReadingAtPath: "CustomView.swift")
+        if file != nil{
+            let data = file?.readDataToEndOfFile()
+            file?.closeFile()
+            let str = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+            print(str!)
+        }else{
+            print("sth went wrong")
+        }*/
+        
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+        let url = NSURL(fileURLWithPath: path)
+        if let pathComponent = url.appendingPathComponent("log_final_l") {
+            let filePath = pathComponent.path
+            let fileManager = FileManager.default
+            if fileManager.fileExists(atPath: filePath) {
+                print("FILE AVAILABLE")
+            } else {
+                print("FILE NOT AVAILABLE")
+            }
+        } else {
+            print("FILE PATH NOT AVAILABLE")
+        }
+        
             //map moel data to chart points
-        let chartPoints: [ChartPoint] = [(1, 1), (2, 3), (3, 4), (4, 5), (5, 7), (6, 6), (7, 8), (8, 10), (10,11), (12, 14)].map{ChartPoint(x: ChartAxisValueInt($0.0), y: ChartAxisValueInt($0.1))} //(x:key, y: value)
-        let labelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 11))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-mm-dd HH:mm"
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "HH:mm"
+        let startDate: Date? = dateFormatter.date(from: "2018-05-15 00:00")
+        var currTime: Date? = startDate
+        
+        //let chartPoints: [ChartPoint] = [(1, 1), (2, 3), (3, 4), (4, 5), (5, 7), (6, 6), (7, 8), (8, 10), (10,11), (12, 14)].map{ChartPoint(x: ChartAxisValueDate($0.0), y: ChartAxisValueInt($0.1))}
+        var dateArray = [ChartAxisValueDate]()
+        var valueArray = [ChartAxisValueInt]()
+        var points = [ChartPoint]()
+        for i in 0...288{
+            let data = i%20
+            dateArray.append(ChartAxisValueDate(date: currTime!, formatter: dateFormatter))
+            valueArray.append(ChartAxisValueInt(data))
+            points.append(ChartPoint(x: dateArray[dateArray.endIndex-1], y: valueArray[valueArray.endIndex-1]))
+            currTime!.addTimeInterval(300)
+            
+            //SOmething needs changing to initialise chart point
+        }
+        
+        let chartPoints = points
+        let yLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 11))
+        let xLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 8), fontColor: UIColor.black, rotation: 90, rotationKeep: .top)
 
-
-        let xValues = ChartAxisValuesStaticGenerator.generateXAxisValuesWithChartPoints(chartPoints, minSegmentCount: 7, maxSegmentCount: 7, multiple: 2, axisValueGenerator: {ChartAxisValueDouble($0, labelSettings: labelSettings)}, addPaddingSegmentIfEdge: false)
-        let yValues = ChartAxisValuesStaticGenerator.generateYAxisValuesWithChartPoints(chartPoints, minSegmentCount: 10, maxSegmentCount: 20, multiple: 2, axisValueGenerator: {ChartAxisValueDouble($0, labelSettings: labelSettings)}, addPaddingSegmentIfEdge: true)
+        //let xValues = ChartAxisValuesStaticGenerator.generateXAxisValuesWithChartPoints(chartPoints, minSegmentCount: 7, maxSegmentCount: 7, multiple: 2, axisValueGenerator: {ChartAxisValueDate($0, labelSettings: labelSettings)}, addPaddingSegmentIfEdge: false)
+        let xValues = ChartAxisValuesGeneratorDate(unit: .hour, preferredDividers: 12, minSpace: 0.5, maxTextSize: 12)
+        let yValues = ChartAxisValuesStaticGenerator.generateYAxisValuesWithChartPoints(chartPoints, minSegmentCount: 10, maxSegmentCount: 20, multiple: 2, axisValueGenerator: {ChartAxisValueDouble($0, labelSettings: yLabelSettings)}, addPaddingSegmentIfEdge: true)
         
             // create axis models with axis values and axis title
-        let xModel = ChartAxisModel(axisValues: xValues, axisTitleLabel: ChartAxisLabel(text: "x Axis title", settings: labelSettings))
-        let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: "y Axis title", settings: labelSettings.defaultVertical()))
+        let startTime: Date? = dateFormatter.date(from: "2018-05-15 00:00")
+        let endTime: Date? = dateFormatter.date(from: "2018-05-16 00:00")
+        let xLabelGenerator = ChartAxisLabelsGeneratorDate(labelSettings: xLabelSettings, formatter: timeFormatter)
+        
+        let xModel = ChartAxisModel(firstModelValue: (startTime!.timeIntervalSince1970), lastModelValue: (endTime!.timeIntervalSince1970), axisTitleLabel: ChartAxisLabel(text: "Time", settings: yLabelSettings), axisValuesGenerator: xValues, labelsGenerator: xLabelGenerator)
+        //let xModel = ChartAxisModel(axisValues: xValues, axisTitleLabel: ChartAxisLabel(text: "x Axis title", settings: labelSettings))
+        let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: "Glucose", settings: yLabelSettings.defaultVertical()))
 
             // generate axes layers and calculate chart inner frame, based on the axis models
         let chartFrame = self.chartView.frame
@@ -91,16 +174,16 @@ class ViewController: UIViewController {
             label.backgroundColor = UIColor.clear
             label.textAlignment = NSTextAlignment.center
             label.text = "\(chartPointModel.chartPoint.y.description)"
-            label.font = UIFont.boldSystemFont(ofSize: 13)
+            label.font = UIFont.boldSystemFont(ofSize: 0)
             return label
         }
             // layer displays chartpoints using viewGenerator
         let chartPointsLayer = ChartPointsViewsLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, chartPoints: chartPoints, viewGenerator: viewGenerator)
-        
+    
         
             // circle points
         let circleViewGenerator = {(chartPointModel: ChartPointLayerModel, layer: ChartPointsLayer, chart: Chart) -> UIView? in
-            let circleView = ChartPointEllipseView(center: chartPointModel.screenLoc, diameter: 15)
+            let circleView = ChartPointEllipseView(center: chartPointModel.screenLoc, diameter: 5)
             circleView.animDuration = 1.0
             circleView.fillColor = UIColor.red //default: white
             circleView.borderWidth = 1
@@ -126,10 +209,8 @@ class ViewController: UIViewController {
             ]
         )
         view.addSubview(chart.view)
-        self.chart = chart as? LineChart //optional
-        
-        //chart.view.backgroundColor = UIColor.lightGray
-        //view.backgroundColor = UIColor.white
+        self.chart = chart //as? LineChart //optional
+        //chart.view.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
     }
 
     
@@ -143,10 +224,10 @@ class ViewController: UIViewController {
     
     //MARK: Actions
     @IBAction func ColourButton1(_ sender: UIButton) {
-        if ColourBox.backgroundColor == #colorLiteral(red: 0.9882352941, green: 0.1411764706, blue: 0.8823529412, alpha: 1) {
+        if ColourBox.backgroundColor == #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1) {
             ColourBox.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         } else {
-            ColourBox.backgroundColor = #colorLiteral(red: 0.9882352941, green: 0.1411764706, blue: 0.8823529412, alpha: 1)
+            ColourBox.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
         }
         
     }

@@ -12,6 +12,8 @@
 		375587CB209E086C00594532 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 375587C9209E086C00594532 /* Main.storyboard */; };
 		375587CD209E086D00594532 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 375587CC209E086D00594532 /* Assets.xcassets */; };
 		375587D0209E086D00594532 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 375587CE209E086D00594532 /* LaunchScreen.storyboard */; };
+		BB0EAB1020AAEC490066C95F /* log_final_I.csv in Resources */ = {isa = PBXBuildFile; fileRef = BB0EAB0F20AAEC490066C95F /* log_final_I.csv */; };
+		BB25DDF720AA1BB4009D5D60 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB25DDF620AA1BB4009D5D60 /* CustomView.swift */; };
 		BBC33BCC20A5F31100C40FAD /* ExamplesDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC33BCB20A5F31100C40FAD /* ExamplesDefaults.swift */; };
 		FFC964ACF099CD44CA976D62 /* Pods_ARISES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B534A0D51D64903D908CC42 /* Pods_ARISES.framework */; };
 /* End PBXBuildFile section */
@@ -28,6 +30,8 @@
 		375587CF209E086D00594532 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		375587D1209E086D00594532 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B33A25BFC07C4D78AF7FEFF2 /* Pods-ARISES.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARISES.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARISES/Pods-ARISES.release.xcconfig"; sourceTree = "<group>"; };
+		BB0EAB0F20AAEC490066C95F /* log_final_I.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = log_final_I.csv; sourceTree = "<group>"; };
+		BB25DDF620AA1BB4009D5D60 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		BBC33BCB20A5F31100C40FAD /* ExamplesDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplesDefaults.swift; sourceTree = "<group>"; };
 		BBE9EA1C20A5EDEB000AF22D /* SwiftCharts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftCharts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBE9EA1F20A5EFDC000AF22D /* SwiftCharts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftCharts.framework; path = "../../Library/Developer/Xcode/DerivedData/ARISES-cbqffpafbdmuffbalfxfvlumphsp/Build/Products/Debug-iphoneos/SwiftCharts.framework"; sourceTree = "<group>"; };
@@ -70,6 +74,7 @@
 			children = (
 				375587D7209E08DB00594532 /* Supporting Files */,
 				375587C7209E086C00594532 /* ViewController.swift */,
+				BB25DDF620AA1BB4009D5D60 /* CustomView.swift */,
 				375587C9209E086C00594532 /* Main.storyboard */,
 				375587D1209E086D00594532 /* Info.plist */,
 				371470F820A082A600AB76EF /* README.md */,
@@ -80,6 +85,7 @@
 		375587D7209E08DB00594532 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BB0EAB0F20AAEC490066C95F /* log_final_I.csv */,
 				375587C5209E086C00594532 /* AppDelegate.swift */,
 				375587CC209E086D00594532 /* Assets.xcassets */,
 				375587CE209E086D00594532 /* LaunchScreen.storyboard */,
@@ -167,6 +173,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB0EAB1020AAEC490066C95F /* log_final_I.csv in Resources */,
 				375587D0209E086D00594532 /* LaunchScreen.storyboard in Resources */,
 				375587CD209E086D00594532 /* Assets.xcassets in Resources */,
 				375587CB209E086C00594532 /* Main.storyboard in Resources */,
@@ -220,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBC33BCC20A5F31100C40FAD /* ExamplesDefaults.swift in Sources */,
+				BB25DDF720AA1BB4009D5D60 /* CustomView.swift in Sources */,
 				375587C8209E086C00594532 /* ViewController.swift in Sources */,
 				375587C6209E086C00594532 /* AppDelegate.swift in Sources */,
 			);
