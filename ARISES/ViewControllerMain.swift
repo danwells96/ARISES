@@ -22,10 +22,20 @@ class ViewControllerMain: UIViewController {
     @IBOutlet weak var containerFood: UIView!
     @IBOutlet weak var containerAdvice: UIView!
     @IBOutlet weak var containerExercise: UIView!
+    // Indicator outlet for toggling
+    @IBOutlet weak var indicatorFood: UILabel!
+    @IBOutlet weak var indicatorExercise: UILabel!
+    @IBOutlet weak var indicatorAdvice: UILabel!
+    @IBOutlet weak var indicatorHealth: UILabel!
+    @IBOutlet var indicatorHideFood: [UILabel]!
+    @IBOutlet var indicatorHideAdvice: [UILabel]!
+    @IBOutlet var indicatorHideExercise: [UILabel]!
+    @IBOutlet weak var indicatorHideHealth: UILabel!
     
     private var shadowLayer: CAShapeLayer!
     private var cornerRadius: CGFloat = 25.0
     private var fillColor: UIColor = .blue // the color applied to the shadowLayer, rather than the view's backgroundColor
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +53,7 @@ class ViewControllerMain: UIViewController {
         containerAdvice.isHidden = true
         containerHealth.isHidden = false
         containerExercise.isHidden = true
+        indicatorHealth.isHidden = true
     }
     
     @IBAction func foodButton(_ sender: UIButton) {
@@ -51,6 +62,8 @@ class ViewControllerMain: UIViewController {
         containerAdvice.isHidden = true
         containerHealth.isHidden = true
         containerExercise.isHidden = true
+        indicatorFood.isHidden = true
+        
     }
     
     @IBAction func exerciseButton(_ sender: UIButton) {
@@ -59,6 +72,8 @@ class ViewControllerMain: UIViewController {
         containerAdvice.isHidden = true
         containerHealth.isHidden = true
         containerExercise.isHidden = false
+        indicatorExercise.isHidden = true
+        
     }
     
     @IBAction func adviceButton(_ sender: UIButton) {
@@ -67,6 +82,7 @@ class ViewControllerMain: UIViewController {
         containerAdvice.isHidden = false
         containerHealth.isHidden = true
         containerExercise.isHidden = true
+        indicatorAdvice.isHidden = true
     }
  
     
