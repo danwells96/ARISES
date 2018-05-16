@@ -25,7 +25,10 @@ class ViewControllerMain: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        viewExercise.setRadius()
+        viewFood.setRadius()
+        viewHealth.setRadius()
+        viewAdvice.setRadius()
     }
     
     //Sort through bubbles
@@ -62,4 +65,11 @@ class ViewControllerMain: UIViewController {
     }
  
     
+}
+
+extension UIView {
+    func setRadius(radius: CGFloat? = nil) {
+        self.layer.cornerRadius = radius ?? self.frame.width / 8;
+        self.layer.masksToBounds = true;
+    }
 }
