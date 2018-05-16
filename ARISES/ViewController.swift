@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDataSource, UITableViewDelegate {
 
     //MARK: Properties
     @IBOutlet var viewBig: UIView!
@@ -95,6 +95,13 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     var exerciseIntensityPicker = UIPickerView()
     var exerciseTimePicker = UIDatePicker()
     var exerciseDurationPicker = UIDatePicker()
+    
+    //defining table related variables
+    let loggedFoodName = ["lasagne", "mango yoghurt", "Chickn Biryani"]
+    let loggedFoodTime = ["13:45","23:24", "32:12"]
+    let loggedExerciseName = ["Walk to work", "Yoga", "Weight lifting"]
+    let loggedExerciseTime = ["13:23", "32:43","51:12"]
+    let loggedExerciseDuration = ["10min", "4h 2min", "5y"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -245,6 +252,37 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         else{
             exerciseIntensityField.text = exerciseIntensity[row]
             exerciseIntensityField.resignFirstResponder()
+        }
+    }
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if(tableView == foodLogTable){
+            return loggedFoodName.count
+        }
+        else{
+            return loggedExerciseName.count
+        }
+        
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if(tableView == foodLogTable){
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ViewControllerTableViewCell
+            
+            cell.loggedFoodStar.image = UIImage(named: "Star.jpg")
+            cell.loggedFoodName.text = loggedFoodName[indexPath.row]
+            cell.loggedFoodTime.text = loggedFoodTime[indexPath.row]
+            
+            return(cell)
+        }
+        else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ViewControllerTableViewCell
+            
+            cell.loggedExerciseName.text = loggedExerciseName[indexPath.row]
+            cell.loggedExerciseTime.text = loggedExerciseTime[indexPath.row]
+            cell.loggedExerciseDuration.text = loggedExerciseDuration[indexPath.row]
+            
+            return(cell)
         }
     }
     
