@@ -16,6 +16,10 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     //MARK: Properties
     @IBOutlet weak var foodTimeField: UITextField!
     @IBOutlet weak var foodLogTable: UITableView!
+    @IBOutlet weak var carbsTextField: UITextField!
+    @IBOutlet weak var proteinTextField: UITextField!
+    @IBOutlet weak var fatTextField: UITextField!
+    @IBOutlet weak var foodNameTextField: UITextField!
     
     //defining picker related variables
     var foodTimePicker = UIDatePicker()
@@ -29,6 +33,22 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         super.viewDidLoad()
         
         createFoodTimePicker()
+        
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.doneWithKeypad))
+        
+        toolBar.setItems([flexible, doneButton], animated: false)
+        
+        carbsTextField.inputAccessoryView = toolBar
+        proteinTextField.inputAccessoryView = toolBar
+        fatTextField.inputAccessoryView = toolBar
+        foodNameTextField.inputAccessoryView = toolBar
+        
+        
+        
+        
     }
     
     //MARK: Picker functions
@@ -38,11 +58,11 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         let doneButtonBar = UIToolbar()
         doneButtonBar.sizeToFit()
         
+        let flexible = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: #selector(doneWithPicker))
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneWithPicker))
-        doneButtonBar.setItems([doneButton], animated: false)
         
+        doneButtonBar.setItems([flexible, doneButton], animated: false)
         
-
         foodTimeField.inputAccessoryView = doneButtonBar
         foodTimeField.inputView = foodTimePicker
         
@@ -73,6 +93,10 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         cell.loggedFoodTime.text = loggedFoodTime[indexPath.row]
         
         return(cell)
+    }
+    
+    @objc func doneWithKeypad(){
+        view.endEditing(true)
     }
     
     

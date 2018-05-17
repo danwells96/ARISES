@@ -14,6 +14,7 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
     //TODO: exercise logs not working
     
     //MARK: Properties
+    @IBOutlet weak var exerciseNameField: UITextField!
     @IBOutlet weak var exerciseTimeField: UITextField!
     @IBOutlet weak var exerciseIntensityField: UITextField!
     @IBOutlet weak var exerciseDurationField: UITextField!
@@ -38,6 +39,16 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         createExerciseDurationPicker()
         createExerciseTimePicker()
+        
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.doneWithKeypad))
+        
+        toolBar.setItems([flexible, doneButton], animated: false)
+        
+        exerciseNameField.inputAccessoryView = toolBar
+
 
     }
     
@@ -48,8 +59,9 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
         let doneButtonBar = UIToolbar()
         doneButtonBar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneWithDurationPicker))
-        doneButtonBar.setItems([doneButton], animated: false)
+        let flexible = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: #selector(doneWithTimePicker))
+        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: nil, action: #selector(doneWithDurationPicker))
+        doneButtonBar.setItems([flexible, doneButton], animated: false)
         
         exerciseDurationField.inputAccessoryView = doneButtonBar
         exerciseDurationField.inputView = exerciseDurationPicker
@@ -70,8 +82,10 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
         let doneButtonBar = UIToolbar()
         doneButtonBar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneWithTimePicker))
-        doneButtonBar.setItems([doneButton], animated: false)
+        let flexible = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: #selector(doneWithTimePicker))
+        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(doneWithTimePicker))
+        
+        doneButtonBar.setItems([flexible, doneButton], animated: false)
         
         exerciseTimeField.inputAccessoryView = doneButtonBar
         exerciseTimeField.inputView = exerciseTimePicker
@@ -122,5 +136,10 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         return(cell)
     }
+    
+    @objc func doneWithKeypad(){
+        view.endEditing(true)
+    }
+    
 
 }
