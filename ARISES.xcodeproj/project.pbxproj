@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		371070D620AD904300365AC4 /* ExerciseIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 371070D520AD904300365AC4 /* ExerciseIcon.png */; };
 		3718B85C20AC99B6006F1A47 /* ViewControllerFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718B85B20AC99B6006F1A47 /* ViewControllerFood.swift */; };
 		3718B85E20AC9A2A006F1A47 /* ViewControllerAdvice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718B85D20AC9A2A006F1A47 /* ViewControllerAdvice.swift */; };
 		3718B86020AC9A42006F1A47 /* ViewControllerExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718B85F20AC9A42006F1A47 /* ViewControllerExercise.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		371070D520AD904300365AC4 /* ExerciseIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ExerciseIcon.png; sourceTree = "<group>"; };
 		371470F820A082A600AB76EF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3718B85B20AC99B6006F1A47 /* ViewControllerFood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFood.swift; sourceTree = "<group>"; };
 		3718B85D20AC9A2A006F1A47 /* ViewControllerAdvice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAdvice.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				375587C5209E086C00594532 /* AppDelegate.swift */,
 				375587CE209E086D00594532 /* LaunchScreen.storyboard */,
 				375587CC209E086D00594532 /* Assets.xcassets */,
+				371070D520AD904300365AC4 /* ExerciseIcon.png */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 				375587D0209E086D00594532 /* LaunchScreen.storyboard in Resources */,
 				375587CD209E086D00594532 /* Assets.xcassets in Resources */,
 				375587CB209E086C00594532 /* Main.storyboard in Resources */,
+				371070D620AD904300365AC4 /* ExerciseIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
