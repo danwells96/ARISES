@@ -83,7 +83,6 @@
 				3718B86520AC9CE3006F1A47 /* ViewControllerMain.swift */,
 				3718B86320AC9A75006F1A47 /* ViewControllerGraph.swift */,
 				378658AD20AC675D007C13B2 /* ViewControllerTableViewCell.swift */,
-				378658AB20AC659C007C13B2 /* Star.jpg */,
 				375587D1209E086D00594532 /* Info.plist */,
 				371470F820A082A600AB76EF /* README.md */,
 			);
@@ -96,6 +95,7 @@
 				375587C5209E086C00594532 /* AppDelegate.swift */,
 				375587CE209E086D00594532 /* LaunchScreen.storyboard */,
 				375587CC209E086D00594532 /* Assets.xcassets */,
+				378658AB20AC659C007C13B2 /* Star.jpg */,
 				371070D520AD904300365AC4 /* ExerciseIcon.png */,
 			);
 			path = "Supporting Files";

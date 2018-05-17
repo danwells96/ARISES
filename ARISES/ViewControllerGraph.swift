@@ -11,9 +11,14 @@ import UIKit
 
 class ViewControllerGraph: UIViewController {
 
+    //MARK: Properties
     
+    
+    //MARK: Override
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
+    
+    //MARK: Functions
 }

@@ -10,6 +10,7 @@ import UIKit
 
 class ViewControllerTableViewCell: UITableViewCell {
 
+    //MARK: Properties
     @IBOutlet weak var loggedFoodStar: UIImageView!
     @IBOutlet weak var loggedFoodName: UILabel!
     @IBOutlet weak var loggedFoodTime: UILabel!
@@ -17,6 +18,7 @@ class ViewControllerTableViewCell: UITableViewCell {
     @IBOutlet weak var loggedExerciseName: UILabel!
     @IBOutlet weak var loggedExerciseTime: UILabel!
     
+    //MARK: Override
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

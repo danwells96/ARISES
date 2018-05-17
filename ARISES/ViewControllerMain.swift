@@ -31,12 +31,12 @@ class ViewControllerMain: UIViewController {
     @IBOutlet var indicatorHideAdvice: [UILabel]!
     @IBOutlet var indicatorHideExercise: [UILabel]!
     @IBOutlet weak var indicatorHideHealth: UILabel!
-    
+    // Variables for rounding and shadow extension
     private var shadowLayer: CAShapeLayer!
     private var cornerRadius: CGFloat = 25.0
     private var fillColor: UIColor = .blue // the color applied to the shadowLayer, rather than the view's backgroundColor
 
-    
+    //MARK: Override
     override func viewDidLoad() {
         super.viewDidLoad()
         /*viewExercise.setRadius()
@@ -46,7 +46,7 @@ class ViewControllerMain: UIViewController {
  */
     }
     
-    //Sort through bubbles
+    //MARK: View re-positioning
     @IBAction func healthButton(_ sender: UIButton) {
         view.bringSubview(toFront: viewHealth)
         containerFood.isHidden = true
@@ -87,7 +87,8 @@ class ViewControllerMain: UIViewController {
  
     
 }
-
+//MARK: Extensions
+//MARK: Rounding and shadow extensions
 extension UIView {
     func setRadius(radius: CGFloat? = nil) {
         self.layer.cornerRadius = radius ?? self.frame.width / 8

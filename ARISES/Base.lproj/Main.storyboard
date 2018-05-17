@@ -70,7 +70,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="235" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cPW-sN-cAE">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Star" translatesAutoresizingMaskIntoConstraints="NO" id="cPW-sN-cAE">
                                                     <rect key="frame" x="6" y="9" width="25" height="23"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -156,6 +156,10 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <connections>
+                        <outlet property="foodLogTable" destination="6QN-ht-td4" id="O2j-mL-Rp1"/>
+                        <outlet property="foodTimeField" destination="YHY-0J-bdq" id="BT8-aV-n9T"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ko3-mP-5KX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -290,6 +294,9 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <connections>
+                        <outlet property="stressField" destination="yJF-6u-or2" id="9C2-Yc-bjQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="erV-av-JlA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -752,6 +759,12 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <connections>
+                        <outlet property="exerciseDurationField" destination="eBL-gT-zy7" id="VlR-5W-3k1"/>
+                        <outlet property="exerciseIntensityField" destination="sz4-FU-8iE" id="o1D-u0-xJe"/>
+                        <outlet property="exerciseLogTable" destination="ymx-Sq-99t" id="Sw3-Jw-uMf"/>
+                        <outlet property="exerciseTimeField" destination="uDK-N7-5NN" id="tc5-iC-hp6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UBf-gV-Zdz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -820,4 +833,7 @@
             <point key="canvasLocation" x="1556" y="-550.49261083743841"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Star" width="284" height="287"/>
+    </resources>
 </document>
