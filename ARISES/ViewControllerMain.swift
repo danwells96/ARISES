@@ -23,14 +23,11 @@ class ViewControllerMain: UIViewController {
     @IBOutlet weak var containerAdvice: UIView!
     @IBOutlet weak var containerExercise: UIView!
     // Indicator outlet for toggling
-    @IBOutlet weak var indicatorFood: UILabel!
-    @IBOutlet weak var indicatorExercise: UILabel!
-    @IBOutlet weak var indicatorAdvice: UILabel!
-    @IBOutlet weak var indicatorHealth: UILabel!
-    @IBOutlet var indicatorHideFood: [UILabel]!
-    @IBOutlet var indicatorHideAdvice: [UILabel]!
-    @IBOutlet var indicatorHideExercise: [UILabel]!
-    @IBOutlet weak var indicatorHideHealth: UILabel!
+    @IBOutlet weak var indicatorFood: UIView!
+    @IBOutlet weak var indicatorExercise: UIView!
+    @IBOutlet weak var indicatorHealth: UIView!
+    @IBOutlet weak var indicatorAdvice: UIView!
+
     // Variables for rounding and shadow extension
     private var shadowLayer: CAShapeLayer!
     private var cornerRadius: CGFloat = 25.0
@@ -39,11 +36,7 @@ class ViewControllerMain: UIViewController {
     //MARK: Override
     override func viewDidLoad() {
         super.viewDidLoad()
-        /*viewExercise.setRadius()
-        viewFood.setRadius()
-        viewHealth.setRadius()
-        viewAdvice.setRadius()
- */
+
     }
     
     //MARK: View re-positioning
@@ -53,7 +46,10 @@ class ViewControllerMain: UIViewController {
         containerAdvice.isHidden = true
         containerHealth.isHidden = false
         containerExercise.isHidden = true
-        indicatorHealth.isHidden = true
+        indicatorFood.isHidden = false
+        indicatorAdvice.isHidden = false
+        indicatorHealth.isHidden = false
+        indicatorExercise.isHidden = false
     }
     
     @IBAction func foodButton(_ sender: UIButton) {
@@ -63,7 +59,9 @@ class ViewControllerMain: UIViewController {
         containerHealth.isHidden = true
         containerExercise.isHidden = true
         indicatorFood.isHidden = true
-        
+        indicatorAdvice.isHidden = false
+        indicatorHealth.isHidden = false
+        indicatorExercise.isHidden = false
     }
     
     @IBAction func exerciseButton(_ sender: UIButton) {
@@ -72,6 +70,9 @@ class ViewControllerMain: UIViewController {
         containerAdvice.isHidden = true
         containerHealth.isHidden = true
         containerExercise.isHidden = false
+        indicatorFood.isHidden = false
+        indicatorAdvice.isHidden = false
+        indicatorHealth.isHidden = false
         indicatorExercise.isHidden = true
         
     }
@@ -82,7 +83,10 @@ class ViewControllerMain: UIViewController {
         containerAdvice.isHidden = false
         containerHealth.isHidden = true
         containerExercise.isHidden = true
+        indicatorFood.isHidden = false
         indicatorAdvice.isHidden = true
+        indicatorHealth.isHidden = false
+        indicatorExercise.isHidden = false
     }
  
     
