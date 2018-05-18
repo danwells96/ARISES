@@ -25,8 +25,8 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     var foodTimePicker = UIDatePicker()
     
     //defining table related variables
-    let loggedFoodName = ["lasagne", "mango yoghurt", "Chickn Biryani"]
-    let loggedFoodTime = ["13:45","23:24", "32:12"]
+    var loggedFoodName = [String]()
+    var loggedFoodTime = [String]()
     
     //MARK: Override
     override func viewDidLoad() {
@@ -45,10 +45,6 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         proteinTextField.inputAccessoryView = toolBar
         fatTextField.inputAccessoryView = toolBar
         foodNameTextField.inputAccessoryView = toolBar
-        
-        
-        
-        
     }
     
     //MARK: Picker functions
