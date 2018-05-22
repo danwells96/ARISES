@@ -34,6 +34,9 @@ class ViewControllerGraph: UIViewController{
     private var didLayout: Bool = false
     @IBOutlet weak var sideView2: CustomView!
     @IBOutlet weak var sideView: CustomView!
+    
+    @IBOutlet weak var sideViewContainer: UIView!
+    
     @IBOutlet weak var rightView: CustomView!{
         didSet{
             let recognizer = UISwipeGestureRecognizer()
@@ -47,10 +50,20 @@ class ViewControllerGraph: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.sideView.transform = __CGAffineTransformMake(1, 0.8, 0, 1, 0, 2)
-        self.sideView2.transform = __CGAffineTransformMake(1, 0.8, 0, 1, 0, 0)
-        self.sideView3.transform = __CGAffineTransformMake(1, 0.8, 0, 1, 0, 0)
-        self.rightView.transform = __CGAffineTransformMake(1, -0.8, 0, 1, 0, 0)
+        //Initial transforms
+      //  self.sideView.transform = __CGAffineTransformMake(1, 0.8, 0, 1, 0, 2)
+        //self.sideView2.transform = __CGAffineTransformMake(1, 0.8, 0, 1, 0, 0)
+    //    self.sideView3.transform = __CGAffineTransformMake(1, 0.8, 0, 1, 0, 0)
+    //    self.rightView.transform = __CGAffineTransformMake(1, -0.8, 0, 1, 0, 0)
+        
+        //Second Transforms
+        var transform = CATransform3DIdentity
+        transform.m34 = -1 / 500.0
+        sideViewContainer.layer.transform = CATransform3DRotate(transform, CGFloat(-60 * Double.pi / 180), 0, 1, 0)
+        
+        //setAnchorPoint(anchorPoint: CGPoint(x: 30, y: 108), forView: sideView)
+        //sideView2.layer.transform = CATransform3DRotate(transform, CGFloat(-15 * Double.pi / 180), 0, 1, 0)
+      //  setAnchorPoint(anchorPoint: CGPoint(x: 0, y: 70), forView: sideView2)
         //self.rightView.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(slideInFromLeft(duration:completionDelegate:_:))))
         
         // for rotating the chart when in horizontal view
@@ -63,6 +76,25 @@ class ViewControllerGraph: UIViewController{
             self.initChart()
         }
     }
+    
+    func setAnchorPoint(anchorPoint: CGPoint, forView view: UIView) {
+        var newPoint = CGPoint(x: view.bounds.size.width * anchorPoint.x, y: view.bounds.size.height * anchorPoint.y)
+        var oldPoint = CGPoint(x: view.bounds.size.width * view.layer.anchorPoint.x, y: view.bounds.size.height * view.layer.anchorPoint.y)
+        
+        newPoint = newPoint.applying(view.transform)
+        oldPoint = oldPoint.applying(view.transform)
+        
+        var position = view.layer.position
+        position.x -= oldPoint.x
+        position.x += newPoint.x
+        
+        position.y -= oldPoint.y
+        position.y += newPoint.y
+        
+        view.layer.position = position
+        view.layer.anchorPoint = anchorPoint
+    }
+    
     /*
      override func viewDidAppear(_ animated: Bool) {
      CustomView.animate(
