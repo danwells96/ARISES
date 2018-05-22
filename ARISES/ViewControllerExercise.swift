@@ -25,10 +25,8 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
     var exerciseTimePicker = UIDatePicker()
     var exerciseDurationPicker = UIDatePicker()
     //table related variables
-    let loggedExerciseName = ["Walk to work", "Yoga", "Weight lifting"]
-    let loggedExerciseTime = ["13:23", "32:43","51:12"]
-    let loggedExerciseDuration = ["10min", "4h 2min", "5y"]
-    
+    var loggedExercise = [Exercise]()
+
     //MARK: Override
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,15 +122,16 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
     //MARK: Table functions
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return loggedExerciseName.count
+            return loggedExercise.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ViewControllerTableViewCell
         
-        cell.loggedExerciseName.text = loggedExerciseName[indexPath.row]
-        cell.loggedExerciseTime.text = loggedExerciseTime[indexPath.row]
-        cell.loggedExerciseDuration.text = loggedExerciseDuration[indexPath.row]
+        let currentExercise = loggedExercise[indexPath.row]
+        cell.loggedExerciseName.text = currentExercise.Name
+        cell.loggedExerciseTime.text = currentExercise.Time
+        cell.loggedExerciseDuration.text = currentExercise.Duration
         
         return(cell)
     }
@@ -141,5 +140,15 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
         view.endEditing(true)
     }
     
+    @IBAction func addExercise(_ sender: Any) {
+        if ((exerciseNameField.text != "") && (exerciseTimeField.text != "") && (exerciseDurationField.text != "") && (exerciseIntensityField.text != "")){
+            loggedExercise.append(Exercise(Name: "\(exerciseNameField.text!)", Time: "\(exerciseTimeField.text!)", Duration: "\(exerciseDurationField.text!)", Intensity: "\(exerciseIntensityField.text!)"))
+            exerciseNameField.text = ""
+            exerciseTimeField.text = ""
+            exerciseDurationField.text = ""
+            exerciseIntensityField.text = ""
+            self.exerciseLogTable .reloadData()
+        }
+    }
 
 }

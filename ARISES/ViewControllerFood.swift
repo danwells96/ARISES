@@ -25,8 +25,8 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     var foodTimePicker = UIDatePicker()
     
     //defining table related variables
-    var loggedFoodName = [String]()
-    var loggedFoodTime = [String]()
+    var loggedMeals = [Meal]()
+    var favouriteMeals = [Meal]()
     
     //MARK: Override
     override func viewDidLoad() {
@@ -77,17 +77,23 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     
     //MARK: Table functions
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return loggedFoodName.count
+        return loggedMeals.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ViewControllerTableViewCell
         
-        cell.loggedFoodStar.image = UIImage(named: "Star.jpg")
-        cell.loggedFoodName.text = loggedFoodName[indexPath.row]
-        cell.loggedFoodTime.text = loggedFoodTime[indexPath.row]
+        let currentMeal = loggedMeals[indexPath.row]
+        cell.loggedFoodName.text = currentMeal.Name
+        cell.loggedFoodTime.text = currentMeal.Time
         
+        if(currentMeal.Favourite == true){
+            cell.loggedFoodStar.image = UIImage(named: "Star.jpg")
+        }
+        else{
+            cell.loggedFoodStar.image = UIImage(named: "greyStar.png")
+        }
+    
         return(cell)
     }
     
@@ -95,5 +101,32 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         view.endEditing(true)
     }
     
+    @IBAction func addFoodToLog(_ sender: Any) {
+        if ((foodNameTextField.text != "") && (foodTimeField.text != "") && (carbsTextField.text != "") && (proteinTextField.text != "") && (fatTextField.text != "")){
+            loggedMeals.append(Meal(Name: "\(foodNameTextField.text!)", Time: "\(foodTimeField.text!)", Carbs: Int(carbsTextField.text!)!, Protein: Int(proteinTextField.text!)!, Fat: Int(fatTextField.text!)!, Favourite: false))
+            foodNameTextField.text = ""
+            foodTimeField.text = ""
+            carbsTextField.text = ""
+            proteinTextField.text = ""
+            fatTextField.text = ""
+            self.foodLogTable .reloadData()
+        }
+    }
+
+   /* @IBAction func favouriteButton(_ sender: Any) {
+        let newFavourite = loggedMeals[GAH]
+        favouriteMeals.append(Meal(Name: "\(newFavourite.Name)", Time: "\(newFavourite.Time)", Carbs: Int(newFavourite.Carbs)!, Protein: Int(newFavourite.Protein)!, Fat: Int(newFavourite.Fat)!))
+    }
+    */
+   
+    /*@IBAction func chooseFromFavourites(_ sender: Any) {
+        //segue to a new cell design containing the list of favourites
+        let selectedMeal = favouriteMeals[GAH]
+        foodNameTextField.text = "\(selectedMeal.Name)"
+        foodTimeField.text = "\(selectedMeal.Time)"
+        carbsTextField.text = "\(selectedMeal.Carbs)"
+        proteinTextField.text = "\(selectedMeal.Protein)"
+        fatTextField.text = "\(selectedMeal.Fat)"
+    }*/
     
 }
