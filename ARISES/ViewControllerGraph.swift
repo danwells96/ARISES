@@ -24,7 +24,10 @@ class ViewControllerGraph: UIViewController{
     var tMinus1Compare : [Double] = []
     var tMinus2Compare : [Double] = []
     var tMinus3Compare : [Double] = []
+    var tMinus4Compare : [Double] = []
     var tPlus1Compare : [Double] = []
+    var tPlus2Compare : [Double] = []
+    var tPlus3Compare : [Double] = []
     
     
     //MARK: Properties
@@ -34,8 +37,13 @@ class ViewControllerGraph: UIViewController{
     private var didLayout: Bool = false
     @IBOutlet weak var sideView2: CustomView!
     @IBOutlet weak var sideView: CustomView!
+    @IBOutlet weak var sideView3: CustomView!
+    @IBOutlet weak var rightView2: CustomView!
+    @IBOutlet weak var rightView3: CustomView!
+    @IBOutlet weak var sideView4: CustomView!
     
     @IBOutlet weak var sideViewContainer: UIView!
+    @IBOutlet weak var rightSideViewContainer: UIView!
     
     @IBOutlet weak var rightView: CustomView!{
         didSet{
@@ -45,25 +53,18 @@ class ViewControllerGraph: UIViewController{
             }
         }
     }
-    @IBOutlet weak var sideView3: CustomView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Initial transforms
-      //  self.sideView.transform = __CGAffineTransformMake(1, 0.8, 0, 1, 0, 2)
-        //self.sideView2.transform = __CGAffineTransformMake(1, 0.8, 0, 1, 0, 0)
-    //    self.sideView3.transform = __CGAffineTransformMake(1, 0.8, 0, 1, 0, 0)
-    //    self.rightView.transform = __CGAffineTransformMake(1, -0.8, 0, 1, 0, 0)
-        
         //Second Transforms
         var transform = CATransform3DIdentity
         transform.m34 = -1 / 500.0
-        sideViewContainer.layer.transform = CATransform3DRotate(transform, CGFloat(-60 * Double.pi / 180), 0, 1, 0)
+        sideViewContainer.layer.transform = CATransform3DRotate(transform, CGFloat(-45 * Double.pi / 180), 0, 1, 0)
         
-        //setAnchorPoint(anchorPoint: CGPoint(x: 30, y: 108), forView: sideView)
-        //sideView2.layer.transform = CATransform3DRotate(transform, CGFloat(-15 * Double.pi / 180), 0, 1, 0)
-      //  setAnchorPoint(anchorPoint: CGPoint(x: 0, y: 70), forView: sideView2)
+        rightSideViewContainer.layer.transform = CATransform3DRotate(transform, CGFloat(45 * Double.pi / 180), 0, 1, 0)
+        
+        
         //self.rightView.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(slideInFromLeft(duration:completionDelegate:_:))))
         
         // for rotating the chart when in horizontal view
@@ -343,13 +344,22 @@ class ViewControllerGraph: UIViewController{
         let tMinus1 = Calendar.current.date(byAdding: .day, value: -1, to: day!)
         let tMinus2 = Calendar.current.date(byAdding: .day, value: -2, to: day!)
         let tMinus3 = Calendar.current.date(byAdding: .day, value: -3, to: day!)
+        let tMinus4 = Calendar.current.date(byAdding: .day, value: -4, to: day!)
         let tPlus1 = Calendar.current.date(byAdding: .day, value: 1, to: day!)
+        let tPlus2 = Calendar.current.date(byAdding: .day, value: 2, to: day!)
+        let tPlus3 = Calendar.current.date(byAdding: .day, value: 3, to: day!)
         let tMinus1String = dayFormatter.string(from: tMinus1!)
         let tMinus2String = dayFormatter.string(from: tMinus2!)
         let tMinus3String = dayFormatter.string(from: tMinus3!)
+        let tMinus4String = dayFormatter.string(from: tMinus4!)
         let tPlus1String = dayFormatter.string(from: tPlus1!)
+        let tPlus2String = dayFormatter.string(from: tPlus2!)
+        let tPlus3String = dayFormatter.string(from: tPlus3!)
+
         
         for (key, value) in dataDict{
+            //Consider changing if/else ladder into case/switch statement to improve performance (most likely negligable but might make difference with large number of days of data
+            
             if(key == keyDay){
                 for val in value{
                     if(val.value != 0){
@@ -377,10 +387,28 @@ class ViewControllerGraph: UIViewController{
                         tMinus3Compare.append(val.value)
                     }
                 }
+            }else if(key == tMinus4String){
+                for val in value{
+                    if(val.value != 0){
+                        tMinus4Compare.append(val.value)
+                    }
+                }
             }else if(key == tPlus1String){
                 for val in value{
                     if(val.value != 0){
                         tPlus1Compare.append(val.value)
+                    }
+                }
+            }else if(key == tPlus2String){
+                for val in value{
+                    if(val.value != 0){
+                        tPlus2Compare.append(val.value)
+                    }
+                }
+            }else if(key == tPlus3String){
+                for val in value{
+                    if(val.value != 0){
+                        tPlus3Compare.append(val.value)
                     }
                 }
             }
