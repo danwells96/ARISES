@@ -24,6 +24,7 @@
 		37E140DB20B30D1900688EC0 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E140DA20B30D1900688EC0 /* Exercise.swift */; };
 		37E140DD20B311EA00688EC0 /* greyStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E140DC20B311EA00688EC0 /* greyStar.png */; };
 		37E140E120B3202E00688EC0 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E140E020B3202E00688EC0 /* CoreDataHandler.swift */; };
+		CCABFD65EA5DB40F170A389A /* Pods_ARISES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1D7AAE55A6F2D0D2DB662E7 /* Pods_ARISES.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,9 @@
 		37E140DA20B30D1900688EC0 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		37E140DC20B311EA00688EC0 /* greyStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greyStar.png; sourceTree = "<group>"; };
 		37E140E020B3202E00688EC0 /* CoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
+		863CAE274477E894C42E1381 /* Pods-ARISES.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARISES.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARISES/Pods-ARISES.debug.xcconfig"; sourceTree = "<group>"; };
+		B1D7AAE55A6F2D0D2DB662E7 /* Pods_ARISES.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARISES.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E37BF63307A2A5AF11BA9831 /* Pods-ARISES.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARISES.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARISES/Pods-ARISES.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCABFD65EA5DB40F170A389A /* Pods_ARISES.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,8 @@
 			children = (
 				375587C4209E086C00594532 /* ARISES */,
 				375587C3209E086C00594532 /* Products */,
+				5D25042C28CD398D98F1751D /* Pods */,
+				92B4A946DFA7B8979D866583 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,6 +117,23 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		5D25042C28CD398D98F1751D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				863CAE274477E894C42E1381 /* Pods-ARISES.debug.xcconfig */,
+				E37BF63307A2A5AF11BA9831 /* Pods-ARISES.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		92B4A946DFA7B8979D866583 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B1D7AAE55A6F2D0D2DB662E7 /* Pods_ARISES.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -117,9 +141,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 375587D4209E086D00594532 /* Build configuration list for PBXNativeTarget "ARISES" */;
 			buildPhases = (
+				4710772AFDD94C6B390A32D6 /* [CP] Check Pods Manifest.lock */,
 				375587BE209E086C00594532 /* Sources */,
 				375587BF209E086C00594532 /* Frameworks */,
 				375587C0209E086C00594532 /* Resources */,
+				7167937B834790E0ECE00B09 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -178,6 +204,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4710772AFDD94C6B390A32D6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ARISES-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7167937B834790E0ECE00B09 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ARISES/Pods-ARISES-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwiftCharts/SwiftCharts.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftCharts.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ARISES/Pods-ARISES-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		375587BE209E086C00594532 /* Sources */ = {
@@ -336,6 +401,7 @@
 		};
 		375587D5209E086D00594532 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 863CAE274477E894C42E1381 /* Pods-ARISES.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -354,6 +420,7 @@
 		};
 		375587D6209E086D00594532 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E37BF63307A2A5AF11BA9831 /* Pods-ARISES.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
