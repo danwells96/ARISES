@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/xiaoyuma/Documents/ARISES/ARISES/Supporting Files/SecondViewController.swift">
+   </FileRef>
+   <FileRef
       location = "group:ARISES.xcodeproj">
    </FileRef>
    <FileRef

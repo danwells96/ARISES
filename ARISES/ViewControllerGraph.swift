@@ -54,6 +54,11 @@ class ViewControllerGraph: UIViewController{
         }
     }
     
+    @IBOutlet weak var topViewConstraint: NSLayoutConstraint!
+    let horizontalLimit : CGFloat = -200
+    var totalTransition : CGFloat = -200
+    
+    @IBOutlet weak var viewToDrag: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,6 +81,15 @@ class ViewControllerGraph: UIViewController{
             self.didLayout = true
             self.initChart()
         }
+    }
+    @IBAction func viewDragged(sender: UIPanGestureRecognizer){
+        let xTransition = sender.translation(in: view).x //view or view to drag
+        
+        if (topViewConstraint > horizontalLimit){
+            totalTransition += xTransition
+            topViewConstraint.constant = log(totalTransition)
+        }
+        
     }
   /*
     func setAnchorPoint(anchorPoint: CGPoint, forView view: UIView) {
@@ -454,6 +468,7 @@ class ViewControllerGraph: UIViewController{
             rightView.avgArrayValue = 0
             rightView.dailyLow = 0
         }
+        //Need to add these if/else for other sideviews that have been added
         
         //SOmething needs changing to initialise chart point
         
@@ -506,7 +521,7 @@ class ViewControllerGraph: UIViewController{
         let viewGenerator = {(chartPointModel: ChartPointLayerModel, layer: ChartPointsViewsLayer, chart: Chart) -> UIView? in
             let viewSize: CGFloat = 20
             let center = chartPointModel.screenLoc
-            let label = UILabel(frame: CGRect(x: (center.x - viewSize / 2)+5, y: (center.y - viewSize / 2)+5, width: 30, height: 30))
+            let label = UILabel(frame: CGRect(x: (center.x - viewSize / 2), y: (center.y - viewSize / 2), width: 30, height: 30))
             label.backgroundColor = UIColor.clear
             label.textAlignment = NSTextAlignment.center
             label.text = "\(chartPointModel.chartPoint.y.description)"
