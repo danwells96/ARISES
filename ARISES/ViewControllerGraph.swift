@@ -415,59 +415,6 @@ class ViewControllerGraph: UIViewController{
                 default:
                     print("Data not needed")
             }
-      /*
-            if(key == keyDay){
-                for val in value{
-                    if(val.value != 0){
-                        let combinedDate = key+" "+val.time
-                        valueArray.append(ChartAxisValueDouble(val.value))
-                        dateArray.append(ChartAxisValueDate(date: dateFormatter.date(from: combinedDate)!, formatter: dateFormatter))
-                        points.append(ChartPoint(x: dateArray[dateArray.endIndex-1], y: valueArray[valueArray.endIndex-1]))
-                    }
-                }
-            }else if(key == tMinus1String){
-                for val in value{
-                    if(val.value != 0){
-                        tMinus1Compare.append(val.value)
-                    }
-                }
-            }else if(key == tMinus2String){
-                for val in value{
-                    if(val.value != 0){
-                        tMinus2Compare.append(val.value)
-                    }
-                }
-            }else if(key == tMinus3String){
-                for val in value{
-                    if(val.value != 0){
-                        tMinus3Compare.append(val.value)
-                    }
-                }
-            }else if(key == tMinus4String){
-                for val in value{
-                    if(val.value != 0){
-                        tMinus4Compare.append(val.value)
-                    }
-                }
-            }else if(key == tPlus1String){
-                for val in value{
-                    if(val.value != 0){
-                        tPlus1Compare.append(val.value)
-                    }
-                }
-            }else if(key == tPlus2String){
-                for val in value{
-                    if(val.value != 0){
-                        tPlus2Compare.append(val.value)
-                    }
-                }
-            }else if(key == tPlus3String){
-                for val in value{
-                    if(val.value != 0){
-                        tPlus3Compare.append(val.value)
-                    }
-                }
-            }*/
         }
         
         
