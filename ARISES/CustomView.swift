@@ -62,6 +62,7 @@ class CustomView: UIView {
         
         //daily low high range
         if(!((self.dailyLow == 0) && (self.dailyHigh == 0) && (self.avgArrayValue == 0))){
+            self.isHidden = false
             let h = bounds.height
             let h1 = self.dailyHigh * h / 20
             let h2 = self.dailyLow * h / 20
@@ -88,6 +89,7 @@ class CustomView: UIView {
             UIColor.blue.setFill()
             circlePath.fill()
         }else{
+            self.isHidden = true
             print("No value")
         }
         //circlePath.stroke()

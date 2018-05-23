@@ -20,11 +20,14 @@ struct customType{
 class ViewControllerGraph: UIViewController{
     
     //Today temp variable till real-time data available
-    private var today: String = "6/01/2016 00:00"
+    private var today: String = "5/01/2016 00:00"
     var tMinus1Compare : [Double] = []
     var tMinus2Compare : [Double] = []
     var tMinus3Compare : [Double] = []
+    var tMinus4Compare : [Double] = []
     var tPlus1Compare : [Double] = []
+    var tPlus2Compare : [Double] = []
+    var tPlus3Compare : [Double] = []
     
     
     //MARK: Properties
@@ -34,6 +37,14 @@ class ViewControllerGraph: UIViewController{
     private var didLayout: Bool = false
     @IBOutlet weak var sideView2: CustomView!
     @IBOutlet weak var sideView: CustomView!
+    @IBOutlet weak var sideView3: CustomView!
+    @IBOutlet weak var rightView2: CustomView!
+    @IBOutlet weak var rightView3: CustomView!
+    @IBOutlet weak var sideView4: CustomView!
+    
+    @IBOutlet weak var sideViewContainer: UIView!
+    @IBOutlet weak var rightSideViewContainer: UIView!
+    
     @IBOutlet weak var rightView: CustomView!{
         didSet{
             let recognizer = UISwipeGestureRecognizer()
@@ -42,15 +53,18 @@ class ViewControllerGraph: UIViewController{
             }
         }
     }
-    @IBOutlet weak var sideView3: CustomView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.sideView.transform = __CGAffineTransformMake(1, 0.8, 0, 1, 0, 2)
-        self.sideView2.transform = __CGAffineTransformMake(1, 0.8, 0, 1, 0, 0)
-        self.sideView3.transform = __CGAffineTransformMake(1, 0.8, 0, 1, 0, 0)
-        self.rightView.transform = __CGAffineTransformMake(1, -0.8, 0, 1, 0, 0)
+        //Second Transforms
+        var transform = CATransform3DIdentity
+        transform.m34 = -1 / 500.0
+        sideViewContainer.layer.transform = CATransform3DRotate(transform, CGFloat(-45 * Double.pi / 180), 0, 1, 0)
+        
+        rightSideViewContainer.layer.transform = CATransform3DRotate(transform, CGFloat(45 * Double.pi / 180), 0, 1, 0)
+        
+        
         //self.rightView.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(slideInFromLeft(duration:completionDelegate:_:))))
         
         // for rotating the chart when in horizontal view
@@ -63,6 +77,25 @@ class ViewControllerGraph: UIViewController{
             self.initChart()
         }
     }
+  /*
+    func setAnchorPoint(anchorPoint: CGPoint, forView view: UIView) {
+        var newPoint = CGPoint(x: view.bounds.size.width * anchorPoint.x, y: view.bounds.size.height * anchorPoint.y)
+        var oldPoint = CGPoint(x: view.bounds.size.width * view.layer.anchorPoint.x, y: view.bounds.size.height * view.layer.anchorPoint.y)
+        
+        newPoint = newPoint.applying(view.transform)
+        oldPoint = oldPoint.applying(view.transform)
+        
+        var position = view.layer.position
+        position.x -= oldPoint.x
+        position.x += newPoint.x
+        
+        position.y -= oldPoint.y
+        position.y += newPoint.y
+        
+        view.layer.position = position
+        view.layer.anchorPoint = anchorPoint
+    }
+    */
     /*
      override func viewDidAppear(_ animated: Bool) {
      CustomView.animate(
@@ -311,13 +344,22 @@ class ViewControllerGraph: UIViewController{
         let tMinus1 = Calendar.current.date(byAdding: .day, value: -1, to: day!)
         let tMinus2 = Calendar.current.date(byAdding: .day, value: -2, to: day!)
         let tMinus3 = Calendar.current.date(byAdding: .day, value: -3, to: day!)
+        let tMinus4 = Calendar.current.date(byAdding: .day, value: -4, to: day!)
         let tPlus1 = Calendar.current.date(byAdding: .day, value: 1, to: day!)
+        let tPlus2 = Calendar.current.date(byAdding: .day, value: 2, to: day!)
+        let tPlus3 = Calendar.current.date(byAdding: .day, value: 3, to: day!)
         let tMinus1String = dayFormatter.string(from: tMinus1!)
         let tMinus2String = dayFormatter.string(from: tMinus2!)
         let tMinus3String = dayFormatter.string(from: tMinus3!)
+        let tMinus4String = dayFormatter.string(from: tMinus4!)
         let tPlus1String = dayFormatter.string(from: tPlus1!)
+        let tPlus2String = dayFormatter.string(from: tPlus2!)
+        let tPlus3String = dayFormatter.string(from: tPlus3!)
+
         
         for (key, value) in dataDict{
+            //Consider changing if/else ladder into case/switch statement to improve performance (most likely negligable but might make difference with large number of days of data
+            
             if(key == keyDay){
                 for val in value{
                     if(val.value != 0){
@@ -345,10 +387,28 @@ class ViewControllerGraph: UIViewController{
                         tMinus3Compare.append(val.value)
                     }
                 }
+            }else if(key == tMinus4String){
+                for val in value{
+                    if(val.value != 0){
+                        tMinus4Compare.append(val.value)
+                    }
+                }
             }else if(key == tPlus1String){
                 for val in value{
                     if(val.value != 0){
                         tPlus1Compare.append(val.value)
+                    }
+                }
+            }else if(key == tPlus2String){
+                for val in value{
+                    if(val.value != 0){
+                        tPlus2Compare.append(val.value)
+                    }
+                }
+            }else if(key == tPlus3String){
+                for val in value{
+                    if(val.value != 0){
+                        tPlus3Compare.append(val.value)
                     }
                 }
             }
@@ -360,9 +420,9 @@ class ViewControllerGraph: UIViewController{
             sideView.avgArrayValue = CGFloat(tMinus1Compare.reduce(0, +) / Double(tMinus1Compare.count))
             sideView.dailyLow = CGFloat(tMinus1Compare.min()!)
         }else{
-            sideView.dailyHigh = 5
-            sideView.avgArrayValue = 5
-            sideView.dailyLow = 5
+            sideView.dailyHigh = 0
+            sideView.avgArrayValue = 0
+            sideView.dailyLow = 0
         }
         
         if(tMinus2Compare.count > 0){
@@ -370,9 +430,9 @@ class ViewControllerGraph: UIViewController{
             sideView2.avgArrayValue = CGFloat(tMinus2Compare.reduce(0, +) / Double(tMinus2Compare.count))
             sideView2.dailyLow = CGFloat(tMinus2Compare.min()!)
         }else{
-            sideView2.dailyHigh = 5
-            sideView2.avgArrayValue = 5
-            sideView2.dailyLow = 5
+            sideView2.dailyHigh = 0
+            sideView2.avgArrayValue = 0
+            sideView2.dailyLow = 0
         }
         
         if(tMinus3Compare.count > 0){
@@ -380,9 +440,9 @@ class ViewControllerGraph: UIViewController{
             sideView3.avgArrayValue = CGFloat(tMinus3Compare.reduce(0, +) / Double(tMinus3Compare.count))
             sideView3.dailyLow = CGFloat(tMinus3Compare.min()!)
         }else{
-            sideView3.dailyHigh = 5
-            sideView3.avgArrayValue = 5
-            sideView3.dailyLow = 5
+            sideView3.dailyHigh = 0
+            sideView3.avgArrayValue = 0
+            sideView3.dailyLow = 0
         }
         
         if(tPlus1Compare.count > 0){
