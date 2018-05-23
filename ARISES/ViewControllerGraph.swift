@@ -20,7 +20,7 @@ struct customType{
 class ViewControllerGraph: UIViewController{
     
     //Today temp variable till real-time data available
-    private var today: String = "6/01/2016 00:00"
+    private var today: String = "5/01/2016 00:00"
     var tMinus1Compare : [Double] = []
     var tMinus2Compare : [Double] = []
     var tMinus3Compare : [Double] = []
@@ -77,7 +77,7 @@ class ViewControllerGraph: UIViewController{
             self.initChart()
         }
     }
-    
+  /*
     func setAnchorPoint(anchorPoint: CGPoint, forView view: UIView) {
         var newPoint = CGPoint(x: view.bounds.size.width * anchorPoint.x, y: view.bounds.size.height * anchorPoint.y)
         var oldPoint = CGPoint(x: view.bounds.size.width * view.layer.anchorPoint.x, y: view.bounds.size.height * view.layer.anchorPoint.y)
@@ -95,7 +95,7 @@ class ViewControllerGraph: UIViewController{
         view.layer.position = position
         view.layer.anchorPoint = anchorPoint
     }
-    
+    */
     /*
      override func viewDidAppear(_ animated: Bool) {
      CustomView.animate(
@@ -420,9 +420,9 @@ class ViewControllerGraph: UIViewController{
             sideView.avgArrayValue = CGFloat(tMinus1Compare.reduce(0, +) / Double(tMinus1Compare.count))
             sideView.dailyLow = CGFloat(tMinus1Compare.min()!)
         }else{
-            sideView.dailyHigh = 5
-            sideView.avgArrayValue = 5
-            sideView.dailyLow = 5
+            sideView.dailyHigh = 0
+            sideView.avgArrayValue = 0
+            sideView.dailyLow = 0
         }
         
         if(tMinus2Compare.count > 0){
@@ -430,9 +430,9 @@ class ViewControllerGraph: UIViewController{
             sideView2.avgArrayValue = CGFloat(tMinus2Compare.reduce(0, +) / Double(tMinus2Compare.count))
             sideView2.dailyLow = CGFloat(tMinus2Compare.min()!)
         }else{
-            sideView2.dailyHigh = 5
-            sideView2.avgArrayValue = 5
-            sideView2.dailyLow = 5
+            sideView2.dailyHigh = 0
+            sideView2.avgArrayValue = 0
+            sideView2.dailyLow = 0
         }
         
         if(tMinus3Compare.count > 0){
@@ -440,9 +440,9 @@ class ViewControllerGraph: UIViewController{
             sideView3.avgArrayValue = CGFloat(tMinus3Compare.reduce(0, +) / Double(tMinus3Compare.count))
             sideView3.dailyLow = CGFloat(tMinus3Compare.min()!)
         }else{
-            sideView3.dailyHigh = 5
-            sideView3.avgArrayValue = 5
-            sideView3.dailyLow = 5
+            sideView3.dailyHigh = 0
+            sideView3.avgArrayValue = 0
+            sideView3.dailyLow = 0
         }
         
         if(tPlus1Compare.count > 0){
