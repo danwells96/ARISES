@@ -479,7 +479,7 @@ class ViewControllerGraph: UIViewController{
         
         let xLabelGenerator = ChartAxisLabelsGeneratorDate(labelSettings: xLabelSettings, formatter: hourFormatter)
         let yLabelGenerator = ChartAxisLabelsGeneratorNumber(labelSettings: yLabelSettings)
-        let generator = ChartAxisGeneratorMultiplier(2)
+        let generator = ChartAxisGeneratorMultiplier(4)
         
         
         let xModel = ChartAxisModel(firstModelValue: (startTime!.timeIntervalSince1970), lastModelValue: (endTime!.timeIntervalSince1970), axisTitleLabel: ChartAxisLabel(text: dayFormatter.string(from: startTime!), settings: yLabelSettings), axisValuesGenerator: xValues, labelsGenerator: xLabelGenerator)
