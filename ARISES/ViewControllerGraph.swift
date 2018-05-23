@@ -20,7 +20,7 @@ struct customType{
 class ViewControllerGraph: UIViewController{
     
     //Today temp variable till real-time data available
-    private var today: String = "5/01/2016 00:00"
+    private var today: String = "7/01/2016 00:00"
     var tMinus1Compare : [Double] = []
     var tMinus2Compare : [Double] = []
     var tMinus3Compare : [Double] = []
@@ -50,6 +50,23 @@ class ViewControllerGraph: UIViewController{
     //Gesture Recognisers
     @IBAction func rightGesture(_ sender: UISwipeGestureRecognizer) {
         print("right")
+        if(rightView.isHidden){
+            rightView.isHidden = false
+        }else if(rightView2.isHidden){
+            rightView2.isHidden = false
+        }else if(rightView3.isHidden){
+            rightView3.isHidden = false
+        }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+        let tempDate = dateFormatter.date(from: today)
+        let tempDate2 = Calendar.current.date(byAdding: .day, value: -1, to: tempDate!)
+        today = dateFormatter.string(from: tempDate2!)
+        self.chart?.view.removeFromSuperview()
+        
+        initChart()
+        print(sideView.dailyHigh)
+        print(sideView2.dailyHigh)
     }
     @IBAction func leftGesture(_ sender: UISwipeGestureRecognizer) {
         print("left")
@@ -285,7 +302,7 @@ class ViewControllerGraph: UIViewController{
         
         //set function to today() when live code
         let day = dateFormatter.date(from: today)
-        
+        print(today)
         var dateArray = [ChartAxisValueDate]()
         var valueArray = [ChartAxisValueDouble]()
         var points = [ChartPoint]()
@@ -293,7 +310,14 @@ class ViewControllerGraph: UIViewController{
         dateArray.removeAll()
         valueArray.removeAll()
         points.removeAll()
-        
+        tMinus1Compare.removeAll()
+        tMinus2Compare.removeAll()
+        tMinus3Compare.removeAll()
+        tMinus4Compare.removeAll()
+        tPlus1Compare.removeAll()
+        tPlus2Compare.removeAll()
+        tPlus3Compare.removeAll()
+
         
         let keyDay = dayFormatter.string(from: day!)
         let tMinus1 = Calendar.current.date(byAdding: .day, value: -1, to: day!)
@@ -497,6 +521,8 @@ class ViewControllerGraph: UIViewController{
             label.font = UIFont.boldSystemFont(ofSize: 0)
             return label
         }
+        
+
         // layer displays chartpoints using viewGenerator
         let chartPointsLayer = ChartPointsViewsLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, chartPoints: chartPoints, viewGenerator: viewGenerator)
         
