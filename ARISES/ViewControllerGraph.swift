@@ -47,6 +47,16 @@ class ViewControllerGraph: UIViewController{
     
     @IBOutlet weak var rightView: CustomView!
     
+    //Gesture Recognisers
+    @IBAction func rightGesture(_ sender: UISwipeGestureRecognizer) {
+        print("right")
+    }
+    @IBAction func leftGesture(_ sender: UISwipeGestureRecognizer) {
+        print("left")
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,37 +81,7 @@ class ViewControllerGraph: UIViewController{
         }
     }
   
-    /*
-     override func viewDidAppear(_ animated: Bool) {
-     CustomView.animate(
-     withDuration: 0.4,
-     delay: 0.0,
-     options: .curveEaseInOut,
-     animations: {
-     //self.sideView.isHidden = true
-     //self.sideView2.isHidden = true
-     //self.sideView.frame.origin.x = 100
-     //self.sideView2.willMove(toSuperview: self.sideView)
-     })
-     { (completed) in
-     
-     }
-     }*/
-    /*
-     @objc func slideInFromLeft(duration: TimeInterval = 1.0, completionDelegate: AnyObject? = nil, _ recognizer: UISwipeGestureRecognizer){
-     
-     if recognizer.direction == .left {
-     CustomView.animate(
-     withDuration: 0.4,
-     delay: 0.0,
-     options: .curveEaseInOut,
-     animations: {
-     self.rightView.isHidden = true
-     }){ (completed) in
-     }
-     }
-     }
-     */
+
     var rawData: [String] = ["27/11/2015 07:00",
                              "27/11/2015 07:17",
                              "27/11/2015 07:17",

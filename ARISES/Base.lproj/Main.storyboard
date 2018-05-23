@@ -1230,7 +1230,12 @@
                                 </subviews>
                             </view>
                         </subviews>
+                        <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="46k-yS-dMo"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="aTZ-Pb-k2J" appends="YES" id="haX-t9-imW"/>
+                            <outletCollection property="gestureRecognizers" destination="N4Q-XD-b3a" appends="YES" id="JZO-Lt-CRT"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="chartView" destination="hhK-5Y-w2W" id="GA6-zY-V6M"/>
@@ -1246,6 +1251,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EFG-cG-APi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="aTZ-Pb-k2J" userLabel="RightGestureRecognizer">
+                    <connections>
+                        <action selector="rightGesture:" destination="xlR-5O-fuC" id="U1B-L0-ZqE"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="N4Q-XD-b3a" userLabel="LeftGestureRecognizer">
+                    <connections>
+                        <action selector="leftGesture:" destination="xlR-5O-fuC" id="LEq-en-Tbe"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1556" y="-550.49261083743841"/>
         </scene>
