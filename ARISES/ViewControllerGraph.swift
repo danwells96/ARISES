@@ -45,14 +45,7 @@ class ViewControllerGraph: UIViewController{
     @IBOutlet weak var sideViewContainer: UIView!
     @IBOutlet weak var rightSideViewContainer: UIView!
     
-    @IBOutlet weak var rightView: CustomView!{
-        didSet{
-            let recognizer = UISwipeGestureRecognizer()
-            if recognizer.direction == .left {
-                self.rightView.isHidden = true
-            }
-        }
-    }
+    @IBOutlet weak var rightView: CustomView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,11 +58,11 @@ class ViewControllerGraph: UIViewController{
         rightSideViewContainer.layer.transform = CATransform3DRotate(transform, CGFloat(45 * Double.pi / 180), 0, 1, 0)
         
         
-        //self.rightView.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(slideInFromLeft(duration:completionDelegate:_:))))
-        
         // for rotating the chart when in horizontal view
         NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
+    
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if !self.didLayout{
@@ -77,25 +70,7 @@ class ViewControllerGraph: UIViewController{
             self.initChart()
         }
     }
-  /*
-    func setAnchorPoint(anchorPoint: CGPoint, forView view: UIView) {
-        var newPoint = CGPoint(x: view.bounds.size.width * anchorPoint.x, y: view.bounds.size.height * anchorPoint.y)
-        var oldPoint = CGPoint(x: view.bounds.size.width * view.layer.anchorPoint.x, y: view.bounds.size.height * view.layer.anchorPoint.y)
-        
-        newPoint = newPoint.applying(view.transform)
-        oldPoint = oldPoint.applying(view.transform)
-        
-        var position = view.layer.position
-        position.x -= oldPoint.x
-        position.x += newPoint.x
-        
-        position.y -= oldPoint.y
-        position.y += newPoint.y
-        
-        view.layer.position = position
-        view.layer.anchorPoint = anchorPoint
-    }
-    */
+  
     /*
      override func viewDidAppear(_ animated: Bool) {
      CustomView.animate(
