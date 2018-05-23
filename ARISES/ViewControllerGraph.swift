@@ -372,59 +372,60 @@ class ViewControllerGraph: UIViewController{
 
         
         for (key, value) in dataDict{
-            //Consider changing if/else ladder into case/switch statement to improve performance (most likely negligable but might make difference with large number of days of data
-            
-            if(key == keyDay){
-                for val in value{
-                    if(val.value != 0){
-                        let combinedDate = key+" "+val.time
-                        valueArray.append(ChartAxisValueDouble(val.value))
-                        dateArray.append(ChartAxisValueDate(date: dateFormatter.date(from: combinedDate)!, formatter: dateFormatter))
-                        points.append(ChartPoint(x: dateArray[dateArray.endIndex-1], y: valueArray[valueArray.endIndex-1]))
+            switch(key){
+                case tMinus4String:
+                    for val in value{
+                        if(val.value != 0){
+                            tMinus4Compare.append(val.value)
+                        }
                     }
-                }
-            }else if(key == tMinus1String){
-                for val in value{
-                    if(val.value != 0){
-                        tMinus1Compare.append(val.value)
+                case tMinus3String:
+                    for val in value{
+                        if(val.value != 0){
+                            tMinus3Compare.append(val.value)
+                        }
+                    }               
+                case tMinus2String:     
+                    for val in value{
+                        if(val.value != 0){
+                            tMinus2Compare.append(val.value)
+                        }
+                    }                
+                case tMinus1String:
+                    for val in value{
+                        if(val.value != 0){
+                            tMinus1Compare.append(val.value)
+                        }
+                    }           
+                case keyDay:
+                    for val in value{
+                        if(val.value != 0){
+                            let combinedDate = key+" "+val.time
+                            valueArray.append(ChartAxisValueDouble(val.value))
+                            dateArray.append(ChartAxisValueDate(date: dateFormatter.date(from: combinedDate)!, formatter: dateFormatter))
+                            points.append(ChartPoint(x: dateArray[dateArray.endIndex-1], y: valueArray[valueArray.endIndex-1]))
+                        }
                     }
-                }
-            }else if(key == tMinus2String){
-                for val in value{
-                    if(val.value != 0){
-                        tMinus2Compare.append(val.value)
+                case tPlus1String:
+                    for val in value{
+                        if(val.value != 0){
+                            tPlus1Compare.append(val.value)
+                        }
+                    }                
+                case tPlus2String:
+                    for val in value{
+                        if(val.value != 0){
+                            tPlus2Compare.append(val.value)
+                        }
+                    }                
+                case tPlus3String:
+                    for val in value{
+                        if(val.value != 0){
+                            tPlus3Compare.append(val.value)
+                        }
                     }
-                }
-            }else if(key == tMinus3String){
-                for val in value{
-                    if(val.value != 0){
-                        tMinus3Compare.append(val.value)
-                    }
-                }
-            }else if(key == tMinus4String){
-                for val in value{
-                    if(val.value != 0){
-                        tMinus4Compare.append(val.value)
-                    }
-                }
-            }else if(key == tPlus1String){
-                for val in value{
-                    if(val.value != 0){
-                        tPlus1Compare.append(val.value)
-                    }
-                }
-            }else if(key == tPlus2String){
-                for val in value{
-                    if(val.value != 0){
-                        tPlus2Compare.append(val.value)
-                    }
-                }
-            }else if(key == tPlus3String){
-                for val in value{
-                    if(val.value != 0){
-                        tPlus3Compare.append(val.value)
-                    }
-                }
+                default:
+                    print("Data not needed")
             }
         }
         
@@ -459,6 +460,16 @@ class ViewControllerGraph: UIViewController{
             sideView3.dailyLow = 0
         }
         
+        if(tMinus4Compare.count > 0){
+            sideView4.dailyHigh = CGFloat(tMinus4Compare.max()!)
+            sideView4.avgArrayValue = CGFloat(tMinus4Compare.reduce(0, +) / Double(tMinus4Compare.count))
+            sideView4.dailyLow = CGFloat(tMinus4Compare.min()!)            
+        }else{
+            sideView4.dailyHigh = 0
+            sideView4.avgArrayValue = 0
+            sideView4.dailyLow = 0
+        }
+        
         if(tPlus1Compare.count > 0){
             rightView.dailyHigh = CGFloat(tPlus1Compare.max()!)
             rightView.avgArrayValue = CGFloat(tPlus1Compare.reduce(0, +) / Double(tPlus1Compare.count))
@@ -468,7 +479,26 @@ class ViewControllerGraph: UIViewController{
             rightView.avgArrayValue = 0
             rightView.dailyLow = 0
         }
-        //Need to add these if/else for other sideviews that have been added
+        
+        if(tPlus2Compare.count > 0){
+            rightView2.dailyHigh = CGFloat(tPlus2Compare.max()!)
+            rightView2.avgArrayValue = CGFloat(tPlus2Compare.reduce(0, +) / Double(tPlus2Compare.count))
+            rightView2.dailyLow = CGFloat(tPlus2Compare.min()!)            
+        }else{
+            rightView2.dailyHigh = 0
+            rightView2.avgArrayValue = 0
+            rightView2.dailyLow = 0            
+        }
+        
+        if(tPlus3Compare.count > 0){
+            rightView3.dailyHigh = CGFloat(tPlus3Compare.max()!)
+            rightView3.avgArrayValue = CGFloat(tPlus3Compare.reduce(0, +) / Double(tPlus3Compare.count))
+            rightView3.dailyLow = CGFloat(tPlus3Compare.min()!)
+        }else{
+            rightView3.dailyHigh = 0
+            rightView3.avgArrayValue = 0
+            rightView3.dailyLow = 0
+        }
         
         //SOmething needs changing to initialise chart point
         
