@@ -32,15 +32,16 @@ class ViewControllerMain: UIViewController {
     private var shadowLayer: CAShapeLayer!
     private var cornerRadius: CGFloat = 25.0
     private var fillColor: UIColor = .blue // the color applied to the shadowLayer, rather than the view's backgroundColor
-
+ 
     //MARK: Override
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
-    
     //MARK: View re-positioning
     @IBAction func healthButton(_ sender: UIButton) {
+   
+        
         view.bringSubview(toFront: viewHealth)
         containerFood.isHidden = true
         containerAdvice.isHidden = true
@@ -50,9 +51,11 @@ class ViewControllerMain: UIViewController {
         indicatorAdvice.isHidden = false
         indicatorHealth.isHidden = false
         indicatorExercise.isHidden = false
+ 
     }
     
     @IBAction func foodButton(_ sender: UIButton) {
+    
         view.bringSubview(toFront: viewFood)
         containerFood.isHidden = false
         containerAdvice.isHidden = true
@@ -62,9 +65,11 @@ class ViewControllerMain: UIViewController {
         indicatorAdvice.isHidden = false
         indicatorHealth.isHidden = false
         indicatorExercise.isHidden = false
+
     }
     
     @IBAction func exerciseButton(_ sender: UIButton) {
+      
         view.bringSubview(toFront: viewExercise)
         containerFood.isHidden = true
         containerAdvice.isHidden = true
@@ -74,10 +79,11 @@ class ViewControllerMain: UIViewController {
         indicatorAdvice.isHidden = false
         indicatorHealth.isHidden = false
         indicatorExercise.isHidden = true
-        
+
     }
     
     @IBAction func adviceButton(_ sender: UIButton) {
+
         view.bringSubview(toFront: viewAdvice)
         containerFood.isHidden = true
         containerAdvice.isHidden = false
@@ -87,6 +93,7 @@ class ViewControllerMain: UIViewController {
         indicatorAdvice.isHidden = true
         indicatorHealth.isHidden = false
         indicatorExercise.isHidden = false
+
     }
  
     

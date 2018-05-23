@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDataSource, UITableViewDelegate{
     
@@ -46,7 +47,14 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
         toolBar.setItems([flexible, doneButton], animated: false)
         
         exerciseNameField.inputAccessoryView = toolBar
-
+        
+        let fetchRequest: NSFetchRequest<Exercise> = Exercise.fetchRequest()
+        
+        do{
+            let loggedExercise = try PersistenceService.context.fetch(fetchRequest)
+            self.loggedExercise = loggedExercise
+            self.exerciseLogTable.reloadData()
+        } catch{}
 
     }
     
@@ -129,9 +137,9 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ViewControllerTableViewCell
         
         let currentExercise = loggedExercise[indexPath.row]
-        cell.loggedExerciseName.text = currentExercise.Name
-        cell.loggedExerciseTime.text = currentExercise.Time
-        cell.loggedExerciseDuration.text = currentExercise.Duration
+        cell.loggedExerciseName.text = currentExercise.name
+        cell.loggedExerciseTime.text = currentExercise.time
+        cell.loggedExerciseDuration.text = currentExercise.duration
         
         return(cell)
     }
@@ -142,13 +150,21 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     @IBAction func addExercise(_ sender: Any) {
         if ((exerciseNameField.text != "") && (exerciseTimeField.text != "") && (exerciseDurationField.text != "") && (exerciseIntensityField.text != "")){
-            loggedExercise.append(Exercise(Name: "\(exerciseNameField.text!)", Time: "\(exerciseTimeField.text!)", Duration: "\(exerciseDurationField.text!)", Intensity: "\(exerciseIntensityField.text!)"))
+            let newExercise = Exercise(context: PersistenceService.context)
+            newExercise.name = exerciseNameField.text
+            newExercise.time = exerciseTimeField.text
+            newExercise.duration = exerciseDurationField.text
+            newExercise.intensity = exerciseIntensityField.text
+            PersistenceService.saveContext()
+            self.loggedExercise.append(newExercise)
+            self.exerciseLogTable.reloadData()
+            
             exerciseNameField.text = ""
             exerciseTimeField.text = ""
             exerciseDurationField.text = ""
             exerciseIntensityField.text = ""
-            self.exerciseLogTable .reloadData()
         }
+        
     }
 
 }
