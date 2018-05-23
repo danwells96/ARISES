@@ -445,6 +445,12 @@ class ViewControllerGraph: UIViewController{
             sideView3.dailyLow = 0
         }
         
+        if(tMinus4Compare.count > 0){
+            sideView4.dailyHigh = CGFloat(tMinus4Compare.max()!)
+            sideView4.avgArrayValue = CGFloat(tMinus4Compare.reduce(0, +) / Double(tMinus4Compare.count))
+            sideView4.dailyLow = CGFloat(tMinus4Compare.min()!)
+        }
+        
         if(tPlus1Compare.count > 0){
             rightView.dailyHigh = CGFloat(tPlus1Compare.max()!)
             rightView.avgArrayValue = CGFloat(tPlus1Compare.reduce(0, +) / Double(tPlus1Compare.count))
@@ -453,6 +459,26 @@ class ViewControllerGraph: UIViewController{
             rightView.dailyHigh = 0
             rightView.avgArrayValue = 0
             rightView.dailyLow = 0
+        }
+        
+        if(tPlus2Compare.count > 0){
+            rightView2.dailyHigh = CGFloat(tPlus2Compare.max()!)
+            rightView2.avgArrayValue = CGFloat(tPlus2Compare.reduce(0, +) / Double(tPlus2Compare.count))
+            rightView2.dailyLow = CGFloat(tPlus2Compare.min()!)
+        }else{
+            rightView2.dailyHigh = 0
+            rightView2.avgArrayValue = 0
+            rightView2.dailyLow = 0
+        }
+        
+        if(tPlus3Compare.count > 0){
+            rightView3.dailyHigh = CGFloat(tPlus3Compare.max()!)
+            rightView3.avgArrayValue = CGFloat(tPlus3Compare.reduce(0, +) / Double(tPlus3Compare.count))
+            rightView3.dailyLow = CGFloat(tPlus3Compare.min()!)
+        }else{
+            rightView3.dailyHigh = 0
+            rightView3.avgArrayValue = 0
+            rightView3.dailyLow = 0
         }
         
         //SOmething needs changing to initialise chart point
