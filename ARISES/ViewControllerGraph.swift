@@ -360,6 +360,62 @@ class ViewControllerGraph: UIViewController{
         for (key, value) in dataDict{
             //Consider changing if/else ladder into case/switch statement to improve performance (most likely negligable but might make difference with large number of days of data
             
+            switch key{
+                case tMinus4String:
+                    for val in value{
+                        if(val.value != 0){
+                            tMinus4Compare.append(val.value)
+                        }
+                    }
+                case tMinus3String:
+                    for val in value{
+                        if(val.value != 0){
+                            tMinus3Compare.append(val.value)
+                        }
+                    }
+                case tMinus2String:
+                    for val in value{
+                        if(val.value != 0){
+                            tMinus2Compare.append(val.value)
+                        }
+                    }
+                case tMinus1String:
+                    for val in value{
+                        if(val.value != 0){
+                            tMinus1Compare.append(val.value)
+                        }
+                    }
+                case keyDay:
+                    for val in value{
+                        if(val.value != 0){
+                            let combinedDate = key+" "+val.time
+                            valueArray.append(ChartAxisValueDouble(val.value))
+                            dateArray.append(ChartAxisValueDate(date: dateFormatter.date(from: combinedDate)!, formatter: dateFormatter))
+                            points.append(ChartPoint(x: dateArray[dateArray.endIndex-1], y: valueArray[valueArray.endIndex-1]))
+                        }
+                    }
+                case tPlus1String:
+                    for val in value{
+                        if(val.value != 0){
+                            tPlus1Compare.append(val.value)
+                        }
+                    }
+                case tPlus2String:
+                    for val in value{
+                        if(val.value != 0){
+                            tPlus2Compare.append(val.value)
+                        }
+                    }
+                case tPlus3String:
+                    for val in value{
+                        if(val.value != 0){
+                            tPlus3Compare.append(val.value)
+                        }
+                    }
+                default:
+                    print("Data not needed")
+            }
+      /*
             if(key == keyDay){
                 for val in value{
                     if(val.value != 0){
@@ -411,7 +467,7 @@ class ViewControllerGraph: UIViewController{
                         tPlus3Compare.append(val.value)
                     }
                 }
-            }
+            }*/
         }
         
         
