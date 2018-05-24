@@ -20,6 +20,8 @@ enum MainViewState
 
 class ViewControllerMain: UIViewController {
     
+    //TODO: Save and restore open view between app closing
+    
     //MARK: Properties
     // Views with status indicators
     @IBOutlet weak var viewHealth: UIView!
