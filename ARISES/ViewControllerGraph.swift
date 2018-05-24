@@ -33,6 +33,7 @@ class ViewControllerGraph: UIViewController{
     //MARK: Properties
     @IBOutlet weak var chartView: ChartBaseView!
     private var chart: Chart?
+    fileprivate var popups: [UIView] = []
     private var dataLoaded: Bool = false
     private var didLayout: Bool = false
     @IBOutlet weak var sideView2: CustomView!
@@ -52,28 +53,71 @@ class ViewControllerGraph: UIViewController{
         print("right")
         if(rightView.isHidden){
             rightView.isHidden = false
+            sideView4.isHidden = true
         }else if(rightView2.isHidden){
             rightView2.isHidden = false
+            sideView3.isHidden = true
         }else if(rightView3.isHidden){
             rightView3.isHidden = false
+            sideView2.isHidden = true
+        }else{
+            sideView.isHidden = true
         }
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
         let tempDate = dateFormatter.date(from: today)
         let tempDate2 = Calendar.current.date(byAdding: .day, value: -1, to: tempDate!)
         today = dateFormatter.string(from: tempDate2!)
-        self.chart?.view.removeFromSuperview()
-        
+
+        for view in (chart?.view.subviews)! {
+            view.removeFromSuperview()
+        }
         initChart()
+        chart?.view.setNeedsDisplay()
+        //view.setNeedsDisplay() // to trigger a redraw
+
         print(sideView.dailyHigh)
         print(sideView2.dailyHigh)
     }
     @IBAction func leftGesture(_ sender: UISwipeGestureRecognizer) {
         print("left")
+        if (sideView.isHidden){
+            sideView.isHidden = false
+        }else if sideView2.isHidden{
+            sideView2.isHidden = false
+            rightView3.isHidden = true
+        }else if sideView3.isHidden{
+            sideView3.isHidden = false
+            rightView2.isHidden = true
+        }else if sideView4.isHidden{
+            sideView4.isHidden = false
+            rightView.isHidden = true
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+        let tempDate = dateFormatter.date(from: today)
+        let tempDate2 = Calendar.current.date(byAdding: .day, value: +1, to: tempDate!)
+        today = dateFormatter.string(from: tempDate2!)
+
+        for view in (chart?.view.subviews)! {
+            view.removeFromSuperview()
+        }
+        initChart()
+        chart?.view.setNeedsDisplay()
+        
     }
     
-    
-    
+    //when tapped, display food taken at that time
+//    @IBAction func tapGesture(_ sender : UITapGestureRecognizer){
+//        guard sender.view != nil else { return }
+//        if sender.state == .ended{
+//            print("tapped")
+//            
+//        }
+//    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -83,7 +127,6 @@ class ViewControllerGraph: UIViewController{
         sideViewContainer.layer.transform = CATransform3DRotate(transform, CGFloat(-45 * Double.pi / 180), 0, 1, 0)
         
         rightSideViewContainer.layer.transform = CATransform3DRotate(transform, CGFloat(45 * Double.pi / 180), 0, 1, 0)
-        
         
         // for rotating the chart when in horizontal view
         NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
@@ -510,7 +553,7 @@ class ViewControllerGraph: UIViewController{
         let guidelinesLayer = ChartGuideLinesDottedLayer(xAxisLayer: xAxisLayer, yAxisLayer: yAxisLayer, settings: glLSettings)
         
         
-        // label each point , -> now disabled
+        // label each point  ->  Disabled
         let viewGenerator = {(chartPointModel: ChartPointLayerModel, layer: ChartPointsViewsLayer, chart: Chart) -> UIView? in
             let viewSize: CGFloat = 20
             let center = chartPointModel.screenLoc
@@ -520,9 +563,9 @@ class ViewControllerGraph: UIViewController{
             label.text = "\(chartPointModel.chartPoint.y.description)"
             label.font = UIFont.boldSystemFont(ofSize: 0)
             return label
+            
         }
         
-
         // layer displays chartpoints using viewGenerator
         let chartPointsLayer = ChartPointsViewsLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, chartPoints: chartPoints, viewGenerator: viewGenerator)
         
@@ -531,15 +574,66 @@ class ViewControllerGraph: UIViewController{
         let circleViewGenerator = {(chartPointModel: ChartPointLayerModel, layer: ChartPointsLayer, chart: Chart) -> UIView? in
             let circleView = ChartPointEllipseView(center: chartPointModel.screenLoc, diameter: 5)
             circleView.animDuration = 1.0
-            circleView.fillColor = UIColor.red //default: white
+            circleView.fillColor = UIColor.red
             circleView.borderWidth = 1
             circleView.borderColor = UIColor.red
             return circleView
             
         }
+            
         let chartPointsCircleLayer = ChartPointsViewsLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, chartPoints: chartPoints, viewGenerator: circleViewGenerator, displayDelay: 0, delayBetweenItems: 0.05, mode: .translate)
+     
+        // interactive touch,  coords
+        //Tap : Display popup box with information (have this)
+
+        /*
+        let labelWidth: CGFloat = 70
+        let labelHeight: CGFloat = 30
         
+        let showCoordsTextViewsGenerator = {(chartPointModel: ChartPointLayerModel, layer: ChartPointsViewsLayer, chart: Chart) -> UIView? in
+            let (chartPoint, screenLoc) = (chartPointModel.chartPoint, chartPointModel.screenLoc)
+            let x = min(screenLoc.x + 5, chart.bounds.width - 8 - 5)
+            let view = UIView(frame: CGRect(x: x, y: screenLoc.y - labelHeight, width: labelWidth, height: labelHeight))
+            let label = UILabel(frame: view.bounds)
+            label.text = chartPoint.description
+            label.font = UIFont.boldSystemFont(ofSize: 8)
+            view.addSubview(label)
+            view.alpha = 0
+            
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+                view.alpha = 1
+            }, completion: nil)
+            
+            return view
+        }
         
+        let showCoordsTextLayer = ChartPointsSingleViewLayer<ChartPoint, UIView>(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, innerFrame: innerframe, chartPoints: chartPoints, viewGenerator: showCoordsTextViewsGenerator, mode: .scaleAndTranslate, keepOnFront: true)
+        
+        let touchViewsGenerator = {(chartPointModel: ChartPointLayerModel, layer: ChartPointsLayer, chart: Chart) -> UIView? in
+            let (chartPoint, screenLoc) = (chartPointModel.chartPoint, chartPointModel.screenLoc)
+            let s: CGFloat = 30
+            let view = HandlingView(frame: CGRect(x: screenLoc.x - s/2, y: screenLoc.y - s/2, width: s, height: s))
+            view.touchHandler = {[weak showCoordsTextLayer, weak chartPoint, weak chart] in
+                guard let chartPoint = chartPoint, let chart = chart else {return}
+                showCoordsTextLayer?.showView(chartPoint: chartPoint, chart: chart)
+            }
+            return view
+        }
+        
+        let touchLayer = ChartPointsViewsLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, chartPoints: chartPoints, viewGenerator: touchViewsGenerator, mode: .translate, keepOnFront: true)
+ */
+/*
+ // tracer shows up
+        let targetGenerator = {(chartPointModel: ChartPointLayerModel, layer: ChartPointsLayer, chart: Chart) -> UIView? in
+            if chartPointModel.index != 3 {
+                return nil
+            }
+            return ChartPointTargetingView(chartPoint: chartPointModel.chartPoint, screenLoc: chartPointModel.screenLoc, animDuration: 0.5, animDelay: 1, layer: layer, chart: chart)
+        }
+        
+        let chartPointsTargetLayer = ChartPointsViewsLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, chartPoints: chartPoints, viewGenerator: targetGenerator)
+*/
+      
         // create chart instance with frame and layers
         let chart = Chart(
             view: self.chartView!,
@@ -551,13 +645,14 @@ class ViewControllerGraph: UIViewController{
                 guidelinesLayer,
                 pointslineLayer,
                 chartPointsLayer,
-                chartPointsCircleLayer
+                chartPointsCircleLayer,
+                //chartPointsTargetLayer,
+                //touchLayer
                 
             ]
         )
         view.addSubview(chart.view)
         self.chart = chart //as? LineChart
-        
     }
     
     @objc func rotated() {
