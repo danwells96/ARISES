@@ -21,14 +21,23 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     @IBOutlet weak var proteinTextField: UITextField!
     @IBOutlet weak var fatTextField: UITextField!
     @IBOutlet weak var foodNameTextField: UITextField!
-    
     //defining picker related variables
     var foodTimePicker = UIDatePicker()
     
     //defining table related variables
     var loggedMeals = [Meals]()
     var favouriteMeals = [Meals]()
-    var expanded = false
+    var Testdates = [Day]()
+   // var expanded: Bool = false
+    
+  /*  private var height: CGFloat = 44
+    {
+        didSet
+        {
+            self.foodLogTable.rowHeight = height
+        }
+    }*/
+    
     
     //MARK: Override
     override func viewDidLoad() {
@@ -50,14 +59,8 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         fatTextField.inputAccessoryView = toolBar
         foodNameTextField.inputAccessoryView = toolBar
         
-        let fetchRequest: NSFetchRequest<Meals> = Meals.fetchRequest()
-        
-        do{
-            let loggedMeals = try PersistenceService.context.fetch(fetchRequest)
-            self.loggedMeals = loggedMeals
-            self.foodLogTable.reloadData()
-        } catch{}
-        
+        updateTable()
+
     }
     
     //MARK: Picker functions
@@ -95,25 +98,27 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-   //     let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ViewControllerTableViewCell; cell.set(content: loggedMeals[indexPath.row])
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ViewControllerTableViewCell
 
         let currentMeal = loggedMeals[indexPath.row]
         cell.loggedFoodName.text = currentMeal.name
         cell.loggedFoodTime.text = currentMeal.time
-    
+        cell.loggedFoodCarbs.text = "\(currentMeal.carbs)"
+       // print("current meal date is \(currentMeal.day?.date)")
         return(cell)
     }
-    /*
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        _ = loggedMeals[indexPath.row]
-        expanded = !expanded
-        foodLogTable.reloadRows(at: [indexPath], with: .automatic)
     
+    private func updateTable(){
+        let fetchRequest: NSFetchRequest<Meals> = Meals.fetchRequest()
+        
+        do{
+            let loggedMeals = try PersistenceService.context.fetch(fetchRequest)
+            self.loggedMeals = loggedMeals
+            self.foodLogTable.reloadData()
+        } catch{}
+        
     }
-    */
-    
-    
     @objc func doneWithKeypad(){
         view.endEditing(true)
     }
@@ -121,23 +126,62 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     @IBAction func addFoodToLog(_ sender: Any) {
 
         if ((foodNameTextField.text != "") && (foodTimeField.text != "") && (carbsTextField.text != "") && (proteinTextField.text != "") && (fatTextField.text != "")){
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .short
+            dateFormatter.timeStyle = .none
+            /*
             let newMeal = Meals(context: PersistenceService.context)
             newMeal.name = foodNameTextField.text
             newMeal.time = foodTimeField.text
             newMeal.carbs = Int32(carbsTextField.text!)!
             newMeal.protein = Int32(proteinTextField.text!)!
             newMeal.fat = Int32(fatTextField.text!)!
+            let newDay = Day(context: PersistenceService.context)
+            newDay.date = dateFormatter.string(from: Date())
+            newDay.addToMeals(newMeal)
             PersistenceService.saveContext()
-            self.loggedMeals.append(newMeal)
-            self.foodLogTable.reloadData()
+            */
+            
+            
+            ModelController().addMeal(
+                    name: foodNameTextField.text!,
+                    time: foodTimeField.text!,
+                    date: Date(),
+                    carbs: Int32(carbsTextField.text!)!,
+                    fat: Int32(fatTextField.text!)!,
+                    protein: Int32(proteinTextField.text!)!)
+            updateTable()
         
             foodNameTextField.text = ""
             foodTimeField.text = ""
             carbsTextField.text = ""
             proteinTextField.text = ""
             fatTextField.text = ""
+            
+            
+        }
+        let dateFetch: NSFetchRequest<Day> = Day.fetchRequest()
+        
+        let checkDates = try? PersistenceService.context.fetch(dateFetch)
+        print("number of dates is \(checkDates!.count)")
+
+        for Day in checkDates!{
+            print("\(Day.date)")
         }
     }
+    
+ /*   @IBAction func expandFoodCell(_ sender: Any) {
+        if(expanded == false){
+            height = 90
+            expanded = true
+        }
+        else{
+            height = 44
+            expanded = false
+        }
+        
+    }*/
 
    /* @IBAction func favouriteButton(_ sender: Any) {
         let newFavourite = loggedMeals[GAH]

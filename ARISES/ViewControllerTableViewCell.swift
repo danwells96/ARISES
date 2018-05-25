@@ -14,6 +14,7 @@ class ViewControllerTableViewCell: UITableViewCell {
     @IBOutlet weak var loggedFoodStar: UIImageView!
     @IBOutlet weak var loggedFoodName: UILabel!
     @IBOutlet weak var loggedFoodTime: UILabel!
+    @IBOutlet weak var loggedFoodCarbs: UILabel!
     // @IBOutlet weak var loggedFoodCarbs: UILabel!
     
     @IBOutlet weak var loggedExerciseDuration: UILabel!
