@@ -64,7 +64,6 @@ class ModelController {
                 return (checkForDay!.first!)
             }
             else{
-                print("what")
                 let newDay = Day(context: PersistenceService.context)
                 newDay.date = day
                 PersistenceService.saveContext()
@@ -91,13 +90,14 @@ class ModelController {
         PersistenceService.saveContext()
     }
     
-    func addExercise(name: String, time: String, date: Date, intensity: String){
+    func addExercise(name: String, time: String, date: Date, intensity: String, duration: String){
         
         let currentDay = findOrMakeDay(day: date)
         let newExercise = Exercise(context: PersistenceService.context)
         newExercise.name = name
         newExercise.time = time
         newExercise.intensity = intensity
+        newExercise.duration = duration
 
         currentDay.addToExercise(newExercise)
         PersistenceService.saveContext()
@@ -115,6 +115,20 @@ class ModelController {
         }
         else{
             return foundMeals!
+        }
+    }
+    
+    func fetchExercise(day: Date) -> [Exercise]{
+        let fetchRequest: NSFetchRequest<Exercise> = Exercise.fetchRequest()
+        let dayToShow = ModelController().formatDateToDay(date: day)
+        fetchRequest.predicate = NSPredicate(format: "day.date == %@", dayToShow)
+        let foundExercise = try? PersistenceService.context.fetch(fetchRequest)
+        if(foundExercise == nil){
+            print("Error fetching exercise")
+            return []
+        }
+        else{
+            return foundExercise!
         }
     }
 }

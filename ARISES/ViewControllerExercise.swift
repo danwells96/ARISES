@@ -48,13 +48,7 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         exerciseNameField.inputAccessoryView = toolBar
         
-        let fetchRequest: NSFetchRequest<Exercise> = Exercise.fetchRequest()
-        
-        do{
-            let loggedExercise = try PersistenceService.context.fetch(fetchRequest)
-            self.loggedExercise = loggedExercise
-            self.exerciseLogTable.reloadData()
-        } catch{}
+        updateTable()
 
     }
     
@@ -140,24 +134,38 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
         cell.loggedExerciseName.text = currentExercise.name
         cell.loggedExerciseTime.text = currentExercise.time
         cell.loggedExerciseDuration.text = currentExercise.duration
-        
         return(cell)
     }
     
+    private func updateTable(){
+        let loggedExercise = ModelController().fetchExercise(day: Date())
+        self.loggedExercise = loggedExercise
+        self.exerciseLogTable.reloadData()
+        
+    }
     @objc private func doneWithKeypad(){
         view.endEditing(true)
     }
     
     @IBAction func addExercise(_ sender: Any) {
         if ((exerciseNameField.text != "") && (exerciseTimeField.text != "") && (exerciseDurationField.text != "") && (exerciseIntensityField.text != "")){
-            let newExercise = Exercise(context: PersistenceService.context)
+          /*  let newExercise = Exercise(context: PersistenceService.context)
             newExercise.name = exerciseNameField.text
             newExercise.time = exerciseTimeField.text
             newExercise.duration = exerciseDurationField.text
             newExercise.intensity = exerciseIntensityField.text
             PersistenceService.saveContext()
+            
             self.loggedExercise.append(newExercise)
             self.exerciseLogTable.reloadData()
+ */
+            ModelController().addExercise(
+                name: exerciseNameField.text!,
+                time: exerciseTimeField.text!,
+                date: Date(),
+                intensity: exerciseIntensityField.text!,
+                duration: exerciseDurationField.text!)
+            updateTable()
             
             exerciseNameField.text = ""
             exerciseTimeField.text = ""
