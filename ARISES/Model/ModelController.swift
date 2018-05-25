@@ -10,25 +10,6 @@ import Foundation
 import CoreData
 
 class ModelController {
-  /*
-    private var currentDay: Day
-    private var today: String{
-        didSet{
-            //create new log if new day set
-            let currentDay = Day(context: PersistenceService.context)
-            currentDay.date = today
-            PersistenceService.saveContext()
-        }
-    }
-    init() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .none
-        today = dateFormatter.string(from: Date())
-        if
-    }
- */
-
 
     func formatDateToDay(date: Date) -> String{
         let dateFormatter = DateFormatter()
@@ -36,7 +17,7 @@ class ModelController {
         dateFormatter.timeStyle = .none
         return dateFormatter.string(from: Date())
     }
-    
+    //MARK: Private functions
     private func createNewDay(dateValue: Date) -> Day{
         //create new log if new day set
         let currentDay = Day(context: PersistenceService.context)
@@ -44,15 +25,6 @@ class ModelController {
         PersistenceService.saveContext()
         return currentDay
     }
-    /*
-    public func updateDay(newDate: Date){
-        //If new day
-        if today != (formatDateToDay(date: newDate)){
-            //TODO: add a check for days in future
-            today = formatDateToDay(date: newDate)
-        }
-    }
-   */
     private func findOrMakeDay(day: Date) -> Day{
         let day = formatDateToDay(date: day)
         //predicate date
@@ -74,7 +46,7 @@ class ModelController {
         return checkForDay![0]
         //Should never happen and will almost certainly crash if it does
     }
-    
+    //MARK: Functions for use by other controllers e.g. Adding logs/ fetching
     func addMeal(name: String, time: String, date: Date, carbs: Int32, fat: Int32, protein: Int32){
         
         let currentDay = findOrMakeDay(day: date)
