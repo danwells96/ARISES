@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import CoreData
 
 class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate {
     
@@ -22,12 +21,11 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     @IBOutlet weak var fatTextField: UITextField!
     @IBOutlet weak var foodNameTextField: UITextField!
     //defining picker related variables
-    var foodTimePicker = UIDatePicker()
+    private var foodTimePicker = UIDatePicker()
     
     //defining table related variables
-    var loggedMeals = [Meals]()
-    var favouriteMeals = [Meals]()
-    var Testdates = [Day]()
+    private var loggedMeals = [Meals]()
+    //private var favouriteMeals = [Meals]()
    // var expanded: Bool = false
     
   /*  private var height: CGFloat = 44
@@ -65,7 +63,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     
     //MARK: Picker functions
     //Food Time picker
-    func createFoodTimePicker(){
+    private func createFoodTimePicker(){
         
         let doneButtonBar = UIToolbar()
         doneButtonBar.sizeToFit()
@@ -81,7 +79,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         foodTimePicker.datePickerMode = .time
     }
     
-    @objc func doneWithPicker(){
+    @objc private func doneWithPicker(){
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .none
@@ -93,11 +91,11 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     
     //MARK: Table functions
 
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return loggedMeals.count
     }
     
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ViewControllerTableViewCell
 
@@ -105,46 +103,23 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         cell.loggedFoodName.text = currentMeal.name
         cell.loggedFoodTime.text = currentMeal.time
         cell.loggedFoodCarbs.text = "\(currentMeal.carbs)"
-       // print("current meal date is \(currentMeal.day?.date)")
         return(cell)
     }
     
     private func updateTable(){
-        let fetchRequest: NSFetchRequest<Meals> = Meals.fetchRequest()
-        let dayToShow = ModelController().formatDateToDay(date: Date())
-        fetchRequest.predicate = NSPredicate(format: "day.date == %@", dayToShow)
-        do{
-            let loggedMeals = try PersistenceService.context.fetch(fetchRequest)
-            self.loggedMeals = loggedMeals
-            self.foodLogTable.reloadData()
-        } catch{}
+        let loggedMeals = ModelController().fetchMeals(day: Date())
+        self.loggedMeals = loggedMeals
+        self.foodLogTable.reloadData()
         
     }
-    @objc func doneWithKeypad(){
+    @objc private func doneWithKeypad(){
         view.endEditing(true)
     }
     
     @IBAction func addFoodToLog(_ sender: Any) {
 
         if ((foodNameTextField.text != "") && (foodTimeField.text != "") && (carbsTextField.text != "") && (proteinTextField.text != "") && (fatTextField.text != "")){
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .short
-            dateFormatter.timeStyle = .none
-            /*
-            let newMeal = Meals(context: PersistenceService.context)
-            newMeal.name = foodNameTextField.text
-            newMeal.time = foodTimeField.text
-            newMeal.carbs = Int32(carbsTextField.text!)!
-            newMeal.protein = Int32(proteinTextField.text!)!
-            newMeal.fat = Int32(fatTextField.text!)!
-            let newDay = Day(context: PersistenceService.context)
-            newDay.date = dateFormatter.string(from: Date())
-            newDay.addToMeals(newMeal)
-            PersistenceService.saveContext()
-            */
-            
-            
+    
             ModelController().addMeal(
                     name: foodNameTextField.text!,
                     time: foodTimeField.text!,
@@ -159,9 +134,9 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
             carbsTextField.text = ""
             proteinTextField.text = ""
             fatTextField.text = ""
-            
-            
         }
+        /*
+        //Test printouts of date information
         let dateFetch: NSFetchRequest<Day> = Day.fetchRequest()
         
         let checkDates = try? PersistenceService.context.fetch(dateFetch)
@@ -170,6 +145,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         for Day in checkDates!{
             print("\(Day.date)")
         }
+        */
     }
     
  /*   @IBAction func expandFoodCell(_ sender: Any) {

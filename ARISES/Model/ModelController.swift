@@ -30,7 +30,7 @@ class ModelController {
  */
 
 
-    public func formatDateToDay(date: Date) -> String{
+    func formatDateToDay(date: Date) -> String{
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .none
@@ -53,40 +53,68 @@ class ModelController {
         }
     }
    */
-    private func searchForDay(search: Date) -> Day?{
-        let day = formatDateToDay(date: search)
+    private func findOrMakeDay(day: Date) -> Day{
+        let day = formatDateToDay(date: day)
         //predicate date
         let dateFetch: NSFetchRequest<Day> = Day.fetchRequest()
        dateFetch.predicate = NSPredicate(format: "date == %@", day)
         let checkForDay = try? PersistenceService.context.fetch(dateFetch)
         if checkForDay != nil{
             if checkForDay?.count != 0{
-                return checkForDay!.first
+                return (checkForDay!.first!)
             }
-            
+            else{
+                print("what")
+                let newDay = Day(context: PersistenceService.context)
+                newDay.date = day
+                PersistenceService.saveContext()
+                return newDay
+            }
         }
-        return nil
+        print("Error finding or creating day log")
+        return checkForDay![0]
+        //Should never happen and will almost certainly crash if it does
     }
     
-    public func addMeal(name: String, time: String, date: Date, carbs: Int32, fat: Int32, protein: Int32){
+    func addMeal(name: String, time: String, date: Date, carbs: Int32, fat: Int32, protein: Int32){
         
-        var currentDay: Day? = nil
-        if searchForDay(search: date) != nil{
-            currentDay = searchForDay(search: date)!
-        }
-        else{
-            currentDay = createNewDay(dateValue: date)
-        }
-        //try add to existing?
+        let currentDay = findOrMakeDay(day: date)
         let newMeal = Meals(context: PersistenceService.context)
         newMeal.name = name
         newMeal.time = time
         newMeal.carbs = carbs
         newMeal.protein = protein
         newMeal.fat = fat
-        currentDay!.addToMeals(newMeal)
+        currentDay.addToMeals(newMeal)
         
       
         PersistenceService.saveContext()
+    }
+    
+    func addExercise(name: String, time: String, date: Date, intensity: String){
+        
+        let currentDay = findOrMakeDay(day: date)
+        let newExercise = Exercise(context: PersistenceService.context)
+        newExercise.name = name
+        newExercise.time = time
+        newExercise.intensity = intensity
+
+        currentDay.addToExercise(newExercise)
+        PersistenceService.saveContext()
+    }
+ 
+    
+    func fetchMeals(day: Date) -> [Meals]{
+        let fetchRequest: NSFetchRequest<Meals> = Meals.fetchRequest()
+        let dayToShow = ModelController().formatDateToDay(date: day)
+        fetchRequest.predicate = NSPredicate(format: "day.date == %@", dayToShow)
+        let foundMeals = try? PersistenceService.context.fetch(fetchRequest)
+        if(foundMeals == nil){
+            print("Error fetching meals")
+            return []
+        }
+        else{
+            return foundMeals!
+        }
     }
 }
