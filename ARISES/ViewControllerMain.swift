@@ -134,6 +134,8 @@ class ViewControllerMain: UIViewController {
     
 }
 //MARK: Extensions
+//MARK: Date formatting
+
 //MARK: Rounding and shadow extensions
 extension UIView {
     func setRadius(radius: CGFloat? = nil) {

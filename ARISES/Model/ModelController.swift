@@ -30,7 +30,7 @@ class ModelController {
  */
 
 
-    private func formatDateToDay(date: Date) -> String{
+    public func formatDateToDay(date: Date) -> String{
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .none

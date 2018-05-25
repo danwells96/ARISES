@@ -111,7 +111,8 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     
     private func updateTable(){
         let fetchRequest: NSFetchRequest<Meals> = Meals.fetchRequest()
-        
+        let dayToShow = ModelController().formatDateToDay(date: Date())
+        fetchRequest.predicate = NSPredicate(format: "day.date == %@", dayToShow)
         do{
             let loggedMeals = try PersistenceService.context.fetch(fetchRequest)
             self.loggedMeals = loggedMeals
