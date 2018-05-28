@@ -11,7 +11,14 @@ import CoreData
 
 class ModelController {
 
+    //TODO: - To Do List
     //TODO: Fetch requests require sorting. Short times currently sort incorrectly
+    //TODO: Abstract functions to apply to food, exercise and days etc.
+    //TODO: Test and validate/tighten up corner cases for data values
+    //TODO: Ensure optionals never cause exceptions e.g. with Guard
+    
+    
+    //MARK: - Basic date formatting functions
     func formatDateToDay(date: Date) -> String{
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
@@ -24,7 +31,8 @@ class ModelController {
         timeFormatter.timeStyle = .short
         return timeFormatter.string(from: date)
     }
-    //MARK: Private functions
+    
+    //MARK: - Private functions
     private func checkForExistingFavourites() -> Favourites{
         let favFetch: NSFetchRequest<Favourites> = Favourites.fetchRequest()
         let checkFav = try? PersistenceService.context.fetch(favFetch)
@@ -41,14 +49,7 @@ class ModelController {
         print("Error fetching favourites")
         return checkFav![0]
     }
-    
-    private func createNewDay(dateValue: Date) -> Day{
-        //create new log if new day set
-        let currentDay = Day(context: PersistenceService.context)
-        currentDay.date = formatDateToDay(date: dateValue)
-        PersistenceService.saveContext()
-        return currentDay
-    }
+
     private func findOrMakeDay(day: Date) -> Day{
         let day = formatDateToDay(date: day)
         //predicate date
@@ -70,7 +71,7 @@ class ModelController {
         return checkForDay![0]
         //Should never happen and will almost certainly crash if it does
     }
-    //MARK: Functions for use by other controllers e.g. Adding logs/ fetching
+    //MARK: - Data object setting (add/toggle)
     func addMeal(name: String, time: String, date: Date, carbs: Int32, fat: Int32, protein: Int32){
         
         let currentDay = findOrMakeDay(day: date)
@@ -81,8 +82,6 @@ class ModelController {
         newMeal.protein = protein
         newMeal.fat = fat
         currentDay.addToMeals(newMeal)
-        
-      
         PersistenceService.saveContext()
     }
     
@@ -97,6 +96,9 @@ class ModelController {
         currentDay.addToExercise(newExercise)
         PersistenceService.saveContext()
     }
+    
+    //MARK: - Data object getting (fetch/return)
+    //Only toggles meals currently
     func toggleFavourite(item: Meals){
         
         let favList = checkForExistingFavourites()
@@ -112,6 +114,8 @@ class ModelController {
         }
         PersistenceService.saveContext()
     }
+    
+    //Returns true if item is favourites - currently only meals
     func itemInFavourites(item: Meals) -> Bool{
         
         let favList = checkForExistingFavourites()
@@ -123,18 +127,21 @@ class ModelController {
         return false
     }
     
+    //Currently only fetches meals
     func fetchFavourites() -> [Meals]{
         let fetchRequest: NSFetchRequest<Meals> = Meals.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "favourite != nil")
+        //Sorts alphabetically downwards
+        let sectionSortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        let sortDescriptors = [sectionSortDescriptor]
+        fetchRequest.sortDescriptors = sortDescriptors
         let foundMeals = try? PersistenceService.context.fetch(fetchRequest)
         if(foundMeals == nil){
             print("Error fetching meals")
             return []
         }
         else{
-            //print("\(foundMeals!)")
             return foundMeals!
-            
         }
     }
     
@@ -142,6 +149,7 @@ class ModelController {
         let fetchRequest: NSFetchRequest<Meals> = Meals.fetchRequest()
         let dayToShow = ModelController().formatDateToDay(date: day)
         fetchRequest.predicate = NSPredicate(format: "day.date == %@", dayToShow)
+        //Sorts by short time - currently not correctly
         let sectionSortDescriptor = NSSortDescriptor(key: "time", ascending: true)
         let sortDescriptors = [sectionSortDescriptor]
         fetchRequest.sortDescriptors = sortDescriptors

@@ -22,7 +22,7 @@ class ViewControllerMain: UIViewController {
     
     //TODO: Save and restore open view between app closing
     
-    //MARK: Properties
+    //MARK: - Properties
     // Views with status indicators
     @IBOutlet weak var viewHealth: UIView!
     @IBOutlet weak var viewFood: UIView!
@@ -56,13 +56,13 @@ class ViewControllerMain: UIViewController {
     
     
    
-    //MARK: Override
+    //MARK: - Override
     override func viewDidLoad() {
         super.viewDidLoad()
         self.state = .food
     }
     
-    //MARK: View re-positioning
+    //MARK: - View re-positioning
     //Func to set state cases
     private func updateViews()
     {
@@ -78,7 +78,7 @@ class ViewControllerMain: UIViewController {
             indicatorAdvice.isHidden = false
             indicatorHealth.isHidden = false
             indicatorExercise.isHidden = false
-            
+
         case .exercise:
             view.bringSubview(toFront: viewExercise)
             containerFood.isHidden = true
@@ -116,7 +116,10 @@ class ViewControllerMain: UIViewController {
     }
 
     @IBAction func healthButton(_ sender: UIButton) {
+        //Would provide a delay after clicking (in seconds)
+        //DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
         self.state = .health
+        //}
     }
     
     @IBAction func foodButton(_ sender: UIButton) {
@@ -133,9 +136,7 @@ class ViewControllerMain: UIViewController {
  
     
 }
-//MARK: Extensions
-//MARK: Date formatting
-
+//MARK: - Extensions
 //MARK: Rounding and shadow extensions
 extension UIView {
     func setRadius(radius: CGFloat? = nil) {

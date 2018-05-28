@@ -11,9 +11,9 @@ import UIKit
 
 class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDataSource, UITableViewDelegate{
     
-    //TODO: exercise logs not working
+    //TODO: - Update to add favourites code from food section
     
-    //MARK: Properties
+    //MARK: - Properties
     @IBOutlet weak var exerciseNameField: UITextField!
     @IBOutlet weak var exerciseTimeField: UITextField!
     @IBOutlet weak var exerciseIntensityField: UITextField!
@@ -27,7 +27,7 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
     //table related variables
     private var loggedExercise = [Exercise]()
 
-    //MARK: Override
+    //MARK: - Override
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,7 +51,7 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
 
     }
     
-    //MARK: Picker functions
+    //MARK: - Picker functions
     //Exercise duration picker
     private func createExerciseDurationPicker(){
         
@@ -120,7 +120,7 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
         exerciseIntensityField.resignFirstResponder()
     }
     
-    //MARK: Table functions
+    //MARK: - Table functions
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return loggedExercise.count
@@ -148,16 +148,7 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     @IBAction func addExercise(_ sender: Any) {
         if ((exerciseNameField.text != "") && (exerciseTimeField.text != "") && (exerciseDurationField.text != "") && (exerciseIntensityField.text != "")){
-          /*  let newExercise = Exercise(context: PersistenceService.context)
-            newExercise.name = exerciseNameField.text
-            newExercise.time = exerciseTimeField.text
-            newExercise.duration = exerciseDurationField.text
-            newExercise.intensity = exerciseIntensityField.text
-            PersistenceService.saveContext()
-            
-            self.loggedExercise.append(newExercise)
-            self.exerciseLogTable.reloadData()
- */
+
             ModelController().addExercise(
                 name: exerciseNameField.text!,
                 time: exerciseTimeField.text!,

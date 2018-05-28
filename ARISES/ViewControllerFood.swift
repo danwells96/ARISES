@@ -12,7 +12,9 @@ import UIKit
 class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate, tableCellDelegate {
     
 
-    //MARK: Properties
+    //TODO: solve keyboard covering name in some phones
+    
+    //MARK: - Properties
     @IBOutlet weak var foodTimeField: UITextField!
     @IBOutlet weak var foodLogTable: UITableView!
     @IBOutlet weak var carbsTextField: UITextField!
@@ -25,6 +27,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     @IBOutlet weak var favouritesButton: UIButton!
     //defining table related variables
     private var loggedMeals = [Meals]()
+    //Variable tracking state of favourites views
     private var showFavourites = false{
         didSet{
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
@@ -36,17 +39,15 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
                 }
                 self.updateTable()
             }
-            
         }
-        
     }
-    //private var favouriteMeals = [Meals]()
+
     //var expanded: Bool = false
     //var selection: IndexPath?
     //private var height: CGFloat = 40
     
-    
-    //MARK: Override
+
+    //MARK: - Override
     override func viewDidLoad() {
         super.viewDidLoad()
         foodLogTable.dataSource = self
@@ -71,7 +72,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
 
     }
     
-    //MARK: Picker functions
+    //MARK: - Picker functions
     //Food Time picker
     private func createFoodTimePicker(){
         
@@ -90,17 +91,22 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     }
     
     @objc private func doneWithPicker(){
-        
+        /*
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .none
         dateFormatter.timeStyle = .short
         
-        foodTimeField.text = dateFormatter.string(from: foodTimePicker.date)
+        foodTimeField.text = dateFormatter.string(from: foodTimePicker.date)*/
+        foodTimeField.text = ModelController().formatDateToTime(date: foodTimePicker.date)
         self.view.endEditing(true)
     }
     
-    //MARK: Table functions
+    @objc private func doneWithKeypad(){
+        view.endEditing(true)
+    }
     
+    //MARK: - Favourite buttons
+    //Toggle between favourite and daily log views
     @IBAction func toggleFavourites(_ sender: Any) {
         if self.showFavourites == false{
             showFavourites = true
@@ -108,27 +114,23 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         else{
             showFavourites = false
         }
-        
-        //Test printouts
-      /*  let favMeals = ModelController().fetchFavourites()
-        for index in favMeals{
-            print("\(index.name!)")
-        }
- */
     }
     
+    //TODO: Either add remove buttons in expanded or allow a way to remove favourites
     func didPressButton(_ tag: Int) {
-        let toFav = loggedMeals[tag]
-        print("I have toggled \(toFav.name!)")
-        ModelController().toggleFavourite(item: toFav)
-        updateTable()
-        
+        if showFavourites != true{
+            let toFav = loggedMeals[tag]
+            print("I have toggled \(toFav.name!)")
+            ModelController().toggleFavourite(item: toFav)
+            updateTable()
+        }
     }
-    
+    //MARK: - Table functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return loggedMeals.count
     }
     
+    //Provides "setup" for cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ViewControllerTableViewCell
@@ -160,6 +162,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         return(cell)
     }
     
+    //Allows selecting a favourite to add to daily log
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         if showFavourites == true{
@@ -175,12 +178,6 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
                 self.showFavourites = false
             }
         }
-        
-        
-       
-        //showFavourites = false
-        //updateTable()
-
     }
     
     /*
@@ -197,22 +194,19 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     }*/
     
     private func updateTable(){
-        //TODO: swap order of if else
-        if showFavourites == false{
-            let loggedMeals = ModelController().fetchMeals(day: Date())
-            self.loggedMeals = loggedMeals
-            self.foodLogTable.reloadData()
-        }
-        else{
+        if showFavourites == true{
             let loggedMeals = ModelController().fetchFavourites()
             self.loggedMeals = loggedMeals
             self.foodLogTable.reloadData()
         }
+        else{
+            let loggedMeals = ModelController().fetchMeals(day: Date())
+            self.loggedMeals = loggedMeals
+            self.foodLogTable.reloadData()
+        }
     }
-    @objc private func doneWithKeypad(){
-        view.endEditing(true)
-    }
-    
+
+    //MARK: - Add food button
     @IBAction func addFoodToLog(_ sender: Any) {
 
         if ((foodNameTextField.text != "") && (foodTimeField.text != "") && (carbsTextField.text != "") && (proteinTextField.text != "") && (fatTextField.text != "")){
@@ -231,20 +225,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
             carbsTextField.text = ""
             proteinTextField.text = ""
             fatTextField.text = ""
-            
-            
         }
-        /*
-        //Test printouts of date information
-        let dateFetch: NSFetchRequest<Day> = Day.fetchRequest()
-        
-        let checkDates = try? PersistenceService.context.fetch(dateFetch)
-        print("number of dates is \(checkDates!.count)")
-
-        for Day in checkDates!{
-            print("\(Day.date)")
-        }
-        */
     }
     
  /*   @IBAction func expandFoodCell(_ sender: Any) {
@@ -258,21 +239,4 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         }
         
     }*/
-
-   /* @IBAction func favouriteButton(_ sender: Any) {
-        let newFavourite = loggedMeals[GAH]
-        favouriteMeals.append(Meal(Name: "\(newFavourite.Name)", Time: "\(newFavourite.Time)", Carbs: Int(newFavourite.Carbs)!, Protein: Int(newFavourite.Protein)!, Fat: Int(newFavourite.Fat)!))
-    }
-    */
-   
-    /*@IBAction func chooseFromFavourites(_ sender: Any) {
-        //segue to a new cell design containing the list of favourites
-        let selectedMeal = favouriteMeals[GAH]
-        foodNameTextField.text = "\(selectedMeal.Name)"
-        foodTimeField.text = "\(selectedMeal.Time)"
-        carbsTextField.text = "\(selectedMeal.Carbs)"
-        proteinTextField.text = "\(selectedMeal.Protein)"
-        fatTextField.text = "\(selectedMeal.Fat)"
-    }*/
-    
 }
