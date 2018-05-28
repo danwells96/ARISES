@@ -9,24 +9,20 @@
 import Foundation
 import CoreData
 
-/*
- //Some way to abstract all these functions would be super helpful
-enum entity{
-    case meal
-    case exercise
-    case day
-    case favourite
-}
-*/
-
 class ModelController {
 
-    
+    //TODO: Fetch requests require sorting. Short times currently sort incorrectly
     func formatDateToDay(date: Date) -> String{
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .none
-        return dateFormatter.string(from: Date())
+        return dateFormatter.string(from: date)
+    }
+    func formatDateToTime(date: Date) -> String{
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateStyle = .none
+        timeFormatter.timeStyle = .short
+        return timeFormatter.string(from: date)
     }
     //MARK: Private functions
     private func checkForExistingFavourites() -> Favourites{
@@ -146,6 +142,9 @@ class ModelController {
         let fetchRequest: NSFetchRequest<Meals> = Meals.fetchRequest()
         let dayToShow = ModelController().formatDateToDay(date: day)
         fetchRequest.predicate = NSPredicate(format: "day.date == %@", dayToShow)
+        let sectionSortDescriptor = NSSortDescriptor(key: "time", ascending: true)
+        let sortDescriptors = [sectionSortDescriptor]
+        fetchRequest.sortDescriptors = sortDescriptors
         let foundMeals = try? PersistenceService.context.fetch(fetchRequest)
         if(foundMeals == nil){
             print("Error fetching meals")

@@ -43,9 +43,6 @@ class ViewControllerTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-
-
-    
     // connect the button from your cell with this method
     @IBAction func buttonPressed(_ sender: UIButton) {
         cellDelegate?.didPressButton(self.tag)

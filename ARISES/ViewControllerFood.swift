@@ -25,7 +25,21 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     @IBOutlet weak var favouritesButton: UIButton!
     //defining table related variables
     private var loggedMeals = [Meals]()
-    private var showFavourites = false
+    private var showFavourites = false{
+        didSet{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                if self.showFavourites == false{
+                    self.favouritesButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+                }
+                else{
+                    self.favouritesButton.tintColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
+                }
+                self.updateTable()
+            }
+            
+        }
+        
+    }
     //private var favouriteMeals = [Meals]()
     //var expanded: Bool = false
     //var selection: IndexPath?
@@ -86,23 +100,23 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     }
     
     //MARK: Table functions
-    //TODO: rename function and redo outlet
-    @IBAction func testFav(_ sender: Any) {
+    
+    @IBAction func toggleFavourites(_ sender: Any) {
         if self.showFavourites == false{
-            favouritesButton.tintColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
             showFavourites = true
         }
         else{
-            favouritesButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
             showFavourites = false
         }
-        updateTable()
+        
         //Test printouts
-        let favMeals = ModelController().fetchFavourites()
+      /*  let favMeals = ModelController().fetchFavourites()
         for index in favMeals{
             print("\(index.name!)")
         }
+ */
     }
+    
     func didPressButton(_ tag: Int) {
         let toFav = loggedMeals[tag]
         print("I have toggled \(toFav.name!)")
@@ -128,6 +142,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         cell.loggedFoodTime.text = currentMeal.time
         cell.loggedFoodCarbs.text = "\(currentMeal.carbs)"
         
+        
         if ModelController().itemInFavourites(item: currentMeal){
             cell.favouriteFoodButton.tintColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
         }
@@ -135,13 +150,40 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
             cell.favouriteFoodButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
         }
         
+        if showFavourites == true{
+            cell.loggedFoodTime.isHidden = true
+        }
+        else{
+            cell.loggedFoodTime.isHidden = false
+        }
+        
         return(cell)
     }
     
-  /*  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selection = self.foodLogTable.indexPathForSelectedRow
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        if showFavourites == true{
+            ModelController().addMeal(
+                name: loggedMeals[indexPath.row].name!,
+                time: ModelController().formatDateToTime(date: Date()),
+                date: Date(),
+                carbs: loggedMeals[indexPath.row].carbs,
+                fat: loggedMeals[indexPath.row].fat,
+                protein: loggedMeals[indexPath.row].protein)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.showFavourites = false
+            }
+        }
+        
+        
+       
+        //showFavourites = false
+        //updateTable()
+
     }
     
+    /*
     func tableView(_ tableView: UITableView, heightForRowAt selection: IndexPath) -> CGFloat {
         if(expanded == false){
             expanded = true
@@ -182,7 +224,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
                     carbs: Int32(carbsTextField.text!)!,
                     fat: Int32(fatTextField.text!)!,
                     protein: Int32(proteinTextField.text!)!)
-            updateTable()
+            showFavourites = false
         
             foodNameTextField.text = ""
             foodTimeField.text = ""
