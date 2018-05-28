@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol tableCellDelegate : class {
+    func didPressButton(_ tag: Int)
+}
+
 class ViewControllerTableViewCell: UITableViewCell {
 
     //MARK: Properties
@@ -20,6 +24,9 @@ class ViewControllerTableViewCell: UITableViewCell {
     @IBOutlet weak var loggedExerciseDuration: UILabel!
     @IBOutlet weak var loggedExerciseName: UILabel!
     @IBOutlet weak var loggedExerciseTime: UILabel!
+    
+    weak var cellDelegate: tableCellDelegate?
+
     
     // var expanded = false
     
@@ -34,6 +41,18 @@ class ViewControllerTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
+    
+
+
+    
+    // connect the button from your cell with this method
+    @IBAction func buttonPressed(_ sender: UIButton) {
+        cellDelegate?.didPressButton(self.tag)
+    }
+
+    
+
+    
     /*
     func set(content: Meals){
         self.loggedFoodName.text = content.name

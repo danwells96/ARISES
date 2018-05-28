@@ -9,9 +9,10 @@
 import Foundation
 import UIKit
 
-class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate {
+class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate, tableCellDelegate {
     
-    //TODO: food log not working
+
+    
  
     //MARK: Properties
     @IBOutlet weak var foodTimeField: UITextField!
@@ -26,15 +27,9 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     //defining table related variables
     private var loggedMeals = [Meals]()
     //private var favouriteMeals = [Meals]()
-   // var expanded: Bool = false
-    
-  /*  private var height: CGFloat = 44
-    {
-        didSet
-        {
-            self.foodLogTable.rowHeight = height
-        }
-    }*/
+    //var expanded: Bool = false
+    //var selection: IndexPath?
+    //private var height: CGFloat = 40
     
     
     //MARK: Override
@@ -91,20 +86,46 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     
     //MARK: Table functions
 
+    func didPressButton(_ tag: Int) {
+        print("I have pressed a button with a tag: \(tag)")
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return loggedMeals.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ViewControllerTableViewCell
+       // let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ViewControllerTableViewCell
 
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ViewControllerTableViewCell
+        
+        cell.cellDelegate = self
+        cell.tag = indexPath.row
+        
+        
         let currentMeal = loggedMeals[indexPath.row]
         cell.loggedFoodName.text = currentMeal.name
         cell.loggedFoodTime.text = currentMeal.time
         cell.loggedFoodCarbs.text = "\(currentMeal.carbs)"
         return(cell)
     }
+    
+  /*  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selection = self.foodLogTable.indexPathForSelectedRow
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt selection: IndexPath) -> CGFloat {
+        if(expanded == false){
+            expanded = true
+
+            return 90
+        }
+        else{
+            expanded = false
+            return 40
+        }
+    }*/
     
     private func updateTable(){
         let loggedMeals = ModelController().fetchMeals(day: Date())

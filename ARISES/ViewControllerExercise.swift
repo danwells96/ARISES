@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import CoreData
 
 class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDataSource, UITableViewDelegate{
     

@@ -3,6 +3,7 @@
     <entity name="Day" representedClassName=".Day" syncable="YES" codeGenerationType="category">
         <attribute name="date" attributeType="String" syncable="YES"/>
         <relationship name="exercise" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Exercise" inverseName="day" inverseEntity="Exercise" syncable="YES"/>
+        <relationship name="favourite" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Favourite" inverseName="days" inverseEntity="Favourite" syncable="YES"/>
         <relationship name="meals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Meals" inverseName="day" inverseEntity="Meals" syncable="YES"/>
     </entity>
     <entity name="Exercise" representedClassName=".Exercise" syncable="YES" codeGenerationType="category">
@@ -11,6 +12,12 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="day" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="exercise" inverseEntity="Day" syncable="YES"/>
+        <relationship name="favourite" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Favourite" inverseName="exercise" inverseEntity="Favourite" syncable="YES"/>
+    </entity>
+    <entity name="Favourite" representedClassName=".Favourite" syncable="YES" codeGenerationType="category">
+        <relationship name="days" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Day" inverseName="favourite" inverseEntity="Day" syncable="YES"/>
+        <relationship name="exercise" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Exercise" inverseName="favourite" inverseEntity="Exercise" syncable="YES"/>
+        <relationship name="meals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Meals" inverseName="favourite" inverseEntity="Meals" syncable="YES"/>
     </entity>
     <entity name="Meals" representedClassName=".Meals" syncable="YES" codeGenerationType="category">
         <attribute name="carbs" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -19,10 +26,12 @@
         <attribute name="protein" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="time" attributeType="String" syncable="YES"/>
         <relationship name="day" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="meals" inverseEntity="Day" syncable="YES"/>
+        <relationship name="favourite" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Favourite" inverseName="meals" inverseEntity="Favourite" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Day" positionX="-155" positionY="-31" width="128" height="88"/>
-        <element name="Exercise" positionX="45" positionY="-118" width="128" height="118"/>
-        <element name="Meals" positionX="52" positionY="29" width="128" height="133"/>
+        <element name="Day" positionX="-155" positionY="-31" width="128" height="103"/>
+        <element name="Exercise" positionX="97" positionY="-115" width="128" height="133"/>
+        <element name="Meals" positionX="97" positionY="32" width="128" height="148"/>
+        <element name="Favourite" positionX="-153" positionY="-232" width="128" height="88"/>
     </elements>
 </model>

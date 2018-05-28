@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Model/Favourite.swift">
+   </FileRef>
+   <FileRef
       location = "group:ARISES.xcodeproj">
    </FileRef>
    <FileRef

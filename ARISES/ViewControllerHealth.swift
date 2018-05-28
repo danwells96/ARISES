@@ -9,26 +9,27 @@
 import Foundation
 import UIKit
 
-class ViewControllerHealth: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-    
+class ViewControllerHealth: UIViewController {
+ /*   class ViewControllerHealth: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {*/
+ /*
     //MARK: Properties
     @IBOutlet weak var stressField: UITextField!
     
     //defining picker related variables
     let stressLevel = ["not", "a little", "quite", "very"]
     var stressPicker = UIPickerView()
-    
+   */
     //MARK: Override
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+  /*
         stressPicker.delegate = self
         stressPicker.dataSource = self
         stressField.inputView = stressPicker
-
+*/
         
     }
-    
+   /*
     //MARK: Picker functions
     //Word Pickers: exercise intensity and stress
     public func numberOfComponents(in pickerView: UIPickerView) -> Int{
@@ -47,6 +48,6 @@ class ViewControllerHealth: UIViewController, UIPickerViewDelegate, UIPickerView
         stressField.text = stressLevel[row]
         stressField.resignFirstResponder()
     }
-    
+    */
     
 }
