@@ -9,6 +9,16 @@
 import Foundation
 import CoreData
 
+/*
+ //Some way to abstract all these functions would be super helpful
+enum entity{
+    case meal
+    case exercise
+    case day
+    case favourite
+}
+*/
+
 class ModelController {
 
     
@@ -92,31 +102,29 @@ class ModelController {
         PersistenceService.saveContext()
     }
     func toggleFavourite(item: Meals){
-        //TODO: check this thoroughly, and make it toggle
-        //then make it general or repeat for exercise
+        
         let favList = checkForExistingFavourites()
-        //Check to see if favourited already
-       /* let fetchRequest: NSFetchRequest<Favourites> = Favourites.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "meals.name != nil")
-        let foundMeals = try? PersistenceService.context.fetch(fetchRequest)
-        if(foundMeals == nil){
-            print("Error fetching meals")
-        }
-        else{
-            if(foundMeals!.count == 0){
-                favList.addToMeals(item)
-            }
-            if(foundMeals!.count == 1){
+        var found = false
+        for index in favList.objectIDs(forRelationshipNamed: "meals"){
+            if index == item.objectID{
                 favList.removeFromMeals(item)
-            }
-            else{
-                print("Error checking for existing meals favourites")
+                found = true
             }
         }
- */
-        favList.addToMeals(item)
-
+        if found == false{
+            favList.addToMeals(item)
+        }
         PersistenceService.saveContext()
+    }
+    func itemInFavourites(item: Meals) -> Bool{
+        
+        let favList = checkForExistingFavourites()
+        for index in favList.objectIDs(forRelationshipNamed: "meals"){
+            if index == item.objectID{
+                return true
+            }
+        }
+        return false
     }
     
     func fetchFavourites() -> [Meals]{

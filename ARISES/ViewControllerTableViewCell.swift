@@ -20,6 +20,8 @@ class ViewControllerTableViewCell: UITableViewCell {
     @IBOutlet weak var loggedFoodCarbs: UILabel!
     // @IBOutlet weak var loggedFoodCarbs: UILabel!
     
+    @IBOutlet weak var favouriteFoodButton: UIButton!
+    
     @IBOutlet weak var loggedExerciseDuration: UILabel!
     @IBOutlet weak var loggedExerciseName: UILabel!
     @IBOutlet weak var loggedExerciseTime: UILabel!
@@ -47,12 +49,6 @@ class ViewControllerTableViewCell: UITableViewCell {
     // connect the button from your cell with this method
     @IBAction func buttonPressed(_ sender: UIButton) {
         cellDelegate?.didPressButton(self.tag)
-        if self.tintColor == UIColor.black{
-            self.tintColor = UIColor.yellow
-        }
-        else{
-            self.tintColor = UIColor.black
-        }
     }
 
     

@@ -24,6 +24,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     //defining picker related variables
     private var foodTimePicker = UIDatePicker()
     
+    @IBOutlet weak var favouritesButton: UIButton!
     //defining table related variables
     private var loggedMeals = [Meals]()
     //private var favouriteMeals = [Meals]()
@@ -52,6 +53,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         fatTextField.inputAccessoryView = toolBar
         foodNameTextField.inputAccessoryView = toolBar
         
+        favouritesButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
         updateTable()
 
     }
@@ -85,8 +87,15 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     }
     
     //MARK: Table functions
-
     @IBAction func testFav(_ sender: Any) {
+        if  favouritesButton.tintColor == #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1){
+            favouritesButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+        }
+        else{
+            favouritesButton.tintColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
+        }
+        
+        //Test printouts
         let favMeals = ModelController().fetchFavourites()
         for index in favMeals{
             print("\(index.name!)")
@@ -94,8 +103,9 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     }
     func didPressButton(_ tag: Int) {
         let toFav = loggedMeals[tag]
-        print("I have favourited \(toFav.name!)")
+        print("I have toggled \(toFav.name!)")
         ModelController().toggleFavourite(item: toFav)
+        updateTable()
         
     }
     
@@ -105,17 +115,24 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-       // let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ViewControllerTableViewCell
-
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ViewControllerTableViewCell
         
         cell.cellDelegate = self
         cell.tag = indexPath.row
         
         let currentMeal = loggedMeals[indexPath.row]
+        
         cell.loggedFoodName.text = currentMeal.name
         cell.loggedFoodTime.text = currentMeal.time
         cell.loggedFoodCarbs.text = "\(currentMeal.carbs)"
+        
+        if ModelController().itemInFavourites(item: currentMeal){
+            cell.favouriteFoodButton.tintColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
+        }
+        else{
+            cell.favouriteFoodButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+        }
+        
         return(cell)
     }
     

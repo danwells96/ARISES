@@ -118,7 +118,7 @@
                                             <constraint firstAttribute="height" constant="31" id="8Hp-j1-pch"/>
                                             <constraint firstAttribute="width" constant="31" id="pe6-m4-zb3"/>
                                         </constraints>
-                                        <state key="normal" image="Star"/>
+                                        <state key="normal" image="star black transparency"/>
                                         <connections>
                                             <action selector="testFav:" destination="xjl-Az-dRA" eventType="touchUpInside" id="vFX-KD-Mpa"/>
                                         </connections>
@@ -167,7 +167,10 @@
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ex3-8Y-q6D">
                                                     <rect key="frame" x="0.0" y="5" width="31" height="28"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" backgroundImage="greyStar"/>
+                                                    <color key="tintColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" backgroundImage="star black transparency">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
                                                     <connections>
                                                         <action selector="buttonPressed:" destination="dQm-8S-9YR" eventType="touchUpInside" id="eZ8-1d-mVC"/>
                                                     </connections>
@@ -175,6 +178,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="favouriteFoodButton" destination="Ex3-8Y-q6D" id="N21-FK-2H2"/>
                                             <outlet property="loggedFoodCarbs" destination="Op3-oh-MGY" id="cXy-hE-UbZ"/>
                                             <outlet property="loggedFoodName" destination="IzQ-wP-kDe" id="kY5-X8-lLF"/>
                                             <outlet property="loggedFoodTime" destination="29A-Vi-sns" id="yr4-Kb-Tir"/>
@@ -246,6 +250,7 @@
                     <connections>
                         <outlet property="carbsTextField" destination="wMy-H5-4FY" id="HVZ-qv-KiF"/>
                         <outlet property="fatTextField" destination="0Cd-sx-Ahs" id="TY2-Ey-cvC"/>
+                        <outlet property="favouritesButton" destination="1rn-Le-rQx" id="Ybj-vp-iSj"/>
                         <outlet property="foodLogTable" destination="6QN-ht-td4" id="O2j-mL-Rp1"/>
                         <outlet property="foodNameTextField" destination="aoz-Lq-GqU" id="nna-0q-n9T"/>
                         <outlet property="foodTimeField" destination="YHY-0J-bdq" id="BT8-aV-n9T"/>
@@ -1275,6 +1280,6 @@
     </scenes>
     <resources>
         <image name="Star" width="284" height="287"/>
-        <image name="greyStar" width="573" height="551"/>
+        <image name="star black transparency" width="175" height="167"/>
     </resources>
 </document>
