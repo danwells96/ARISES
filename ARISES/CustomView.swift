@@ -90,7 +90,6 @@ class CustomView: UIView {
             circlePath.fill()
         }else{
             self.isHidden = true
-            print("No value")
         }
         //circlePath.stroke()
     }

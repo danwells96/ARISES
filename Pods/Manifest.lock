@@ -2,15 +2,20 @@ PODS:
   - SwiftCharts (0.6.1)
 
 DEPENDENCIES:
-  - SwiftCharts (~> 0.6.1)
+  - SwiftCharts (from `https://github.com/i-schuetz/SwiftCharts.git`)
 
-SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - SwiftCharts
+EXTERNAL SOURCES:
+  SwiftCharts:
+    :git: https://github.com/i-schuetz/SwiftCharts.git
+
+CHECKOUT OPTIONS:
+  SwiftCharts:
+    :commit: 63b3cab83bdbf87bcdc59a3145126318fa6b15c7
+    :git: https://github.com/i-schuetz/SwiftCharts.git
 
 SPEC CHECKSUMS:
-  SwiftCharts: 77378d6cf667e95f9c79a745b6778e66eed5339c
+  SwiftCharts: 344c17e93852fb14358046d0bcb831329c149648
 
-PODFILE CHECKSUM: a775909a4804f57e9c6b995b95f8c214397cd36c
+PODFILE CHECKSUM: 6441a8b117e317036f88ac9990651ce647df4162
 
 COCOAPODS: 1.5.2
