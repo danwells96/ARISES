@@ -8,15 +8,27 @@
 
 import UIKit
 
+protocol tableCellDelegate : class {
+    func didPressButton(_ tag: Int)
+}
+
 class ViewControllerTableViewCell: UITableViewCell {
 
     //MARK: Properties
-    @IBOutlet weak var loggedFoodStar: UIImageView!
     @IBOutlet weak var loggedFoodName: UILabel!
     @IBOutlet weak var loggedFoodTime: UILabel!
+    @IBOutlet weak var loggedFoodCarbs: UILabel!
+    // @IBOutlet weak var loggedFoodCarbs: UILabel!
+    
     @IBOutlet weak var loggedExerciseDuration: UILabel!
     @IBOutlet weak var loggedExerciseName: UILabel!
     @IBOutlet weak var loggedExerciseTime: UILabel!
+    
+    weak var cellDelegate: tableCellDelegate?
+
+    
+    // var expanded = false
+    
     
     //MARK: Override
     override func awakeFromNib() {
@@ -28,5 +40,34 @@ class ViewControllerTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
+    
+
+
+    
+    // connect the button from your cell with this method
+    @IBAction func buttonPressed(_ sender: UIButton) {
+        cellDelegate?.didPressButton(self.tag)
+        if self.tintColor == UIColor.black{
+            self.tintColor = UIColor.yellow
+        }
+        else{
+            self.tintColor = UIColor.black
+        }
+    }
+
+    
+
+    
+    /*
+    func set(content: Meals){
+        self.loggedFoodName.text = content.name
+        self.loggedFoodTime.text = content.time
+        
+        if(expanded == true){
+            self.loggedFoodCarbs.text = "\(content.carbs)"
+ 
+        }
+        
+    }*/
 
 }

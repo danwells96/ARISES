@@ -9,7 +9,18 @@
 import Foundation
 import UIKit
 
+enum MainViewState
+{
+    case uninitialised
+    case health
+    case food
+    case exercise
+    case advice
+}
+
 class ViewControllerMain: UIViewController {
+    
+    //TODO: Save and restore open view between app closing
     
     //MARK: Properties
     // Views with status indicators
@@ -32,66 +43,99 @@ class ViewControllerMain: UIViewController {
     private var shadowLayer: CAShapeLayer!
     private var cornerRadius: CGFloat = 25.0
     private var fillColor: UIColor = .blue // the color applied to the shadowLayer, rather than the view's backgroundColor
-
+    //Variable to track state of views
+    private var state: MainViewState = .uninitialised
+    {
+        didSet
+        {
+            updateViews()
+        }
+    }
+    
+    
+    
+    
+   
     //MARK: Override
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.state = .food
     }
     
     //MARK: View re-positioning
+    //Func to set state cases
+    private func updateViews()
+    {
+        switch self.state
+        {
+        case .food:
+            view.bringSubview(toFront: viewFood)
+            containerFood.isHidden = false
+            containerAdvice.isHidden = true
+            containerHealth.isHidden = true
+            containerExercise.isHidden = true
+            indicatorFood.isHidden = true
+            indicatorAdvice.isHidden = false
+            indicatorHealth.isHidden = false
+            indicatorExercise.isHidden = false
+            
+        case .exercise:
+            view.bringSubview(toFront: viewExercise)
+            containerFood.isHidden = true
+            containerAdvice.isHidden = true
+            containerHealth.isHidden = true
+            containerExercise.isHidden = false
+            indicatorFood.isHidden = false
+            indicatorAdvice.isHidden = false
+            indicatorHealth.isHidden = false
+            indicatorExercise.isHidden = true
+            
+        case .health:
+            view.bringSubview(toFront: viewHealth)
+            containerFood.isHidden = true
+            containerAdvice.isHidden = true
+            containerHealth.isHidden = false
+            containerExercise.isHidden = true
+            indicatorFood.isHidden = false
+            indicatorAdvice.isHidden = false
+            indicatorHealth.isHidden = false
+            indicatorExercise.isHidden = false
+        case .advice:
+            view.bringSubview(toFront: viewAdvice)
+            containerFood.isHidden = true
+            containerAdvice.isHidden = false
+            containerHealth.isHidden = true
+            containerExercise.isHidden = true
+            indicatorFood.isHidden = false
+            indicatorAdvice.isHidden = true
+            indicatorHealth.isHidden = false
+            indicatorExercise.isHidden = false
+        case .uninitialised:
+            print("uninitialised view state")
+        }
+    }
+
     @IBAction func healthButton(_ sender: UIButton) {
-        view.bringSubview(toFront: viewHealth)
-        containerFood.isHidden = true
-        containerAdvice.isHidden = true
-        containerHealth.isHidden = false
-        containerExercise.isHidden = true
-        indicatorFood.isHidden = false
-        indicatorAdvice.isHidden = false
-        indicatorHealth.isHidden = false
-        indicatorExercise.isHidden = false
+        self.state = .health
     }
     
     @IBAction func foodButton(_ sender: UIButton) {
-        view.bringSubview(toFront: viewFood)
-        containerFood.isHidden = false
-        containerAdvice.isHidden = true
-        containerHealth.isHidden = true
-        containerExercise.isHidden = true
-        indicatorFood.isHidden = true
-        indicatorAdvice.isHidden = false
-        indicatorHealth.isHidden = false
-        indicatorExercise.isHidden = false
+        self.state = .food
     }
     
     @IBAction func exerciseButton(_ sender: UIButton) {
-        view.bringSubview(toFront: viewExercise)
-        containerFood.isHidden = true
-        containerAdvice.isHidden = true
-        containerHealth.isHidden = true
-        containerExercise.isHidden = false
-        indicatorFood.isHidden = false
-        indicatorAdvice.isHidden = false
-        indicatorHealth.isHidden = false
-        indicatorExercise.isHidden = true
-        
+        self.state = .exercise
     }
     
     @IBAction func adviceButton(_ sender: UIButton) {
-        view.bringSubview(toFront: viewAdvice)
-        containerFood.isHidden = true
-        containerAdvice.isHidden = false
-        containerHealth.isHidden = true
-        containerExercise.isHidden = true
-        indicatorFood.isHidden = false
-        indicatorAdvice.isHidden = true
-        indicatorHealth.isHidden = false
-        indicatorExercise.isHidden = false
+        self.state = .advice
     }
  
     
 }
 //MARK: Extensions
+//MARK: Date formatting
+
 //MARK: Rounding and shadow extensions
 extension UIView {
     func setRadius(radius: CGFloat? = nil) {

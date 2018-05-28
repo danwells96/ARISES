@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		371070D620AD904300365AC4 /* ExerciseIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 371070D520AD904300365AC4 /* ExerciseIcon.png */; };
+		3714D1FE20BC24AC0016324F /* Favourites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3714D1FD20BC24AC0016324F /* Favourites.swift */; };
+		3718079520B818ED00D7C81A /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718079420B818ED00D7C81A /* Exercise.swift */; };
+		3718079B20B81E2100D7C81A /* Meals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718079A20B81E2100D7C81A /* Meals.swift */; };
+		3718079D20B81EB300D7C81A /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718079C20B81EB300D7C81A /* Day.swift */; };
+		371807A320B8500F00D7C81A /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371807A220B8500F00D7C81A /* ModelController.swift */; };
 		3718B85C20AC99B6006F1A47 /* ViewControllerFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718B85B20AC99B6006F1A47 /* ViewControllerFood.swift */; };
 		3718B85E20AC9A2A006F1A47 /* ViewControllerAdvice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718B85D20AC9A2A006F1A47 /* ViewControllerAdvice.swift */; };
 		3718B86020AC9A42006F1A47 /* ViewControllerExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718B85F20AC9A42006F1A47 /* ViewControllerExercise.swift */; };
@@ -22,16 +27,20 @@
 		378658AE20AC675D007C13B2 /* ViewControllerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378658AD20AC675D007C13B2 /* ViewControllerTableViewCell.swift */; };
 		37A9ACE520B45025001B16BB /* ChartBGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A9ACE420B45025001B16BB /* ChartBGView.swift */; };
 		37A9ACE720B45062001B16BB /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A9ACE620B45062001B16BB /* CustomView.swift */; };
-		37E140D920B306C000688EC0 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E140D820B306C000688EC0 /* Meal.swift */; };
-		37E140DB20B30D1900688EC0 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E140DA20B30D1900688EC0 /* Exercise.swift */; };
+		37B3716220B47EF20048A942 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B3716120B47EF20048A942 /* PersistenceService.swift */; };
+		37B568BB20B485600014F735 /* ARISES.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37B568B920B485600014F735 /* ARISES.xcdatamodeld */; };
 		37E140DD20B311EA00688EC0 /* greyStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E140DC20B311EA00688EC0 /* greyStar.png */; };
-		37E140E120B3202E00688EC0 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E140E020B3202E00688EC0 /* CoreDataHandler.swift */; };
-		D16BF35C4D47B09B6FA548D0 /* libPods-ARISES.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A6645F34FB50F33376D609 /* libPods-ARISES.a */; };
+		CCABFD65EA5DB40F170A389A /* Pods_ARISES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1D7AAE55A6F2D0D2DB662E7 /* Pods_ARISES.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		371070D520AD904300365AC4 /* ExerciseIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ExerciseIcon.png; sourceTree = "<group>"; };
 		371470F820A082A600AB76EF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		3714D1FD20BC24AC0016324F /* Favourites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Favourites.swift; path = /Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Model/Favourites.swift; sourceTree = "<absolute>"; };
+		3718079420B818ED00D7C81A /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
+		3718079A20B81E2100D7C81A /* Meals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meals.swift; sourceTree = "<group>"; };
+		3718079C20B81EB300D7C81A /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		371807A220B8500F00D7C81A /* ModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelController.swift; sourceTree = "<group>"; };
 		3718B85B20AC99B6006F1A47 /* ViewControllerFood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFood.swift; sourceTree = "<group>"; };
 		3718B85D20AC9A2A006F1A47 /* ViewControllerAdvice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAdvice.swift; sourceTree = "<group>"; };
 		3718B85F20AC9A42006F1A47 /* ViewControllerExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExercise.swift; sourceTree = "<group>"; };
@@ -48,11 +57,9 @@
 		378658AD20AC675D007C13B2 /* ViewControllerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTableViewCell.swift; sourceTree = "<group>"; };
 		37A9ACE420B45025001B16BB /* ChartBGView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartBGView.swift; sourceTree = "<group>"; };
 		37A9ACE620B45062001B16BB /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
-		37E140D820B306C000688EC0 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
-		37E140DA20B30D1900688EC0 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
+		37B3716120B47EF20048A942 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
+		37B568BA20B485600014F735 /* ARISES.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ARISES.xcdatamodel; sourceTree = "<group>"; };
 		37E140DC20B311EA00688EC0 /* greyStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greyStar.png; sourceTree = "<group>"; };
-		37E140E020B3202E00688EC0 /* CoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
-		55A6645F34FB50F33376D609 /* libPods-ARISES.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ARISES.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		863CAE274477E894C42E1381 /* Pods-ARISES.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARISES.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARISES/Pods-ARISES.debug.xcconfig"; sourceTree = "<group>"; };
 		E37BF63307A2A5AF11BA9831 /* Pods-ARISES.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARISES.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARISES/Pods-ARISES.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,6 +76,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3718079E20B81F4F00D7C81A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3714D1FD20BC24AC0016324F /* Favourites.swift */,
+				371807A220B8500F00D7C81A /* ModelController.swift */,
+				37B568B920B485600014F735 /* ARISES.xcdatamodeld */,
+				3718079C20B81EB300D7C81A /* Day.swift */,
+				3718079A20B81E2100D7C81A /* Meals.swift */,
+				3718079420B818ED00D7C81A /* Exercise.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3718079F20B8200B00D7C81A /* Display */ = {
+			isa = PBXGroup;
+			children = (
+				37A9ACE420B45025001B16BB /* ChartBGView.swift */,
+				37A9ACE620B45062001B16BB /* CustomView.swift */,
+				3718B86320AC9A75006F1A47 /* ViewControllerGraph.swift */,
+			);
+			path = Display;
+			sourceTree = "<group>";
+		};
 		375587B9209E086C00594532 = {
 			isa = PBXGroup;
 			children = (
@@ -91,18 +121,14 @@
 			isa = PBXGroup;
 			children = (
 				375587D7209E08DB00594532 /* Supporting Files */,
-				37E140E020B3202E00688EC0 /* CoreDataHandler.swift */,
-				37A9ACE420B45025001B16BB /* ChartBGView.swift */,
-				37A9ACE620B45062001B16BB /* CustomView.swift */,
-				37E140D820B306C000688EC0 /* Meal.swift */,
+				3718079F20B8200B00D7C81A /* Display */,
+				3718079E20B81F4F00D7C81A /* Model */,
 				375587C9209E086C00594532 /* Main.storyboard */,
 				3718B85B20AC99B6006F1A47 /* ViewControllerFood.swift */,
-				37E140DA20B30D1900688EC0 /* Exercise.swift */,
 				3718B85D20AC9A2A006F1A47 /* ViewControllerAdvice.swift */,
 				3718B85F20AC9A42006F1A47 /* ViewControllerExercise.swift */,
 				3718B86120AC9A60006F1A47 /* ViewControllerHealth.swift */,
 				3718B86520AC9CE3006F1A47 /* ViewControllerMain.swift */,
-				3718B86320AC9A75006F1A47 /* ViewControllerGraph.swift */,
 				378658AD20AC675D007C13B2 /* ViewControllerTableViewCell.swift */,
 				375587D1209E086D00594532 /* Info.plist */,
 				371470F820A082A600AB76EF /* README.md */,
@@ -114,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				375587C5209E086C00594532 /* AppDelegate.swift */,
+				37B3716120B47EF20048A942 /* PersistenceService.swift */,
 				375587CE209E086D00594532 /* LaunchScreen.storyboard */,
 				375587CC209E086D00594532 /* Assets.xcassets */,
 				371070D520AD904300365AC4 /* ExerciseIcon.png */,
@@ -237,18 +264,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				3718B85E20AC9A2A006F1A47 /* ViewControllerAdvice.swift in Sources */,
+				3714D1FE20BC24AC0016324F /* Favourites.swift in Sources */,
 				3718B86020AC9A42006F1A47 /* ViewControllerExercise.swift in Sources */,
 				37A9ACE520B45025001B16BB /* ChartBGView.swift in Sources */,
-				37E140E120B3202E00688EC0 /* CoreDataHandler.swift in Sources */,
 				3718B86620AC9CE3006F1A47 /* ViewControllerMain.swift in Sources */,
 				375587C6209E086C00594532 /* AppDelegate.swift in Sources */,
+				371807A320B8500F00D7C81A /* ModelController.swift in Sources */,
+				3718079520B818ED00D7C81A /* Exercise.swift in Sources */,
 				37A9ACE720B45062001B16BB /* CustomView.swift in Sources */,
-				37E140D920B306C000688EC0 /* Meal.swift in Sources */,
-				37E140DB20B30D1900688EC0 /* Exercise.swift in Sources */,
+				37B3716220B47EF20048A942 /* PersistenceService.swift in Sources */,
+				3718079D20B81EB300D7C81A /* Day.swift in Sources */,
 				3718B85C20AC99B6006F1A47 /* ViewControllerFood.swift in Sources */,
 				3718B86420AC9A75006F1A47 /* ViewControllerGraph.swift in Sources */,
 				378658AE20AC675D007C13B2 /* ViewControllerTableViewCell.swift in Sources */,
 				3718B86220AC9A60006F1A47 /* ViewControllerHealth.swift in Sources */,
+				3718079B20B81E2100D7C81A /* Meals.swift in Sources */,
+				37B568BB20B485600014F735 /* ARISES.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +473,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		37B568B920B485600014F735 /* ARISES.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				37B568BA20B485600014F735 /* ARISES.xcdatamodel */,
+			);
+			currentVersion = 37B568BA20B485600014F735 /* ARISES.xcdatamodel */;
+			path = ARISES.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 375587BA209E086C00594532 /* Project object */;
 }

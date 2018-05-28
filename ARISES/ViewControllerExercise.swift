@@ -20,12 +20,12 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet weak var exerciseDurationField: UITextField!
     @IBOutlet weak var exerciseLogTable: UITableView!
     //picker related variables
-    let exerciseIntensity = ["Low", "Medium", "High"]
-    var exerciseIntensityPicker = UIPickerView()
-    var exerciseTimePicker = UIDatePicker()
-    var exerciseDurationPicker = UIDatePicker()
+    private let exerciseIntensity = ["Low", "Medium", "High"]
+    private var exerciseIntensityPicker = UIPickerView()
+    private var exerciseTimePicker = UIDatePicker()
+    private var exerciseDurationPicker = UIDatePicker()
     //table related variables
-    var loggedExercise = [Exercise]()
+    private var loggedExercise = [Exercise]()
 
     //MARK: Override
     override func viewDidLoad() {
@@ -46,13 +46,14 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
         toolBar.setItems([flexible, doneButton], animated: false)
         
         exerciseNameField.inputAccessoryView = toolBar
-
+        
+        updateTable()
 
     }
     
     //MARK: Picker functions
     //Exercise duration picker
-    func createExerciseDurationPicker(){
+    private func createExerciseDurationPicker(){
         
         let doneButtonBar = UIToolbar()
         doneButtonBar.sizeToFit()
@@ -67,7 +68,7 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
         exerciseDurationPicker.datePickerMode = .countDownTimer
     }
     
-    @objc func doneWithDurationPicker(){
+    @objc private func doneWithDurationPicker(){
         let hours = Int(exerciseDurationPicker.countDownDuration) / 3600
         let minutes = Int(exerciseDurationPicker.countDownDuration) / 60 % 60
         exerciseDurationField.text = "\(hours) h \(minutes) m"
@@ -75,7 +76,7 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     //Exercise Time picker
-    func createExerciseTimePicker(){
+    private func createExerciseTimePicker(){
         
         let doneButtonBar = UIToolbar()
         doneButtonBar.sizeToFit()
@@ -91,7 +92,7 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
         exerciseTimePicker.datePickerMode = .time
     }
     
-    @objc func doneWithTimePicker(){
+    @objc private func doneWithTimePicker(){
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .none
@@ -102,11 +103,11 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     //Word Pickers: exercise intensity
-    public func numberOfComponents(in pickerView: UIPickerView) -> Int{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int{
         return 1
     }
     
-    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component:Int) -> Int{
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component:Int) -> Int{
         return exerciseIntensity.count
     }
     
@@ -121,34 +122,56 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     //MARK: Table functions
     
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return loggedExercise.count
     }
     
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ViewControllerTableViewCell
         
         let currentExercise = loggedExercise[indexPath.row]
-        cell.loggedExerciseName.text = currentExercise.Name
-        cell.loggedExerciseTime.text = currentExercise.Time
-        cell.loggedExerciseDuration.text = currentExercise.Duration
-        
+        cell.loggedExerciseName.text = currentExercise.name
+        cell.loggedExerciseTime.text = currentExercise.time
+        cell.loggedExerciseDuration.text = currentExercise.duration
         return(cell)
     }
     
-    @objc func doneWithKeypad(){
+    private func updateTable(){
+        let loggedExercise = ModelController().fetchExercise(day: Date())
+        self.loggedExercise = loggedExercise
+        self.exerciseLogTable.reloadData()
+        
+    }
+    @objc private func doneWithKeypad(){
         view.endEditing(true)
     }
     
     @IBAction func addExercise(_ sender: Any) {
         if ((exerciseNameField.text != "") && (exerciseTimeField.text != "") && (exerciseDurationField.text != "") && (exerciseIntensityField.text != "")){
-            loggedExercise.append(Exercise(Name: "\(exerciseNameField.text!)", Time: "\(exerciseTimeField.text!)", Duration: "\(exerciseDurationField.text!)", Intensity: "\(exerciseIntensityField.text!)"))
+          /*  let newExercise = Exercise(context: PersistenceService.context)
+            newExercise.name = exerciseNameField.text
+            newExercise.time = exerciseTimeField.text
+            newExercise.duration = exerciseDurationField.text
+            newExercise.intensity = exerciseIntensityField.text
+            PersistenceService.saveContext()
+            
+            self.loggedExercise.append(newExercise)
+            self.exerciseLogTable.reloadData()
+ */
+            ModelController().addExercise(
+                name: exerciseNameField.text!,
+                time: exerciseTimeField.text!,
+                date: Date(),
+                intensity: exerciseIntensityField.text!,
+                duration: exerciseDurationField.text!)
+            updateTable()
+            
             exerciseNameField.text = ""
             exerciseTimeField.text = ""
             exerciseDurationField.text = ""
             exerciseIntensityField.text = ""
-            self.exerciseLogTable .reloadData()
         }
+        
     }
 
 }

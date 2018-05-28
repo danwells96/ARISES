@@ -9,9 +9,10 @@
 import Foundation
 import UIKit
 
-class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate {
+class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate, tableCellDelegate {
     
-    //TODO: food log not working
+
+    
  
     //MARK: Properties
     @IBOutlet weak var foodTimeField: UITextField!
@@ -20,17 +21,22 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     @IBOutlet weak var proteinTextField: UITextField!
     @IBOutlet weak var fatTextField: UITextField!
     @IBOutlet weak var foodNameTextField: UITextField!
-    
     //defining picker related variables
-    var foodTimePicker = UIDatePicker()
+    private var foodTimePicker = UIDatePicker()
     
     //defining table related variables
-    var loggedMeals = [Meal]()
-    var favouriteMeals = [Meal]()
+    private var loggedMeals = [Meals]()
+    //private var favouriteMeals = [Meals]()
+    //var expanded: Bool = false
+    //var selection: IndexPath?
+    //private var height: CGFloat = 40
+    
     
     //MARK: Override
     override func viewDidLoad() {
         super.viewDidLoad()
+        foodLogTable.dataSource = self
+        foodLogTable.delegate = self
         
         createFoodTimePicker()
         
@@ -39,17 +45,20 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.doneWithKeypad))
         
-        toolBar.setItems([flexible, doneButton], animated: false)
+        toolBar.setItems([flexible, doneButton], animated: true)
         
         carbsTextField.inputAccessoryView = toolBar
         proteinTextField.inputAccessoryView = toolBar
         fatTextField.inputAccessoryView = toolBar
         foodNameTextField.inputAccessoryView = toolBar
+        
+        updateTable()
+
     }
     
     //MARK: Picker functions
     //Food Time picker
-    func createFoodTimePicker(){
+    private func createFoodTimePicker(){
         
         let doneButtonBar = UIToolbar()
         doneButtonBar.sizeToFit()
@@ -57,7 +66,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         let flexible = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: #selector(doneWithPicker))
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneWithPicker))
         
-        doneButtonBar.setItems([flexible, doneButton], animated: false)
+        doneButtonBar.setItems([flexible, doneButton], animated: true)
         
         foodTimeField.inputAccessoryView = doneButtonBar
         foodTimeField.inputView = foodTimePicker
@@ -65,7 +74,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         foodTimePicker.datePickerMode = .time
     }
     
-    @objc func doneWithPicker(){
+    @objc private func doneWithPicker(){
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .none
@@ -76,42 +85,111 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     }
     
     //MARK: Table functions
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+    @IBAction func testFav(_ sender: Any) {
+        let favMeals = ModelController().fetchFavourites()
+        for index in favMeals{
+            print("\(index.name!)")
+        }
+    }
+    func didPressButton(_ tag: Int) {
+        let toFav = loggedMeals[tag]
+        print("I have favourited \(toFav.name!)")
+        ModelController().toggleFavourite(item: toFav)
+        
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return loggedMeals.count
     }
     
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+       // let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ViewControllerTableViewCell
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ViewControllerTableViewCell
         
-        let currentMeal = loggedMeals[indexPath.row]
-        cell.loggedFoodName.text = currentMeal.Name
-        cell.loggedFoodTime.text = currentMeal.Time
+        cell.cellDelegate = self
+        cell.tag = indexPath.row
         
-        if(currentMeal.Favourite == true){
-            cell.loggedFoodStar.image = UIImage(named: "Star.jpg")
-        }
-        else{
-            cell.loggedFoodStar.image = UIImage(named: "greyStar.png")
-        }
-    
+        let currentMeal = loggedMeals[indexPath.row]
+        cell.loggedFoodName.text = currentMeal.name
+        cell.loggedFoodTime.text = currentMeal.time
+        cell.loggedFoodCarbs.text = "\(currentMeal.carbs)"
         return(cell)
     }
     
-    @objc func doneWithKeypad(){
+  /*  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selection = self.foodLogTable.indexPathForSelectedRow
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt selection: IndexPath) -> CGFloat {
+        if(expanded == false){
+            expanded = true
+
+            return 90
+        }
+        else{
+            expanded = false
+            return 40
+        }
+    }*/
+    
+    private func updateTable(){
+        let loggedMeals = ModelController().fetchMeals(day: Date())
+        self.loggedMeals = loggedMeals
+        self.foodLogTable.reloadData()
+        
+    }
+    @objc private func doneWithKeypad(){
         view.endEditing(true)
     }
     
     @IBAction func addFoodToLog(_ sender: Any) {
+
         if ((foodNameTextField.text != "") && (foodTimeField.text != "") && (carbsTextField.text != "") && (proteinTextField.text != "") && (fatTextField.text != "")){
-            loggedMeals.append(Meal(Name: "\(foodNameTextField.text!)", Time: "\(foodTimeField.text!)", Carbs: Int(carbsTextField.text!)!, Protein: Int(proteinTextField.text!)!, Fat: Int(fatTextField.text!)!, Favourite: false))
+    
+            ModelController().addMeal(
+                    name: foodNameTextField.text!,
+                    time: foodTimeField.text!,
+                    date: Date(),
+                    carbs: Int32(carbsTextField.text!)!,
+                    fat: Int32(fatTextField.text!)!,
+                    protein: Int32(proteinTextField.text!)!)
+            updateTable()
+        
             foodNameTextField.text = ""
             foodTimeField.text = ""
             carbsTextField.text = ""
             proteinTextField.text = ""
             fatTextField.text = ""
-            self.foodLogTable .reloadData()
+            
+            
         }
+        /*
+        //Test printouts of date information
+        let dateFetch: NSFetchRequest<Day> = Day.fetchRequest()
+        
+        let checkDates = try? PersistenceService.context.fetch(dateFetch)
+        print("number of dates is \(checkDates!.count)")
+
+        for Day in checkDates!{
+            print("\(Day.date)")
+        }
+        */
     }
+    
+ /*   @IBAction func expandFoodCell(_ sender: Any) {
+        if(expanded == false){
+            height = 90
+            expanded = true
+        }
+        else{
+            height = 44
+            expanded = false
+        }
+        
+    }*/
 
    /* @IBAction func favouriteButton(_ sender: Any) {
         let newFavourite = loggedMeals[GAH]
