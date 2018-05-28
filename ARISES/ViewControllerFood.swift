@@ -12,8 +12,6 @@ import UIKit
 class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate, tableCellDelegate {
     
 
-    
- 
     //MARK: Properties
     @IBOutlet weak var foodTimeField: UITextField!
     @IBOutlet weak var foodLogTable: UITableView!
@@ -27,6 +25,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     @IBOutlet weak var favouritesButton: UIButton!
     //defining table related variables
     private var loggedMeals = [Meals]()
+    private var showFavourites = false
     //private var favouriteMeals = [Meals]()
     //var expanded: Bool = false
     //var selection: IndexPath?
@@ -87,14 +86,17 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     }
     
     //MARK: Table functions
+    //TODO: rename function and redo outlet
     @IBAction func testFav(_ sender: Any) {
-        if  favouritesButton.tintColor == #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1){
-            favouritesButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+        if self.showFavourites == false{
+            favouritesButton.tintColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
+            showFavourites = true
         }
         else{
-            favouritesButton.tintColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
+            favouritesButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+            showFavourites = false
         }
-        
+        updateTable()
         //Test printouts
         let favMeals = ModelController().fetchFavourites()
         for index in favMeals{
@@ -153,10 +155,17 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     }*/
     
     private func updateTable(){
-        let loggedMeals = ModelController().fetchMeals(day: Date())
-        self.loggedMeals = loggedMeals
-        self.foodLogTable.reloadData()
-        
+        //TODO: swap order of if else
+        if showFavourites == false{
+            let loggedMeals = ModelController().fetchMeals(day: Date())
+            self.loggedMeals = loggedMeals
+            self.foodLogTable.reloadData()
+        }
+        else{
+            let loggedMeals = ModelController().fetchFavourites()
+            self.loggedMeals = loggedMeals
+            self.foodLogTable.reloadData()
+        }
     }
     @objc private func doneWithKeypad(){
         view.endEditing(true)
