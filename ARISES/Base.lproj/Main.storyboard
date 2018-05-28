@@ -1060,11 +1060,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="304"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hhK-5Y-w2W" customClass="ChartBaseView" customModule="SwiftCharts">
-                                <rect key="frame" x="70" y="8" width="265" height="280"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                            </view>
                             <view alpha="0.29999999999999999" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ux8-yy-1UR" customClass="ChartBGView" customModule="ARISES" customModuleProvider="target">
                                 <rect key="frame" x="77" y="13" width="249" height="233"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1083,6 +1078,12 @@
                                         <size key="value" width="2" height="2"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                            </view>
+                            <view opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hhK-5Y-w2W" customClass="ChartBaseView" customModule="SwiftCharts">
+                                <rect key="frame" x="70" y="8" width="265" height="280"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <gestureRecognizers/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LY7-V7-KQg">
                                 <rect key="frame" x="0.0" y="10" width="80" height="240"/>
@@ -1230,7 +1231,12 @@
                                 </subviews>
                             </view>
                         </subviews>
+                        <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="46k-yS-dMo"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="aTZ-Pb-k2J" appends="YES" id="haX-t9-imW"/>
+                            <outletCollection property="gestureRecognizers" destination="N4Q-XD-b3a" appends="YES" id="JZO-Lt-CRT"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="chartView" destination="hhK-5Y-w2W" id="GA6-zY-V6M"/>
@@ -1246,6 +1252,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EFG-cG-APi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="aTZ-Pb-k2J" userLabel="RightGestureRecognizer">
+                    <connections>
+                        <action selector="rightGesture:" destination="xlR-5O-fuC" id="U1B-L0-ZqE"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="N4Q-XD-b3a" userLabel="LeftGestureRecognizer">
+                    <connections>
+                        <action selector="leftGesture:" destination="xlR-5O-fuC" id="LEq-en-Tbe"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1556" y="-550.49261083743841"/>
         </scene>
