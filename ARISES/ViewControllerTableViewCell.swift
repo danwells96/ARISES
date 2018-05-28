@@ -15,7 +15,6 @@ protocol tableCellDelegate : class {
 class ViewControllerTableViewCell: UITableViewCell {
 
     //MARK: Properties
-    @IBOutlet weak var loggedFoodStar: UIImageView!
     @IBOutlet weak var loggedFoodName: UILabel!
     @IBOutlet weak var loggedFoodTime: UILabel!
     @IBOutlet weak var loggedFoodCarbs: UILabel!
@@ -48,6 +47,12 @@ class ViewControllerTableViewCell: UITableViewCell {
     // connect the button from your cell with this method
     @IBAction func buttonPressed(_ sender: UIButton) {
         cellDelegate?.didPressButton(self.tag)
+        if self.tintColor == UIColor.black{
+            self.tintColor = UIColor.yellow
+        }
+        else{
+            self.tintColor = UIColor.black
+        }
     }
 
     

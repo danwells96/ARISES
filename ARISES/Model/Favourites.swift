@@ -5,9 +5,9 @@
 //  Created by Ryan Armiger on 28/05/2018.
 //
 
-import Foundation
+import UIKit
 import CoreData
 
-class Favourite: NSManagedObject {
+class Favourites: NSManagedObject {
     
 }

@@ -86,8 +86,17 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     
     //MARK: Table functions
 
+    @IBAction func testFav(_ sender: Any) {
+        let favMeals = ModelController().fetchFavourites()
+        for index in favMeals{
+            print("\(index.name!)")
+        }
+    }
     func didPressButton(_ tag: Int) {
-        print("I have pressed a button with a tag: \(tag)")
+        let toFav = loggedMeals[tag]
+        print("I have favourited \(toFav.name!)")
+        ModelController().toggleFavourite(item: toFav)
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -102,7 +111,6 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         
         cell.cellDelegate = self
         cell.tag = indexPath.row
-        
         
         let currentMeal = loggedMeals[indexPath.row]
         cell.loggedFoodName.text = currentMeal.name
@@ -155,6 +163,8 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
             carbsTextField.text = ""
             proteinTextField.text = ""
             fatTextField.text = ""
+            
+            
         }
         /*
         //Test printouts of date information

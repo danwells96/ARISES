@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		371070D620AD904300365AC4 /* ExerciseIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 371070D520AD904300365AC4 /* ExerciseIcon.png */; };
-		3714D1FE20BC24AC0016324F /* Favourite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3714D1FD20BC24AC0016324F /* Favourite.swift */; };
+		3714D1FE20BC24AC0016324F /* Favourites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3714D1FD20BC24AC0016324F /* Favourites.swift */; };
 		3718079520B818ED00D7C81A /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718079420B818ED00D7C81A /* Exercise.swift */; };
 		3718079B20B81E2100D7C81A /* Meals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718079A20B81E2100D7C81A /* Meals.swift */; };
 		3718079D20B81EB300D7C81A /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718079C20B81EB300D7C81A /* Day.swift */; };
@@ -36,7 +36,7 @@
 /* Begin PBXFileReference section */
 		371070D520AD904300365AC4 /* ExerciseIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ExerciseIcon.png; sourceTree = "<group>"; };
 		371470F820A082A600AB76EF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		3714D1FD20BC24AC0016324F /* Favourite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Favourite.swift; path = /Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Model/Favourite.swift; sourceTree = "<absolute>"; };
+		3714D1FD20BC24AC0016324F /* Favourites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Favourites.swift; path = /Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Model/Favourites.swift; sourceTree = "<absolute>"; };
 		3718079420B818ED00D7C81A /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		3718079A20B81E2100D7C81A /* Meals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meals.swift; sourceTree = "<group>"; };
 		3718079C20B81EB300D7C81A /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 		3718079E20B81F4F00D7C81A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3714D1FD20BC24AC0016324F /* Favourite.swift */,
+				3714D1FD20BC24AC0016324F /* Favourites.swift */,
 				371807A220B8500F00D7C81A /* ModelController.swift */,
 				37B568B920B485600014F735 /* ARISES.xcdatamodeld */,
 				3718079C20B81EB300D7C81A /* Day.swift */,
@@ -284,7 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3718B85E20AC9A2A006F1A47 /* ViewControllerAdvice.swift in Sources */,
-				3714D1FE20BC24AC0016324F /* Favourite.swift in Sources */,
+				3714D1FE20BC24AC0016324F /* Favourites.swift in Sources */,
 				3718B86020AC9A42006F1A47 /* ViewControllerExercise.swift in Sources */,
 				37A9ACE520B45025001B16BB /* ChartBGView.swift in Sources */,
 				3718B86620AC9CE3006F1A47 /* ViewControllerMain.swift in Sources */,

@@ -119,6 +119,9 @@
                                             <constraint firstAttribute="width" constant="31" id="pe6-m4-zb3"/>
                                         </constraints>
                                         <state key="normal" image="Star"/>
+                                        <connections>
+                                            <action selector="testFav:" destination="xjl-Az-dRA" eventType="touchUpInside" id="vFX-KD-Mpa"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -133,10 +136,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="265" height="88.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Star" translatesAutoresizingMaskIntoConstraints="NO" id="cPW-sN-cAE">
-                                                    <rect key="frame" x="6" y="9" width="25" height="23"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="29A-Vi-sns">
                                                     <rect key="frame" x="191" y="12" width="74" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -166,8 +165,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ex3-8Y-q6D">
-                                                    <rect key="frame" x="0.0" y="5" width="31" height="36"/>
+                                                    <rect key="frame" x="0.0" y="5" width="31" height="28"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" backgroundImage="greyStar"/>
                                                     <connections>
                                                         <action selector="buttonPressed:" destination="dQm-8S-9YR" eventType="touchUpInside" id="eZ8-1d-mVC"/>
                                                     </connections>
@@ -177,7 +177,6 @@
                                         <connections>
                                             <outlet property="loggedFoodCarbs" destination="Op3-oh-MGY" id="cXy-hE-UbZ"/>
                                             <outlet property="loggedFoodName" destination="IzQ-wP-kDe" id="kY5-X8-lLF"/>
-                                            <outlet property="loggedFoodStar" destination="cPW-sN-cAE" id="th7-FQ-V7e"/>
                                             <outlet property="loggedFoodTime" destination="29A-Vi-sns" id="yr4-Kb-Tir"/>
                                         </connections>
                                     </tableViewCell>
@@ -255,7 +254,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ko3-mP-5KX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1653.5999999999999" y="-417.11822660098522"/>
+            <point key="canvasLocation" x="1653.5999999999999" y="-417.39130434782612"/>
         </scene>
         <!--View Controller Health-->
         <scene sceneID="UEI-QD-GfU">
@@ -1185,5 +1184,6 @@
     </scenes>
     <resources>
         <image name="Star" width="284" height="287"/>
+        <image name="greyStar" width="573" height="551"/>
     </resources>
 </document>

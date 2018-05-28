@@ -11,6 +11,7 @@ import CoreData
 
 class ModelController {
 
+    
     func formatDateToDay(date: Date) -> String{
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
@@ -18,6 +19,23 @@ class ModelController {
         return dateFormatter.string(from: Date())
     }
     //MARK: Private functions
+    private func checkForExistingFavourites() -> Favourites{
+        let favFetch: NSFetchRequest<Favourites> = Favourites.fetchRequest()
+        let checkFav = try? PersistenceService.context.fetch(favFetch)
+        if checkFav != nil{
+            if checkFav?.count != 0{
+                return checkFav![0]
+                }
+            else{
+                let newFav = Favourites(context: PersistenceService.context)
+                PersistenceService.saveContext()
+                return newFav
+            }
+        }
+        print("Error fetching favourites")
+        return checkFav![0]
+    }
+    
     private func createNewDay(dateValue: Date) -> Day{
         //create new log if new day set
         let currentDay = Day(context: PersistenceService.context)
@@ -70,11 +88,51 @@ class ModelController {
         newExercise.time = time
         newExercise.intensity = intensity
         newExercise.duration = duration
-
         currentDay.addToExercise(newExercise)
         PersistenceService.saveContext()
     }
- 
+    func toggleFavourite(item: Meals){
+        //TODO: check this thoroughly, and make it toggle
+        //then make it general or repeat for exercise
+        let favList = checkForExistingFavourites()
+        //Check to see if favourited already
+       /* let fetchRequest: NSFetchRequest<Favourites> = Favourites.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "meals.name != nil")
+        let foundMeals = try? PersistenceService.context.fetch(fetchRequest)
+        if(foundMeals == nil){
+            print("Error fetching meals")
+        }
+        else{
+            if(foundMeals!.count == 0){
+                favList.addToMeals(item)
+            }
+            if(foundMeals!.count == 1){
+                favList.removeFromMeals(item)
+            }
+            else{
+                print("Error checking for existing meals favourites")
+            }
+        }
+ */
+        favList.addToMeals(item)
+
+        PersistenceService.saveContext()
+    }
+    
+    func fetchFavourites() -> [Meals]{
+        let fetchRequest: NSFetchRequest<Meals> = Meals.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "favourite != nil")
+        let foundMeals = try? PersistenceService.context.fetch(fetchRequest)
+        if(foundMeals == nil){
+            print("Error fetching meals")
+            return []
+        }
+        else{
+            //print("\(foundMeals!)")
+            return foundMeals!
+            
+        }
+    }
     
     func fetchMeals(day: Date) -> [Meals]{
         let fetchRequest: NSFetchRequest<Meals> = Meals.fetchRequest()
