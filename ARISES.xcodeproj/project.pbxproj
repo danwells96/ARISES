@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		371070D620AD904300365AC4 /* ExerciseIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 371070D520AD904300365AC4 /* ExerciseIcon.png */; };
-		3714D1FE20BC24AC0016324F /* Favourites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3714D1FD20BC24AC0016324F /* Favourites.swift */; };
 		3718079520B818ED00D7C81A /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718079420B818ED00D7C81A /* Exercise.swift */; };
 		3718079B20B81E2100D7C81A /* Meals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718079A20B81E2100D7C81A /* Meals.swift */; };
 		3718079D20B81EB300D7C81A /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718079C20B81EB300D7C81A /* Day.swift */; };
@@ -30,13 +29,12 @@
 		37B3716220B47EF20048A942 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B3716120B47EF20048A942 /* PersistenceService.swift */; };
 		37B568BB20B485600014F735 /* ARISES.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37B568B920B485600014F735 /* ARISES.xcdatamodeld */; };
 		37E140DD20B311EA00688EC0 /* greyStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E140DC20B311EA00688EC0 /* greyStar.png */; };
-		CCABFD65EA5DB40F170A389A /* Pods_ARISES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1D7AAE55A6F2D0D2DB662E7 /* Pods_ARISES.framework */; };
+		BB0C55C520BC66E9003F46CE /* Favourites.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0C55BE20BC66E9003F46CE /* Favourites.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		371070D520AD904300365AC4 /* ExerciseIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ExerciseIcon.png; sourceTree = "<group>"; };
 		371470F820A082A600AB76EF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		3714D1FD20BC24AC0016324F /* Favourites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Favourites.swift; path = /Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Model/Favourites.swift; sourceTree = "<absolute>"; };
 		3718079420B818ED00D7C81A /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		3718079A20B81E2100D7C81A /* Meals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meals.swift; sourceTree = "<group>"; };
 		3718079C20B81EB300D7C81A /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
@@ -61,6 +59,7 @@
 		37B568BA20B485600014F735 /* ARISES.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ARISES.xcdatamodel; sourceTree = "<group>"; };
 		37E140DC20B311EA00688EC0 /* greyStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greyStar.png; sourceTree = "<group>"; };
 		863CAE274477E894C42E1381 /* Pods-ARISES.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARISES.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARISES/Pods-ARISES.debug.xcconfig"; sourceTree = "<group>"; };
+		BB0C55BE20BC66E9003F46CE /* Favourites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favourites.swift; sourceTree = "<group>"; };
 		E37BF63307A2A5AF11BA9831 /* Pods-ARISES.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARISES.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARISES/Pods-ARISES.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,7 +68,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D16BF35C4D47B09B6FA548D0 /* libPods-ARISES.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,10 +77,10 @@
 		3718079E20B81F4F00D7C81A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3714D1FD20BC24AC0016324F /* Favourites.swift */,
 				371807A220B8500F00D7C81A /* ModelController.swift */,
 				37B568B920B485600014F735 /* ARISES.xcdatamodeld */,
 				3718079C20B81EB300D7C81A /* Day.swift */,
+				BB0C55BE20BC66E9003F46CE /* Favourites.swift */,
 				3718079A20B81E2100D7C81A /* Meals.swift */,
 				3718079420B818ED00D7C81A /* Exercise.swift */,
 			);
@@ -162,7 +160,6 @@
 		92B4A946DFA7B8979D866583 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				55A6645F34FB50F33376D609 /* libPods-ARISES.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -264,7 +261,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3718B85E20AC9A2A006F1A47 /* ViewControllerAdvice.swift in Sources */,
-				3714D1FE20BC24AC0016324F /* Favourites.swift in Sources */,
 				3718B86020AC9A42006F1A47 /* ViewControllerExercise.swift in Sources */,
 				37A9ACE520B45025001B16BB /* ChartBGView.swift in Sources */,
 				3718B86620AC9CE3006F1A47 /* ViewControllerMain.swift in Sources */,
@@ -276,6 +272,7 @@
 				3718079D20B81EB300D7C81A /* Day.swift in Sources */,
 				3718B85C20AC99B6006F1A47 /* ViewControllerFood.swift in Sources */,
 				3718B86420AC9A75006F1A47 /* ViewControllerGraph.swift in Sources */,
+				BB0C55C520BC66E9003F46CE /* Favourites.swift in Sources */,
 				378658AE20AC675D007C13B2 /* ViewControllerTableViewCell.swift in Sources */,
 				3718B86220AC9A60006F1A47 /* ViewControllerHealth.swift in Sources */,
 				3718079B20B81E2100D7C81A /* Meals.swift in Sources */,
@@ -427,7 +424,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GBRHWDJC66;
 				INFOPLIST_FILE = ARISES/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ARISES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -443,7 +443,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GBRHWDJC66;
 				INFOPLIST_FILE = ARISES/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ARISES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

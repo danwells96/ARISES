@@ -39,17 +39,19 @@ class ViewControllerGraph: UIViewController, ChartDelegate{
     //private var didTapped: Bool = false
     fileprivate var popups: [UIView] = []
     
-    @IBOutlet weak var sideView2: CustomView!
-    @IBOutlet weak var sideView: CustomView!
-    @IBOutlet weak var sideView3: CustomView!
+    @IBOutlet weak var rightSideViewContainer: UIView!
+    @IBOutlet weak var leftSideViewContainer: UIView!
+    @IBOutlet weak var rightView: CustomView!
     @IBOutlet weak var rightView2: CustomView!
     @IBOutlet weak var rightView3: CustomView!
-    @IBOutlet weak var sideView4: CustomView!
+    @IBOutlet weak var leftView1: CustomView!
+    @IBOutlet weak var leftView2: CustomView!
+    @IBOutlet weak var leftView3: CustomView!
+    @IBOutlet weak var leftView4: CustomView!
+
+
     
-    @IBOutlet weak var sideViewContainer: UIView!
-    @IBOutlet weak var rightSideViewContainer: UIView!
-    
-    @IBOutlet weak var rightView: CustomView!
+
     
     // // // TODO: add tag on top right corner to indicate date changes // // //
     
@@ -90,10 +92,10 @@ class ViewControllerGraph: UIViewController, ChartDelegate{
     }
 
     private func updateSideViews(){
-        sideView.setNeedsDisplay()
-        sideView2.setNeedsDisplay()
-        sideView3.setNeedsDisplay()
-        sideView4.setNeedsDisplay()
+        leftView1.setNeedsDisplay()
+        leftView2.setNeedsDisplay()
+        leftView3.setNeedsDisplay()
+        leftView4.setNeedsDisplay()
         rightView.setNeedsDisplay()
         rightView2.setNeedsDisplay()
         rightView3.setNeedsDisplay()
@@ -106,7 +108,7 @@ class ViewControllerGraph: UIViewController, ChartDelegate{
         //Second Transforms
         var transform = CATransform3DIdentity
         transform.m34 = -1 / 500.0
-        sideViewContainer.layer.transform = CATransform3DRotate(transform, CGFloat(-45 * Double.pi / 180), 0, 1, 0)
+        leftSideViewContainer.layer.transform = CATransform3DRotate(transform, CGFloat(-45 * Double.pi / 180), 0, 1, 0)
         
         rightSideViewContainer.layer.transform = CATransform3DRotate(transform, CGFloat(45 * Double.pi / 180), 0, 1, 0)
         
@@ -424,45 +426,45 @@ class ViewControllerGraph: UIViewController, ChartDelegate{
         }
         
         if(tMinus1Compare.count > 0){
-            sideView.dailyHigh = CGFloat(tMinus1Compare.max()!)
-            sideView.avgArrayValue = CGFloat(tMinus1Compare.reduce(0, +) / Double(tMinus1Compare.count))
-            sideView.dailyLow = CGFloat(tMinus1Compare.min()!)
+            leftView1.dailyHigh = CGFloat(tMinus1Compare.max()!)
+            leftView1.avgArrayValue = CGFloat(tMinus1Compare.reduce(0, +) / Double(tMinus1Compare.count))
+            leftView1.dailyLow = CGFloat(tMinus1Compare.min()!)
         }else{
-            sideView.dailyHigh = 0
-            sideView.avgArrayValue = 0
-            sideView.dailyLow = 0
+            leftView1.dailyHigh = 0
+            leftView1.avgArrayValue = 0
+            leftView1.dailyLow = 0
         }
         
         if(tMinus2Compare.count > 0){
-            sideView2.dailyHigh = CGFloat(tMinus2Compare.max()!)
-            sideView2.avgArrayValue = CGFloat(tMinus2Compare.reduce(0, +) / Double(tMinus2Compare.count))
-            sideView2.dailyLow = CGFloat(tMinus2Compare.min()!)
+            leftView2.dailyHigh = CGFloat(tMinus2Compare.max()!)
+            leftView2.avgArrayValue = CGFloat(tMinus2Compare.reduce(0, +) / Double(tMinus2Compare.count))
+            leftView2.dailyLow = CGFloat(tMinus2Compare.min()!)
         }else{
-            sideView2.dailyHigh = 0
-            sideView2.avgArrayValue = 0
-            sideView2.dailyLow = 0
+            leftView2.dailyHigh = 0
+            leftView2.avgArrayValue = 0
+            leftView2.dailyLow = 0
         }
         
         if(tMinus3Compare.count > 0){
-            sideView3.dailyHigh = CGFloat(tMinus3Compare.max()!)
-            sideView3.avgArrayValue = CGFloat(tMinus3Compare.reduce(0, +) / Double(tMinus3Compare.count))
-            sideView3.dailyLow = CGFloat(tMinus3Compare.min()!)
+            leftView3.dailyHigh = CGFloat(tMinus3Compare.max()!)
+            leftView3.avgArrayValue = CGFloat(tMinus3Compare.reduce(0, +) / Double(tMinus3Compare.count))
+            leftView3.dailyLow = CGFloat(tMinus3Compare.min()!)
         }else{
-            sideView3.dailyHigh = 0
-            sideView3.avgArrayValue = 0
-            sideView3.dailyLow = 0
+            leftView3.dailyHigh = 0
+            leftView3.avgArrayValue = 0
+            leftView3.dailyLow = 0
         }
         
         
         
         if(tMinus4Compare.count > 0){
-            sideView4.dailyHigh = CGFloat(tMinus4Compare.max()!)
-            sideView4.avgArrayValue = CGFloat(tMinus4Compare.reduce(0, +) / Double(tMinus4Compare.count))
-            sideView4.dailyLow = CGFloat(tMinus4Compare.min()!)
+            leftView4.dailyHigh = CGFloat(tMinus4Compare.max()!)
+            leftView4.avgArrayValue = CGFloat(tMinus4Compare.reduce(0, +) / Double(tMinus4Compare.count))
+            leftView4.dailyLow = CGFloat(tMinus4Compare.min()!)
         }else{
-            sideView4.dailyHigh = 0
-            sideView4.avgArrayValue = 0
-            sideView4.dailyLow = 0
+            leftView4.dailyHigh = 0
+            leftView4.avgArrayValue = 0
+            leftView4.dailyLow = 0
         }
         
         if(tPlus1Compare.count > 0){
@@ -553,7 +555,7 @@ class ViewControllerGraph: UIViewController, ChartDelegate{
             circleView.isUserInteractionEnabled = true
             
             circleView.touchHandler = {
-                print("touched")
+                print("touched new")
             }
             
             
