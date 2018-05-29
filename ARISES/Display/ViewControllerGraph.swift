@@ -93,30 +93,7 @@ class ViewControllerGraph: UIViewController{
         rightView2.setNeedsDisplay()
         rightView3.setNeedsDisplay()
     }
-
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        //Second Transforms
-        var transform = CATransform3DIdentity
-        transform.m34 = -1 / 500.0
-        leftSideViewContainer.layer.transform = CATransform3DRotate(transform, CGFloat(-45 * Double.pi / 180), 0, 1, 0)
-        
-        rightSideViewContainer.layer.transform = CATransform3DRotate(transform, CGFloat(45 * Double.pi / 180), 0, 1, 0)
-        
-        // for rotating the chart when in horizontal view
-        NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
-        
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        if !self.didLayout{
-            self.didLayout = true
-            self.initChart()
-        }
-    }
     
     var rawData: [String] = ["27/11/2015 07:00",
                              "27/11/2015 07:17",
@@ -277,6 +254,54 @@ class ViewControllerGraph: UIViewController{
                                4.5,
                                6.6,
                                10.3]
+
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        //Second Transforms
+        var transform = CATransform3DIdentity
+        transform.m34 = -1 / 500.0
+        leftSideViewContainer.layer.transform = CATransform3DRotate(transform, CGFloat(-45 * Double.pi / 180), 0, 1, 0)
+        
+        rightSideViewContainer.layer.transform = CATransform3DRotate(transform, CGFloat(45 * Double.pi / 180), 0, 1, 0)
+        
+        // for rotating the chart when in horizontal view
+        NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        
+        //Adding data from arrays into core data
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+        let dayFormatter = DateFormatter()
+        dayFormatter.dateStyle = .short
+        dayFormatter.timeStyle = .none
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "HH:mm"
+        let tmpDate = dateFormatter.date(from: rawData[0])
+        let tmpString = dayFormatter.string(from: tmpDate!)
+        let tmpDay = dayFormatter.date(from: tmpString)
+        
+        if(ModelController().fetchGlucose(day: tmpDay!) == []){
+            for i in 0...(rawData.count-1){
+                let date = dateFormatter.date(from: rawData[i])
+                let timeString = timeFormatter.string(from: date!)
+                let dayString = dayFormatter.string(from: date!)
+                let day = dayFormatter.date(from: dayString)
+                ModelController().addGlucose(value: rawValues[i], time: timeString, date: day!)
+            }
+        }else{
+            print("already loaded data in")
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if !self.didLayout{
+            self.didLayout = true
+            self.initChart()
+        }
+    }
+    
     
     var dataDict: [String: [customType]] = [:]
     
@@ -358,7 +383,7 @@ class ViewControllerGraph: UIViewController{
         let tPlus2String = dayFormatter.string(from: tPlus2!)
         let tPlus3String = dayFormatter.string(from: tPlus3!)
 
-        
+        /*
         for (key, value) in dataDict{
             switch key{
                 case tMinus4String:
@@ -416,6 +441,8 @@ class ViewControllerGraph: UIViewController{
                     print("Data not needed")
             }
         }
+        */
+        
         
         if(tMinus1Compare.count > 0){
             leftView1.dailyHigh = CGFloat(tMinus1Compare.max()!)
