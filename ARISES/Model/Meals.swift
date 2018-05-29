@@ -10,5 +10,5 @@ import UIKit
 import CoreData
 
 class Meals: NSManagedObject {
-
+    
 }
