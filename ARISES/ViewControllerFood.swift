@@ -115,6 +115,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         else{
             showFavourites = false
         }
+        
     }
     
     //TODO: Either add remove buttons in expanded or allow a way to remove favourites
@@ -163,6 +164,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
 
         }
         
+        
         return(cell)
     }
     
@@ -209,6 +211,15 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
             self.loggedMeals = loggedMeals
             self.foodLogTable.reloadData()
         }
+        /*
+         //testing computed variables
+        for index in loggedMeals{
+            if index.day?.low != nil{
+                print("\(index.day?.low)")
+            }
+        }
+ */
+ 
     }
 
     //MARK: - Add food button
