@@ -96,6 +96,15 @@ class ModelController {
         currentDay.addToExercise(newExercise)
         PersistenceService.saveContext()
     }
+    func addGlucose(value: Double, time: String, date: Date){
+        
+        let currentDay = findOrMakeDay(day: date)
+        let newGlucose = Glucose(context: PersistenceService.context)
+        newGlucose.value = value
+        newGlucose.time = time
+        currentDay.addToGlucose(newGlucose)
+        PersistenceService.saveContext()
+    }
     
     //MARK: - Data object getting (fetch/return)
     //Only toggles meals currently

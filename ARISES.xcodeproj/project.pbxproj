@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		18BAA0D1968514F524648FEA /* libPods-ARISES.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93597E8CC10506F00FC893FB /* libPods-ARISES.a */; };
+		370F921520BD61C90081C570 /* Glucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F921420BD61C90081C570 /* Glucose.swift */; };
+		370F921720BD637B0081C570 /* Insulin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F921620BD637B0081C570 /* Insulin.swift */; };
 		371070D620AD904300365AC4 /* ExerciseIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 371070D520AD904300365AC4 /* ExerciseIcon.png */; };
 		3718079520B818ED00D7C81A /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718079420B818ED00D7C81A /* Exercise.swift */; };
 		3718079B20B81E2100D7C81A /* Meals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718079A20B81E2100D7C81A /* Meals.swift */; };
@@ -35,6 +37,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		370F921420BD61C90081C570 /* Glucose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Glucose.swift; sourceTree = "<group>"; };
+		370F921620BD637B0081C570 /* Insulin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insulin.swift; sourceTree = "<group>"; };
 		371070D520AD904300365AC4 /* ExerciseIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ExerciseIcon.png; sourceTree = "<group>"; };
 		371470F820A082A600AB76EF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3718079420B818ED00D7C81A /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
@@ -84,6 +88,8 @@
 			children = (
 				371807A220B8500F00D7C81A /* ModelController.swift */,
 				37B568B920B485600014F735 /* ARISES.xcdatamodeld */,
+				370F921620BD637B0081C570 /* Insulin.swift */,
+				370F921420BD61C90081C570 /* Glucose.swift */,
 				3718079C20B81EB300D7C81A /* Day.swift */,
 				BB0C55BE20BC66E9003F46CE /* Favourites.swift */,
 				3718079A20B81E2100D7C81A /* Meals.swift */,
@@ -268,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				370F921520BD61C90081C570 /* Glucose.swift in Sources */,
 				3718B85E20AC9A2A006F1A47 /* ViewControllerAdvice.swift in Sources */,
 				3718B86020AC9A42006F1A47 /* ViewControllerExercise.swift in Sources */,
 				37A9ACE520B45025001B16BB /* ChartBGView.swift in Sources */,
@@ -282,6 +289,7 @@
 				3718B86420AC9A75006F1A47 /* ViewControllerGraph.swift in Sources */,
 				BB0C55C520BC66E9003F46CE /* Favourites.swift in Sources */,
 				378658AE20AC675D007C13B2 /* ViewControllerTableViewCell.swift in Sources */,
+				370F921720BD637B0081C570 /* Insulin.swift in Sources */,
 				3718B86220AC9A60006F1A47 /* ViewControllerHealth.swift in Sources */,
 				3718079B20B81E2100D7C81A /* Meals.swift in Sources */,
 				37B568BB20B485600014F735 /* ARISES.xcdatamodeld in Sources */,
