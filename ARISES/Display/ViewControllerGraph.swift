@@ -565,6 +565,8 @@ class ViewControllerGraph: UIViewController{
                     
                     let frame = CGRect(x: x, y: chartViewScreenLoc.y - (h + (Env.iPad ? 30 : 6)), width: w, height: h)
                     let bubbleView = InfoBubble(point: chartViewScreenLoc, frame: frame, arrowWidth: Env.iPad ? 40 : 6, arrowHeight: Env.iPad ? 20 : 4, bgColor: UIColor.black, arrowX: chartViewScreenLoc.x - x, arrowY: -1)
+                    //let mmm = InfoBubble(point: chartViewScreenLoc, preferredSize: CGSize(width: <#T##CGFloat#>, height: <#T##CGFloat#>), superview: <#T##UIView#>, text: <#T##String#>, font: <#T##UIFont#>, textColor: <#T##UIColor#>)
+                   
                     chart.view.addSubview(bubbleView)
 
                     let infoView = UILabel(frame: CGRect(x: 0, y: 10, width: w, height: h - 15))
@@ -602,7 +604,7 @@ class ViewControllerGraph: UIViewController{
                 guidelinesLayer,
                 pointslineLayer,
                 
-                chartPointsCircleLayer,
+                chartPointsCircleLayer
             ]
 
         )
