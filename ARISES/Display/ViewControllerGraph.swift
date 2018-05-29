@@ -443,6 +443,67 @@ class ViewControllerGraph: UIViewController{
         }
         */
         
+        let todayArray = ModelController().fetchGlucose(day: day!)
+        let tMinus1Array = ModelController().fetchGlucose(day: tMinus1!)
+        let tMinus2Array = ModelController().fetchGlucose(day: tMinus2!)
+        let tMinus3Array = ModelController().fetchGlucose(day: tMinus3!)
+        let tMinus4Array = ModelController().fetchGlucose(day: tMinus4!)
+        let tPlus1Array = ModelController().fetchGlucose(day: tPlus1!)
+        let tPlus2Array = ModelController().fetchGlucose(day: tPlus2!)
+        let tPlus3Array = ModelController().fetchGlucose(day: tPlus3!)
+
+        for item in tMinus4Array{
+            if(item.value != 0){
+                tMinus4Compare.append(item.value)
+            }
+        }
+        
+        for item in tMinus3Array{
+            if(item.value != 0){
+                tMinus3Compare.append(item.value)
+            }
+        }
+        
+        for item in tMinus2Array{
+            if(item.value != 0){
+                tMinus2Compare.append(item.value)
+            }
+        }
+
+        for item in tMinus1Array{
+            if(item.value != 0){
+                tMinus1Compare.append(item.value)
+            }
+        }
+        
+        for item in todayArray{
+            if(item.value != 0){
+                let combinedDate = keyDay + " " + item.time!
+                valueArray.append(ChartAxisValueDouble(item.value))
+                dateArray.append(ChartAxisValueDate(date: dateFormatter.date(from: combinedDate)!, formatter: dateFormatter))
+                points.append(ChartPoint(x: dateArray[dateArray.endIndex-1], y: valueArray[valueArray.endIndex-1]))
+            }
+        }
+        
+        //might just do comparison directly out of tPlus1Array
+        for item in tPlus1Array{
+            if(item.value != 0){
+                tPlus1Compare.append(item.value)
+            }
+        }
+        
+        for item in tPlus2Array{
+            if(item.value != 0){
+                tPlus2Compare.append(item.value)
+            }
+        }
+        
+        for item in tPlus3Array{
+            if(item.value != 0){
+                tPlus3Compare.append(item.value)
+            }
+        }
+        
         
         if(tMinus1Compare.count > 0){
             leftView1.dailyHigh = CGFloat(tMinus1Compare.max()!)
