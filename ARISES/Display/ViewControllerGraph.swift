@@ -16,7 +16,7 @@ struct customType{
     var value: Double
 }
 
-class ViewControllerGraph: UIViewController, ChartDelegate{
+class ViewControllerGraph: UIViewController{
     
     
     
@@ -36,8 +36,7 @@ class ViewControllerGraph: UIViewController, ChartDelegate{
     private var chart: Chart?
     private var dataLoaded: Bool = false
     private var didLayout: Bool = false
-    //private var didTapped: Bool = false
-    fileprivate var popups: [UIView] = []
+    //fileprivate var popups: [UIView] = []
     
     @IBOutlet weak var rightSideViewContainer: UIView!
     @IBOutlet weak var leftSideViewContainer: UIView!
@@ -49,16 +48,12 @@ class ViewControllerGraph: UIViewController, ChartDelegate{
     @IBOutlet weak var leftView3: CustomView!
     @IBOutlet weak var leftView4: CustomView!
 
-
-    
-
     
     // // // TODO: add tag on top right corner to indicate date changes // // //
     
     //Gesture Recognisers
     @IBAction func rightGesture(_ sender: UISwipeGestureRecognizer) {
-        print("right")
-        
+        //print("right")
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
         let tempDate = dateFormatter.date(from: today)
@@ -74,9 +69,7 @@ class ViewControllerGraph: UIViewController, ChartDelegate{
     }
     
     @IBAction func leftGesture(_ sender: UISwipeGestureRecognizer) {
-        print("left")
-       
-        
+        //print("left")
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
         let tempDate = dateFormatter.date(from: today)
@@ -546,73 +539,24 @@ class ViewControllerGraph: UIViewController, ChartDelegate{
         
         // mark data points
         let circleViewGenerator = {(chartPointModel: ChartPointLayerModel, layer: ChartPointsLayer, chart: Chart) -> UIView? in
-            let circleView = ChartPointEllipseView(center: chartPointModel.screenLoc, diameter: 25)
+            let circleView = ChartPointEllipseView(center: chartPointModel.screenLoc, diameter: 7)
             
             circleView.animDuration = 1.0
             circleView.fillColor = UIColor.red
             circleView.borderWidth = 0.9
             circleView.borderColor = UIColor.red
             circleView.isUserInteractionEnabled = true
-            
+            let w: CGFloat = 50
+            let h: CGFloat = 30
             circleView.touchHandler = {
-                print("touched new")
-            }
-            
-            
-
-            return circleView
-        }
-        
-        
-        
-        let chartPointsCircleLayer = ChartPointsViewsLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, chartPoints: chartPoints, viewGenerator: circleViewGenerator, displayDelay: 0, delayBetweenItems: 0.05, mode: .translate, keepOnFront: true)
-        
-        
- /*       interactive application attemps         */
-        
-        // info bubbles generator
-        let viewGenerator = { (chartPointModel: ChartPointLayerModel, layer: ChartPointsLayer, chart: Chart) -> UIView? in
-            
-            let screenLoc = chartPointModel.screenLoc
-            let infob = InfoBubble.init(point: CGPoint(x: (screenLoc.x - 50 / 2) + 25, y: (screenLoc.y - 40 / 2) + 20), preferredSize: CGSize(width: 40, height: 30), superview: (self.view)!, text: "FOOD", font: UIFont.boldSystemFont(ofSize: 9), textColor: UIColor.yellow)
-            infob.isHidden = true
-            infob.tapHandler = {
-                print("taaapped")
-                infob.transform = CGAffineTransform(scaleX: 0, y: 0)
-                infob.removeFromSuperview()
-            }
-            
-            return infob
-        }
-
-        let chartPointsLayer = ChartPointsViewsLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, chartPoints: chartPoints, viewGenerator: viewGenerator, mode: .translate)
-        
-        
-        
-
-/*///////////////////////////////// create selection view ------------------*/
-
-        
-        var selectedView: ChartPointTextCircleView?
-        let cViewGenerator = {(chartPointModel: ChartPointLayerModel, layer: ChartPointsLayer, chart: Chart) -> UIView? in
-            
-            let (chartPoint, screenLoc) = (chartPointModel.chartPoint, chartPointModel.screenLoc)
-            let v = ChartPointTextCircleView(chartPoint: chartPoint, center: screenLoc, diameter: Env.iPad ? 50 : 30, cornerRadius: Env.iPad ? 24: 15, borderWidth: Env.iPad ? 2 : 1, font: UIFont.boldSystemFont(ofSize: 5))
-            //v.isUserInteractionEnabled = true
-            
-            //v.addGestureRecognizer(UITapGestureRecognizer())
-            v.viewTapped = {view in
-                for p in self.popups {p.removeFromSuperview()}
-                selectedView?.selected = false
-                let w: CGFloat = Env.iPad ? 250 : 20
-                let h: CGFloat = Env.iPad ? 100 : 20
-                if let chartViewScreenLoc = layer.containerToGlobalScreenLoc(chartPoint) {
+                
+                if let chartViewScreenLoc = layer.containerToGlobalScreenLoc(chartPointModel.chartPoint) {
                     let x: CGFloat = {
                         let attempt = chartViewScreenLoc.x - (w/2)
                         let leftBound: CGFloat = chart.bounds.origin.x
                         let rightBound = chart.bounds.size.width - 5
                         if attempt < leftBound {
-                            return view.frame.origin.x
+                            return chart.view.frame.origin.x
                         } else if attempt + w > rightBound {
                             return rightBound - w
                         }
@@ -620,49 +564,33 @@ class ViewControllerGraph: UIViewController, ChartDelegate{
                     }()
                     
                     let frame = CGRect(x: x, y: chartViewScreenLoc.y - (h + (Env.iPad ? 30 : 6)), width: w, height: h)
-                    
                     let bubbleView = InfoBubble(point: chartViewScreenLoc, frame: frame, arrowWidth: Env.iPad ? 40 : 6, arrowHeight: Env.iPad ? 20 : 4, bgColor: UIColor.black, arrowX: chartViewScreenLoc.x - x, arrowY: -1)
-                    
                     chart.view.addSubview(bubbleView)
-                    
-                    bubbleView.transform = CGAffineTransform(scaleX: 0, y: 0).concatenating(CGAffineTransform(translationX: 0, y: 40))
-                    
+
                     let infoView = UILabel(frame: CGRect(x: 0, y: 10, width: w, height: h - 15))
                     infoView.textColor = UIColor.white
                     infoView.backgroundColor = UIColor.black
-                    infoView.text = "Some text about \(chartPoint)"
+                    infoView.text = "text......"
                     infoView.font = UIFont.boldSystemFont(ofSize: 10)
                     infoView.textAlignment = NSTextAlignment.center
-                    
+
                     bubbleView.addSubview(infoView)
-                    self.popups.append(bubbleView)
                     
-                    UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions(), animations: {
-                        view.selected = true
-                        selectedView = view
-                        bubbleView.transform = CGAffineTransform.identity
-                    }, completion: {finished in})
+                    UIView.animate(withDuration: 3.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+                        bubbleView.alpha = 0.0
+                        infoView.alpha = 0.0
+                        
+                    }, completion: nil)
                 }
             }
-            
-            
-            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: UIViewAnimationOptions(), animations: {
-                let w: CGFloat = v.frame.size.width
-                let h: CGFloat = v.frame.size.height
-                let frame = CGRect(x: screenLoc.x - (w/2), y: screenLoc.y - (h/2), width: w, height: h)
-                v.frame = frame
-                
-            }, completion: nil)
-            
-            return v
+            return circleView
         }
-    
-        let chartPointCircleLayer2 = ChartPointsViewsLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, chartPoints: chartPoints, viewGenerator: cViewGenerator, displayDelay: 0.5, delayBetweenItems: 0.08, mode: .translate, delayInit: true)
-
         
         
         
+        let chartPointsCircleLayer = ChartPointsViewsLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, chartPoints: chartPoints, viewGenerator: circleViewGenerator, displayDelay: 0, delayBetweenItems: 0.05, mode: .translate)
         
+   
         // create chart instance with frame and layers
         let chart = Chart(
             view: self.chartView!,
@@ -673,17 +601,11 @@ class ViewControllerGraph: UIViewController, ChartDelegate{
                 yAxisLayer,
                 guidelinesLayer,
                 pointslineLayer,
-               // chartPointsLayer, //(info bubble) nil
-
-                chartPointsCircleLayer
-              //  chartPointCircleLayer2 // potentially interactive
-               
+                
+                chartPointsCircleLayer,
             ]
 
         )
-        
-        chartPointCircleLayer2.initViews(chart)
-        chart.delegate = self
         view.addSubview(chart.view)
         self.chart = chart //as? LineChart
     }
@@ -693,22 +615,6 @@ class ViewControllerGraph: UIViewController, ChartDelegate{
             view.removeFromSuperview()
         }
         initChart()
-    }
-    fileprivate func removePopups() {
-        for popup in popups {
-            popup.removeFromSuperview()
-        }
-    }
-    //MARK: Chart Delegate
-    func onZoom(scaleX: CGFloat, scaleY: CGFloat, deltaX: CGFloat, deltaY: CGFloat, centerX: CGFloat, centerY: CGFloat, isGesture: Bool) {
-        removePopups()
-    }
-    
-    func onPan(transX: CGFloat, transY: CGFloat, deltaX: CGFloat, deltaY: CGFloat, isGesture: Bool, isDeceleration: Bool) {
-        removePopups()
-    }
-    
-    func onTap(_ models: [TappedChartPointLayerModels<ChartPoint>]) {
     }
     
 }
@@ -720,10 +626,4 @@ class Env {
     }
 }
 
-extension ChartPointTextCircleView{
-    
-    override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?){
-        print("Touched")
-    }
-}
 
