@@ -198,11 +198,29 @@ class ModelController {
         fetchRequest.sortDescriptors = sortDescriptors
         let foundGlucose = try? PersistenceService.context.fetch(fetchRequest)
         if(foundGlucose == nil){
-            print("Error fetching meals")
+            print("Error fetching glucose")
             return []
         }
         else{
             return foundGlucose!
+        }
+    }
+    
+    func fetchInsulin(day: Date) -> [Insulin]{
+        let fetchRequest: NSFetchRequest<Insulin> = Insulin.fetchRequest()
+        let dayToShow = ModelController().formatDateToDay(date: day)
+        fetchRequest.predicate = NSPredicate(format: "day.date == %@", dayToShow)
+        //Sorts by short time - currently not correctly
+        let sectionSortDescriptor = NSSortDescriptor(key: "time", ascending: true)
+        let sortDescriptors = [sectionSortDescriptor]
+        fetchRequest.sortDescriptors = sortDescriptors
+        let foundInsulin = try? PersistenceService.context.fetch(fetchRequest)
+        if(foundInsulin == nil){
+            print("Error fetching insulin")
+            return []
+        }
+        else{
+            return foundInsulin!
         }
     }
     
