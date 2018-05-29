@@ -27,7 +27,7 @@
         <relationship name="day" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="glucose" inverseEntity="Day" syncable="YES"/>
     </entity>
     <entity name="Insulin" representedClassName=".Insulin" syncable="YES" codeGenerationType="category">
-        <attribute name="time" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="time" attributeType="String" syncable="YES"/>
         <attribute name="units" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="day" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="insulin" inverseEntity="Day" syncable="YES"/>
     </entity>

@@ -31,6 +31,11 @@ class ModelController {
         timeFormatter.timeStyle = .short
         return timeFormatter.string(from: date)
     }
+    func formatDateToHHmm(date: Date) -> String{
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "HH:mm"
+        return timeFormatter.string(from: date)
+    }
     
     //MARK: - Private functions
     private func checkForExistingFavourites() -> Favourites{
@@ -96,6 +101,7 @@ class ModelController {
         currentDay.addToExercise(newExercise)
         PersistenceService.saveContext()
     }
+    
     func addGlucose(value: Double, time: String, date: Date){
         
         let currentDay = findOrMakeDay(day: date)
@@ -105,6 +111,17 @@ class ModelController {
         currentDay.addToGlucose(newGlucose)
         PersistenceService.saveContext()
     }
+    
+    func addInslin(units: Double, time: String, date: Date){
+        
+        let currentDay = findOrMakeDay(day: date)
+        let newInsulin = Insulin(context: PersistenceService.context)
+        newInsulin.units = units
+        newInsulin.time = time
+        currentDay.addToInsulin(newInsulin)
+        PersistenceService.saveContext()
+    }
+    
     
     //MARK: - Data object getting (fetch/return)
     //Only toggles meals currently
@@ -171,6 +188,24 @@ class ModelController {
             return foundMeals!
         }
     }
+    func fetchGlucose(day: Date) -> [Glucose]{
+        let fetchRequest: NSFetchRequest<Glucose> = Glucose.fetchRequest()
+        let dayToShow = ModelController().formatDateToDay(date: day)
+        fetchRequest.predicate = NSPredicate(format: "day.date == %@", dayToShow)
+        //Sorts by short time - currently not correctly
+        let sectionSortDescriptor = NSSortDescriptor(key: "time", ascending: true)
+        let sortDescriptors = [sectionSortDescriptor]
+        fetchRequest.sortDescriptors = sortDescriptors
+        let foundGlucose = try? PersistenceService.context.fetch(fetchRequest)
+        if(foundGlucose == nil){
+            print("Error fetching meals")
+            return []
+        }
+        else{
+            return foundGlucose!
+        }
+    }
+    
     
     func fetchExercise(day: Date) -> [Exercise]{
         let fetchRequest: NSFetchRequest<Exercise> = Exercise.fetchRequest()
