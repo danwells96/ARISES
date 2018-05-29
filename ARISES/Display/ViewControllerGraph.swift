@@ -546,8 +546,8 @@ class ViewControllerGraph: UIViewController{
             circleView.borderWidth = 0.9
             circleView.borderColor = UIColor.red
             circleView.isUserInteractionEnabled = true
-            let w: CGFloat = 50
-            let h: CGFloat = 30
+            let w: CGFloat = 70
+            let h: CGFloat = 50
             circleView.touchHandler = {
                 
                 if let chartViewScreenLoc = layer.containerToGlobalScreenLoc(chartPointModel.chartPoint) {
@@ -562,23 +562,30 @@ class ViewControllerGraph: UIViewController{
                         }
                         return attempt
                     }()
-                    
-                    let frame = CGRect(x: x, y: chartViewScreenLoc.y - (h + (Env.iPad ? 30 : 6)), width: w, height: h)
+
+                    let frame = CGRect(x: x, y: chartViewScreenLoc.y - h , width: w, height: h)
                     let bubbleView = InfoBubble(point: chartViewScreenLoc, frame: frame, arrowWidth: Env.iPad ? 40 : 6, arrowHeight: Env.iPad ? 20 : 4, bgColor: UIColor.black, arrowX: chartViewScreenLoc.x - x, arrowY: -1)
+
                     chart.view.addSubview(bubbleView)
 
                     let infoView = UILabel(frame: CGRect(x: 0, y: 10, width: w, height: h - 15))
-                    infoView.textColor = UIColor.white
+                    infoView.textColor = UIColor.yellow
                     infoView.backgroundColor = UIColor.black
-                    infoView.text = "text......"
+                    
+                    infoView.text = "food"
+                    infoView.lineBreakMode = .byWordWrapping
+                    infoView.numberOfLines = 0
+                    infoView.sizeToFit()
                     infoView.font = UIFont.boldSystemFont(ofSize: 10)
-                    infoView.textAlignment = NSTextAlignment.center
+                    infoView.textAlignment = NSTextAlignment.left
 
                     bubbleView.addSubview(infoView)
-                    
+//                    let mmm = InfoBubble(point: chartViewScreenLoc, preferredSize: CGSize(width: w, height: h), superview: self.view, text: "text..", font: UIFont.boldSystemFont(ofSize: 10), textColor: UIColor.yellow)
+//                    chart.view.addSubview(mmm)
                     UIView.animate(withDuration: 3.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
                         bubbleView.alpha = 0.0
                         infoView.alpha = 0.0
+                        ///mmm.alpha = 0.0
                         
                     }, completion: nil)
                 }
@@ -602,7 +609,7 @@ class ViewControllerGraph: UIViewController{
                 guidelinesLayer,
                 pointslineLayer,
                 
-                chartPointsCircleLayer,
+                chartPointsCircleLayer
             ]
 
         )
