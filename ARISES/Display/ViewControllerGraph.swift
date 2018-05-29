@@ -93,29 +93,7 @@ class ViewControllerGraph: UIViewController{
         rightView2.setNeedsDisplay()
         rightView3.setNeedsDisplay()
     }
-
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        //Second Transforms
-        var transform = CATransform3DIdentity
-        transform.m34 = -1 / 500.0
-        leftSideViewContainer.layer.transform = CATransform3DRotate(transform, CGFloat(-45 * Double.pi / 180), 0, 1, 0)
-        
-        rightSideViewContainer.layer.transform = CATransform3DRotate(transform, CGFloat(45 * Double.pi / 180), 0, 1, 0)
-        
-        // for rotating the chart when in horizontal view
-        NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        if !self.didLayout{
-            self.didLayout = true
-            self.initChart()
-        }
-    }
     
     var rawData: [String] = ["27/11/2015 07:00",
                              "27/11/2015 07:17",
@@ -276,6 +254,54 @@ class ViewControllerGraph: UIViewController{
                                4.5,
                                6.6,
                                10.3]
+
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        //Second Transforms
+        var transform = CATransform3DIdentity
+        transform.m34 = -1 / 500.0
+        leftSideViewContainer.layer.transform = CATransform3DRotate(transform, CGFloat(-45 * Double.pi / 180), 0, 1, 0)
+        
+        rightSideViewContainer.layer.transform = CATransform3DRotate(transform, CGFloat(45 * Double.pi / 180), 0, 1, 0)
+        
+        // for rotating the chart when in horizontal view
+        NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        
+        //Adding data from arrays into core data
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+        let dayFormatter = DateFormatter()
+        dayFormatter.dateStyle = .short
+        dayFormatter.timeStyle = .none
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "HH:mm"
+        let tmpDate = dateFormatter.date(from: rawData[0])
+        let tmpString = dayFormatter.string(from: tmpDate!)
+        let tmpDay = dayFormatter.date(from: tmpString)
+        
+        if(ModelController().fetchGlucose(day: tmpDay!) == []){
+            for i in 0...(rawData.count-1){
+                let date = dateFormatter.date(from: rawData[i])
+                let timeString = timeFormatter.string(from: date!)
+                let dayString = dayFormatter.string(from: date!)
+                let day = dayFormatter.date(from: dayString)
+                ModelController().addGlucose(value: rawValues[i], time: timeString, date: day!)
+            }
+        }else{
+            print("already loaded data in")
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if !self.didLayout{
+            self.didLayout = true
+            self.initChart()
+        }
+    }
+    
     
     var dataDict: [String: [customType]] = [:]
     
@@ -357,10 +383,8 @@ class ViewControllerGraph: UIViewController{
         let tPlus2String = dayFormatter.string(from: tPlus2!)
         let tPlus3String = dayFormatter.string(from: tPlus3!)
 
-        
+        /*
         for (key, value) in dataDict{
-            //Consider changing if/else ladder into case/switch statement to improve performance (most likely negligable but might make difference with large number of days of data
-            
             switch key{
                 case tMinus4String:
                     for val in value{
@@ -417,6 +441,69 @@ class ViewControllerGraph: UIViewController{
                     print("Data not needed")
             }
         }
+        */
+        
+        let todayArray = ModelController().fetchGlucose(day: day!)
+        let tMinus1Array = ModelController().fetchGlucose(day: tMinus1!)
+        let tMinus2Array = ModelController().fetchGlucose(day: tMinus2!)
+        let tMinus3Array = ModelController().fetchGlucose(day: tMinus3!)
+        let tMinus4Array = ModelController().fetchGlucose(day: tMinus4!)
+        let tPlus1Array = ModelController().fetchGlucose(day: tPlus1!)
+        let tPlus2Array = ModelController().fetchGlucose(day: tPlus2!)
+        let tPlus3Array = ModelController().fetchGlucose(day: tPlus3!)
+
+        for item in tMinus4Array{
+            if(item.value != 0){
+                tMinus4Compare.append(item.value)
+            }
+        }
+        
+        for item in tMinus3Array{
+            if(item.value != 0){
+                tMinus3Compare.append(item.value)
+            }
+        }
+        
+        for item in tMinus2Array{
+            if(item.value != 0){
+                tMinus2Compare.append(item.value)
+            }
+        }
+
+        for item in tMinus1Array{
+            if(item.value != 0){
+                tMinus1Compare.append(item.value)
+            }
+        }
+        
+        for item in todayArray{
+            if(item.value != 0){
+                let combinedDate = keyDay + " " + item.time!
+                valueArray.append(ChartAxisValueDouble(item.value))
+                dateArray.append(ChartAxisValueDate(date: dateFormatter.date(from: combinedDate)!, formatter: dateFormatter))
+                points.append(ChartPoint(x: dateArray[dateArray.endIndex-1], y: valueArray[valueArray.endIndex-1]))
+            }
+        }
+        
+        //might just do comparison directly out of tPlus1Array
+        for item in tPlus1Array{
+            if(item.value != 0){
+                tPlus1Compare.append(item.value)
+            }
+        }
+        
+        for item in tPlus2Array{
+            if(item.value != 0){
+                tPlus2Compare.append(item.value)
+            }
+        }
+        
+        for item in tPlus3Array{
+            if(item.value != 0){
+                tPlus3Compare.append(item.value)
+            }
+        }
+        
         
         if(tMinus1Compare.count > 0){
             leftView1.dailyHigh = CGFloat(tMinus1Compare.max()!)
@@ -499,28 +586,21 @@ class ViewControllerGraph: UIViewController{
         
         let xValues = ChartAxisValuesGeneratorDate(unit: .hour, preferredDividers: 8, minSpace: 0.5, maxTextSize: 12)
         
-        // let yValues = ChartAxisValuesStaticGenerator.generateYAxisValuesWithChartPoints(chartPoints, minSegmentCount: 10, maxSegmentCount: 20, multiple: 2, axisValueGenerator: {ChartAxisValueDouble($0, labelSettings: yLabelSettings)}, addPaddingSegmentIfEdge: false)
-        
-        
         // create axis models with axis values and axis title
         let startTime: Date? = dateFormatter.date(from: today)
         let endTime: Date? = Calendar.current.date(byAdding: .day, value: 1, to: startTime!)
         
-        
-        //Bob's suggestion of x-axis labels
-        
-        //  let axisValues = [ChartAxisValueString("Midnight", order: 1, labelSettings: xLabelSettings), ChartAxisValueString("06", order: 2, labelSettings: xLabelSettings), ChartAxisValueString("Noon", order: 3, labelSettings: xLabelSettings), ChartAxisValueString("18", order: 4, labelSettings: xLabelSettings), ChartAxisValueString("", order: 5, labelSettings: xLabelSettings)]
-        //  let xModel = ChartAxisModel(axisValues: axisValues, axisTitleLabel: ChartAxisLabel(text: today, settings: yLabelSettings))
-        
+        //Axis Labels
         let xLabelGenerator = ChartAxisLabelsGeneratorDate(labelSettings: xLabelSettings, formatter: hourFormatter)
         let yLabelGenerator = ChartAxisLabelsGeneratorNumber(labelSettings: yLabelSettings)
         let generator = ChartAxisGeneratorMultiplier(4)
         
         
+        //Axis models
         let xModel = ChartAxisModel(firstModelValue: (startTime!.timeIntervalSince1970), lastModelValue: (endTime!.timeIntervalSince1970), axisTitleLabel: ChartAxisLabel(text: dayFormatter.string(from: startTime!), settings: yLabelSettings), axisValuesGenerator: xValues, labelsGenerator: xLabelGenerator)
         
-        //     let yModel = ChartAxisModel(axisValues: yValues, axisTitleLabel: ChartAxisLabel(text: "Glucose (mM/L)", settings: yLabelSettings.defaultVertical()))
         let yModel = ChartAxisModel(firstModelValue: 0, lastModelValue: 20, axisTitleLabel: ChartAxisLabel(text: "Glucose (mM/L)", settings: yLabelSettings.defaultVertical()), axisValuesGenerator: generator, labelsGenerator: yLabelGenerator)
+        
         
         // generate axes layers and calculate chart inner frame, based on the axis models
         let chartFrame = self.chartView.frame
@@ -549,8 +629,8 @@ class ViewControllerGraph: UIViewController{
             circleView.borderWidth = 0.9
             circleView.borderColor = UIColor.red
             circleView.isUserInteractionEnabled = true
-            let w: CGFloat = 70
-            let h: CGFloat = 50
+            let w: CGFloat = 80
+            let h: CGFloat = 60
             circleView.touchHandler = {
                 
                 if let chartViewScreenLoc = layer.containerToGlobalScreenLoc(chartPointModel.chartPoint) {
@@ -565,6 +645,8 @@ class ViewControllerGraph: UIViewController{
                         }
                         return attempt
                     }()
+                    
+                    //attaches anything of note to the data point
                     print(chartPointModel.chartPoint.y.scalar)
                     if(chartPointModel.chartPoint.y.scalar > 11.1){
                         circleView.data = "Hyperglycemic"
@@ -579,27 +661,17 @@ class ViewControllerGraph: UIViewController{
                         text = ""
                     }
                     print(text)
-                    let frame = CGRect(x: x, y: chartViewScreenLoc.y - h , width: w, height: h)
-                    let bubbleView = InfoBubble(point: chartViewScreenLoc, frame: frame, arrowWidth: Env.iPad ? 40 : 12, arrowHeight: Env.iPad ? 20 : 8, bgColor: UIColor.clear, arrowX: chartViewScreenLoc.x - x, arrowY: -1)
-                    chart.view.addSubview(bubbleView)
 
-                    let infoView = UILabel(frame: CGRect(x: 0, y: 10, width: w, height: h - 15))
-                    infoView.textColor = UIColor.yellow
-                    infoView.backgroundColor = UIColor.black
-                    infoView.text = text
-                    infoView.lineBreakMode = .byWordWrapping
-                    infoView.numberOfLines = 0
-                    infoView.sizeToFit()
-                    infoView.font = UIFont.boldSystemFont(ofSize: 10)
-                    infoView.textAlignment = NSTextAlignment.center
-                    bubbleView.addSubview(infoView)
-                    
-                    UIView.animate(withDuration: 3.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
-                        bubbleView.alpha = 0.0
-                        infoView.alpha = 0.0
+                    let font = UIFont.boldSystemFont(ofSize: 9)
+                    if(text != ""){
+                        let bu = InfoBubble(point: CGPoint(x: x, y: chartViewScreenLoc.y), preferredSize: CGSize(width: w, height: h), superview: self.view, text: text, font: font, textColor: UIColor.yellow)
                         
-                    }, completion:
-                        {finished in bubbleView.removeFromSuperview()})
+                        chart.addSubview(bu)
+                        UIView.animate(withDuration: 3.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+                            bu.alpha = 0.0
+                        }, completion:
+                            {finished in bu.removeFromSuperview()})
+                    }
                 }
             }
             return circleView
@@ -609,7 +681,6 @@ class ViewControllerGraph: UIViewController{
         
         let chartPointsCircleLayer = ChartPointsViewsLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, chartPoints: chartPoints, viewGenerator: circleViewGenerator, displayDelay: 0, delayBetweenItems: 0.05, mode: .translate)
         
-   
         // create chart instance with frame and layers
         let chart = Chart(
             view: self.chartView!,
@@ -620,7 +691,6 @@ class ViewControllerGraph: UIViewController{
                 yAxisLayer,
                 guidelinesLayer,
                 pointslineLayer,
-                
                 chartPointsCircleLayer
             ]
 
