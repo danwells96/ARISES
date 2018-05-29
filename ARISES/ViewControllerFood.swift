@@ -13,6 +13,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     
 
     //TODO: solve keyboard covering name in some phones
+    //TODO: Auto layout table cells
     
     //MARK: - Properties
     @IBOutlet weak var foodTimeField: UITextField!
@@ -154,15 +155,19 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         
         if showFavourites == true{
             cell.loggedFoodTime.isHidden = true
+            //cell.loggedFoodTime.text = "Select"
+            //cell.loggedFoodTime.textColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
         }
         else{
             cell.loggedFoodTime.isHidden = false
+
         }
         
         return(cell)
     }
     
     //Allows selecting a favourite to add to daily log
+    //Will likely be replaced with a button to select and used for expanding
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         if showFavourites == true{
