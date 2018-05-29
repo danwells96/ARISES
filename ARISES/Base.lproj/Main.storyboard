@@ -1108,7 +1108,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZEV-bY-Kyk">
-                                <rect key="frame" x="326" y="13" width="60" height="220"/>
+                                <rect key="frame" x="326" y="18" width="60" height="220"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view alpha="0.29999999999999999" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Cm-ZE-NMX" customClass="CustomView" customModule="ARISES" customModuleProvider="target">
@@ -1172,7 +1172,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ag7-z6-FpG">
-                                <rect key="frame" x="0.0" y="13" width="80" height="220"/>
+                                <rect key="frame" x="0.0" y="20" width="80" height="220"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view alpha="0.29999999999999999" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mED-L5-pEA" customClass="CustomView" customModule="ARISES" customModuleProvider="target">

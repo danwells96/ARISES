@@ -531,6 +531,9 @@ class ViewControllerGraph: UIViewController{
         // layer displays data-line
         let lineModel = ChartLineModel(chartPoints: chartPoints, lineColor: UIColor.blue, lineWidth: 3, animDuration: 1, animDelay: 0)
         let pointslineLayer = ChartPointsLineLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, lineModels: [lineModel])
+        //another layer for insulin...
+        //linemodel2
+        //chartpointslayer2
         
         // create Guideline Layer
         let glLSettings = ChartGuideLinesDottedLayerSettings(linesColor: UIColor.gray, linesWidth: 0.9)
@@ -562,32 +565,41 @@ class ViewControllerGraph: UIViewController{
                         }
                         return attempt
                     }()
-
+                    print(chartPointModel.chartPoint.y.scalar)
+                    if(chartPointModel.chartPoint.y.scalar > 11.1){
+                        circleView.data = "Hyperglycemic"
+                    }else if(chartPointModel.chartPoint.y.scalar < 3.9){
+                        circleView.data = "Hypoglycemic"
+                    }
+                    var text : String
+                    if circleView.data != nil{
+                        print(circleView.data!)
+                        text = circleView.data!
+                    }else{
+                        text = ""
+                    }
+                    print(text)
                     let frame = CGRect(x: x, y: chartViewScreenLoc.y - h , width: w, height: h)
-                    let bubbleView = InfoBubble(point: chartViewScreenLoc, frame: frame, arrowWidth: Env.iPad ? 40 : 6, arrowHeight: Env.iPad ? 20 : 4, bgColor: UIColor.black, arrowX: chartViewScreenLoc.x - x, arrowY: -1)
-
+                    let bubbleView = InfoBubble(point: chartViewScreenLoc, frame: frame, arrowWidth: Env.iPad ? 40 : 12, arrowHeight: Env.iPad ? 20 : 8, bgColor: UIColor.clear, arrowX: chartViewScreenLoc.x - x, arrowY: -1)
                     chart.view.addSubview(bubbleView)
 
                     let infoView = UILabel(frame: CGRect(x: 0, y: 10, width: w, height: h - 15))
                     infoView.textColor = UIColor.yellow
                     infoView.backgroundColor = UIColor.black
-                    
-                    infoView.text = "food"
+                    infoView.text = text
                     infoView.lineBreakMode = .byWordWrapping
                     infoView.numberOfLines = 0
                     infoView.sizeToFit()
                     infoView.font = UIFont.boldSystemFont(ofSize: 10)
-                    infoView.textAlignment = NSTextAlignment.left
-
+                    infoView.textAlignment = NSTextAlignment.center
                     bubbleView.addSubview(infoView)
-//                    let mmm = InfoBubble(point: chartViewScreenLoc, preferredSize: CGSize(width: w, height: h), superview: self.view, text: "text..", font: UIFont.boldSystemFont(ofSize: 10), textColor: UIColor.yellow)
-//                    chart.view.addSubview(mmm)
+                    
                     UIView.animate(withDuration: 3.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
                         bubbleView.alpha = 0.0
                         infoView.alpha = 0.0
-                        ///mmm.alpha = 0.0
                         
-                    }, completion: nil)
+                    }, completion:
+                        {finished in bubbleView.removeFromSuperview()})
                 }
             }
             return circleView
@@ -633,4 +645,20 @@ class Env {
     }
 }
 
-
+extension ChartPointEllipseView{
+    private struct extra{
+        static var data:String? = nil
+    }
+    
+    var data:String?{
+        get{
+            return objc_getAssociatedObject(self, &extra.data) as? String
+        }
+        
+        set{
+            if let unwrappedData = newValue {
+                objc_setAssociatedObject(self, &extra.data, unwrappedData as NSString?, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            }
+        }
+    }
+}
