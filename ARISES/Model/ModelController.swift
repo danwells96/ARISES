@@ -54,8 +54,8 @@ class ModelController {
         print("Error fetching favourites")
         return checkFav![0]
     }
-
-    private func findOrMakeDay(day: Date) -> Day{
+//MAKE PRIVATE AFTER TESTING
+    func findOrMakeDay(day: Date) -> Day{
         let day = formatDateToDay(date: day)
         //predicate date
         let dateFetch: NSFetchRequest<Day> = Day.fetchRequest()

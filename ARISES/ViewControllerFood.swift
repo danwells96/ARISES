@@ -92,12 +92,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     }
     
     @objc private func doneWithPicker(){
-        /*
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .none
-        dateFormatter.timeStyle = .short
-        
-        foodTimeField.text = dateFormatter.string(from: foodTimePicker.date)*/
+
         foodTimeField.text = ModelController().formatDateToTime(date: foodTimePicker.date)
         self.view.endEditing(true)
     }
@@ -115,14 +110,16 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         else{
             showFavourites = false
         }
-        
+        //Testing day computed properties
+        let curDay = ModelController().findOrMakeDay(day: Date())
+        print("\(String(describing: curDay.glucoseStats?.low))")
     }
     
     //TODO: Either add remove buttons in expanded or allow a way to remove favourites
     func didPressButton(_ tag: Int) {
         if showFavourites != true{
             let toFav = loggedMeals[tag]
-            print("I have toggled \(toFav.name!)")
+            //print("I have toggled \(toFav.name!)")
             ModelController().toggleFavourite(item: toFav)
             updateTable()
         }
@@ -171,7 +168,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     //Allows selecting a favourite to add to daily log
     //Will likely be replaced with a button to select and used for expanding
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        
         if showFavourites == true{
             ModelController().addMeal(
                 name: loggedMeals[indexPath.row].name!,
@@ -181,7 +178,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
                 fat: loggedMeals[indexPath.row].fat,
                 protein: loggedMeals[indexPath.row].protein)
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { //??Is this delay?
                 self.showFavourites = false
             }
         }
@@ -235,7 +232,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
                     fat: Int32(fatTextField.text!)!,
                     protein: Int32(proteinTextField.text!)!)
             showFavourites = false
-        
+            
             foodNameTextField.text = ""
             foodTimeField.text = ""
             carbsTextField.text = ""

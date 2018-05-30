@@ -52,9 +52,6 @@ class ViewControllerMain: UIViewController {
         }
     }
     
-    
-    
-    
    
     //MARK: - Override
     override func viewDidLoad() {
@@ -91,7 +88,11 @@ class ViewControllerMain: UIViewController {
             indicatorExercise.isHidden = true
             
         case .health:
-            view.bringSubview(toFront: viewHealth)
+           //viewHealth.alpha = 0.0
+           view.bringSubview(toFront: viewHealth)
+           //UIView.animate(WithDuration: 1, animations:{
+           //     self.viewHealth.alpha = 1.0
+           //})
             containerFood.isHidden = true
             containerAdvice.isHidden = true
             containerHealth.isHidden = false
