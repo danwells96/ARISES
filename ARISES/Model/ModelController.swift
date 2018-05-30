@@ -18,6 +18,7 @@ class ModelController {
     //TODO: Ensure optionals never cause exceptions e.g. with Guard
     
     
+    
     //MARK: - Basic date formatting functions
     func formatDateToDay(date: Date) -> String{
         let dateFormatter = DateFormatter()
@@ -88,6 +89,10 @@ class ModelController {
         newMeal.fat = fat
         currentDay.addToMeals(newMeal)
         PersistenceService.saveContext()
+        
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name("FoodAdded"), object: nil)
+
     }
     
     func addExercise(name: String, time: String, date: Date, intensity: String, duration: String){

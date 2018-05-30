@@ -49,8 +49,36 @@ class Day: NSManagedObject {
             tempFat = tempFat + index.fat
             
         }
+        
         return (tempCarbs, tempProtein, tempFat)
 
     }
+    
+    //MARK: - Tags e.g. Hypo/Hyper
+    var glucoseTags: [String]? {
+        guard self.glucose?.anyObject() != nil else{
+            return nil
+        }
+        var trackHypo = false
+        var trackHyper = false
+        var tagArray: [String] = []
+        for index in (self.glucose?.allObjects)! as! [Glucose]{
+            if index.tag == "hypo"{
+                trackHypo = true
+            }
+            if index.tag == "hyper"{
+                trackHyper = true
+            }
+        }
+        if trackHypo == true{
+            tagArray.append("Hypo")
+        }
+        if trackHyper == true{
+            tagArray.append("Hyper")
+        }
+        
+        return tagArray
+    }
+    
     
 }

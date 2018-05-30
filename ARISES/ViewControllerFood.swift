@@ -70,7 +70,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         
         favouritesButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
         updateTable()
-
+        
     }
     
     //MARK: - Picker functions
@@ -111,8 +111,9 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
             showFavourites = false
         }
         //Testing day computed properties
-        let curDay = ModelController().findOrMakeDay(day: Date())
-        print("\(String(describing: curDay.glucoseStats?.low))")
+    /*    let curDay = ModelController().findOrMakeDay(day: Date())
+        print("\(String(describing: curDay.glucoseTags))")
+ */
     }
     
     //TODO: Either add remove buttons in expanded or allow a way to remove favourites
