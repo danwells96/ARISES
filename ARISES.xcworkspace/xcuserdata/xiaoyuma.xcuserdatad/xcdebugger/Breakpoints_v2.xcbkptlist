@@ -2,4 +2,54 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ARISES/Display/ViewControllerGraph.swift"
+            timestampString = "549551651.1998"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "rawData"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ARISES.ViewControllerGraph.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; ARISES.ViewControllerGraph"
+                  moduleName = "ARISES"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaoyuma/Documents/ARISES/ARISES/Display/ViewControllerGraph.swift"
+                  timestampString = "549382178.47149"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "178"
+                  endingLineNumber = "178"
+                  offsetFromSymbolStart = "7307">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ARISES.ViewControllerGraph.init(coder: __ObjC.NSCoder) -&gt; Swift.Optional&lt;ARISES.ViewControllerGraph&gt;"
+                  moduleName = "ARISES"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xiaoyuma/Documents/ARISES/ARISES/Display/ViewControllerGraph.swift"
+                  timestampString = "549382178.476658"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "178"
+                  endingLineNumber = "178"
+                  offsetFromSymbolStart = "7663">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
