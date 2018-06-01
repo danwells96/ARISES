@@ -164,9 +164,10 @@ class ViewControllerGraph: UIViewController{
                              "06/01/2016 13:25",
                              "06/01/2016 16:26",
                              "06/01/2016 18:26",
-                             "06/01/2016 19:50",
-                             "06/01/2016 22:43",
-                             "06/01/2016 23:37"]
+                             //"06/01/2016 19:50",
+                             //"06/01/2016 22:43",
+                             //"06/01/2016 23:37"
+    ]
     
     var rawValues: [Double] = [0,
                                15.4,
@@ -244,9 +245,10 @@ class ViewControllerGraph: UIViewController{
                                9.1,
                                4.1,
                                8.1,
-                               4.5,
-                               6.6,
-                               10.3]
+                               //4.5,
+                               //6.6,
+                               //10.3
+    ]
 
     
     override func viewDidLoad() {
@@ -328,6 +330,8 @@ class ViewControllerGraph: UIViewController{
         return chartSettings
     }()
     
+    
+  
     
     private func initChart(){
         //map moel data to chart points
@@ -456,6 +460,13 @@ class ViewControllerGraph: UIViewController{
         calcRanges(Arr: tPlus2Compare, view: rightView2)
         calcRanges(Arr: tPlus3Compare, view: rightView3)
         
+        
+        let predictedGlucosePoints: [ChartPoint] = [("06/01/2016 19:00", 10), ("06/01/2016 19:30", 12), ("06/01/2016 20:00", 6), ("06/01/2016 20:30", 6), ("06/01/2016 21:00", 9), ("06/01/2016 21:30", 8), ("06/01/2016 22:00", 11), ("06/01/2016 22:10", 8), ("06/01/2016 22:40", 4), ("06/01/2016 23:10", 7), ("06/01/2016 23:57", 9)].map {
+            return ChartPoint(
+                x: ChartAxisValueDate(date: dateFormatter.date(from: $0.0)!, formatter: dateFormatter),
+                y: ChartAxisValueDouble($0.1)
+            )
+        }
         //Something needs changing to initialise chart point
         let chartPoints = points
         let yLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 11))
@@ -485,8 +496,14 @@ class ViewControllerGraph: UIViewController{
         
         
         // layer displays data-line
-        let lineModel = ChartLineModel(chartPoints: chartPoints, lineColor: UIColor.blue, lineWidth: 3, animDuration: 1, animDelay: 0, dashPattern: [5, 5])
+        let lineModel = ChartLineModel(chartPoints: chartPoints, lineColor: UIColor.blue, lineWidth: 3, animDuration: 1, animDelay: 0)
         let pointslineLayer = ChartPointsLineLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, lineModels: [lineModel])
+
+        
+        //predication linemodel
+        let lineModelPred = ChartLineModel(chartPoints: predictedGlucosePoints, lineColor: UIColor.red, lineWidth: 3, lineJoin: LineJoin.bevel, lineCap: LineCap.round, animDuration: 1, animDelay: 0, dashPattern: [5, 5])
+        //var prediction: ChartLayer?
+        let prediction = ChartPointsLineLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, lineModels: [lineModelPred])
         
         // create Guideline Layer
         let glLSettings = ChartGuideLinesDottedLayerSettings(linesColor: UIColor.gray, linesWidth: 0.9)
@@ -586,8 +603,8 @@ class ViewControllerGraph: UIViewController{
                 yAxisLayer,
                 guidelinesLayer,
                 pointslineLayer,
+                prediction,
                 chartPointsCircleLayer
-                
             ]
         )
         
