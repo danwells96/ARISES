@@ -572,6 +572,8 @@ class ViewControllerGraph: UIViewController{
                     
                     //Gets meals and times they were at to identify which point in the graph is the one where the meal was consumed
                     let meals = ModelController().fetchMeals(day: day!)
+                    let exercises = ModelController().fetchExercise(day: day!)
+                    let insulins = ModelController().fetchInsulin(day: day!)
                     let xVal = chartPointModel.chartPoint.x.scalar
                     let time = Date.init(timeIntervalSince1970: xVal)
                     let timeDate = timeFormatter.string(from: time)
@@ -580,7 +582,19 @@ class ViewControllerGraph: UIViewController{
                     for meal in meals{
                         if(meal.time == timeDate){
                             print("Carbs: " + String(meal.carbs))
-                            text = "🍎"
+                            circleView.data = "🍎"
+                        }
+                    }
+                    
+                    for exercise in exercises{
+                        if(exercise.time == timeDate){
+                             circleView.data = "🤾‍♀️"
+                        }
+                    }
+                    
+                    for insulin in insulins{
+                        if(insulin.time == timeDate){
+                            circleView.data = "💉"
                         }
                     }
             
