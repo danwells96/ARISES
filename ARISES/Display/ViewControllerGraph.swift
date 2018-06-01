@@ -374,6 +374,8 @@ class ViewControllerGraph: UIViewController{
         
         let todayArray = ModelController().fetchGlucose(day: day!)
         let todayFoodArray = ModelController().fetchMeals(day: day!)
+        let todayInsulinArray = ModelController().fetchInsulin(day: day!)
+        let todayExerciseArray = ModelController().fetchExercise(day: day!)
         let tMinus1Array = ModelController().fetchGlucose(day: tMinus1!)
         let tMinus2Array = ModelController().fetchGlucose(day: tMinus2!)
         let tMinus3Array = ModelController().fetchGlucose(day: tMinus3!)
@@ -409,17 +411,35 @@ class ViewControllerGraph: UIViewController{
         let prevItemTime = timeFormatter.date(from: "00:00")
         for item in todayArray{
             if(item.value != 0){
-                
+                let currItemTime = timeFormatter.date(from: item.time!)
                 for meal in todayFoodArray{
                     //Checks that the meal time is between the current point and previous point tested
                     let mealTime = timeFormatter.date(from: meal.time!)
-                    let currItemTime = timeFormatter.date(from: item.time!)
                     if(((mealTime!) < (currItemTime!)) && ((mealTime!) > (prevItemTime!))){
                         let combinedMealDate = keyDay + " " + meal.time!
                         print("Meal at this time: "+item.time!)
                         //Adds the meal as a point on graph
+                        //Uses previous glucose reading instead of taking a new one (might want to change in future)
                         valueArray.append(ChartAxisValueDouble(item.value))
                         dateArray.append(ChartAxisValueDate(date: dateFormatter.date(from: combinedMealDate)!, formatter: dateFormatter))
+                        points.append(ChartPoint(x: dateArray[dateArray.endIndex - 1], y: valueArray[valueArray.endIndex - 1]))
+                    }
+                }
+                for exercise in todayExerciseArray{
+                    let combinedExerciseDate = keyDay + " " + exercise.time!
+                    let exerciseTime = timeFormatter.date(from: exercise.time!)
+                    if(((exerciseTime!) < (currItemTime!)) && ((exerciseTime!) > (prevItemTime!))){
+                        valueArray.append(ChartAxisValueDouble(item.value))
+                        dateArray.append(ChartAxisValueDate(date: dateFormatter.date(from: combinedExerciseDate)!, formatter: dateFormatter))
+                        points.append(ChartPoint(x: dateArray[dateArray.endIndex - 1], y: valueArray[valueArray.endIndex - 1]))
+                    }
+                }
+                for insulin in todayInsulinArray{
+                    let combinedInsulinDate = keyDay + " " + insulin.time!
+                    let insulinTime = timeFormatter.date(from: insulin.time!)
+                    if(((insulinTime!) < (currItemTime!)) && ((insulinTime!) > (prevItemTime!))){
+                        valueArray.append(ChartAxisValueDouble(item.value))
+                        dateArray.append(ChartAxisValueDate(date: dateFormatter.date(from: combinedInsulinDate)!, formatter: dateFormatter))
                         points.append(ChartPoint(x: dateArray[dateArray.endIndex - 1], y: valueArray[valueArray.endIndex - 1]))
                     }
                 }
@@ -461,7 +481,7 @@ class ViewControllerGraph: UIViewController{
         calcRanges(Arr: tPlus3Compare, view: rightView3)
         
         
-        let predictedGlucosePoints: [ChartPoint] = [("06/01/2016 19:00", 10), ("06/01/2016 19:30", 12), ("06/01/2016 20:00", 6), ("06/01/2016 20:30", 6), ("06/01/2016 21:00", 9), ("06/01/2016 21:30", 8), ("06/01/2016 22:00", 11), ("06/01/2016 22:10", 8), ("06/01/2016 22:40", 4), ("06/01/2016 23:10", 7), ("06/01/2016 23:57", 9)].map {
+        let predictedGlucosePoints: [ChartPoint] = [("06/01/2016 18:27", 8.2), ("06/01/2016 19:30", 12), ("06/01/2016 20:00", 6), ("06/01/2016 20:30", 6), ("06/01/2016 21:00", 9), ("06/01/2016 21:30", 8), ("06/01/2016 22:00", 11), ("06/01/2016 22:10", 8), ("06/01/2016 22:40", 4), ("06/01/2016 23:10", 7), ("06/01/2016 23:57", 9)].map {
             return ChartPoint(
                 x: ChartAxisValueDate(date: dateFormatter.date(from: $0.0)!, formatter: dateFormatter),
                 y: ChartAxisValueDouble($0.1)
