@@ -35,7 +35,7 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
     var selectedCellIndexPath = [IndexPath?]()
     let selectedCellHeight: CGFloat = 89.0
     let unselectedCellHeight: CGFloat = 40.0
-    private var daysToShow = "none"{
+    private var daysToShow = "seven"{
         didSet{
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05){
                 
@@ -73,6 +73,8 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
                     self.favouritesButton.tintColor = #colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1)
                 }
             }
+            self.updateTable()
+
         }
     }
     private var filterHypo = false{
@@ -100,8 +102,9 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
         stressPicker.dataSource = self
         stressField.inputView = stressPicker*/
         favouritesButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
-
-        updateTable()
+        
+        daysToShow = "seven"
+        showFavouritesHealth = false
     }
         
     @IBAction func sevenDaysButton(_ sender: UIButton) {
@@ -154,6 +157,8 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
         }
         else{
             showFavouritesHealth = false
+            self.daysToShow = "seven"
+
         }
     }
     
