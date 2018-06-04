@@ -111,6 +111,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     @IBAction func toggleFavourites(_ sender: Any) {
         if self.showFavouritesFood == false{
             showFavouritesFood = true
+            selectedCellIndexPath = []
         }
         else{
             showFavouritesFood = false
