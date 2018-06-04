@@ -372,14 +372,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8OK-fk-2t6">
-                                                    <rect key="frame" x="5" y="11" width="87" height="21"/>
+                                                    <rect key="frame" x="50" y="12" width="56" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJQ-jY-fd7">
-                                                    <rect key="frame" x="100" y="11" width="42" height="21"/>
+                                                    <rect key="frame" x="114" y="12" width="42" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -393,16 +393,33 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfL-3H-ihc">
-                                                    <rect key="frame" x="155" y="12" width="42" height="21"/>
+                                                    <rect key="frame" x="164" y="12" width="42" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="amM-Lt-nYu">
+                                                    <rect key="frame" x="7" y="8" width="31" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" backgroundImage="star black transparency">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <real key="value" value="0.0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="buttonPressedHealth:" destination="d1n-Qg-UiI" eventType="touchUpInside" id="w3B-MU-emU"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="dateInLog" destination="8OK-fk-2t6" id="bQM-ZP-OeW"/>
+                                            <outlet property="favouriteHealthButton" destination="amM-Lt-nYu" id="quu-C6-hBT"/>
                                             <outlet property="healthLogExercise" destination="iay-F8-kQz" id="RxB-q3-fEM"/>
                                             <outlet property="healthLogHyper" destination="MJQ-jY-fd7" id="cZa-sm-tqO"/>
                                             <outlet property="healthLogHypo" destination="mfL-3H-ihc" id="i2z-aZ-fvt"/>
@@ -525,6 +542,9 @@
                                                 </constraints>
                                                 <color key="tintColor" red="0.3921568627" green="0.73725490199999999" blue="0.43921568630000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" image="star black transparency"/>
+                                                <connections>
+                                                    <action selector="toggleFavourites:" destination="zCn-EJ-xVJ" eventType="touchUpInside" id="Oni-hR-IFt"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -614,6 +634,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
+                        <outlet property="favouritesButton" destination="V71-CQ-9JJ" id="0rQ-RK-33o"/>
                         <outlet property="filterHyperOutlet" destination="Pqs-mW-pk7" id="36H-Ke-UyY"/>
                         <outlet property="filterHypoOutlet" destination="HPf-tM-zIm" id="Zbg-m0-ZS1"/>
                         <outlet property="healthLogTable" destination="T9G-c0-t2o" id="oei-Kr-au5"/>

@@ -27,6 +27,7 @@ class ViewControllerTableViewCell: UITableViewCell {
     @IBOutlet weak var favouriteFoodButton: UIButton!
     @IBOutlet weak var favouriteExerciseButton: UIButton!
     
+    @IBOutlet weak var favouriteHealthButton: UIButton!
     @IBOutlet weak var loggedExerciseDuration: UILabel!
     @IBOutlet weak var loggedExerciseName: UILabel!
     @IBOutlet weak var loggedExerciseTime: UILabel!
@@ -58,6 +59,9 @@ class ViewControllerTableViewCell: UITableViewCell {
         cellDelegate?.didPressButton(self.tag)
     }
     @IBAction func buttonPressedExercise(_ sender: UIButton) {
+        cellDelegate?.didPressButton(self.tag)
+    }
+    @IBAction func buttonPressedHealth(_ sender: UIButton) {
         cellDelegate?.didPressButton(self.tag)
     }
     

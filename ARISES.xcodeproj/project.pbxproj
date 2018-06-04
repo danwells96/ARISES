@@ -39,6 +39,19 @@
 		BB0C55C520BC66E9003F46CE /* Favourites.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0C55BE20BC66E9003F46CE /* Favourites.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3712A25020C583D8006DB63C /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		370F921420BD61C90081C570 /* Glucose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Glucose.swift; sourceTree = "<group>"; };
 		370F921620BD637B0081C570 /* Insulin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insulin.swift; sourceTree = "<group>"; };
@@ -207,6 +220,7 @@
 				375587BE209E086C00594532 /* Sources */,
 				375587BF209E086C00594532 /* Frameworks */,
 				375587C0209E086C00594532 /* Resources */,
+				3712A25020C583D8006DB63C /* Embed App Extensions */,
 			);
 			buildRules = (
 			);

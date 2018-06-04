@@ -162,6 +162,23 @@ class ModelController {
         
     }
     
+    func toggleFavouriteDay(item: Day){
+        
+        let favList = checkForExistingFavourites()
+        var found = false
+        for index in favList.objectIDs(forRelationshipNamed: "days"){
+            if index == item.objectID{
+                favList.removeFromDays(item)
+                found = true
+            }
+        }
+        if found == false{
+            favList.addToDays(item)
+        }
+        PersistenceService.saveContext()
+        
+    }
+    
     //Returns true if item is favourites - currently only meals
     func itemInFavouritesFood(item: Meals) -> Bool{
         
@@ -185,6 +202,16 @@ class ModelController {
         return false
     }
     
+    func itemInFavouritesDay(item: Day) -> Bool{
+        
+        let favList = checkForExistingFavourites()
+        for index in favList.objectIDs(forRelationshipNamed: "days"){
+            if index == item.objectID{
+                return true
+            }
+        }
+        return false
+    }
     //Currently only fetches meals
     func fetchFavouritesFood() -> [Meals]{
         let fetchRequest: NSFetchRequest<Meals> = Meals.fetchRequest()
@@ -212,11 +239,27 @@ class ModelController {
         fetchRequest.sortDescriptors = sortDescriptors
         let foundExercise = try? PersistenceService.context.fetch(fetchRequest)
         if(foundExercise == nil){
-            print("Error fetching meals")
+            print("Error fetching exercise")
             return []
         }
         else{
             return foundExercise!
+        }
+    }
+    func fetchFavouritesDays() -> [Day]{
+        let fetchRequest: NSFetchRequest<Day> = Day.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "favourite != nil")
+        //Sorts alphabetically downwards
+        let sectionSortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        let sortDescriptors = [sectionSortDescriptor]
+        fetchRequest.sortDescriptors = sortDescriptors
+        let foundDays = try? PersistenceService.context.fetch(fetchRequest)
+        if(foundDays == nil){
+            print("Error fetching days")
+            return []
+        }
+        else{
+            return foundDays!
         }
     }
     

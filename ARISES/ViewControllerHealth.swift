@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableViewDelegate{
+class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableViewDelegate, tableCellDelegate{
     
  /*   class ViewControllerHealth: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {*/
  /*
@@ -21,6 +21,7 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
     let stressLevel = ["not", "a little", "quite", "very"]
     var stressPicker = UIPickerView()
    */
+    @IBOutlet weak var favouritesButton: UIButton!
     
     @IBOutlet weak var healthLogTable: UITableView!
     @IBOutlet weak var filterHypoOutlet: UIButton!
@@ -53,10 +54,27 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
                     self.thirtyDaysOutlet.setTitleColor(#colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1), for: .normal)
                     self.sixtyDaysOutlet.setTitleColor(#colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1), for: .normal)
                 }
+                else if self.daysToShow == "none"{
+                    self.sevenDaysOutlet.setTitleColor(#colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1), for: .normal)
+                    self.thirtyDaysOutlet.setTitleColor(#colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1), for: .normal)
+                    self.sixtyDaysOutlet.setTitleColor(#colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1), for: .normal)
+                }
             }
         }
     }
-    
+    private var showFavouritesHealth = false{
+        didSet{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                if self.showFavouritesHealth == false{
+                    self.favouritesButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+                }
+                else{
+                    self.favouritesButton.tintColor = #colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1)
+                }
+                self.updateTable()
+            }
+        }
+    }
     private var filterHypo = false{
         didSet{
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05){
@@ -72,8 +90,8 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
         }
     }
     private var loggedDays = [Day]()
-    private var loggedExercise = [Exercise]()
-    private var loggedExerciseTotals = [Int]()
+    //private var loggedExercise = [Exercise]()
+   // private var loggedExerciseTotals = [Int]()
     //MARK: Override
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,21 +99,26 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
         stressPicker.delegate = self
         stressPicker.dataSource = self
         stressField.inputView = stressPicker*/
-        
+        favouritesButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+
         updateTable()
     }
         
     @IBAction func sevenDaysButton(_ sender: UIButton) {
         daysToShow  = "seven"
+        showFavouritesHealth = false
     }
     
     @IBAction func thirtyDaysButton(_ sender: UIButton) {
         daysToShow = "thirty"
+        showFavouritesHealth = false
 
     }
     
     @IBAction func sixtyDaysButton(_ sender: UIButton) {
         daysToShow = "sixty"
+        showFavouritesHealth = false
+
     }
 
     @IBAction func filterHypoButton(_ sender: Any) {
@@ -120,7 +143,31 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
+    //MARK: - Favourite buttons
+    //Toggle between favourite and daily log views
+    @IBAction func toggleFavourites(_ sender: Any) {
+        if self.showFavouritesHealth == false{
+            showFavouritesHealth = true
+            selectedCellIndexPath = []
+        }
+        else{
+            showFavouritesHealth = false
+        }
+    }
     
+    //TODO: Either add remove buttons in expanded or allow a way to remove favourites
+    func didPressButton(_ tag: Int) {
+        if showFavouritesHealth != true{
+            let toFav = loggedDays[tag]
+            //print("I have toggled \(toFav.name!)")
+            ModelController().toggleFavouriteDay(item: toFav)
+            updateTable()
+        }
+    }
+    
+    func didPressCameraButton(_tag: Int){
+        print("incomplete functionality")
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return loggedDays.count
@@ -130,9 +177,18 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as!ViewControllerTableViewCell
         
+        cell.cellDelegate = self
+        cell.tag = indexPath.row
+        
         let currentDay = loggedDays[indexPath.row]
         cell.dateInLog.text = currentDay.date
-        //find day exercise
+        
+        if ModelController().itemInFavouritesDay(item: currentDay){
+            cell.favouriteHealthButton.tintColor = #colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1)
+        }
+        else{
+            cell.favouriteHealthButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+        }
         
         if (currentDay.glucoseTags?.contains("Hypo")) != nil {
             cell.healthLogHypo.text = "Hypo"
@@ -152,21 +208,38 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
         else{
             cell.healthLogExercise.text = "0"
         }
+        
+        
+        if showFavouritesHealth == true{
+            //Show something
+
+        }
+        else{
+            //Show something else
+        }
+
         return(cell)
     }
     
     private func updateTable(){
-        if(daysToShow == "seven"){
-            let loggedDays = ModelController().fetchDay(degreeOfTimeTravel: -7)
+        if showFavouritesHealth == true{
+            let loggedDays = ModelController().fetchFavouritesDays()
             self.loggedDays = loggedDays
+            daysToShow = "none"
         }
-        else if(daysToShow == "thirty"){
-            let loggedDays = ModelController().fetchDay(degreeOfTimeTravel: -30)
-            self.loggedDays = loggedDays
-        }
-        else if(daysToShow == "sixty"){
-            let loggedDays = ModelController().fetchDay(degreeOfTimeTravel: -60)
-            self.loggedDays = loggedDays
+        else{
+            if(daysToShow == "seven"){
+                let loggedDays = ModelController().fetchDay(degreeOfTimeTravel: -7)
+                self.loggedDays = loggedDays
+            }
+            else if(daysToShow == "thirty"){
+                let loggedDays = ModelController().fetchDay(degreeOfTimeTravel: -30)
+                self.loggedDays = loggedDays
+            }
+            else if(daysToShow == "sixty"){
+                let loggedDays = ModelController().fetchDay(degreeOfTimeTravel: -60)
+                self.loggedDays = loggedDays
+            }
         }
         //Filter based on tags
         if filterHypo == true{
