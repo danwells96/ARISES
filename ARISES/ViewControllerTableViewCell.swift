@@ -68,17 +68,5 @@ class ViewControllerTableViewCell: UITableViewCell {
     @IBAction func buttonPressedCamera(_ sender: UIButton) {
         cellDelegate?.didPressCameraButton(_tag: self.tag)
     }
-    
-    /*
-    func set(content: Meals){
-        self.loggedFoodName.text = content.name
-        self.loggedFoodTime.text = content.time
-        
-        if(expanded == true){
-            self.loggedFoodCarbs.text = "\(content.carbs)"
- 
-        }
-        
-    }*/
 
 }

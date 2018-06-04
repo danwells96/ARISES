@@ -228,22 +228,12 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         if showFavouritesFood == true{
             let loggedMeals = ModelController().fetchFavouritesFood()
             self.loggedMeals = loggedMeals
-            self.foodLogTable.reloadData()
         }
         else{
             let loggedMeals = ModelController().fetchMeals(day: Date())
             self.loggedMeals = loggedMeals
-            self.foodLogTable.reloadData()
         }
-        /*
-         //testing computed variables
-        for index in loggedMeals{
-            if index.day?.low != nil{
-                print("\(index.day?.low)")
-            }
-        }
- */
- 
+        self.foodLogTable.reloadData()
     }
 
     //MARK: - Add food button

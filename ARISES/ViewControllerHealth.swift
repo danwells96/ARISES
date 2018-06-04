@@ -38,7 +38,7 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
     private var daysToShow = "none"{
         didSet{
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05){
-                self.updateTable()
+                
                 if self.daysToShow == "seven"{
                     self.sevenDaysOutlet.setTitleColor(#colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1), for: .normal)
                     self.thirtyDaysOutlet.setTitleColor(#colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1), for: .normal)
@@ -59,6 +59,7 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
                     self.thirtyDaysOutlet.setTitleColor(#colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1), for: .normal)
                     self.sixtyDaysOutlet.setTitleColor(#colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1), for: .normal)
                 }
+                self.updateTable()
             }
         }
     }
@@ -71,7 +72,6 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
                 else{
                     self.favouritesButton.tintColor = #colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1)
                 }
-                self.updateTable()
             }
         }
     }
@@ -149,13 +149,15 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
         if self.showFavouritesHealth == false{
             showFavouritesHealth = true
             selectedCellIndexPath = []
+            self.daysToShow = "none"
+
         }
         else{
             showFavouritesHealth = false
         }
     }
     
-    //TODO: Either add remove buttons in expanded or allow a way to remove favourites
+  
     func didPressButton(_ tag: Int) {
         if showFavouritesHealth != true{
             let toFav = loggedDays[tag]
@@ -208,15 +210,6 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
         else{
             cell.healthLogExercise.text = "0"
         }
-        
-        
-        if showFavouritesHealth == true{
-            //Show something
-
-        }
-        else{
-            //Show something else
-        }
 
         return(cell)
     }
@@ -225,7 +218,7 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
         if showFavouritesHealth == true{
             let loggedDays = ModelController().fetchFavouritesDays()
             self.loggedDays = loggedDays
-            daysToShow = "none"
+            //daysToShow = "none"
         }
         else{
             if(daysToShow == "seven"){
