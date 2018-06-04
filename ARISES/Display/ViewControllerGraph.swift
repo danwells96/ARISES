@@ -19,7 +19,7 @@ struct customType{
 class ViewControllerGraph: UIViewController{
     
     //Today temp variable till real-time data available
-    private var today: String = "6/01/2016 00:00"
+    private var today: String = /*"6/1/2016 00:00"*/"4/06/2018 00:00"
     var tMinus1Compare : [Double] = []
     var tMinus2Compare : [Double] = []
     var tMinus3Compare : [Double] = []
@@ -164,9 +164,12 @@ class ViewControllerGraph: UIViewController{
                              "06/01/2016 13:25",
                              "06/01/2016 16:26",
                              "06/01/2016 18:26",
-                             //"06/01/2016 19:50",
-                             //"06/01/2016 22:43",
-                             //"06/01/2016 23:37"
+                             "06/01/2016 19:50",
+                             "06/01/2016 22:43",
+                             "06/01/2016 23:37",
+        "04/06/2018 10:08",
+        "04/06/2018 11:34",
+        "04/06/2018 15:55"
     ]
     
     var rawValues: [Double] = [0,
@@ -245,9 +248,11 @@ class ViewControllerGraph: UIViewController{
                                9.1,
                                4.1,
                                8.1,
-                               //4.5,
-                               //6.6,
-                               //10.3
+                               4.5,
+                               6.6,
+                               10.3,
+                            6.8, 8.9,
+        12.5
     ]
 
     
@@ -276,8 +281,8 @@ class ViewControllerGraph: UIViewController{
         let tmpDay = dayFormatter.date(from: tmpString)
         
         let glucoseLogs = ModelController().fetchGlucose(day: tmpDay!) //produces array of glucose items
-        if glucoseLogs == [] {
-            for i in 0...(rawData.count - 1){
+        if glucoseLogs.count ==  0{
+            for i in (glucoseLogs.count)...(rawData.count - 1){
                 let date = dateFormatter.date(from: rawData[i])
                 let timeString = timeFormatter.string(from: date!)
                 let dayString = dayFormatter.string(from: date!)
@@ -343,7 +348,8 @@ class ViewControllerGraph: UIViewController{
         timeFormatter.dateFormat = "HH:mm"
         let hourFormatter = DateFormatter()
         hourFormatter.dateFormat = "HH"
-        
+        let pickerFormatter = DateFormatter()
+        pickerFormatter.dateFormat = "hh:mm a"
         
         //set function to today() when live code
         let day = dateFormatter.date(from: today)
@@ -409,20 +415,36 @@ class ViewControllerGraph: UIViewController{
         }
         
         let prevItemTime = timeFormatter.date(from: "00:00")
+        var mealCount : Int = 0
+        print(todayArray.count)
         for item in todayArray{
             if(item.value != 0){
                 let currItemTime = timeFormatter.date(from: item.time!)
                 for meal in todayFoodArray{
                     //Checks that the meal time is between the current point and previous point tested
-                    let mealTime = timeFormatter.date(from: meal.time!)
-                    if(((mealTime!) < (currItemTime!)) && ((mealTime!) > (prevItemTime!))){
-                        let combinedMealDate = keyDay + " " + meal.time!
-                        print("Meal at this time: "+item.time!)
+                    let mealTime = pickerFormatter.date(from: meal.time!)
+                    let mealTimeString = timeFormatter.string(from: mealTime!)
+                    let combinedMealDate = keyDay + " " + mealTimeString
+                    if(((mealTime!) < (currItemTime!)) && (todayArray.index(of: item) == 0)){
+                        print("first thing to plot")
+                        if(points.count < todayFoodArray.count){
+                            valueArray.append(ChartAxisValueDouble(item.value))
+                            dateArray.append(ChartAxisValueDate(date: dateFormatter.date(from: combinedMealDate)!, formatter: dateFormatter))
+                            points.append(ChartPoint(x: dateArray[dateArray.endIndex - 1], y: valueArray[valueArray.endIndex - 1]))
+                            mealCount = mealCount + 1
+                        }
+                    }else if(((mealTime!) < (currItemTime!)) && ((mealTime!) > (prevItemTime!))){
+                        print("Its true")
                         //Adds the meal as a point on graph
                         //Uses previous glucose reading instead of taking a new one (might want to change in future)
-                        valueArray.append(ChartAxisValueDouble(item.value))
-                        dateArray.append(ChartAxisValueDate(date: dateFormatter.date(from: combinedMealDate)!, formatter: dateFormatter))
-                        points.append(ChartPoint(x: dateArray[dateArray.endIndex - 1], y: valueArray[valueArray.endIndex - 1]))
+                        print(meal.name)
+                        //Something needs to make this logic work only once per meal
+                        if(points.count <= todayFoodArray.count){
+                            valueArray.append(ChartAxisValueDouble(item.value))
+                            dateArray.append(ChartAxisValueDate(date: dateFormatter.date(from: combinedMealDate)!, formatter: dateFormatter))
+                            points.append(ChartPoint(x: dateArray[dateArray.endIndex - 1], y: valueArray[valueArray.endIndex - 1]))
+                            mealCount = mealCount + 1
+                        }
                     }
                 }
                 for exercise in todayExerciseArray{
@@ -532,17 +554,84 @@ class ViewControllerGraph: UIViewController{
         
         // mark data points
         let circleViewGenerator = {(chartPointModel: ChartPointLayerModel, layer: ChartPointsLayer, chart: Chart) -> UIView? in
-            let circleView = ChartPointEllipseView(center: chartPointModel.screenLoc, diameter: 5)
+            let circleView = ChartPointEllipseView(center: chartPointModel.screenLoc, diameter: 9)
             
             circleView.animDuration = 1.0
             circleView.fillColor = UIColor.red
             circleView.borderWidth = 0.9
             circleView.borderColor = UIColor.red
             circleView.isUserInteractionEnabled = true
+            
             let w: CGFloat = 80
             let h: CGFloat = 60
+            var text : String = ""
+            let font = UIFont.boldSystemFont(ofSize: 9)
+
+            
+            //attaches anything of note to the data point
+            if(chartPointModel.chartPoint.y.scalar > 11.1){
+                circleView.data = "Hyperglycemic"
+                text = circleView.data!
+            }else if(chartPointModel.chartPoint.y.scalar < 3.9){
+                circleView.data = "Hypoglycemic"
+                text = circleView.data!
+            }else{
+                circleView.data = ""
+            }
+            
+            // Showing meal details on correct point click
+            // Gets meals and times they were at to identify which point in the graph is the one where the meal was consumed
+            let meals = ModelController().fetchMeals(day: day!)
+            let exercises = ModelController().fetchExercise(day: day!)
+            let insulins = ModelController().fetchInsulin(day: day!)
+            let xVal = chartPointModel.chartPoint.x.scalar
+            let time = Date.init(timeIntervalSince1970: xVal)
+            let timeDate = timeFormatter.string(from: time)
+            
+            //searches through meals for the day for meals that align with data point on the graph in terms of time
+            for meal in meals{
+                let mealTime = pickerFormatter.date(from: meal.time!)
+                let mealTimeString = timeFormatter.string(from: mealTime!)
+                //print("\(meal.time == timeDate): \(meal.name)")
+                if(mealTimeString == timeDate){
+                    //print("In here")
+                    circleView.data = "🍎"
+                    text = "\(meal.name!) Carbs: \(meal.carbs) Protein: \(meal.protein) Fat: \(meal.fat) "
+                    if let chartViewScreenLoc = layer.containerToGlobalScreenLoc(chartPointModel.chartPoint) {
+                        let x: CGFloat = {
+                            let attempt = chartViewScreenLoc.x - (w/2)
+                            let leftBound: CGFloat = chart.bounds.origin.x
+                            let rightBound = chart.bounds.size.width - 5
+                            if attempt < leftBound {
+                                return chart.view.frame.origin.x
+                            } else if attempt + w > rightBound {
+                                return rightBound - w
+                            }
+                            return attempt
+                        }()
+                    
+                        let bu = InfoBubble(point: CGPoint(x: x, y: chartViewScreenLoc.y), preferredSize: CGSize(width: 30, height: 20), superview: self.view, text: circleView.data!, font: font, textColor: UIColor.yellow)
+                    chart.addSubview(bu)
+                    }
+                }
+            }
+            for exercise in exercises{
+                if(exercise.time == timeDate){
+                    circleView.data = "🤾‍♀️"
+                    text = "\(exercise.name!) for \(exercise.duration!)"
+                }
+            }
+            for insulin in insulins{
+                if(insulin.time == timeDate){
+                    circleView.data = "💉"
+                    text = "Bolus insulin of \(insulin.units) units"
+                }
+            }
+            //print(text)
+            
+            
+            
             circleView.touchHandler = {
-                
                 if let chartViewScreenLoc = layer.containerToGlobalScreenLoc(chartPointModel.chartPoint) {
                     let x: CGFloat = {
                         let attempt = chartViewScreenLoc.x - (w/2)
@@ -556,70 +645,25 @@ class ViewControllerGraph: UIViewController{
                         return attempt
                     }()
                     
-                    var text : String = ""
-
                     
-                    //attaches anything of note to the data point
-                    print(chartPointModel.chartPoint.y.scalar)
-                    if(chartPointModel.chartPoint.y.scalar > 11.1){
-                        circleView.data = "Hyperglycemic"
-                    }else if(chartPointModel.chartPoint.y.scalar < 3.9){
-                        circleView.data = "Hypoglycemic"
-                    }
-                
-                    
-                    //Showing meal details on correct point click
-                    
-                    //Gets meals and times they were at to identify which point in the graph is the one where the meal was consumed
-                    let meals = ModelController().fetchMeals(day: day!)
-                    let exercises = ModelController().fetchExercise(day: day!)
-                    let insulins = ModelController().fetchInsulin(day: day!)
-                    let xVal = chartPointModel.chartPoint.x.scalar
-                    let time = Date.init(timeIntervalSince1970: xVal)
-                    let timeDate = timeFormatter.string(from: time)
-                    
-                    //searches through meals for the day for meals that align with data point on the graph in terms of time
-                    for meal in meals{
-                        if(meal.time == timeDate){
-                            print("Carbs: " + String(meal.carbs))
-                            circleView.data = "🍎"
-                            text = "Carbs: \(meal.carbs) \n Protein: \(meal.protein) \n Fat: \(meal.fat) \n"
-                            print(text)
-                        }
-                    }
-                    
-                    for exercise in exercises{
-                        if(exercise.time == timeDate){
-                            circleView.data = "🤾‍♀️"
-                            text = "\(exercise.name!) for \(exercise.duration!) \n"
-                            print(text)
-                        }
-                    }
-                    
-                    for insulin in insulins{
-                        if(insulin.time == timeDate){
-                            circleView.data = "💉"
-                            text = "Bolus insulin of \(insulin.units) units \n"
-                        }
-                    }
-            
-                    
-                    
-                    let font = UIFont.boldSystemFont(ofSize: 9)
-                    if(text != ""){
+                    if(circleView.data != ""){
                         let bu = InfoBubble(point: CGPoint(x: x, y: chartViewScreenLoc.y), preferredSize: CGSize(width: w, height: h), superview: self.view, text: text, font: font, textColor: UIColor.yellow)
                         chart.addSubview(bu)
-                        if(text == "🍎"){
-                            print("Meal")
-                            //Ideally want to change it so that it displays macros when clicked of the meal
+                        
+                        if((circleView.data == "🍎") || (circleView.data == "🤾‍♀️") || (circleView.data == "💉")){
+                            UIView.animate(withDuration: 3.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+                                bu.alpha = 0.0
+                            }, completion: {finished in bu.removeFromSuperview()})
+                            print("special case")
                         }else{
                             UIView.animate(withDuration: 3.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
                                 bu.alpha = 0.0
                             }, completion: {finished in bu.removeFromSuperview()})
                         }
-                    }
-                }
-            }
+                    }   //info bubble
+                }   //if
+            }//touch handler
+            
             return circleView
         }
         
