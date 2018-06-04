@@ -37,7 +37,7 @@ class Day: NSManagedObject {
     //MARK: - Meal stats
     var foodStats: (totCarbs: Int32, totProtein: Int32, totFat: Int32)?  {
         guard self.meals?.anyObject() != nil else {
-            return nil
+            return (0, 0, 0)
         }
         var tempCarbs = Int32(0)
         var tempFat = Int32(0)

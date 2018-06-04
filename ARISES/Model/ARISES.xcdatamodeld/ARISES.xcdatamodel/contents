@@ -9,10 +9,10 @@
         <relationship name="meals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Meals" inverseName="day" inverseEntity="Meals" syncable="YES"/>
     </entity>
     <entity name="Exercise" representedClassName=".Exercise" syncable="YES" codeGenerationType="category">
-        <attribute name="duration" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="intensity" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="duration" attributeType="String" syncable="YES"/>
+        <attribute name="intensity" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="time" attributeType="String" syncable="YES"/>
         <relationship name="day" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="exercise" inverseEntity="Day" syncable="YES"/>
         <relationship name="favourite" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Favourites" inverseName="exercise" inverseEntity="Favourites" syncable="YES"/>
     </entity>

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate, tableCellDelegate {
+class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate, tableCellDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
 
     //TODO: solve keyboard covering name in some phones
@@ -22,17 +22,22 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     @IBOutlet weak var proteinTextField: UITextField!
     @IBOutlet weak var fatTextField: UITextField!
     @IBOutlet weak var foodNameTextField: UITextField!
+
     //defining picker related variables
     private var foodTimePicker = UIDatePicker()
     
     @IBOutlet weak var favouritesButton: UIButton!
     //defining table related variables
     private var loggedMeals = [Meals]()
+    private var expanded = false
+    var selectedCellIndexPath = [IndexPath?]()
+    let selectedCellHeight: CGFloat = 89.0
+    let unselectedCellHeight: CGFloat = 40.0
     //Variable tracking state of favourites views
-    private var showFavourites = false{
+    private var showFavouritesFood = false{
         didSet{
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                if self.showFavourites == false{
+                if self.showFavouritesFood == false{
                     self.favouritesButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
                 }
                 else{
@@ -104,11 +109,11 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     //MARK: - Favourite buttons
     //Toggle between favourite and daily log views
     @IBAction func toggleFavourites(_ sender: Any) {
-        if self.showFavourites == false{
-            showFavourites = true
+        if self.showFavouritesFood == false{
+            showFavouritesFood = true
         }
         else{
-            showFavourites = false
+            showFavouritesFood = false
         }
         //Testing day computed properties
     /*    let curDay = ModelController().findOrMakeDay(day: Date())
@@ -118,13 +123,23 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     
     //TODO: Either add remove buttons in expanded or allow a way to remove favourites
     func didPressButton(_ tag: Int) {
-        if showFavourites != true{
+        if showFavouritesFood != true{
             let toFav = loggedMeals[tag]
             //print("I have toggled \(toFav.name!)")
-            ModelController().toggleFavourite(item: toFav)
+            ModelController().toggleFavouriteFood(item: toFav)
             updateTable()
         }
     }
+    
+    func didPressCameraButton(_tag: Int){
+        let picker = UIImagePickerController()
+        
+        picker.delegate = self
+        picker.sourceType = .camera
+        
+        present(picker, animated: true, completion: nil)
+    }
+    
     //MARK: - Table functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return loggedMeals.count
@@ -142,27 +157,33 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         
         cell.loggedFoodName.text = currentMeal.name
         cell.loggedFoodTime.text = currentMeal.time
-        cell.loggedFoodCarbs.text = "\(currentMeal.carbs)"
+        cell.loggedFoodCarbs.text = "Carbs = \(currentMeal.carbs)"
+        cell.loggedFoodProtein.text = "Protein = \(currentMeal.protein)"
+        cell.loggedFoodFat.text = "Fat = \(currentMeal.fat)"
         
         
-        if ModelController().itemInFavourites(item: currentMeal){
+        if ModelController().itemInFavouritesFood(item: currentMeal){
             cell.favouriteFoodButton.tintColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
         }
         else{
             cell.favouriteFoodButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
         }
         
-        if showFavourites == true{
+        if showFavouritesFood == true{
             cell.loggedFoodTime.isHidden = true
+            cell.loggedFoodFat.isHidden = true
+            cell.loggedFoodProtein.isHidden = true
+            cell.loggedFoodCarbs.isHidden = true
             //cell.loggedFoodTime.text = "Select"
             //cell.loggedFoodTime.textColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
         }
         else{
             cell.loggedFoodTime.isHidden = false
-
+            cell.loggedFoodFat.isHidden = false
+            cell.loggedFoodProtein.isHidden = false
+            cell.loggedFoodCarbs.isHidden = false
         }
-        
-        
+
         return(cell)
     }
     
@@ -170,7 +191,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     //Will likely be replaced with a button to select and used for expanding
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if showFavourites == true{
+        if showFavouritesFood == true{
             ModelController().addMeal(
                 name: loggedMeals[indexPath.row].name!,
                 time: ModelController().formatDateToTime(date: Date()),
@@ -179,28 +200,32 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
                 fat: loggedMeals[indexPath.row].fat,
                 protein: loggedMeals[indexPath.row].protein)
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { //??Is this delay?
-                self.showFavourites = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { 
+                self.showFavouritesFood = false
             }
+        }
+        else if selectedCellIndexPath.contains(indexPath){
+            selectedCellIndexPath = selectedCellIndexPath.filter() { $0 != indexPath }
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        }
+        else{
+            selectedCellIndexPath.append(indexPath)
+            tableView.beginUpdates()
+            tableView.endUpdates()
         }
     }
     
-    /*
-    func tableView(_ tableView: UITableView, heightForRowAt selection: IndexPath) -> CGFloat {
-        if(expanded == false){
-            expanded = true
-
-            return 90
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if selectedCellIndexPath.contains(indexPath) {
+            return selectedCellHeight
         }
-        else{
-            expanded = false
-            return 40
-        }
-    }*/
+        return unselectedCellHeight
+    }
     
     private func updateTable(){
-        if showFavourites == true{
-            let loggedMeals = ModelController().fetchFavourites()
+        if showFavouritesFood == true{
+            let loggedMeals = ModelController().fetchFavouritesFood()
             self.loggedMeals = loggedMeals
             self.foodLogTable.reloadData()
         }
@@ -232,7 +257,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
                     carbs: Int32(carbsTextField.text!)!,
                     fat: Int32(fatTextField.text!)!,
                     protein: Int32(proteinTextField.text!)!)
-            showFavourites = false
+            showFavouritesFood = false
             
             foodNameTextField.text = ""
             foodTimeField.text = ""
@@ -241,16 +266,5 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
             fatTextField.text = ""
         }
     }
-    
- /*   @IBAction func expandFoodCell(_ sender: Any) {
-        if(expanded == false){
-            height = 90
-            expanded = true
-        }
-        else{
-            height = 44
-            expanded = false
-        }
-        
-    }*/
+
 }

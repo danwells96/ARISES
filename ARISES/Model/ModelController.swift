@@ -10,14 +10,12 @@ import Foundation
 import CoreData
 
 class ModelController {
-
+    
     //TODO: - To Do List
     //TODO: Fetch requests require sorting. Short times currently sort incorrectly
     //TODO: Abstract functions to apply to food, exercise and days etc.
     //TODO: Test and validate/tighten up corner cases for data values
     //TODO: Ensure optionals never cause exceptions e.g. with Guard
-    
-    
     
     //MARK: - Basic date formatting functions
     func formatDateToDay(date: Date) -> String{
@@ -60,7 +58,7 @@ class ModelController {
         let day = formatDateToDay(date: day)
         //predicate date
         let dateFetch: NSFetchRequest<Day> = Day.fetchRequest()
-       dateFetch.predicate = NSPredicate(format: "date == %@", day)
+        dateFetch.predicate = NSPredicate(format: "date == %@", day)
         let checkForDay = try? PersistenceService.context.fetch(dateFetch)
         if checkForDay != nil{
             if checkForDay?.count != 0{
@@ -77,6 +75,7 @@ class ModelController {
         return checkForDay![0]
         //Should never happen and will almost certainly crash if it does
     }
+    
     //MARK: - Data object setting (add/toggle)
     func addMeal(name: String, time: String, date: Date, carbs: Int32, fat: Int32, protein: Int32){
         
@@ -130,7 +129,7 @@ class ModelController {
     
     //MARK: - Data object getting (fetch/return)
     //Only toggles meals currently
-    func toggleFavourite(item: Meals){
+    func toggleFavouriteFood(item: Meals){
         
         let favList = checkForExistingFavourites()
         var found = false
@@ -146,8 +145,25 @@ class ModelController {
         PersistenceService.saveContext()
     }
     
+    func toggleFavouriteExercise(item: Exercise){
+        
+        let favList = checkForExistingFavourites()
+        var found = false
+        for index in favList.objectIDs(forRelationshipNamed: "exercise"){
+            if index == item.objectID{
+                favList.removeFromExercise(item)
+                found = true
+            }
+        }
+        if found == false{
+            favList.addToExercise(item)
+        }
+        PersistenceService.saveContext()
+        
+    }
+    
     //Returns true if item is favourites - currently only meals
-    func itemInFavourites(item: Meals) -> Bool{
+    func itemInFavouritesFood(item: Meals) -> Bool{
         
         let favList = checkForExistingFavourites()
         for index in favList.objectIDs(forRelationshipNamed: "meals"){
@@ -158,8 +174,19 @@ class ModelController {
         return false
     }
     
+    func itemInFavouritesExercise(item: Exercise) -> Bool{
+        
+        let favList = checkForExistingFavourites()
+        for index in favList.objectIDs(forRelationshipNamed: "exercise"){
+            if index == item.objectID{
+                return true
+            }
+        }
+        return false
+    }
+    
     //Currently only fetches meals
-    func fetchFavourites() -> [Meals]{
+    func fetchFavouritesFood() -> [Meals]{
         let fetchRequest: NSFetchRequest<Meals> = Meals.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "favourite != nil")
         //Sorts alphabetically downwards
@@ -173,6 +200,23 @@ class ModelController {
         }
         else{
             return foundMeals!
+        }
+    }
+    
+    func fetchFavouritesExercise() -> [Exercise]{
+        let fetchRequest: NSFetchRequest<Exercise> = Exercise.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "favourite != nil")
+        //Sorts alphabetically downwards
+        let sectionSortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        let sortDescriptors = [sectionSortDescriptor]
+        fetchRequest.sortDescriptors = sortDescriptors
+        let foundExercise = try? PersistenceService.context.fetch(fetchRequest)
+        if(foundExercise == nil){
+            print("Error fetching meals")
+            return []
+        }
+        else{
+            return foundExercise!
         }
     }
     
@@ -193,6 +237,7 @@ class ModelController {
             return foundMeals!
         }
     }
+    
     func fetchGlucose(day: Date) -> [Glucose]{
         let fetchRequest: NSFetchRequest<Glucose> = Glucose.fetchRequest()
         let dayToShow = ModelController().formatDateToDay(date: day)
@@ -243,4 +288,19 @@ class ModelController {
             return foundExercise!
         }
     }
+    
+    func fetchDay(degreeOfTimeTravel: Int) -> [Day]{
+        let fetchRequest: NSFetchRequest<Day> = Day.fetchRequest()
+        let oldestDay = Calendar.current.date(byAdding: .day, value: degreeOfTimeTravel, to: Date())
+        fetchRequest.predicate = NSPredicate(format: "date BETWEEN {%@, %@}", ModelController().formatDateToDay(date: oldestDay!), ModelController().formatDateToDay(date: Date()))
+        let foundDay = try? PersistenceService.context.fetch(fetchRequest)
+        if(foundDay == nil){
+            print("Error fetching day")
+            return[]
+        }
+        else{
+            return foundDay!
+        }
+    }
+
 }

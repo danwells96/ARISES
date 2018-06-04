@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDataSource, UITableViewDelegate{
+class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDataSource, UITableViewDelegate, tableCellDelegate{
     
     //TODO: - Update to add favourites code from food section
     
@@ -25,7 +25,24 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
     private var exerciseTimePicker = UIDatePicker()
     private var exerciseDurationPicker = UIDatePicker()
     //table related variables
+    @IBOutlet weak var favouritesButton: UIButton!
+    
     private var loggedExercise = [Exercise]()
+    
+    private var showFavouritesExercise = false{
+        didSet{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                if self.showFavouritesExercise == false{
+                    self.favouritesButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+                }
+                else{
+                    self.favouritesButton.tintColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
+                }
+                self.updateTable()
+            }
+        }
+
+    }
 
     //MARK: - Override
     override func viewDidLoad() {
@@ -47,6 +64,7 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         exerciseNameField.inputAccessoryView = toolBar
         
+        favouritesButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
         updateTable()
 
     }
@@ -107,6 +125,28 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
         return 1
     }
     
+    @IBAction func toggleFavourites(_ sender: Any) {
+        if self.showFavouritesExercise == false{
+            showFavouritesExercise = true
+        }
+        else{
+            showFavouritesExercise = false
+        }
+    }
+    
+    func didPressButton(_ tag: Int) {
+        if showFavouritesExercise != true{
+            let toFav = loggedExercise[tag]
+            ModelController().toggleFavouriteExercise(item: toFav)
+            updateTable()
+        }
+    }
+    
+    ////sorry I know this is the worst code ever
+    func didPressCameraButton(_tag: Int) {
+        let _ = 1
+    }
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component:Int) -> Int{
         return exerciseIntensity.count
     }
@@ -127,21 +167,65 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ViewControllerTableViewCell
         
+        cell.cellDelegate = self
+        cell.tag = indexPath.row
+        
         let currentExercise = loggedExercise[indexPath.row]
+        
         cell.loggedExerciseName.text = currentExercise.name
         cell.loggedExerciseTime.text = currentExercise.time
         cell.loggedExerciseDuration.text = currentExercise.duration
+        
+        if ModelController().itemInFavouritesExercise(item: currentExercise){
+            cell.favouriteExerciseButton.tintColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
+        }
+        else{
+            cell.favouriteExerciseButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+        }
+        
+        if showFavouritesExercise == true{
+            cell.loggedExerciseTime.isHidden = true
+        }
+        else{
+            cell.loggedExerciseTime.isHidden = false
+        }
+        
         return(cell)
     }
     
-    private func updateTable(){
-        let loggedExercise = ModelController().fetchExercise(day: Date())
-        self.loggedExercise = loggedExercise
-        self.exerciseLogTable.reloadData()
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if showFavouritesExercise == true{
+            ModelController().addExercise(
+                name: loggedExercise[indexPath.row].name!,
+                time: ModelController().formatDateToTime(date: Date()),
+                date: Date(),
+                intensity: loggedExercise[indexPath.row].intensity!,
+                duration: loggedExercise[indexPath.row].duration!)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1){
+                self.showFavouritesExercise = false
+            }
+        }
         
     }
+    
+    private func updateTable(){
+        if showFavouritesExercise == true{
+            let loggedExercise = ModelController().fetchFavouritesExercise()
+            self.loggedExercise = loggedExercise
+            self.exerciseLogTable.reloadData()
+        }
+        else{
+            let loggedExercise = ModelController().fetchExercise(day: Date())
+            self.loggedExercise = loggedExercise
+            self.exerciseLogTable.reloadData()
+        }
+    }
+    
     @objc private func doneWithKeypad(){
         view.endEditing(true)
     }
@@ -155,7 +239,8 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
                 date: Date(),
                 intensity: exerciseIntensityField.text!,
                 duration: exerciseDurationField.text!)
-            updateTable()
+            showFavouritesExercise = false
+
             
             exerciseNameField.text = ""
             exerciseTimeField.text = ""

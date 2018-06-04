@@ -10,6 +10,7 @@ import UIKit
 
 protocol tableCellDelegate : class {
     func didPressButton(_ tag: Int)
+    func didPressCameraButton(_tag: Int)
 }
 
 class ViewControllerTableViewCell: UITableViewCell {
@@ -18,13 +19,22 @@ class ViewControllerTableViewCell: UITableViewCell {
     @IBOutlet weak var loggedFoodName: UILabel!
     @IBOutlet weak var loggedFoodTime: UILabel!
     @IBOutlet weak var loggedFoodCarbs: UILabel!
-    // @IBOutlet weak var loggedFoodCarbs: UILabel!
+    @IBOutlet weak var loggedFoodProtein: UILabel!
+    @IBOutlet weak var loggedFoodFat: UILabel!
     
+    @IBOutlet weak var editFoodButton: UIButton!
+    @IBOutlet weak var camera: UIButton!
     @IBOutlet weak var favouriteFoodButton: UIButton!
+    @IBOutlet weak var favouriteExerciseButton: UIButton!
     
     @IBOutlet weak var loggedExerciseDuration: UILabel!
     @IBOutlet weak var loggedExerciseName: UILabel!
     @IBOutlet weak var loggedExerciseTime: UILabel!
+    
+    @IBOutlet weak var dateInLog: UILabel!
+    @IBOutlet weak var healthLogExercise: UILabel!
+    @IBOutlet weak var healthLogHyper: UILabel!
+    @IBOutlet weak var healthLogHypo: UILabel!
     
     weak var cellDelegate: tableCellDelegate?
 
@@ -47,9 +57,13 @@ class ViewControllerTableViewCell: UITableViewCell {
     @IBAction func buttonPressed(_ sender: UIButton) {
         cellDelegate?.didPressButton(self.tag)
     }
-
+    @IBAction func buttonPressedExercise(_ sender: UIButton) {
+        cellDelegate?.didPressButton(self.tag)
+    }
     
-
+    @IBAction func buttonPressedCamera(_ sender: UIButton) {
+        cellDelegate?.didPressCameraButton(_tag: self.tag)
+    }
     
     /*
     func set(content: Meals){
