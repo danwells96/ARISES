@@ -556,7 +556,7 @@ class ViewControllerGraph: UIViewController{
                         return attempt
                     }()
                     
-                    var text : String
+                    var text : String = ""
 
                     
                     //attaches anything of note to the data point
@@ -583,27 +583,28 @@ class ViewControllerGraph: UIViewController{
                         if(meal.time == timeDate){
                             print("Carbs: " + String(meal.carbs))
                             circleView.data = "🍎"
+                            text = "Carbs: \(meal.carbs) \n Protein: \(meal.protein) \n Fat: \(meal.fat) \n"
+                            print(text)
                         }
                     }
                     
                     for exercise in exercises{
                         if(exercise.time == timeDate){
-                             circleView.data = "🤾‍♀️"
+                            circleView.data = "🤾‍♀️"
+                            text = "\(exercise.name!) for \(exercise.duration!) \n"
+                            print(text)
                         }
                     }
                     
                     for insulin in insulins{
                         if(insulin.time == timeDate){
                             circleView.data = "💉"
+                            text = "Bolus insulin of \(insulin.units) units \n"
                         }
                     }
             
                     
-                    if circleView.data != nil{
-                        text = circleView.data! + "\n"
-                    }else{
-                        text = ""
-                    }
+                    
                     let font = UIFont.boldSystemFont(ofSize: 9)
                     if(text != ""){
                         let bu = InfoBubble(point: CGPoint(x: x, y: chartViewScreenLoc.y), preferredSize: CGSize(width: w, height: h), superview: self.view, text: text, font: font, textColor: UIColor.yellow)
