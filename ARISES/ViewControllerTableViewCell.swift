@@ -37,6 +37,13 @@ class ViewControllerTableViewCell: UITableViewCell {
     @IBOutlet weak var healthLogHyper: UILabel!
     @IBOutlet weak var healthLogHypo: UILabel!
     
+    @IBOutlet weak var loggedHealthHypoIcon: UIButton!
+    @IBOutlet weak var loggedHealthHyperIcon: UIButton!
+    @IBOutlet weak var loggedHealthExerciseIcon: UIButton!
+    @IBOutlet weak var loggedHealthStressedIcon: UIButton!
+    @IBOutlet weak var loggedHealthIllnessIcon: UIButton!
+    
+    
     weak var cellDelegate: tableCellDelegate?
 
     

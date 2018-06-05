@@ -158,9 +158,9 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         
         cell.loggedFoodName.text = currentMeal.name
         cell.loggedFoodTime.text = currentMeal.time
-        cell.loggedFoodCarbs.text = "Carbs = \(currentMeal.carbs)"
-        cell.loggedFoodProtein.text = "Protein = \(currentMeal.protein)"
-        cell.loggedFoodFat.text = "Fat = \(currentMeal.fat)"
+        cell.loggedFoodCarbs.text = "Carbs: \(currentMeal.carbs)g"
+        cell.loggedFoodProtein.text = "Protein: \(currentMeal.protein)g"
+        cell.loggedFoodFat.text = "Fat: \(currentMeal.fat)g"
         
         
         if ModelController().itemInFavouritesFood(item: currentMeal){

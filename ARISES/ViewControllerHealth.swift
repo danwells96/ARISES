@@ -261,6 +261,8 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
         cell.tag = indexPath.row
         
         let currentDay = loggedDays[indexPath.row]
+        
+        
         cell.dateInLog.text = currentDay.date
         
         if ModelController().itemInFavouritesDay(item: currentDay){
@@ -289,6 +291,40 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
             cell.healthLogExercise.text = "0"
         }
 
+        //ICONS highlighting
+        if (currentDay.glucoseTags?.contains("Hypo")) != nil {
+            cell.loggedHealthHypoIcon.tintColor = #colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1)
+        }
+        else {
+            cell.loggedHealthHypoIcon.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+        }
+        if (currentDay.glucoseTags?.contains("Hyper")) != nil {
+            cell.loggedHealthHyperIcon.tintColor = #colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1)
+        }
+        else {
+            cell.loggedHealthHyperIcon.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+        }
+        if currentDay.exercise?.count != 0{
+            cell.loggedHealthExerciseIcon.tintColor = #colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1)
+        }
+        else {
+            cell.loggedHealthExerciseIcon.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+        }
+        if currentDay.stress?.count != 0{
+            cell.loggedHealthStressedIcon.tintColor = #colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1)
+        }
+        else {
+            cell.loggedHealthStressedIcon.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+        }
+        if currentDay.illness?.count != 0{
+            cell.loggedHealthIllnessIcon.tintColor = #colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1)
+        }
+        else {
+            cell.loggedHealthIllnessIcon.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+        }
+        
+        
+        
         return(cell)
     }
     

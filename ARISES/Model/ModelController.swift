@@ -35,6 +35,7 @@ class ModelController {
         timeFormatter.dateFormat = "HH:mm"
         return timeFormatter.string(from: date)
     }
+
     
     //MARK: - Private functions
     private func checkForExistingFavourites() -> Favourites{
