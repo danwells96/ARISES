@@ -98,7 +98,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     
     @objc private func doneWithPicker(){
 
-        foodTimeField.text = ModelController().formatDateToTime(date: foodTimePicker.date)
+        foodTimeField.text = ModelController().formatDateToHHmm(date: foodTimePicker.date)
         self.view.endEditing(true)
     }
     

@@ -111,12 +111,7 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     @objc private func doneWithTimePicker(){
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .none
-        dateFormatter.timeStyle = .short
-        
-        exerciseTimeField.text = dateFormatter.string(from: exerciseTimePicker.date)
+        exerciseTimeField.text = ModelController().formatDateToHHmm(date: exerciseTimePicker.date)
         self.view.endEditing(true)
     }
     
