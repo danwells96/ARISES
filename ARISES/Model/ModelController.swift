@@ -35,6 +35,7 @@ class ModelController {
         timeFormatter.dateFormat = "HH:mm"
         return timeFormatter.string(from: date)
     }
+
     
     //MARK: - Private functions
     private func checkForExistingFavourites() -> Favourites{
@@ -53,7 +54,7 @@ class ModelController {
         print("Error fetching favourites")
         return checkFav![0]
     }
-//MAKE PRIVATE AFTER TESTING
+
     func findOrMakeDay(day: Date) -> Day{
         let day = formatDateToDay(date: day)
         //predicate date
@@ -125,10 +126,6 @@ class ModelController {
         currentDay.addToInsulin(newInsulin)
         PersistenceService.saveContext()
     }
-    
-    
-    //MARK: - Data object getting (fetch/return)
-    //Only toggles meals currently
     func toggleFavouriteFood(item: Meals){
         
         let favList = checkForExistingFavourites()
@@ -178,6 +175,28 @@ class ModelController {
         PersistenceService.saveContext()
         
     }
+    
+    func addStress(start: Date, end: Date){
+        
+        let currentDay = findOrMakeDay(day: start)
+        let newStress = Stress(context: PersistenceService.context)
+        newStress.start = start
+        newStress.end = end
+        currentDay.addToStress(newStress)
+        PersistenceService.saveContext()
+    }
+    func addIllness(start: Date, end: Date){
+        
+        let currentDay = findOrMakeDay(day: start)
+        let newIllness = Illness(context: PersistenceService.context)
+        newIllness.start = start
+        newIllness.end = end
+        currentDay.addToIllness(newIllness)
+        PersistenceService.saveContext()
+    }
+    
+    //MARK: - Data object getting (fetch/return)
+
     
     //Returns true if item is favourites - currently only meals
     func itemInFavouritesFood(item: Meals) -> Bool{

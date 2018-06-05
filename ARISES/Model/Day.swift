@@ -53,6 +53,33 @@ class Day: NSManagedObject {
         return (tempCarbs, tempProtein, tempFat)
 
     }
+    //MARK: - Misc stats
+    var stressDuration: String{
+        guard self.stress?.anyObject() != nil else{
+            return "0"
+        }
+        var total = Double(0)
+        for index in (stress?.allObjects)!{
+            total = total + (index as! Stress).duration
+        }
+        let date = Date(timeIntervalSinceReferenceDate: total)
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "HH:mm"
+        return timeFormatter.string(from: date)
+    }
+    var illnessDuration: String{
+        guard self.illness?.anyObject() != nil else{
+            return "0"
+        }
+        var total = Double(0)
+        for index in (illness?.allObjects)!{
+            total = total + (index as! Illness).duration
+        }
+        let date = Date(timeIntervalSinceReferenceDate: total)
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "HH:mm"
+        return timeFormatter.string(from: date)
+    }
     
     //MARK: - Tags e.g. Hypo/Hyper
     var glucoseTags: [String]? {
@@ -79,6 +106,7 @@ class Day: NSManagedObject {
         
         return tagArray
     }
+    
     
     
 }
