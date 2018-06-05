@@ -417,7 +417,6 @@ class ViewControllerGraph: UIViewController{
                 tMinus1Compare.append(item.value)
             }
         }
-        
         let prevItemTime = timeFormatter.date(from: "00:00")
         var mealCount : Int = 0
         for item in todayArray{
@@ -426,9 +425,10 @@ class ViewControllerGraph: UIViewController{
                 
                 for meal in todayFoodArray{
                     //Checks that the meal time is between the current point and previous point tested
-                    let mealTime = pickerFormatter.date(from: meal.time!)
-                    let mealTimeString = timeFormatter.string(from: mealTime!)
-                    let combinedMealDate = keyDay + " " + mealTimeString
+                    print("mealtime: \(meal.time!)")
+                    let mealTime = timeFormatter.date(from: meal.time!)
+                    
+                    let combinedMealDate = keyDay + " " + meal.time!
                     
                     if(((mealTime!) < (currItemTime!)) && (todayArray.index(of: item) == 0)){
                         print("first thing to plot") //the line starts from the meal point, not the beginning of the array//
@@ -630,11 +630,8 @@ class ViewControllerGraph: UIViewController{
             
             //searches through meals for the day for meals that align with data point on the graph in terms of time
             for meal in meals{
-                let mealTime = pickerFormatter.date(from: meal.time!)
-                let mealTimeString = timeFormatter.string(from: mealTime!)
-                //print("\(meal.time == timeDate): \(meal.name)")
-                if(mealTimeString == timeDate){
-                    //print("In here")
+                let mealTime = timeFormatter.date(from: meal.time!)
+                if(meal.time! == timeDate){
                     circleView.data = "🍎"
                     text = "\(meal.name!) Carbs: \(meal.carbs) Protein: \(meal.protein) Fat: \(meal.fat) "
                     if let chartViewScreenLoc = layer.containerToGlobalScreenLoc(chartPointModel.chartPoint) {
