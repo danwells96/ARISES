@@ -19,7 +19,7 @@ struct customType{
 class ViewControllerGraph: UIViewController{
     
     //Today temp variable till real-time data available
-    private var today: String = /*"6/1/2016 00:00"*/"5/06/2018 00:00"
+    private var today: String = "5/06/2018 00:00" //"27/11/2015 00:00"
     var tMinus1Compare : [Double] = []
     var tMinus2Compare : [Double] = []
     var tMinus3Compare : [Double] = []
@@ -167,12 +167,12 @@ class ViewControllerGraph: UIViewController{
                              "06/01/2016 19:50",
                              "06/01/2016 22:43",
                              "06/01/2016 23:37",
-        "04/06/2018 10:08",
-        "04/06/2018 11:34",
-        "04/06/2018 15:55",
-                        "05/06/2018 07:10",
-                        "05/06/2018 09:54",
-                        "05/06/2018 12:00"
+                             "04/06/2018 10:08",
+                             "04/06/2018 11:34",
+                             "04/06/2018 15:55",
+                             "05/06/2018 07:10",
+                             "05/06/2018 09:54",
+                             "05/06/2018 12:00"
         
     ]
     
@@ -255,8 +255,12 @@ class ViewControllerGraph: UIViewController{
                                4.5,
                                6.6,
                                10.3,
-                            6.8, 8.9, 12.5,
-                            4.7, 7.3, 11.5
+                               6.8,
+                               8.9,
+                               12.5,
+                               4.7,
+                               7.3,
+                               11.5
     ]
 
     

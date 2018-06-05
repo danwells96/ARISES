@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -364,7 +365,7 @@
                                 <rect key="frame" x="0.0" y="118" width="265" height="99"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="d1n-Qg-UiI" customClass="ViewControllerTableViewCell" customModule="ARISES" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="d1n-Qg-UiI" customClass="ViewControllerTableViewCell" customModule="ARISES" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="265" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="d1n-Qg-UiI" id="YSZ-bL-Fia">
@@ -1054,7 +1055,7 @@
                                 <rect key="frame" x="0.0" y="125" width="266" height="130"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="V15-zO-K0W" customClass="ViewControllerTableViewCell" customModule="ARISES" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="V15-zO-K0W" customClass="ViewControllerTableViewCell" customModule="ARISES" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="266" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="V15-zO-K0W" id="NBh-08-dgr">
@@ -1318,14 +1319,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="280"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hhK-5Y-w2W" customClass="ChartBaseView" customModule="SwiftCharts">
-                                <rect key="frame" x="70" y="8" width="265" height="280"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                            <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hhK-5Y-w2W" customClass="ChartBaseView" customModule="SwiftCharts">
+                                <rect key="frame" x="80" y="15" width="235" height="265"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </view>
-                            <view alpha="0.29999999999999999" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ux8-yy-1UR" customClass="ChartBGView" customModule="ARISES" customModuleProvider="target">
-                                <rect key="frame" x="77" y="13" width="249" height="233"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                            <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ux8-yy-1UR" customClass="ChartBGView" customModule="ARISES" customModuleProvider="target">
+                                <rect key="frame" x="80" y="20" width="235" height="218"/>
                                 <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
@@ -1342,14 +1341,15 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZEV-bY-Kyk">
-                                <rect key="frame" x="326" y="18" width="60" height="220"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZEV-bY-Kyk">
+                                <rect key="frame" x="315" y="26" width="60" height="202"/>
                                 <subviews>
-                                    <view alpha="0.29999999999999999" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Cm-ZE-NMX" customClass="CustomView" customModule="ARISES" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="20" height="220"/>
-                                        <autoresizingMask key="autoresizingMask"/>
+                                    <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Cm-ZE-NMX" customClass="CustomView" customModule="ARISES" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="20" height="202"/>
                                         <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="WiP-y5-68c"/>
+                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
                                                 <real key="value" value="6"/>
@@ -1365,10 +1365,12 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view alpha="0.30000001192092896" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qa2-Ya-7Ex" customClass="CustomView" customModule="ARISES" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="0.0" width="20" height="220"/>
-                                        <autoresizingMask key="autoresizingMask"/>
+                                    <view alpha="0.30000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qa2-Ya-7Ex" customClass="CustomView" customModule="ARISES" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="0.0" width="20" height="202"/>
                                         <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="zNY-UO-PYb"/>
+                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
                                                 <real key="value" value="6"/>
@@ -1384,10 +1386,12 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view alpha="0.30000001192092896" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1F5-oK-ud4" customClass="CustomView" customModule="ARISES" customModuleProvider="target">
-                                        <rect key="frame" x="40" y="0.0" width="20" height="220"/>
-                                        <autoresizingMask key="autoresizingMask"/>
+                                    <view alpha="0.30000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1F5-oK-ud4" customClass="CustomView" customModule="ARISES" customModuleProvider="target">
+                                        <rect key="frame" x="40" y="0.0" width="20" height="202"/>
                                         <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="AJ9-0A-HLy"/>
+                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
                                                 <real key="value" value="6"/>
@@ -1405,15 +1409,28 @@
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="1F5-oK-ud4" secondAttribute="trailing" id="37G-yP-IDm"/>
+                                    <constraint firstAttribute="bottom" secondItem="1F5-oK-ud4" secondAttribute="bottom" id="6MY-Do-aua"/>
+                                    <constraint firstItem="8Cm-ZE-NMX" firstAttribute="top" secondItem="ZEV-bY-Kyk" secondAttribute="top" id="ECn-eq-Yyd"/>
+                                    <constraint firstItem="Qa2-Ya-7Ex" firstAttribute="leading" secondItem="8Cm-ZE-NMX" secondAttribute="trailing" id="H4K-ZJ-uyq"/>
+                                    <constraint firstAttribute="bottom" secondItem="Qa2-Ya-7Ex" secondAttribute="bottom" id="INV-xk-eNo"/>
+                                    <constraint firstItem="8Cm-ZE-NMX" firstAttribute="leading" secondItem="ZEV-bY-Kyk" secondAttribute="leading" id="U0z-74-aX7"/>
+                                    <constraint firstAttribute="bottom" secondItem="8Cm-ZE-NMX" secondAttribute="bottom" id="XG0-7v-ucl"/>
+                                    <constraint firstItem="Qa2-Ya-7Ex" firstAttribute="top" secondItem="ZEV-bY-Kyk" secondAttribute="top" id="b3M-W3-SSF"/>
+                                    <constraint firstItem="1F5-oK-ud4" firstAttribute="top" secondItem="ZEV-bY-Kyk" secondAttribute="top" id="rbm-3N-cq8"/>
+                                    <constraint firstItem="1F5-oK-ud4" firstAttribute="leading" secondItem="Qa2-Ya-7Ex" secondAttribute="trailing" id="sAp-Gt-ssj"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ag7-z6-FpG">
-                                <rect key="frame" x="0.0" y="20" width="80" height="220"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ag7-z6-FpG">
+                                <rect key="frame" x="0.0" y="28" width="80" height="202"/>
                                 <subviews>
-                                    <view alpha="0.29999999999999999" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mED-L5-pEA" customClass="CustomView" customModule="ARISES" customModuleProvider="target">
-                                        <rect key="frame" x="60" y="0.0" width="20" height="220"/>
-                                        <autoresizingMask key="autoresizingMask"/>
+                                    <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x0W-Sa-IPF" customClass="CustomView" customModule="ARISES" customModuleProvider="target">
+                                        <rect key="frame" x="40" y="0.0" width="20" height="202"/>
                                         <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="lce-cZ-S9g"/>
+                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
                                                 <real key="value" value="6"/>
@@ -1429,10 +1446,12 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view alpha="0.29999999999999999" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x0W-Sa-IPF" customClass="CustomView" customModule="ARISES" customModuleProvider="target">
-                                        <rect key="frame" x="40" y="0.0" width="20" height="220"/>
-                                        <autoresizingMask key="autoresizingMask"/>
+                                    <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dhv-Ev-dHs" customClass="CustomView" customModule="ARISES" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="0.0" width="20" height="202"/>
                                         <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="lrh-gD-vfc"/>
+                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
                                                 <real key="value" value="6"/>
@@ -1448,10 +1467,12 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view alpha="0.29999999999999999" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dhv-Ev-dHs" customClass="CustomView" customModule="ARISES" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="0.0" width="20" height="220"/>
-                                        <autoresizingMask key="autoresizingMask"/>
+                                    <view alpha="0.30000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6pd-Pn-vUX" customClass="CustomView" customModule="ARISES" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="20" height="202"/>
                                         <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="QYd-bu-nFA"/>
+                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
                                                 <real key="value" value="6"/>
@@ -1467,10 +1488,12 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view alpha="0.30000001192092896" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6pd-Pn-vUX" customClass="CustomView" customModule="ARISES" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="20" height="220"/>
-                                        <autoresizingMask key="autoresizingMask"/>
+                                    <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mED-L5-pEA" customClass="CustomView" customModule="ARISES" customModuleProvider="target">
+                                        <rect key="frame" x="60" y="0.0" width="20" height="202"/>
                                         <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="fFv-zQ-3cD"/>
+                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
                                                 <real key="value" value="6"/>
@@ -1488,9 +1511,41 @@
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="mED-L5-pEA" secondAttribute="trailing" id="31q-Xp-y1k"/>
+                                    <constraint firstItem="6pd-Pn-vUX" firstAttribute="leading" secondItem="Ag7-z6-FpG" secondAttribute="leading" id="3LX-V6-leF"/>
+                                    <constraint firstItem="mED-L5-pEA" firstAttribute="leading" secondItem="x0W-Sa-IPF" secondAttribute="trailing" id="5Ab-bH-6rc"/>
+                                    <constraint firstAttribute="bottom" secondItem="mED-L5-pEA" secondAttribute="bottom" id="AhM-7h-l3f"/>
+                                    <constraint firstItem="6pd-Pn-vUX" firstAttribute="bottom" secondItem="x0W-Sa-IPF" secondAttribute="bottom" id="D0G-Qp-Vej"/>
+                                    <constraint firstItem="6pd-Pn-vUX" firstAttribute="top" secondItem="dhv-Ev-dHs" secondAttribute="top" id="VAm-VX-bbz"/>
+                                    <constraint firstItem="dhv-Ev-dHs" firstAttribute="leading" secondItem="6pd-Pn-vUX" secondAttribute="trailing" id="YOt-xL-pjw"/>
+                                    <constraint firstItem="mED-L5-pEA" firstAttribute="top" secondItem="x0W-Sa-IPF" secondAttribute="top" id="bdq-PQ-X9l"/>
+                                    <constraint firstAttribute="bottom" secondItem="6pd-Pn-vUX" secondAttribute="bottom" id="bhf-Mj-L1Y"/>
+                                    <constraint firstItem="6pd-Pn-vUX" firstAttribute="top" secondItem="Ag7-z6-FpG" secondAttribute="top" id="klN-zG-JfO"/>
+                                    <constraint firstItem="x0W-Sa-IPF" firstAttribute="leading" secondItem="dhv-Ev-dHs" secondAttribute="trailing" id="lrU-O5-zGh"/>
+                                    <constraint firstItem="6pd-Pn-vUX" firstAttribute="bottom" secondItem="dhv-Ev-dHs" secondAttribute="bottom" id="max-HL-9KA"/>
+                                    <constraint firstItem="6pd-Pn-vUX" firstAttribute="top" secondItem="x0W-Sa-IPF" secondAttribute="top" id="xEa-Br-MHF"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="ux8-yy-1UR" firstAttribute="trailing" secondItem="hhK-5Y-w2W" secondAttribute="trailing" id="6XZ-RY-uAm"/>
+                            <constraint firstItem="ux8-yy-1UR" firstAttribute="top" secondItem="46k-yS-dMo" secondAttribute="top" constant="20" id="7qY-Y1-Cz5"/>
+                            <constraint firstItem="hhK-5Y-w2W" firstAttribute="top" secondItem="46k-yS-dMo" secondAttribute="top" constant="15" id="C35-wh-UQg"/>
+                            <constraint firstItem="ux8-yy-1UR" firstAttribute="leading" secondItem="hhK-5Y-w2W" secondAttribute="leading" id="GLA-Ou-1E4"/>
+                            <constraint firstItem="hhK-5Y-w2W" firstAttribute="leading" secondItem="46k-yS-dMo" secondAttribute="leading" constant="80" id="RxI-d5-gpk"/>
+                            <constraint firstItem="Ag7-z6-FpG" firstAttribute="leading" secondItem="46k-yS-dMo" secondAttribute="leading" id="SNg-W4-pxr"/>
+                            <constraint firstItem="ZEV-bY-Kyk" firstAttribute="leading" secondItem="ux8-yy-1UR" secondAttribute="trailing" id="Wo5-Ex-T5C"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="hhK-5Y-w2W" secondAttribute="bottom" id="e6e-YE-LV6"/>
+                            <constraint firstItem="ZEV-bY-Kyk" firstAttribute="height" secondItem="Ag7-z6-FpG" secondAttribute="height" id="eaD-z8-DIb"/>
+                            <constraint firstItem="ux8-yy-1UR" firstAttribute="bottom" secondItem="hhK-5Y-w2W" secondAttribute="bottom" constant="-42" id="joU-Sx-Ygg"/>
+                            <constraint firstItem="ZEV-bY-Kyk" firstAttribute="bottom" secondItem="ux8-yy-1UR" secondAttribute="bottom" constant="-10" id="kSx-np-8sS"/>
+                            <constraint firstItem="Ag7-z6-FpG" firstAttribute="bottom" secondItem="ux8-yy-1UR" secondAttribute="bottom" constant="-8" id="mVg-Ve-shJ"/>
+                            <constraint firstItem="ux8-yy-1UR" firstAttribute="leading" secondItem="Ag7-z6-FpG" secondAttribute="trailing" id="rDK-d4-pU0"/>
+                            <constraint firstItem="Ag7-z6-FpG" firstAttribute="top" secondItem="ux8-yy-1UR" secondAttribute="top" constant="8" id="vEi-7N-eGJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZEV-bY-Kyk" secondAttribute="trailing" constant="-16" id="yIS-aX-73W"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="46k-yS-dMo"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="aTZ-Pb-k2J" appends="YES" id="haX-t9-imW"/>
@@ -1507,7 +1562,7 @@
                         <outlet property="rightSideViewContainer" destination="ZEV-bY-Kyk" id="RGH-hF-rGs"/>
                         <outlet property="rightView" destination="8Cm-ZE-NMX" id="pgw-bz-cvp"/>
                         <outlet property="rightView2" destination="Qa2-Ya-7Ex" id="KCK-L7-xXX"/>
-                        <outlet property="rightView3" destination="1F5-oK-ud4" id="rhd-eK-DfP"/>
+                        <outlet property="rightView3" destination="1F5-oK-ud4" id="K8h-h4-VzI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EFG-cG-APi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1522,7 +1577,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2495.1999999999998" y="-550.52473763118439"/>
+            <point key="canvasLocation" x="2493.5999999999999" y="-551.42428785607206"/>
         </scene>
     </scenes>
     <resources>
