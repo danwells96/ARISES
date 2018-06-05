@@ -361,9 +361,12 @@ class ViewControllerGraph: UIViewController{
         var valueArray = [ChartAxisValueDouble]()
         var points = [ChartPoint]()
         
+        var extraPoints = [ChartPoint]()
+        
         dateArray.removeAll()
         valueArray.removeAll()
         points.removeAll()
+        extraPoints.removeAll()
         tMinus1Compare.removeAll()
         tMinus2Compare.removeAll()
         tMinus3Compare.removeAll()
@@ -417,70 +420,9 @@ class ViewControllerGraph: UIViewController{
                 tMinus1Compare.append(item.value)
             }
         }
-        let prevItemTime = timeFormatter.date(from: "00:00")
-        var mealCount : Int = 0
+        
         for item in todayArray{
             if(item.value != 0){
-                let currItemTime = timeFormatter.date(from: item.time!)
-                for meal in todayFoodArray{
-                    //Checks that the meal time is between the current point and previous point tested
-                    let mealTime = timeFormatter.date(from: meal.time!)
-                    
-                    let combinedMealDate = keyDay + " " + meal.time!
-                    
-                    if(((mealTime!) < (currItemTime!)) && (todayArray.index(of: item) == 0)){
-                        //the line starts from the meal point, not the beginning of the array//
-                        if(todayFoodArray.index(of: meal)! >= mealCount){
-                            valueArray.append(ChartAxisValueDouble(item.value))
-                            dateArray.append(ChartAxisValueDate(date: dateFormatter.date(from: combinedMealDate)!, formatter: dateFormatter))
-                            points.append(ChartPoint(x: dateArray[dateArray.endIndex - 1], y: valueArray[valueArray.endIndex - 1]))
-                            mealCount += 1
-                        }
-                    }else if (((mealTime!) < (currItemTime!))) && (((mealTime!) > (prevItemTime!))){
-                        //Uses previous glucose reading instead of taking a new one (might want to change in future)
-                        //Something needs to make this logic work only once per meal
-                        if(todayFoodArray.index(of: meal)! >= mealCount){
-                            valueArray.append(ChartAxisValueDouble(item.value))
-                            dateArray.append(ChartAxisValueDate(date: dateFormatter.date(from: combinedMealDate)!, formatter: dateFormatter))
-                            points.append(ChartPoint(x: dateArray[dateArray.endIndex - 1], y: valueArray[valueArray.endIndex - 1]))
-                            mealCount += 1
-                        }
-                    }else if (((mealTime!) > (currItemTime!)) && (todayArray.index(of: item) == (todayArray.endIndex - 1))){
-                        if(todayFoodArray.index(of: meal)! >= mealCount){
-                            valueArray.append(ChartAxisValueDouble(item.value))
-                            dateArray.append(ChartAxisValueDate(date: dateFormatter.date(from: combinedMealDate)!, formatter: dateFormatter))
-                            points.append(ChartPoint(x: dateArray[dateArray.endIndex - 1], y: valueArray[valueArray.endIndex - 1]))
-                            mealCount += 1
-                        }
-                    }
-                    /*  Uses less code but have to hard code in y-value as its unknown which glucose reading is closest
-                    if(mealCount < todayFoodArray.count){
-                        valueArray.append(ChartAxisValueDouble(0))
-                        dateArray.append(ChartAxisValueDate(date: dateFormatter.date(from: combinedMealDate)!, formatter: dateFormatter))
-                        points.append(ChartPoint(x: dateArray[dateArray.endIndex - 1], y: valueArray[valueArray.endIndex - 1]))
-                        mealCount += 1
-                    }*/
-                }
-                for exercise in todayExerciseArray{
-                    let combinedExerciseDate = keyDay + " " + exercise.time!
-                    let exerciseTime = timeFormatter.date(from: exercise.time!)
-                    if(((exerciseTime!) < (currItemTime!)) && ((exerciseTime!) > (prevItemTime!))){
-                        valueArray.append(ChartAxisValueDouble(item.value))
-                        dateArray.append(ChartAxisValueDate(date: dateFormatter.date(from: combinedExerciseDate)!, formatter: dateFormatter))
-                        points.append(ChartPoint(x: dateArray[dateArray.endIndex - 1], y: valueArray[valueArray.endIndex - 1]))
-                    }
-                }
-                for insulin in todayInsulinArray{
-                    let prevItemTime = timeFormatter.date(from: item.time!)
-
-                    let combinedInsulinDate = keyDay + " " + insulin.time!
-                    let insulinTime = timeFormatter.date(from: insulin.time!)
-                    if(((insulinTime!) < (currItemTime!)) && ((insulinTime!) > (prevItemTime!))){
-                        valueArray.append(ChartAxisValueDouble(item.value))
-                        dateArray.append(ChartAxisValueDate(date: dateFormatter.date(from: combinedInsulinDate)!, formatter: dateFormatter))
-                        points.append(ChartPoint(x: dateArray[dateArray.endIndex - 1], y: valueArray[valueArray.endIndex - 1]))
-                    }
-                }
                 let combinedDate = keyDay + " " + item.time!
                 valueArray.append(ChartAxisValueDouble(item.value))
                 dateArray.append(ChartAxisValueDate(date: dateFormatter.date(from: combinedDate)!, formatter: dateFormatter))
@@ -488,7 +430,24 @@ class ViewControllerGraph: UIViewController{
             }
         }
         points.sort(by: {$0.x.scalar < $1.x.scalar})
-                
+        
+        for meal in todayFoodArray{
+            let combinedDate = keyDay + " " + meal.time!
+            extraPoints.append(ChartPoint(x: ChartAxisValueDate(date: dateFormatter.date(from: combinedDate)!, formatter: dateFormatter), y: ChartAxisValueDouble(0.5)))
+        }
+        
+        for exercise in todayExerciseArray{
+            let combinedDate = keyDay + " " + exercise.time!
+            extraPoints.append(ChartPoint(x: ChartAxisValueDate(date: dateFormatter.date(from: combinedDate)!, formatter: dateFormatter), y: ChartAxisValueDouble(0.5)))
+        }
+        
+        for insulin in todayInsulinArray{
+            let combinedDate = keyDay + " " + insulin.time!
+            extraPoints.append(ChartPoint(x: ChartAxisValueDate(date: dateFormatter.date(from: combinedDate)!, formatter: dateFormatter), y: ChartAxisValueDouble(0.5)))
+        }
+        
+        extraPoints.sort(by: {$0.x.scalar < $1.x.scalar})
+        
         //might just do comparison directly out of tPlus1Array
         for item in tPlus1Array{
             if(item.value != 0){
@@ -516,29 +475,24 @@ class ViewControllerGraph: UIViewController{
         calcRanges(Arr: tPlus2Compare, view: rightView2)
         calcRanges(Arr: tPlus3Compare, view: rightView3)
         
-
-        var predictedGlucosePoints: [ChartPoint] = [("05/06/2018 18:27", 13.2), ("05/06/2018 19:30", 12.9), ("05/06/2018 20:00", 11), ("05/06/2018 20:30", 9), ("05/06/2018 21:00", 8), ("05/06/2018 21:30", 8), ("05/06/2018 22:00", 5), ("05/06/2018 22:10", 5), ("05/06/2018 22:40", 4), ("05/06/2018 23:10", 5)].map {
-            return ChartPoint(
-                x: ChartAxisValueDate(date: dateFormatter.date(from: $0.0)!, formatter: dateFormatter),
-                y: ChartAxisValueDouble($0.1)
-            )
-        }
-        var nowIndicator: ChartPoint
-        if(points.count > 0){
-            nowIndicator = points.last!
-        }else{
-           nowIndicator = ChartPoint(x: ChartAxisValueDate(date: dateFormatter.date(from: today)!, formatter: dateFormatter), y: ChartAxisValueDouble(6))
-        }
-        predictedGlucosePoints.insert(nowIndicator, at: 0) //prediction made continuous
+        let todayDate = dateFormatter.date(from: today)
+        let todayString = dayFormatter.string(from: todayDate!)
+        let todayDate2 = dayFormatter.date(from: todayString)
+        var predictedGlucosePoints: [ChartPoint] = []
         
-        /////////////////// find predcted range ? ////////////////////////////
-        let sortedGlucose = predictedGlucosePoints.sorted {(obj1, obj2) in return obj1.y.scalar < obj2.y.scalar}
-        let lowPoint = sortedGlucose.first!
-        let predictedLow: [ChartPoint] = [nowIndicator, lowPoint]
-        let HighPoint = sortedGlucose.last!
-        let predictedHigh: [ChartPoint] = [nowIndicator, HighPoint]
-
+        let now = dayFormatter.string(from: Date())
+        let nowDate = dayFormatter.date(from: now)
         
+        
+        if(todayDate2 == nowDate){
+            predictedGlucosePoints = [("05/06/2018 18:27", 13.2), ("05/06/2018 19:30", 12.9), ("05/06/2018 20:00", 11), ("05/06/2018 20:30", 9), ("05/06/2018 21:00", 8), ("05/06/2018 21:30", 8), ("05/06/2018 22:00", 5), ("05/06/2018 22:10", 5), ("05/06/2018 22:40", 4), ("05/06/2018 23:10", 5)].map {
+                return ChartPoint(
+                    x: ChartAxisValueDate(date: dateFormatter.date(from: $0.0)!, formatter: dateFormatter),
+                    y: ChartAxisValueDouble($0.1)
+                )
+            }
+        }
+
         //Something needs changing to initialise chart point
         let chartPoints = points
         let yLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 11))
@@ -569,10 +523,27 @@ class ViewControllerGraph: UIViewController{
         
         // layer displays data-line
         let lineModel = ChartLineModel(chartPoints: chartPoints, lineColor: UIColor.blue, lineWidth: 3, animDuration: 1, animDelay: 0)
-        let pointslineLayer = ChartPointsLineLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, lineModels: [lineModel])
+        let lineModelExtra = ChartLineModel(chartPoints: extraPoints, lineColor: UIColor.clear, lineWidth: 3, animDuration: 1, animDelay: 0)
 
+        let pointslineLayer = ChartPointsLineLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, lineModels: [lineModel, lineModelExtra])
+
+        var nowIndicator: ChartPoint
+        if(points.count > 0){
+            nowIndicator = points.last!
+        }else{
+            nowIndicator = ChartPoint(x: ChartAxisValueDate(date: dateFormatter.date(from: today)!, formatter: dateFormatter), y: ChartAxisValueDouble(6))
+        }
+        //want pred only on "today"
+        predictedGlucosePoints.insert(nowIndicator, at: 0) //prediction made continuous
         
-        //predication linemodel
+        /////////////////// find predcted range ? ////////////////////////////
+        let sortedGlucose = predictedGlucosePoints.sorted {(obj1, obj2) in return obj1.y.scalar < obj2.y.scalar}
+        let lowPoint = sortedGlucose.first!
+        let predictedLow: [ChartPoint] = [nowIndicator, lowPoint]
+        let HighPoint = sortedGlucose.last!
+        let predictedHigh: [ChartPoint] = [nowIndicator, HighPoint]
+
+    //predication linemodel
         let lineModelPred = ChartLineModel(chartPoints: predictedGlucosePoints, lineColor: UIColor.red, lineWidth: 3, lineJoin: LineJoin.bevel, lineCap: LineCap.round, animDuration: 1, animDelay: 0, dashPattern: [5, 5])
         //predicted range
         let newColor = UIColor(red: 0.6, green: 0.5, blue: 1, alpha: 1)
@@ -588,7 +559,7 @@ class ViewControllerGraph: UIViewController{
         
         // mark data points
         let circleViewGenerator = {(chartPointModel: ChartPointLayerModel, layer: ChartPointsLayer, chart: Chart) -> UIView? in
-            let circleView = ChartPointEllipseView(center: chartPointModel.screenLoc, diameter: 9)
+            let circleView = ChartPointEllipseView(center: chartPointModel.screenLoc, diameter: 5)
             
             circleView.animDuration = 1.0
             circleView.fillColor = UIColor.red
@@ -596,22 +567,13 @@ class ViewControllerGraph: UIViewController{
             circleView.borderColor = UIColor.red
             circleView.isUserInteractionEnabled = true
             
+            //Change w and h depending on text size
             let w: CGFloat = 80
             let h: CGFloat = 60
             var text : String = ""
             let font = UIFont.boldSystemFont(ofSize: 9)
-
             
-            //attaches anything of note to the data point
-            if(chartPointModel.chartPoint.y.scalar > 11.1){
-                circleView.data = "Hyperglycemic"
-                text = circleView.data!
-            }else if(chartPointModel.chartPoint.y.scalar < 3.9){
-                circleView.data = "Hypoglycemic"
-                text = circleView.data!
-            }else{
-                circleView.data = ""
-            }
+            
             
             // Showing meal details on correct point click
             // Gets meals and times they were at to identify which point in the graph is the one where the meal was consumed
@@ -650,6 +612,22 @@ class ViewControllerGraph: UIViewController{
                 if(exercise.time == timeDate){
                     circleView.data = "🤾‍♀️"
                     text = "\(exercise.name!) for \(exercise.duration!)"
+                    if let chartViewScreenLoc = layer.containerToGlobalScreenLoc(chartPointModel.chartPoint) {
+                        let x: CGFloat = {
+                            let attempt = chartViewScreenLoc.x - (w/2)
+                            let leftBound: CGFloat = chart.bounds.origin.x
+                            let rightBound = chart.bounds.size.width - 5
+                            if attempt < leftBound {
+                                return chart.view.frame.origin.x
+                            } else if attempt + w > rightBound {
+                                return rightBound - w
+                            }
+                            return attempt
+                        }()
+                    let bu = InfoBubble(point: CGPoint(x: x, y: chartViewScreenLoc.y), preferredSize: CGSize(width: 30, height: 20), superview: self.view, text: circleView.data!, font: font, textColor: UIColor.yellow)
+                    chart.addSubview(bu)
+                    }
+                
                 }
             }
             for insulin in insulins{
@@ -658,9 +636,6 @@ class ViewControllerGraph: UIViewController{
                     text = "Bolus insulin of \(insulin.units) units"
                 }
             }
-            //print(text)
-            
-            
             
             circleView.touchHandler = {
                 if let chartViewScreenLoc = layer.containerToGlobalScreenLoc(chartPointModel.chartPoint) {
@@ -685,24 +660,21 @@ class ViewControllerGraph: UIViewController{
                             UIView.animate(withDuration: 3.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
                                 bu.alpha = 0.0
                             }, completion: {finished in bu.removeFromSuperview()})
-                            print("special case")
-                        }else{
-                            UIView.animate(withDuration: 3.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
-                                bu.alpha = 0.0
-                            }, completion: {finished in bu.removeFromSuperview()})
                         }
-                    }   //info bubble
-                }   //if
-            }//touch handler
+                    }
+                }
+            }
             
             return circleView
         }
         
         
-        let chartPointsCircleLayer = ChartPointsViewsLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, chartPoints: chartPoints, viewGenerator: circleViewGenerator, displayDelay: 0, delayBetweenItems: 0.05, mode: .translate)
+        let chartPointsCircleLayer = ChartPointsViewsLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, chartPoints: extraPoints, viewGenerator: circleViewGenerator, displayDelay: 0, delayBetweenItems: 0.05, mode: .translate)
         
      
+       
         
+
         // create chart instance with frame and layers
         let chart = Chart(
             view: self.chartView!,
@@ -714,10 +686,11 @@ class ViewControllerGraph: UIViewController{
                 guidelinesLayer,
                 pointslineLayer,
                 prediction,
-            
+                
                 chartPointsCircleLayer
             ]
         )
+
         
         view.addSubview(chart.view)
         self.chart = chart
