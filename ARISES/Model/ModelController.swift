@@ -318,6 +318,9 @@ class ModelController {
         }
     }
     
+    
+    
+    
     func fetchInsulin(day: Date) -> [Insulin]{
         let fetchRequest: NSFetchRequest<Insulin> = Insulin.fetchRequest()
         let dayToShow = ModelController().formatDateToDay(date: day)
@@ -335,7 +338,6 @@ class ModelController {
             return foundInsulin!
         }
     }
-    
     
     func fetchExercise(day: Date) -> [Exercise]{
         let fetchRequest: NSFetchRequest<Exercise> = Exercise.fetchRequest()
