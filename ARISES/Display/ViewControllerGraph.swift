@@ -19,7 +19,7 @@ struct customType{
 class ViewControllerGraph: UIViewController{
     
     //Today temp variable till real-time data available
-    private var today: String = /*"6/1/2016 00:00"*/"4/06/2018 00:00"
+    private var today: String = /*"6/1/2016 00:00"*/"5/06/2018 00:00"
     var tMinus1Compare : [Double] = []
     var tMinus2Compare : [Double] = []
     var tMinus3Compare : [Double] = []
@@ -169,7 +169,11 @@ class ViewControllerGraph: UIViewController{
                              "06/01/2016 23:37",
         "04/06/2018 10:08",
         "04/06/2018 11:34",
-        "04/06/2018 15:55"
+        "04/06/2018 15:55",
+                        "05/06/2018 07:10",
+                        "05/06/2018 09:54",
+                        "05/06/2018 12:00"
+        
     ]
     
     var rawValues: [Double] = [0,
@@ -251,8 +255,8 @@ class ViewControllerGraph: UIViewController{
                                4.5,
                                6.6,
                                10.3,
-                            6.8, 8.9,
-        12.5
+                            6.8, 8.9, 12.5,
+                            4.7, 7.3, 11.5
     ]
 
     
@@ -416,36 +420,51 @@ class ViewControllerGraph: UIViewController{
         
         let prevItemTime = timeFormatter.date(from: "00:00")
         var mealCount : Int = 0
-        print(todayArray.count)
         for item in todayArray{
             if(item.value != 0){
                 let currItemTime = timeFormatter.date(from: item.time!)
+                
                 for meal in todayFoodArray{
                     //Checks that the meal time is between the current point and previous point tested
                     let mealTime = pickerFormatter.date(from: meal.time!)
                     let mealTimeString = timeFormatter.string(from: mealTime!)
                     let combinedMealDate = keyDay + " " + mealTimeString
+                    
                     if(((mealTime!) < (currItemTime!)) && (todayArray.index(of: item) == 0)){
-                        print("first thing to plot")
-                        if(points.count < todayFoodArray.count){
+                        print("first thing to plot") //the line starts from the meal point, not the beginning of the array//
+                        if(todayFoodArray.index(of: meal)! >= mealCount){
                             valueArray.append(ChartAxisValueDouble(item.value))
                             dateArray.append(ChartAxisValueDate(date: dateFormatter.date(from: combinedMealDate)!, formatter: dateFormatter))
                             points.append(ChartPoint(x: dateArray[dateArray.endIndex - 1], y: valueArray[valueArray.endIndex - 1]))
-                            mealCount = mealCount + 1
+                            mealCount += 1
                         }
-                    }else if(((mealTime!) < (currItemTime!)) && ((mealTime!) > (prevItemTime!))){
+                    }else if (((mealTime!) < (currItemTime!))) && (((mealTime!) > (prevItemTime!))){
                         print("Its true")
-                        //Adds the meal as a point on graph
-                        //Uses previous glucose reading instead of taking a new one (might want to change in future)
-                        print(meal.name)
+                        print(meal.name!) //Uses previous glucose reading instead of taking a new one (might want to change in future)
+                        print("Mealcount: \(mealCount), index: \(todayFoodArray.index(of: meal))")
                         //Something needs to make this logic work only once per meal
-                        if(points.count <= todayFoodArray.count){
+                        if(todayFoodArray.index(of: meal)! >= mealCount){
                             valueArray.append(ChartAxisValueDouble(item.value))
                             dateArray.append(ChartAxisValueDate(date: dateFormatter.date(from: combinedMealDate)!, formatter: dateFormatter))
                             points.append(ChartPoint(x: dateArray[dateArray.endIndex - 1], y: valueArray[valueArray.endIndex - 1]))
-                            mealCount = mealCount + 1
+                            mealCount += 1
                         }
                     }
+                    //Not going to work this way as the glucose point will be placed after in array
+                    else if (((mealTime!) > (prevItemTime!)) && (todayArray.index(of: item) == todayArray.endIndex)){
+                        print("After data")
+                        print(meal.name!)
+                        print("Mealcount: \(mealCount), index: \(todayFoodArray.index(of: meal))")
+                        if(todayFoodArray.index(of: meal)! >= mealCount){
+                            valueArray.append(ChartAxisValueDouble(item.value))
+                            dateArray.append(ChartAxisValueDate(date: dateFormatter.date(from: combinedMealDate)!, formatter: dateFormatter))
+                            points.append(ChartPoint(x: dateArray[dateArray.endIndex - 1], y: valueArray[valueArray.endIndex - 1]))
+                            mealCount += 1
+                        }
+                    }
+                    
+                    print(points.count)
+                    
                 }
                 for exercise in todayExerciseArray{
                     let combinedExerciseDate = keyDay + " " + exercise.time!
@@ -457,6 +476,8 @@ class ViewControllerGraph: UIViewController{
                     }
                 }
                 for insulin in todayInsulinArray{
+                    let prevItemTime = timeFormatter.date(from: item.time!)
+
                     let combinedInsulinDate = keyDay + " " + insulin.time!
                     let insulinTime = timeFormatter.date(from: insulin.time!)
                     if(((insulinTime!) < (currItemTime!)) && ((insulinTime!) > (prevItemTime!))){
@@ -465,7 +486,6 @@ class ViewControllerGraph: UIViewController{
                         points.append(ChartPoint(x: dateArray[dateArray.endIndex - 1], y: valueArray[valueArray.endIndex - 1]))
                     }
                 }
-                let prevItemTime = timeFormatter.date(from: item.time!)
                 let combinedDate = keyDay + " " + item.time!
                 valueArray.append(ChartAxisValueDouble(item.value))
                 dateArray.append(ChartAxisValueDate(date: dateFormatter.date(from: combinedDate)!, formatter: dateFormatter))
@@ -502,13 +522,29 @@ class ViewControllerGraph: UIViewController{
         calcRanges(Arr: tPlus2Compare, view: rightView2)
         calcRanges(Arr: tPlus3Compare, view: rightView3)
         
-        
-        let predictedGlucosePoints: [ChartPoint] = [("06/01/2016 18:27", 8.2), ("06/01/2016 19:30", 12), ("06/01/2016 20:00", 6), ("06/01/2016 20:30", 6), ("06/01/2016 21:00", 9), ("06/01/2016 21:30", 8), ("06/01/2016 22:00", 11), ("06/01/2016 22:10", 8), ("06/01/2016 22:40", 4), ("06/01/2016 23:10", 7), ("06/01/2016 23:57", 9)].map {
+
+        var predictedGlucosePoints: [ChartPoint] = [("05/06/2018 18:27", 8.2), ("05/06/2018 19:30", 12.9), ("05/06/2018 20:00", 6), ("05/06/2018 20:30", 6), ("05/06/2018 21:00", 9), ("05/06/2018 21:30", 8), ("05/06/2018 22:00", 11), ("05/06/2018 22:10", 8), ("05/06/2018 22:40", 4), ("05/06/2018 23:10", 7)].map {
             return ChartPoint(
                 x: ChartAxisValueDate(date: dateFormatter.date(from: $0.0)!, formatter: dateFormatter),
                 y: ChartAxisValueDouble($0.1)
             )
         }
+        var nowIndicator: ChartPoint
+        if(points.count > 0){
+            nowIndicator = points.last!
+        }else{
+           nowIndicator = ChartPoint(x: ChartAxisValueDate(date: dateFormatter.date(from: today)!, formatter: dateFormatter), y: ChartAxisValueDouble(6))
+        }
+        predictedGlucosePoints.insert(nowIndicator, at: 0) //prediction made continuous
+        
+        /////////////////// find predcted range ? ////////////////////////////
+        let sortedGlucose = predictedGlucosePoints.sorted {(obj1, obj2) in return obj1.y.scalar < obj2.y.scalar}
+        let lowPoint = sortedGlucose.first!
+        let predictedLow: [ChartPoint] = [nowIndicator, lowPoint]
+        let HighPoint = sortedGlucose.last!
+        let predictedHigh: [ChartPoint] = [nowIndicator, HighPoint]
+
+        
         //Something needs changing to initialise chart point
         let chartPoints = points
         let yLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 11))
@@ -544,8 +580,12 @@ class ViewControllerGraph: UIViewController{
         
         //predication linemodel
         let lineModelPred = ChartLineModel(chartPoints: predictedGlucosePoints, lineColor: UIColor.red, lineWidth: 3, lineJoin: LineJoin.bevel, lineCap: LineCap.round, animDuration: 1, animDelay: 0, dashPattern: [5, 5])
-        //var prediction: ChartLayer?
-        let prediction = ChartPointsLineLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, lineModels: [lineModelPred])
+        //predicted range
+        let newColor = UIColor(red: 0.6, green: 0.5, blue: 1, alpha: 1)
+        let lineModelLow = ChartLineModel(chartPoints: predictedLow, lineColor: newColor, lineWidth: 1.5, animDuration: 1, animDelay: 0, dashPattern: [2, 2])
+        let lineModeHigh = ChartLineModel(chartPoints: predictedHigh, lineColor: newColor, lineWidth: 1.5, animDuration: 1, animDelay: 0, dashPattern: [2, 2])
+        let prediction = ChartPointsLineLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, lineModels: [lineModelPred, lineModelLow, lineModeHigh])
+        
         
         // create Guideline Layer
         let glLSettings = ChartGuideLinesDottedLayerSettings(linesColor: UIColor.gray, linesWidth: 0.9)
@@ -683,6 +723,7 @@ class ViewControllerGraph: UIViewController{
                 guidelinesLayer,
                 pointslineLayer,
                 prediction,
+            
                 chartPointsCircleLayer
             ]
         )
