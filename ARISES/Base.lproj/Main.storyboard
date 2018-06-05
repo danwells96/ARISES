@@ -469,6 +469,9 @@
                                                 <state key="normal" title="Exercise">
                                                     <color key="titleColor" red="0.39215686274509803" green="0.73725490196078436" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="filterExerciseButton:" destination="zCn-EJ-xVJ" eventType="touchUpInside" id="o5N-En-1hg"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ves-CV-vQa">
                                                 <rect key="frame" x="161" y="0.0" width="43" height="30"/>
@@ -478,6 +481,9 @@
                                                 <state key="normal" title="Illness">
                                                     <color key="titleColor" red="0.39215686274509803" green="0.73725490196078436" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="filterIllnessButton:" destination="zCn-EJ-xVJ" eventType="touchUpInside" id="hXn-Ov-D8U"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cs5-Cf-Ysz">
                                                 <rect key="frame" x="212" y="0.0" width="44" height="30"/>
@@ -487,6 +493,9 @@
                                                 <state key="normal" title="Stress">
                                                     <color key="titleColor" red="0.3921568627" green="0.73725490199999999" blue="0.43921568630000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="filterStressButton:" destination="zCn-EJ-xVJ" eventType="touchUpInside" id="DQ7-Tp-NeO"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -588,6 +597,9 @@
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IOY-9P-BIi">
                                         <rect key="frame" x="65.5" y="0.0" width="59.5" height="31"/>
+                                        <connections>
+                                            <action selector="stressSwitchButton:" destination="zCn-EJ-xVJ" eventType="valueChanged" id="aSM-rX-TNj"/>
+                                        </connections>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ohj-Ee-wqC">
                                         <rect key="frame" x="131" y="0.0" width="57.5" height="31"/>
@@ -603,6 +615,9 @@
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XGa-b8-dey">
                                         <rect key="frame" x="196.5" y="0.0" width="59.5" height="31"/>
+                                        <connections>
+                                            <action selector="illnessSwitchButton:" destination="zCn-EJ-xVJ" eventType="valueChanged" id="WW0-Fb-wao"/>
+                                        </connections>
                                     </switch>
                                 </subviews>
                             </stackView>
@@ -635,11 +650,16 @@
                     </view>
                     <connections>
                         <outlet property="favouritesButton" destination="V71-CQ-9JJ" id="0rQ-RK-33o"/>
+                        <outlet property="filterExerciseOutlet" destination="eXW-cN-sB2" id="rwG-Oc-78l"/>
                         <outlet property="filterHyperOutlet" destination="Pqs-mW-pk7" id="36H-Ke-UyY"/>
                         <outlet property="filterHypoOutlet" destination="HPf-tM-zIm" id="Zbg-m0-ZS1"/>
+                        <outlet property="filterIllnessOutlet" destination="ves-CV-vQa" id="FbX-p7-tsa"/>
+                        <outlet property="filterStressOutlet" destination="cs5-Cf-Ysz" id="VMw-8N-WIK"/>
                         <outlet property="healthLogTable" destination="T9G-c0-t2o" id="oei-Kr-au5"/>
+                        <outlet property="illnessSwitch" destination="XGa-b8-dey" id="ZdC-tV-L1o"/>
                         <outlet property="sevenDaysOutlet" destination="xGd-F8-KEK" id="lDL-Vy-GTR"/>
                         <outlet property="sixtyDaysOutlet" destination="YZn-yc-TVh" id="rlm-hC-7Kr"/>
+                        <outlet property="stressSwitch" destination="IOY-9P-BIi" id="0by-5o-vIN"/>
                         <outlet property="thirtyDaysOutlet" destination="rOK-oz-Cxm" id="zPc-5Q-M2m"/>
                     </connections>
                 </viewController>

@@ -10,5 +10,8 @@ import UIKit
 import CoreData
 
 class Stress: NSManagedObject {
-
+    var duration: Double {
+        let interval = DateInterval.init(start: self.start!, end: self.end!)
+        return interval.duration
+    }
 }

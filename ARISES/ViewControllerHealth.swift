@@ -11,21 +11,18 @@ import CoreData
 import UIKit
 
 class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableViewDelegate, tableCellDelegate{
-    
- /*   class ViewControllerHealth: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {*/
- /*
-    //MARK: Properties
-    @IBOutlet weak var stressField: UITextField!
-    
-    //defining picker related variables
-    let stressLevel = ["not", "a little", "quite", "very"]
-    var stressPicker = UIPickerView()
-   */
+
     @IBOutlet weak var favouritesButton: UIButton!
+    @IBOutlet weak var stressSwitch: UISwitch!
+    @IBOutlet weak var illnessSwitch: UISwitch!
+    
     
     @IBOutlet weak var healthLogTable: UITableView!
     @IBOutlet weak var filterHypoOutlet: UIButton!
     @IBOutlet weak var filterHyperOutlet: UIButton!
+    @IBOutlet weak var filterExerciseOutlet: UIButton!
+    @IBOutlet weak var filterStressOutlet: UIButton!
+    @IBOutlet weak var filterIllnessOutlet: UIButton!
     
     @IBOutlet weak var sevenDaysOutlet: UIButton!
     @IBOutlet weak var thirtyDaysOutlet: UIButton!
@@ -84,6 +81,13 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
             }
         }
     }
+    private var filterExercise = false{
+        didSet{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05){
+                self.updateTable()
+            }
+        }
+    }
     private var filterHyper = false{
         didSet{
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05){
@@ -91,20 +95,36 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
             }
         }
     }
+    private var filterStress = false{
+        didSet{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05){
+                self.updateTable()
+            }
+        }
+    }
+    private var filterIllness = false{
+        didSet{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05){
+                self.updateTable()
+            }
+        }
+    }
     private var loggedDays = [Day]()
-    //private var loggedExercise = [Exercise]()
-   // private var loggedExerciseTotals = [Int]()
+    private var stressStart: Date? = nil
+    private var illnessStart: Date? = nil
+
+
     //MARK: Override
     override func viewDidLoad() {
         super.viewDidLoad()
-  /*
-        stressPicker.delegate = self
-        stressPicker.dataSource = self
-        stressField.inputView = stressPicker*/
+
         favouritesButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
         
         daysToShow = "seven"
         showFavouritesHealth = false
+        stressSwitch.setOn(false, animated: true)
+        illnessSwitch.setOn(false, animated: true)
+
     }
         
     @IBAction func sevenDaysButton(_ sender: UIButton) {
@@ -115,13 +135,11 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
     @IBAction func thirtyDaysButton(_ sender: UIButton) {
         daysToShow = "thirty"
         showFavouritesHealth = false
-
     }
     
     @IBAction func sixtyDaysButton(_ sender: UIButton) {
         daysToShow = "sixty"
         showFavouritesHealth = false
-
     }
 
     @IBAction func filterHypoButton(_ sender: Any) {
@@ -145,6 +163,61 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
             filterHyperOutlet.setTitleColor(#colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1), for: .normal)
         }
     }
+    @IBAction func filterExerciseButton(_ sender: Any) {
+        if filterExercise == false{
+            filterExercise = true
+            filterExerciseOutlet.setTitleColor(#colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1), for: .normal)
+        }
+        else {
+            filterExercise = false
+            filterExerciseOutlet.setTitleColor(#colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1), for: .normal)
+        }
+    }
+    @IBAction func filterStressButton(_ sender: Any) {
+        if filterStress == false{
+            filterStress = true
+            filterStressOutlet.setTitleColor(#colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1), for: .normal)
+        }
+        else {
+            filterStress = false
+            filterStressOutlet.setTitleColor(#colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1), for: .normal)
+        }
+    }
+    @IBAction func filterIllnessButton(_ sender: Any) {
+        if filterIllness == false{
+            filterIllness = true
+            filterIllnessOutlet.setTitleColor(#colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1), for: .normal)
+        }
+        else {
+            filterIllness = false
+            filterIllnessOutlet.setTitleColor(#colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1), for: .normal)
+        }
+    }
+    
+
+    @IBAction func stressSwitchButton(_ sender: Any) {
+        //May crash if turned off but never turned on. Shouldn't be possible though.
+        if stressSwitch.isOn{
+            stressStart = Date()
+        }
+        else{
+            ModelController().addStress(start: stressStart!, end: Date())
+            stressStart = nil
+        }
+    }
+
+    @IBAction func illnessSwitchButton(_ sender: Any) {
+        if illnessSwitch.isOn{
+            illnessStart = Date()
+        }
+        else{
+            ModelController().addIllness(start: illnessStart!, end: Date())
+            illnessStart = nil
+        }
+    }
+    
+
+    
     
     //MARK: - Favourite buttons
     //Toggle between favourite and daily log views
@@ -250,6 +323,21 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
                 Day.glucoseTags?.contains("Hyper") != nil
             })
         }
+        if filterExercise == true{
+            loggedDays = loggedDays.filter({ (Day) -> Bool in
+                Day.exercise?.anyObject() != nil
+            })
+        }
+        if filterStress == true{
+            loggedDays = loggedDays.filter({ (Day) -> Bool in
+                Day.stress?.anyObject() != nil
+            })
+        }
+        if filterIllness == true{
+            loggedDays = loggedDays.filter({ (Day) -> Bool in
+                Day.illness?.anyObject() != nil
+            })
+        }
 
         self.healthLogTable.reloadData()
     }
@@ -274,25 +362,5 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
         }
         return unselectedCellHeight
     }
-    
-    //MARK: Picker functions
-    //Word Pickers: exercise intensity and stress
-   /* public func numberOfComponents(in pickerView: UIPickerView) -> Int{
-        return 1
-    }
-    
-    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component:Int) -> Int{
-        return stressLevel.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?{
-        return stressLevel[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
-        stressField.text = stressLevel[row]
-        stressField.resignFirstResponder()
-    }
-    */
-    
+ 
 }
