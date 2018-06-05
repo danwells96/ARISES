@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ARISES/Display/ViewControllerGraph.swift"
-            timestampString = "549899163.259093"
+            timestampString = "549903152.102954"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "105"
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ARISES/Display/ViewControllerGraph.swift"
-            timestampString = "549899163.2597769"
+            timestampString = "549903152.103338"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "434"
-            endingLineNumber = "434"
+            startingLineNumber = "432"
+            endingLineNumber = "432"
             landmarkName = "initChart()"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ARISES/Display/ViewControllerGraph.swift"
-            timestampString = "549899163.260062"
+            timestampString = "549903152.103658"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "448"
-            endingLineNumber = "448"
+            startingLineNumber = "444"
+            endingLineNumber = "444"
             landmarkName = "initChart()"
             landmarkType = "7">
          </BreakpointContent>
