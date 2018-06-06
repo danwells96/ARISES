@@ -28,7 +28,7 @@ class ViewControllerGraph: UIViewController{
     var tPlus2Compare : [Double] = []
     var tPlus3Compare : [Double] = []
     
-    
+    let nc = NotificationCenter.default
     //MARK: Properties
     @IBOutlet weak var chartView: ChartBaseView!
     private var chart: Chart?
@@ -284,7 +284,8 @@ class ViewControllerGraph: UIViewController{
         panRecognizer.require(toFail: leftGestureRecognizer)
         panRecognizer.require(toFail: rightGestureRecognizer)
         chartView.addGestureRecognizer(panRecognizer)
-        //self.view.addGestureRecognizer(panRecognizer)
+
+        nc.addObserver(self, selector: #selector(mealsUpdated), name: Notification.Name("FoodAdded"), object: nil)
         
         
         //Second Transforms
@@ -347,8 +348,10 @@ class ViewControllerGraph: UIViewController{
         }
     }
     
-    var dataDict: [String: [customType]] = [:]
     
+    @objc private func mealsUpdated(){
+        chart?.view.setNeedsDisplay()
+    }
     
     private func calcRanges(Arr: [Double], view: CustomView){
         if Arr.count > 0 {
@@ -365,7 +368,7 @@ class ViewControllerGraph: UIViewController{
     
     fileprivate lazy var chartSettings: ChartSettings = {
         var chartSettings = ChartSettings()
-        chartSettings.leading = 0
+        chartSettings.leading = -15
         chartSettings.top = 10
         chartSettings.trailing = 10
         chartSettings.bottom = 10
@@ -535,6 +538,9 @@ class ViewControllerGraph: UIViewController{
 
         //Something needs changing to initialise chart point
         let chartPoints = points
+        for point in chartPoints{
+            print(point)
+        }
         let yLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 9))
         let xLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 8), fontColor: UIColor.black, rotation: 0, rotationKeep: .top)
         
