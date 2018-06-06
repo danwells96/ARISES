@@ -374,6 +374,7 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
                 Day.illness?.anyObject() != nil
             })
         }
+        
 
         self.healthLogTable.reloadData()
     }

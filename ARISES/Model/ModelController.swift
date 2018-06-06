@@ -302,7 +302,7 @@ class ModelController {
     
     func fetchGlucose(day: Date) -> [Glucose]{
         let fetchRequest: NSFetchRequest<Glucose> = Glucose.fetchRequest()
-        let dayToShow = ModelController().formatDateToDay(date: day)
+        let dayToShow = formatDateToDay(date: day)
         fetchRequest.predicate = NSPredicate(format: "day.date == %@", dayToShow)
         //Sorts by short time - currently not correctly
         let sectionSortDescriptor = NSSortDescriptor(key: "time", ascending: true)
@@ -323,7 +323,7 @@ class ModelController {
     
     func fetchInsulin(day: Date) -> [Insulin]{
         let fetchRequest: NSFetchRequest<Insulin> = Insulin.fetchRequest()
-        let dayToShow = ModelController().formatDateToDay(date: day)
+        let dayToShow = formatDateToDay(date: day)
         fetchRequest.predicate = NSPredicate(format: "day.date == %@", dayToShow)
         //Sorts by short time - currently not correctly
         let sectionSortDescriptor = NSSortDescriptor(key: "time", ascending: true)
@@ -341,7 +341,7 @@ class ModelController {
     
     func fetchExercise(day: Date) -> [Exercise]{
         let fetchRequest: NSFetchRequest<Exercise> = Exercise.fetchRequest()
-        let dayToShow = ModelController().formatDateToDay(date: day)
+        let dayToShow = formatDateToDay(date: day)
         fetchRequest.predicate = NSPredicate(format: "day.date == %@", dayToShow)
         let foundExercise = try? PersistenceService.context.fetch(fetchRequest)
         if(foundExercise == nil){
@@ -353,16 +353,20 @@ class ModelController {
         }
     }
     
+    //TOFIX: - Broken predicate returning [] only on Chelle's phone
     func fetchDay(degreeOfTimeTravel: Int) -> [Day]{
         let fetchRequest: NSFetchRequest<Day> = Day.fetchRequest()
         let oldestDay = Calendar.current.date(byAdding: .day, value: degreeOfTimeTravel, to: Date())
-        fetchRequest.predicate = NSPredicate(format: "date BETWEEN {%@, %@}", ModelController().formatDateToDay(date: oldestDay!), ModelController().formatDateToDay(date: Date()))
+
+        //fetchRequest.predicate = NSPredicate(format: "date BETWEEN {%@, %@}", formatDateToDay(date: oldestDay!), formatDateToDay(date: Date()))
         let foundDay = try? PersistenceService.context.fetch(fetchRequest)
+        
         if(foundDay == nil){
             print("Error fetching day")
             return[]
         }
         else{
+            //print("returned array \(foundDay)")
             return foundDay!
         }
     }

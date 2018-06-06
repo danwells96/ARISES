@@ -186,7 +186,12 @@ class ViewControllerGraph: UIViewController{
                              "04/06/2018 15:55",
                              "05/06/2018 07:10",
                              "05/06/2018 09:54",
-                             "05/06/2018 12:00"
+                             "05/06/2018 12:00",
+                             "06/06/2018 07:10",
+                             "06/06/2018 09:54",
+                             "06/06/2018 12:00"
+
+
         
     ]
     
@@ -274,6 +279,9 @@ class ViewControllerGraph: UIViewController{
                                12.5,
                                4.7,
                                7.3,
+                               11.5,
+                               4.7,
+                               7.3,
                                11.5
     ]
 
@@ -351,6 +359,7 @@ class ViewControllerGraph: UIViewController{
     
     
     @objc private func mealsUpdated(){
+        initChart()
         chart?.view.setNeedsDisplay()
     }
     
