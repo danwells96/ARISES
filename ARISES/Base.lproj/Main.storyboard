@@ -1339,6 +1339,7 @@
                             <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hhK-5Y-w2W" customClass="ChartBaseView" customModule="SwiftCharts">
                                 <rect key="frame" x="80" y="25" width="223" height="250"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <gestureRecognizers/>
                                 <viewLayoutGuide key="safeArea" id="ZDj-f8-gqg"/>
                             </view>
                             <view alpha="0.29999999999999999" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ux8-yy-1UR" customClass="ChartBGView" customModule="ARISES" customModuleProvider="target">
@@ -1591,11 +1592,13 @@
                     <connections>
                         <outlet property="DateTitle" destination="Gmi-1Y-siM" id="EjN-uI-LUA"/>
                         <outlet property="chartView" destination="hhK-5Y-w2W" id="GA6-zY-V6M"/>
+                        <outlet property="leftGestureRecognizer" destination="N4Q-XD-b3a" id="ghS-PO-EA0"/>
                         <outlet property="leftSideViewContainer" destination="Ag7-z6-FpG" id="290-Ch-qEJ"/>
                         <outlet property="leftView1" destination="mED-L5-pEA" id="H3Z-IR-je4"/>
                         <outlet property="leftView2" destination="x0W-Sa-IPF" id="C7q-Og-nsz"/>
                         <outlet property="leftView3" destination="dhv-Ev-dHs" id="hsC-zW-AkM"/>
                         <outlet property="leftView4" destination="6pd-Pn-vUX" id="m7r-ZV-dcx"/>
+                        <outlet property="rightGestureRecognizer" destination="aTZ-Pb-k2J" id="8Ip-uX-Uwo"/>
                         <outlet property="rightSideViewContainer" destination="ZEV-bY-Kyk" id="RGH-hF-rGs"/>
                         <outlet property="rightView" destination="8Cm-ZE-NMX" id="pgw-bz-cvp"/>
                         <outlet property="rightView2" destination="Qa2-Ya-7Ex" id="KCK-L7-xXX"/>

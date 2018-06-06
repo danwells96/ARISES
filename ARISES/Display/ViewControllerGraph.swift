@@ -45,11 +45,19 @@ class ViewControllerGraph: UIViewController{
     @IBOutlet weak var leftView3: CustomView!
     @IBOutlet weak var leftView4: CustomView!
 
-  
+    @IBOutlet var rightGestureRecognizer: UISwipeGestureRecognizer!
+    
+    @IBOutlet var leftGestureRecognizer: UISwipeGestureRecognizer!
     @IBOutlet weak var DateTitle: UILabel!
     
     //Gesture Recognisers
+    @IBAction func upGesture(_ sender: Any) {
+        print("I found an upswipe")
+        
+    }
+    
     @IBAction func rightGesture(_ sender: UISwipeGestureRecognizer) {
+        print("right")
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
         let tempDate = dateFormatter.date(from: today)
@@ -65,6 +73,7 @@ class ViewControllerGraph: UIViewController{
     }
     
     @IBAction func leftGesture(_ sender: UISwipeGestureRecognizer) {
+        print("left")
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
         let tempDate = dateFormatter.date(from: today)
@@ -88,6 +97,8 @@ class ViewControllerGraph: UIViewController{
         rightView2.setNeedsDisplay()
         rightView3.setNeedsDisplay()
     }
+    
+  
     
     
     var rawData: [String] = ["27/11/2015 07:00",
@@ -269,6 +280,13 @@ class ViewControllerGraph: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.pannedView(sender:)))
+        panRecognizer.require(toFail: leftGestureRecognizer)
+        panRecognizer.require(toFail: rightGestureRecognizer)
+        chartView.addGestureRecognizer(panRecognizer)
+        //self.view.addGestureRecognizer(panRecognizer)
+        
+        
         //Second Transforms
         var transform = CATransform3DIdentity
         transform.m34 = -1 / 500.0
@@ -303,6 +321,22 @@ class ViewControllerGraph: UIViewController{
             print("already loaded data in")
         }
         
+    }
+    
+    var startLocation = CGPoint()
+    
+    @objc func pannedView(sender:UIPanGestureRecognizer){
+        if(sender.state == UIGestureRecognizerState.began){
+            print("Started pan")
+            startLocation = sender.location(in: self.view)
+        }else if(sender.state == UIGestureRecognizerState.ended){
+            print("Finished")
+            let stopLocation = sender.location(in: self.view)
+            let dy = startLocation.y - stopLocation.y
+            print(dy)
+        }else if(sender.state == UIGestureRecognizerState.changed){
+           print("location: \(sender.location(in: self.view))")
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -572,7 +606,7 @@ class ViewControllerGraph: UIViewController{
         
         // mark data points
         let circleViewGenerator = {(chartPointModel: ChartPointLayerModel, layer: ChartPointsLayer, chart: Chart) -> UIView? in
-            let circleView = ChartPointEllipseView(center: chartPointModel.screenLoc, diameter: 5)
+            let circleView = ChartPointEllipseView(center: chartPointModel.screenLoc, diameter: 12)
             
             circleView.animDuration = 1.0
             circleView.fillColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
