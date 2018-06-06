@@ -19,7 +19,7 @@ struct customType{
 class ViewControllerGraph: UIViewController{
     
     //Today temp variable till real-time data available
-    private var today: String = "5/06/2018 00:00" //"27/11/2015 00:00"
+    private var today: String = /*"27/11/2015 00:00"*/ "5/06/2018 00:00"
     var tMinus1Compare : [Double] = []
     var tMinus2Compare : [Double] = []
     var tMinus3Compare : [Double] = []
@@ -45,6 +45,8 @@ class ViewControllerGraph: UIViewController{
     @IBOutlet weak var leftView3: CustomView!
     @IBOutlet weak var leftView4: CustomView!
 
+  
+    @IBOutlet weak var DateTitle: UILabel!
     
     //Gesture Recognisers
     @IBAction func rightGesture(_ sender: UISwipeGestureRecognizer) {
@@ -329,7 +331,7 @@ class ViewControllerGraph: UIViewController{
     
     fileprivate lazy var chartSettings: ChartSettings = {
         var chartSettings = ChartSettings()
-        chartSettings.leading = 10
+        chartSettings.leading = 0
         chartSettings.top = 10
         chartSettings.trailing = 10
         chartSettings.bottom = 10
@@ -355,7 +357,7 @@ class ViewControllerGraph: UIViewController{
         let timeFormatter = DateFormatter()
         timeFormatter.dateFormat = "HH:mm"
         let hourFormatter = DateFormatter()
-        hourFormatter.dateFormat = "HH"
+        hourFormatter.dateFormat = "H" // remove pre-0s from x axis
         let pickerFormatter = DateFormatter()
         pickerFormatter.dateFormat = "hh:mm a"
         
@@ -499,8 +501,8 @@ class ViewControllerGraph: UIViewController{
 
         //Something needs changing to initialise chart point
         let chartPoints = points
-        let yLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 11))
-        let xLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 8), fontColor: UIColor.black, rotation: 90, rotationKeep: .top)
+        let yLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 9))
+        let xLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 8), fontColor: UIColor.black, rotation: 0, rotationKeep: .top)
         
         let xValues = ChartAxisValuesGeneratorDate(unit: .hour, preferredDividers: 8, minSpace: 0.5, maxTextSize: 12)
         
@@ -515,9 +517,16 @@ class ViewControllerGraph: UIViewController{
         
         
         //Axis models
-        let xModel = ChartAxisModel(firstModelValue: (startTime!.timeIntervalSince1970), lastModelValue: (endTime!.timeIntervalSince1970), axisTitleLabel: ChartAxisLabel(text: dayFormatter.string(from: startTime!), settings: yLabelSettings), axisValuesGenerator: xValues, labelsGenerator: xLabelGenerator)
+        let xModel = ChartAxisModel(firstModelValue: (startTime!.timeIntervalSince1970), lastModelValue: (endTime!.timeIntervalSince1970), axisTitleLabel: ChartAxisLabel(text: "", settings: yLabelSettings), axisValuesGenerator: xValues, labelsGenerator: xLabelGenerator)//dayFormatter.string(from: startTime!)
         
-        let yModel = ChartAxisModel(firstModelValue: 0, lastModelValue: 20, axisTitleLabel: ChartAxisLabel(text: "Glucose (mM/L)", settings: yLabelSettings.defaultVertical()), axisValuesGenerator: generator, labelsGenerator: yLabelGenerator)
+        //put date on top of chart
+        let longDayFormatter = DateFormatter()
+        longDayFormatter.dateStyle = .long
+        longDayFormatter.timeStyle = .none
+        DateTitle.text = longDayFormatter.string(from: startTime!)
+        DateTitle.sizeToFit()
+        
+        let yModel = ChartAxisModel(firstModelValue: 0, lastModelValue: 20, axisTitleLabel: ChartAxisLabel(text: "", settings: yLabelSettings.defaultVertical()), axisValuesGenerator: generator, labelsGenerator: yLabelGenerator) //glucose (mM/L)
         
         // generate axes layers and calculate chart inner frame, based on the axis models
         let chartFrame = self.chartView.frame
@@ -566,9 +575,9 @@ class ViewControllerGraph: UIViewController{
             let circleView = ChartPointEllipseView(center: chartPointModel.screenLoc, diameter: 5)
             
             circleView.animDuration = 1.0
-            circleView.fillColor = UIColor.red
+            circleView.fillColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
             circleView.borderWidth = 0.9
-            circleView.borderColor = UIColor.red
+         //   circleView.borderColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
             circleView.isUserInteractionEnabled = true
             
             //Change w and h depending on text size
@@ -607,6 +616,7 @@ class ViewControllerGraph: UIViewController{
                             return attempt
                         }()
                     
+                        circleView.fillColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
                         let bu = InfoBubble(point: CGPoint(x: x, y: chartViewScreenLoc.y), preferredSize: CGSize(width: 30, height: 20), superview: self.view, text: circleView.data!, font: font, textColor: UIColor.yellow)
                     chart.addSubview(bu)
                     }
@@ -628,12 +638,15 @@ class ViewControllerGraph: UIViewController{
                             }
                             return attempt
                         }()
+                        
+                        circleView.fillColor = #colorLiteral(red: 0.3450980392, green: 0.6784313725, blue: 0.8156862745, alpha: 1)
                     let bu = InfoBubble(point: CGPoint(x: x, y: chartViewScreenLoc.y), preferredSize: CGSize(width: 30, height: 20), superview: self.view, text: circleView.data!, font: font, textColor: UIColor.yellow)
                     chart.addSubview(bu)
                     }
                 
                 }
             }
+            //Doesnt do anything currently
             for insulin in insulins{
                 if(insulin.time == timeDate){
                     circleView.data = "💉"
@@ -641,6 +654,7 @@ class ViewControllerGraph: UIViewController{
                 }
             }
             
+            //Touch handler for food, exercise and insulin extra info
             circleView.touchHandler = {
                 if let chartViewScreenLoc = layer.containerToGlobalScreenLoc(chartPointModel.chartPoint) {
                     let x: CGFloat = {
