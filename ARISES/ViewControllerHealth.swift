@@ -122,6 +122,8 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
         
         daysToShow = "seven"
         showFavouritesHealth = false
+        stressSwitch.onTintColor = #colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1)
+        illnessSwitch.onTintColor = #colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1)
         stressSwitch.setOn(false, animated: true)
         illnessSwitch.setOn(false, animated: true)
 
@@ -257,6 +259,10 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as!ViewControllerTableViewCell
         
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = #colorLiteral(red: 0.9455107252, green: 0.9455107252, blue: 0.9455107252, alpha: 1)
+        cell.selectedBackgroundView = backgroundView
+        
         cell.cellDelegate = self
         cell.tag = indexPath.row
         
@@ -272,25 +278,7 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
             cell.favouriteHealthButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
         }
         
-        if (currentDay.glucoseTags?.contains("Hypo")) != nil {
-            cell.healthLogHypo.text = "Hypo"
-        }
-        else {
-            cell.healthLogHypo.text = ""
-        }
-        if (currentDay.glucoseTags?.contains("Hyper")) != nil {
-            cell.healthLogHyper.text = "Hyper"
-        }
-        else {
-            cell.healthLogHyper.text = ""
-        }
-        if currentDay.exercise?.count != nil{
-            cell.healthLogExercise.text = "\((currentDay.exercise?.count)!)"
-        }
-        else{
-            cell.healthLogExercise.text = "0"
-        }
-
+    
         //ICONS highlighting
         if (currentDay.glucoseTags?.contains("Hypo")) != nil {
             cell.loggedHealthHypoIcon.tintColor = #colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1)
@@ -323,7 +311,8 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
             cell.loggedHealthIllnessIcon.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
         }
         
-        
+
+
         
         return(cell)
     }

@@ -64,6 +64,8 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         exerciseNameField.inputAccessoryView = toolBar
         
+        
+        
         favouritesButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
         updateTable()
 
@@ -167,6 +169,10 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         cell.cellDelegate = self
         cell.tag = indexPath.row
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = #colorLiteral(red: 0.9455107252, green: 0.9455107252, blue: 0.9455107252, alpha: 1)
+        cell.selectedBackgroundView = backgroundView
         
         let currentExercise = loggedExercise[indexPath.row]
         

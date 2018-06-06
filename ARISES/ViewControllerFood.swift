@@ -154,13 +154,17 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         cell.cellDelegate = self
         cell.tag = indexPath.row
         
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = #colorLiteral(red: 0.9455107252, green: 0.9455107252, blue: 0.9455107252, alpha: 1)
+        cell.selectedBackgroundView = backgroundView
+        
         let currentMeal = loggedMeals[indexPath.row]
         
         cell.loggedFoodName.text = currentMeal.name
         cell.loggedFoodTime.text = currentMeal.time
-        cell.loggedFoodCarbs.text = "Carbs: \(currentMeal.carbs)g"
-        cell.loggedFoodProtein.text = "Protein: \(currentMeal.protein)g"
-        cell.loggedFoodFat.text = "Fat: \(currentMeal.fat)g"
+        cell.loggedFoodCarbs.text = "\(currentMeal.carbs)g"
+        cell.loggedFoodProtein.text = "\(currentMeal.protein)g"
+        cell.loggedFoodFat.text = "\(currentMeal.fat)g"
         
         
         if ModelController().itemInFavouritesFood(item: currentMeal){

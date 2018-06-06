@@ -261,3 +261,18 @@ extension UIView {
         }
     }
 }
+/*
+extension UILabel {
+    @IBInspectable
+    var image: UIImage? {
+        get {
+            return self.image
+        }
+        set {
+            self.image = newValue
+        }
+    }
+ }
+ */
+    
+

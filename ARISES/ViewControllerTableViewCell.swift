@@ -33,9 +33,7 @@ class ViewControllerTableViewCell: UITableViewCell {
     @IBOutlet weak var loggedExerciseTime: UILabel!
     
     @IBOutlet weak var dateInLog: UILabel!
-    @IBOutlet weak var healthLogExercise: UILabel!
-    @IBOutlet weak var healthLogHyper: UILabel!
-    @IBOutlet weak var healthLogHypo: UILabel!
+
     
     @IBOutlet weak var loggedHealthHypoIcon: UIButton!
     @IBOutlet weak var loggedHealthHyperIcon: UIButton!
@@ -57,6 +55,7 @@ class ViewControllerTableViewCell: UITableViewCell {
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
+        
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
