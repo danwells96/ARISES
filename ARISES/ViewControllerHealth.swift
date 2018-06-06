@@ -126,6 +126,7 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
         illnessSwitch.onTintColor = #colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1)
         stressSwitch.setOn(false, animated: true)
         illnessSwitch.setOn(false, animated: true)
+        
 
     }
         
@@ -276,6 +277,16 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
         }
         else{
             cell.favouriteHealthButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+        }
+        if let glucStats = currentDay.glucoseStats{
+            cell.loggedHealthLowLabel.text = "\(glucStats.low)"
+            cell.loggedHealthAvgLabel.text = "\(glucStats.average)"
+            cell.loggedHealthHighLabel.text = "\(glucStats.high)"
+        }
+        else{
+            cell.loggedHealthLowLabel.text = "N/A"
+            cell.loggedHealthAvgLabel.text = "N/A"
+            cell.loggedHealthHighLabel.text = "N/A"
         }
         
     
