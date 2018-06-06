@@ -616,6 +616,7 @@ class ViewControllerGraph: UIViewController{
             
             circleView.animDuration = 1.0
             circleView.fillColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
+            circleView.borderColor = UIColor.clear
             circleView.borderWidth = 0.9
          //   circleView.borderColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
             circleView.isUserInteractionEnabled = true
@@ -639,11 +640,10 @@ class ViewControllerGraph: UIViewController{
             
             //searches through meals for the day for meals that align with data point on the graph in terms of time
             for meal in meals{
-                let mealTime = timeFormatter.date(from: meal.time!)
                 if(meal.time! == timeDate){
                     circleView.data = "🍎"
                     text = "\(meal.name!) Carbs: \(meal.carbs) Protein: \(meal.protein) Fat: \(meal.fat) "
-                    if let chartViewScreenLoc = layer.containerToGlobalScreenLoc(chartPointModel.chartPoint) {
+                    /*if let chartViewScreenLoc = layer.containerToGlobalScreenLoc(chartPointModel.chartPoint) {
                         let x: CGFloat = {
                             let attempt = chartViewScreenLoc.x - (w/2)
                             let leftBound: CGFloat = chart.bounds.origin.x
@@ -655,18 +655,19 @@ class ViewControllerGraph: UIViewController{
                             }
                             return attempt
                         }()
+ 
                     
-                        circleView.fillColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
                         let bu = InfoBubble(point: CGPoint(x: x, y: chartViewScreenLoc.y), preferredSize: CGSize(width: 30, height: 20), superview: self.view, text: circleView.data!, font: font, textColor: UIColor.yellow)
-                    chart.addSubview(bu)
-                    }
+                        chart.addSubview(bu)
+                    }*/
+                    circleView.fillColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
                 }
             }
             for exercise in exercises{
                 if(exercise.time == timeDate){
                     circleView.data = "🤾‍♀️"
                     text = "\(exercise.name!) for \(exercise.duration!)"
-                    if let chartViewScreenLoc = layer.containerToGlobalScreenLoc(chartPointModel.chartPoint) {
+                    /*if let chartViewScreenLoc = layer.containerToGlobalScreenLoc(chartPointModel.chartPoint) {
                         let x: CGFloat = {
                             let attempt = chartViewScreenLoc.x - (w/2)
                             let leftBound: CGFloat = chart.bounds.origin.x
@@ -679,11 +680,11 @@ class ViewControllerGraph: UIViewController{
                             return attempt
                         }()
                         
-                        circleView.fillColor = #colorLiteral(red: 0.3450980392, green: 0.6784313725, blue: 0.8156862745, alpha: 1)
+                     
                     let bu = InfoBubble(point: CGPoint(x: x, y: chartViewScreenLoc.y), preferredSize: CGSize(width: 30, height: 20), superview: self.view, text: circleView.data!, font: font, textColor: UIColor.yellow)
                     chart.addSubview(bu)
-                    }
-                
+                    }*/
+                    circleView.fillColor = #colorLiteral(red: 0.3450980392, green: 0.6784313725, blue: 0.8156862745, alpha: 1)
                 }
             }
             //Doesnt do anything currently
