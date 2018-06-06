@@ -19,7 +19,8 @@ struct customType{
 class ViewControllerGraph: UIViewController{
     
     //Today temp variable till real-time data available
-    private var today: String = /*"27/11/2015 00:00"*/ "5/06/2018 00:00"
+    private var today: String = /*"27/11/2015 00:00"*/ "6/06/2018 00:00"
+    
     var tMinus1Compare : [Double] = []
     var tMinus2Compare : [Double] = []
     var tMinus3Compare : [Double] = []
@@ -528,7 +529,7 @@ class ViewControllerGraph: UIViewController{
         
         
         if(todayDate2 == nowDate){
-            predictedGlucosePoints = [("05/06/2018 18:27", 13.2), ("05/06/2018 19:30", 12.9), ("05/06/2018 20:00", 11), ("05/06/2018 20:30", 9), ("05/06/2018 21:00", 8), ("05/06/2018 21:30", 8), ("05/06/2018 22:00", 5), ("05/06/2018 22:10", 5), ("05/06/2018 22:40", 4), ("05/06/2018 23:10", 5)].map {
+            predictedGlucosePoints = [("06/06/2018 18:27", 13.2), ("06/06/2018 19:30", 12.9), ("06/06/2018 20:00", 11), ("06/06/2018 20:30", 9), ("06/06/2018 21:00", 8), ("06/06/2018 21:30", 8), ("06/06/2018 22:00", 5), ("06/06/2018 22:10", 5), ("06/06/2018 22:40", 4), ("06/06/2018 23:10", 5)].map {
                 return ChartPoint(
                     x: ChartAxisValueDate(date: dateFormatter.date(from: $0.0)!, formatter: dateFormatter),
                     y: ChartAxisValueDouble($0.1)
