@@ -19,7 +19,8 @@ struct customType{
 class ViewControllerGraph: UIViewController{
     
     //Today temp variable till real-time data available
-    private var today: String = /*"6/1/2016 00:00"*/"5/06/2018 00:00"
+    private var today: String = /*"27/11/2015 00:00"*/ "6/06/2018 00:00"
+    
     var tMinus1Compare : [Double] = []
     var tMinus2Compare : [Double] = []
     var tMinus3Compare : [Double] = []
@@ -28,7 +29,7 @@ class ViewControllerGraph: UIViewController{
     var tPlus2Compare : [Double] = []
     var tPlus3Compare : [Double] = []
     
-    
+    let nc = NotificationCenter.default
     //MARK: Properties
     @IBOutlet weak var chartView: ChartBaseView!
     private var chart: Chart?
@@ -45,9 +46,19 @@ class ViewControllerGraph: UIViewController{
     @IBOutlet weak var leftView3: CustomView!
     @IBOutlet weak var leftView4: CustomView!
 
+    @IBOutlet var rightGestureRecognizer: UISwipeGestureRecognizer!
+    
+    @IBOutlet var leftGestureRecognizer: UISwipeGestureRecognizer!
+    @IBOutlet weak var DateTitle: UILabel!
     
     //Gesture Recognisers
+    @IBAction func upGesture(_ sender: Any) {
+        print("I found an upswipe")
+        
+    }
+    
     @IBAction func rightGesture(_ sender: UISwipeGestureRecognizer) {
+        print("right")
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
         let tempDate = dateFormatter.date(from: today)
@@ -63,6 +74,7 @@ class ViewControllerGraph: UIViewController{
     }
     
     @IBAction func leftGesture(_ sender: UISwipeGestureRecognizer) {
+        print("left")
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
         let tempDate = dateFormatter.date(from: today)
@@ -86,6 +98,8 @@ class ViewControllerGraph: UIViewController{
         rightView2.setNeedsDisplay()
         rightView3.setNeedsDisplay()
     }
+    
+  
     
     
     var rawData: [String] = ["27/11/2015 07:00",
@@ -167,12 +181,12 @@ class ViewControllerGraph: UIViewController{
                              "06/01/2016 19:50",
                              "06/01/2016 22:43",
                              "06/01/2016 23:37",
-        "04/06/2018 10:08",
-        "04/06/2018 11:34",
-        "04/06/2018 15:55",
-                        "05/06/2018 07:10",
-                        "05/06/2018 09:54",
-                        "05/06/2018 12:00"
+                             "04/06/2018 10:08",
+                             "04/06/2018 11:34",
+                             "04/06/2018 15:55",
+                             "05/06/2018 07:10",
+                             "05/06/2018 09:54",
+                             "05/06/2018 12:00"
         
     ]
     
@@ -255,14 +269,26 @@ class ViewControllerGraph: UIViewController{
                                4.5,
                                6.6,
                                10.3,
-                            6.8, 8.9, 12.5,
-                            4.7, 7.3, 11.5
+                               6.8,
+                               8.9,
+                               12.5,
+                               4.7,
+                               7.3,
+                               11.5
     ]
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.pannedView(sender:)))
+        panRecognizer.require(toFail: leftGestureRecognizer)
+        panRecognizer.require(toFail: rightGestureRecognizer)
+        chartView.addGestureRecognizer(panRecognizer)
+
+        nc.addObserver(self, selector: #selector(mealsUpdated), name: Notification.Name("FoodAdded"), object: nil)
+        
+        
         //Second Transforms
         var transform = CATransform3DIdentity
         transform.m34 = -1 / 500.0
@@ -299,6 +325,22 @@ class ViewControllerGraph: UIViewController{
         
     }
     
+    var startLocation = CGPoint()
+    
+    @objc func pannedView(sender:UIPanGestureRecognizer){
+        if(sender.state == UIGestureRecognizerState.began){
+            print("Started pan")
+            startLocation = sender.location(in: self.view)
+        }else if(sender.state == UIGestureRecognizerState.ended){
+            print("Finished")
+            let stopLocation = sender.location(in: self.view)
+            let dy = startLocation.y - stopLocation.y
+            print(dy)
+        }else if(sender.state == UIGestureRecognizerState.changed){
+           print("location: \(sender.location(in: self.view))")
+        }
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if !self.didLayout{
@@ -307,8 +349,10 @@ class ViewControllerGraph: UIViewController{
         }
     }
     
-    var dataDict: [String: [customType]] = [:]
     
+    @objc private func mealsUpdated(){
+        chart?.view.setNeedsDisplay()
+    }
     
     private func calcRanges(Arr: [Double], view: CustomView){
         if Arr.count > 0 {
@@ -325,7 +369,7 @@ class ViewControllerGraph: UIViewController{
     
     fileprivate lazy var chartSettings: ChartSettings = {
         var chartSettings = ChartSettings()
-        chartSettings.leading = 10
+        chartSettings.leading = -15
         chartSettings.top = 10
         chartSettings.trailing = 10
         chartSettings.bottom = 10
@@ -351,7 +395,7 @@ class ViewControllerGraph: UIViewController{
         let timeFormatter = DateFormatter()
         timeFormatter.dateFormat = "HH:mm"
         let hourFormatter = DateFormatter()
-        hourFormatter.dateFormat = "HH"
+        hourFormatter.dateFormat = "H" // remove pre-0s from x axis
         let pickerFormatter = DateFormatter()
         pickerFormatter.dateFormat = "hh:mm a"
         
@@ -485,7 +529,7 @@ class ViewControllerGraph: UIViewController{
         
         
         if(todayDate2 == nowDate){
-            predictedGlucosePoints = [("05/06/2018 18:27", 13.2), ("05/06/2018 19:30", 12.9), ("05/06/2018 20:00", 11), ("05/06/2018 20:30", 9), ("05/06/2018 21:00", 8), ("05/06/2018 21:30", 8), ("05/06/2018 22:00", 5), ("05/06/2018 22:10", 5), ("05/06/2018 22:40", 4), ("05/06/2018 23:10", 5)].map {
+            predictedGlucosePoints = [("06/06/2018 18:27", 13.2), ("06/06/2018 19:30", 12.9), ("06/06/2018 20:00", 11), ("06/06/2018 20:30", 9), ("06/06/2018 21:00", 8), ("06/06/2018 21:30", 8), ("06/06/2018 22:00", 5), ("06/06/2018 22:10", 5), ("06/06/2018 22:40", 4), ("06/06/2018 23:10", 5)].map {
                 return ChartPoint(
                     x: ChartAxisValueDate(date: dateFormatter.date(from: $0.0)!, formatter: dateFormatter),
                     y: ChartAxisValueDouble($0.1)
@@ -495,8 +539,11 @@ class ViewControllerGraph: UIViewController{
 
         //Something needs changing to initialise chart point
         let chartPoints = points
-        let yLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 11))
-        let xLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 8), fontColor: UIColor.black, rotation: 90, rotationKeep: .top)
+        for point in chartPoints{
+            print(point)
+        }
+        let yLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 9))
+        let xLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 8), fontColor: UIColor.black, rotation: 0, rotationKeep: .top)
         
         let xValues = ChartAxisValuesGeneratorDate(unit: .hour, preferredDividers: 8, minSpace: 0.5, maxTextSize: 12)
         
@@ -511,9 +558,16 @@ class ViewControllerGraph: UIViewController{
         
         
         //Axis models
-        let xModel = ChartAxisModel(firstModelValue: (startTime!.timeIntervalSince1970), lastModelValue: (endTime!.timeIntervalSince1970), axisTitleLabel: ChartAxisLabel(text: dayFormatter.string(from: startTime!), settings: yLabelSettings), axisValuesGenerator: xValues, labelsGenerator: xLabelGenerator)
+        let xModel = ChartAxisModel(firstModelValue: (startTime!.timeIntervalSince1970), lastModelValue: (endTime!.timeIntervalSince1970), axisTitleLabel: ChartAxisLabel(text: "", settings: yLabelSettings), axisValuesGenerator: xValues, labelsGenerator: xLabelGenerator)//dayFormatter.string(from: startTime!)
         
-        let yModel = ChartAxisModel(firstModelValue: 0, lastModelValue: 20, axisTitleLabel: ChartAxisLabel(text: "Glucose (mM/L)", settings: yLabelSettings.defaultVertical()), axisValuesGenerator: generator, labelsGenerator: yLabelGenerator)
+        //put date on top of chart
+        let longDayFormatter = DateFormatter()
+        longDayFormatter.dateStyle = .long
+        longDayFormatter.timeStyle = .none
+        DateTitle.text = longDayFormatter.string(from: startTime!)
+        DateTitle.sizeToFit()
+        
+        let yModel = ChartAxisModel(firstModelValue: 0, lastModelValue: 20, axisTitleLabel: ChartAxisLabel(text: "", settings: yLabelSettings.defaultVertical()), axisValuesGenerator: generator, labelsGenerator: yLabelGenerator) //glucose (mM/L)
         
         // generate axes layers and calculate chart inner frame, based on the axis models
         let chartFrame = self.chartView.frame
@@ -559,12 +613,13 @@ class ViewControllerGraph: UIViewController{
         
         // mark data points
         let circleViewGenerator = {(chartPointModel: ChartPointLayerModel, layer: ChartPointsLayer, chart: Chart) -> UIView? in
-            let circleView = ChartPointEllipseView(center: chartPointModel.screenLoc, diameter: 5)
+            let circleView = ChartPointEllipseView(center: chartPointModel.screenLoc, diameter: 12)
             
             circleView.animDuration = 1.0
-            circleView.fillColor = UIColor.red
+            circleView.fillColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
+            circleView.borderColor = UIColor.clear
             circleView.borderWidth = 0.9
-            circleView.borderColor = UIColor.red
+         //   circleView.borderColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
             circleView.isUserInteractionEnabled = true
             
             //Change w and h depending on text size
@@ -586,11 +641,10 @@ class ViewControllerGraph: UIViewController{
             
             //searches through meals for the day for meals that align with data point on the graph in terms of time
             for meal in meals{
-                let mealTime = timeFormatter.date(from: meal.time!)
                 if(meal.time! == timeDate){
                     circleView.data = "🍎"
                     text = "\(meal.name!) Carbs: \(meal.carbs) Protein: \(meal.protein) Fat: \(meal.fat) "
-                    if let chartViewScreenLoc = layer.containerToGlobalScreenLoc(chartPointModel.chartPoint) {
+                    /*if let chartViewScreenLoc = layer.containerToGlobalScreenLoc(chartPointModel.chartPoint) {
                         let x: CGFloat = {
                             let attempt = chartViewScreenLoc.x - (w/2)
                             let leftBound: CGFloat = chart.bounds.origin.x
@@ -602,17 +656,19 @@ class ViewControllerGraph: UIViewController{
                             }
                             return attempt
                         }()
+ 
                     
                         let bu = InfoBubble(point: CGPoint(x: x, y: chartViewScreenLoc.y), preferredSize: CGSize(width: 30, height: 20), superview: self.view, text: circleView.data!, font: font, textColor: UIColor.yellow)
-                    chart.addSubview(bu)
-                    }
+                        chart.addSubview(bu)
+                    }*/
+                    circleView.fillColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
                 }
             }
             for exercise in exercises{
                 if(exercise.time == timeDate){
                     circleView.data = "🤾‍♀️"
                     text = "\(exercise.name!) for \(exercise.duration!)"
-                    if let chartViewScreenLoc = layer.containerToGlobalScreenLoc(chartPointModel.chartPoint) {
+                    /*if let chartViewScreenLoc = layer.containerToGlobalScreenLoc(chartPointModel.chartPoint) {
                         let x: CGFloat = {
                             let attempt = chartViewScreenLoc.x - (w/2)
                             let leftBound: CGFloat = chart.bounds.origin.x
@@ -624,12 +680,15 @@ class ViewControllerGraph: UIViewController{
                             }
                             return attempt
                         }()
+                        
+                     
                     let bu = InfoBubble(point: CGPoint(x: x, y: chartViewScreenLoc.y), preferredSize: CGSize(width: 30, height: 20), superview: self.view, text: circleView.data!, font: font, textColor: UIColor.yellow)
                     chart.addSubview(bu)
-                    }
-                
+                    }*/
+                    circleView.fillColor = #colorLiteral(red: 0.3450980392, green: 0.6784313725, blue: 0.8156862745, alpha: 1)
                 }
             }
+            //Doesnt do anything currently
             for insulin in insulins{
                 if(insulin.time == timeDate){
                     circleView.data = "💉"
@@ -637,6 +696,7 @@ class ViewControllerGraph: UIViewController{
                 }
             }
             
+            //Touch handler for food, exercise and insulin extra info
             circleView.touchHandler = {
                 if let chartViewScreenLoc = layer.containerToGlobalScreenLoc(chartPointModel.chartPoint) {
                     let x: CGFloat = {

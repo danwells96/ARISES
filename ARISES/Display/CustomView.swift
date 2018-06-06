@@ -57,7 +57,7 @@ class CustomView: UIView {
         seperation.move(to: CGPoint(x: bounds.width, y: 0.0))
         seperation.addLine(to: CGPoint(x: bounds.width, y: bounds.height))
         seperation.lineWidth = 2.0
-        UIColor.black.setStroke()
+        UIColor.gray.setStroke()
         seperation.stroke()
         
         //daily low high range
