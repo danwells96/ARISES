@@ -500,12 +500,12 @@ class ViewControllerGraph: UIViewController{
         
         for exercise in todayExerciseArray{
             let combinedDate = keyDay + " " + exercise.time!
-            extraPoints.append(ChartPoint(x: ChartAxisValueDate(date: dateFormatter.date(from: combinedDate)!, formatter: dateFormatter), y: ChartAxisValueDouble(0.5)))
+            extraPoints.append(ChartPoint(x: ChartAxisValueDate(date: dateFormatter.date(from: combinedDate)!, formatter: dateFormatter), y: ChartAxisValueDouble(5.0)))
         }
         
         for insulin in todayInsulinArray{
             let combinedDate = keyDay + " " + insulin.time!
-            extraPoints.append(ChartPoint(x: ChartAxisValueDate(date: dateFormatter.date(from: combinedDate)!, formatter: dateFormatter), y: ChartAxisValueDouble(0.5)))
+            extraPoints.append(ChartPoint(x: ChartAxisValueDate(date: dateFormatter.date(from: combinedDate)!, formatter: dateFormatter), y: ChartAxisValueDouble(195.0)))
         }
         
         extraPoints.sort(by: {$0.x.scalar < $1.x.scalar})
@@ -702,7 +702,7 @@ class ViewControllerGraph: UIViewController{
                      let bu = InfoBubble(point: CGPoint(x: x, y: chartViewScreenLoc.y), preferredSize: CGSize(width: 30, height: 20), superview: self.view, text: circleView.data!, font: font, textColor: UIColor.yellow)
                      chart.addSubview(bu)
                      }*/
-                    circleView.fillColor = #colorLiteral(red: 0.3450980392, green: 0.6784313725, blue: 0.8156862745, alpha: 1)
+                    circleView.fillColor = #colorLiteral(red: 0, green: 0.6383251441, blue: 1, alpha: 1)
                 }
             }
             //Doesnt do anything currently
@@ -710,7 +710,7 @@ class ViewControllerGraph: UIViewController{
                 if(insulin.time == timeDate){
                     circleView.data = "💉"
                     text = "Bolus insulin of \(insulin.units) units"
-                    circleView.fillColor = #colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1)
+                    circleView.fillColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
                 }
             }
             

@@ -264,6 +264,15 @@ class ViewControllerMain: UIViewController {
         view.endEditing(true)
     }
     
+    //MARK: - Settings popup
+    
+    @IBAction func settingsPopup(_ sender: Any) {
+        let popupViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "settings") as! ViewControllerSettings
+        self.addChildViewController(popupViewController)
+        popupViewController.view.frame = self.view.frame
+        self.view.addSubview(popupViewController.view)
+        popupViewController.didMove(toParentViewController: self)
+    }
     
 }
 //MARK: - Extensions
