@@ -38,7 +38,15 @@ class ViewControllerMain: UIViewController {
     @IBOutlet weak var indicatorExercise: UIView!
     @IBOutlet weak var indicatorHealth: UIView!
     @IBOutlet weak var indicatorAdvice: UIView!
+    
+    //Insulin outlets
+    @IBOutlet weak var glucoseButtonOutlet: UIButton!
+    @IBOutlet weak var insulinTextField: UITextField!
+    @IBOutlet weak var glucoseClockOutlet: UIButton!
+    @IBOutlet weak var insulinTimeField: UITextField!
+    private var insulinTimePicker = UIDatePicker()
 
+    
     // Variables for rounding and shadow extension
     private var shadowLayer: CAShapeLayer!
     private var cornerRadius: CGFloat = 25.0
@@ -57,6 +65,24 @@ class ViewControllerMain: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.state = .food
+        
+        glucoseButtonOutlet.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+        insulinTextField.isHidden = true
+        glucoseClockOutlet.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+        glucoseClockOutlet.isHidden = true
+        insulinTimeField.isHidden = true
+        
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.doneWithKeypad))
+        
+        toolBar.setItems([flexible, doneButton], animated: true)
+        
+        insulinTextField.inputAccessoryView = toolBar
+
+        createInsulinTimePicker()
+
     }
     
     //MARK: - View re-positioning
@@ -163,7 +189,81 @@ class ViewControllerMain: UIViewController {
     @IBAction func adviceButton(_ sender: UIButton) {
         self.state = .advice
     }
- 
+    
+    //MARK: - Insulin actions
+    @IBAction func glucoseClockButton(_ sender: Any) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+            if self.glucoseClockOutlet.tintColor == #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1) {
+                self.glucoseClockOutlet.tintColor = #colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1)
+                self.insulinTimeField.isHidden = false
+            }
+            else{
+                self.glucoseClockOutlet.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+                self.insulinTimeField.isHidden = true
+            }
+        }
+    }
+    
+    @IBAction func glucoseButton(_ sender: Any) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+            if self.glucoseButtonOutlet.tintColor == #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1) {
+                self.glucoseButtonOutlet.tintColor = #colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1)
+                self.insulinTextField.isHidden = false
+                self.glucoseClockOutlet.isHidden = false
+                
+            }
+            else{
+                self.glucoseButtonOutlet.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+                self.insulinTextField.isHidden = true
+                self.glucoseClockOutlet.isHidden = true
+                self.glucoseClockOutlet.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+                self.insulinTimeField.isHidden = true
+
+                //add insulin if not nil
+                if (self.insulinTextField.text != ""){
+                    if self.insulinTimeField.text != ""{
+                        ModelController().addInslin(units: Double((self.insulinTextField.text)!)!, time: self.insulinTimeField.text!, date: Date())
+                   
+                    self.insulinTextField.text = ""
+                    }
+                    else{
+                        let currentTime = ModelController().formatDateToHHmm(date: Date())
+                        ModelController().addInslin(units: Double((self.insulinTextField.text)!)!, time: currentTime, date: Date())
+                        self.insulinTextField.text = ""
+                        self.insulinTimeField.text = ""
+                    }
+                }
+            }
+        }
+    }
+        
+        
+    //Food Time picker
+    private func createInsulinTimePicker(){
+        
+        let doneButtonBar = UIToolbar()
+        doneButtonBar.sizeToFit()
+        
+        let flexible = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: #selector(doneWithPicker))
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneWithPicker))
+        
+        doneButtonBar.setItems([flexible, doneButton], animated: true)
+        
+        insulinTimeField.inputAccessoryView = doneButtonBar
+        insulinTimeField.inputView = insulinTimePicker
+        
+        insulinTimePicker.datePickerMode = .time
+    }
+    @objc private func doneWithPicker(){
+        
+        insulinTimeField.text = ModelController().formatDateToHHmm(date: insulinTimePicker.date)
+        self.view.endEditing(true)
+    }
+
+    @objc private func doneWithKeypad(){
+        view.endEditing(true)
+    }
+    
     
 }
 //MARK: - Extensions
@@ -175,6 +275,7 @@ extension UIView {
         
     }
 }
+
 extension UIView {
     
     @IBInspectable

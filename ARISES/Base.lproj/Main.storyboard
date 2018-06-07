@@ -1174,6 +1174,72 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="   Time" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bmM-Bp-qEv">
+                                <rect key="frame" x="259" y="93" width="93" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.3921568627" green="0.73725490199999999" blue="0.43921568630000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="   Insulin" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Mu-lC-YR7">
+                                <rect key="frame" x="259" y="52" width="93" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.3921568627" green="0.73725490199999999" blue="0.43921568630000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRv-d3-GJW">
+                                <rect key="frame" x="325" y="42" width="40" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="imageEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
+                                <state key="normal" image="blood"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="21.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" cocoaTouchSystemColor="darkTextColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="glucoseButton:" destination="Mwq-xa-FnX" eventType="touchUpInside" id="4UC-q3-mPx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ywv-EP-SMA">
+                                <rect key="frame" x="325" y="88" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="clock"/>
+                                <connections>
+                                    <action selector="glucoseClockButton:" destination="Mwq-xa-FnX" eventType="touchUpInside" id="Xyp-bH-4xp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -1205,10 +1271,14 @@
                         <outlet property="containerExercise" destination="T81-Tn-xcz" id="Sjk-Xh-zsF"/>
                         <outlet property="containerFood" destination="utY-qe-bLa" id="bH0-hY-hm8"/>
                         <outlet property="containerHealth" destination="vDn-oD-iaH" id="uth-pp-ywK"/>
+                        <outlet property="glucoseButtonOutlet" destination="FRv-d3-GJW" id="Wlp-VC-Q45"/>
+                        <outlet property="glucoseClockOutlet" destination="Ywv-EP-SMA" id="KCn-la-lCA"/>
                         <outlet property="indicatorAdvice" destination="jf8-0c-9r8" id="qFh-N4-VY0"/>
                         <outlet property="indicatorExercise" destination="AhV-rT-MkA" id="4D7-px-fuF"/>
                         <outlet property="indicatorFood" destination="XPs-kn-aFI" id="IdM-tC-Nzy"/>
                         <outlet property="indicatorHealth" destination="iWC-mG-JNX" id="u89-nq-7b7"/>
+                        <outlet property="insulinTextField" destination="8Mu-lC-YR7" id="twC-FU-gy8"/>
+                        <outlet property="insulinTimeField" destination="bmM-Bp-qEv" id="aTd-aD-B8T"/>
                         <outlet property="viewAdvice" destination="noz-zY-TfD" id="AKP-tU-9Fn"/>
                         <outlet property="viewExercise" destination="snM-AQ-ROO" id="kJo-pp-fg9"/>
                         <outlet property="viewFood" destination="N3E-JJ-Fgc" id="bx1-dN-zKN"/>
@@ -1220,7 +1290,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nCF-cp-rHh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2472.8000000000002" y="-2.2488755622188905"/>
+            <point key="canvasLocation" x="2472.8000000000002" y="-2.9556650246305418"/>
         </scene>
         <!--View Controller Exercise-->
         <scene sceneID="rBi-2J-ign">
@@ -1659,13 +1729,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hhK-5Y-w2W" customClass="ChartBaseView" customModule="SwiftCharts">
-                                <rect key="frame" x="80" y="69" width="223" height="172"/>
+                                <rect key="frame" x="80" y="69" width="223" height="298"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <gestureRecognizers/>
                                 <viewLayoutGuide key="safeArea" id="ZDj-f8-gqg"/>
                             </view>
                             <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ux8-yy-1UR" customClass="ChartBGView" customModule="ARISES" customModuleProvider="target">
-                                <rect key="frame" x="80" y="79" width="213" height="120"/>
+                                <rect key="frame" x="80" y="79" width="213" height="246"/>
                                 <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
@@ -1877,13 +1947,13 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6U-cI-lXW">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="6.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6U-cI-lXW">
                                 <rect key="frame" x="226" y="88" width="67" height="36"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mM/L" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sl2-m7-8Gi">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="mM/L" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sl2-m7-8Gi">
                                 <rect key="frame" x="238" y="127" width="44" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="18" id="977-1B-amU"/>
@@ -1981,6 +2051,8 @@
         <image name="Screen Shot 2018-06-07 at 15.55.07 (1).png" width="1064" height="1132"/>
         <image name="advice" width="129" height="97"/>
         <image name="apple" width="98" height="105"/>
+        <image name="blood" width="124" height="141"/>
+        <image name="clock" width="256" height="256"/>
         <image name="exercise" width="127" height="126"/>
         <image name="exercise2" width="116" height="116"/>
         <image name="heart" width="131" height="124"/>

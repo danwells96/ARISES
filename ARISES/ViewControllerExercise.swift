@@ -36,7 +36,7 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
                     self.favouritesButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
                 }
                 else{
-                    self.favouritesButton.tintColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
+                    self.favouritesButton.tintColor = #colorLiteral(red: 0.3450980392, green: 0.6784313725, blue: 0.8156862745, alpha: 1)
                 }
                 self.updateTable()
             }
@@ -181,7 +181,7 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
         cell.loggedExerciseDuration.text = currentExercise.duration
         
         if ModelController().itemInFavouritesExercise(item: currentExercise){
-            cell.favouriteExerciseButton.tintColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
+            cell.favouriteExerciseButton.tintColor = #colorLiteral(red: 0.3450980392, green: 0.6784313725, blue: 0.8156862745, alpha: 1)
         }
         else{
             cell.favouriteExerciseButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)

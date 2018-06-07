@@ -710,6 +710,7 @@ class ViewControllerGraph: UIViewController{
                 if(insulin.time == timeDate){
                     circleView.data = "💉"
                     text = "Bolus insulin of \(insulin.units) units"
+                    circleView.fillColor = #colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1)
                 }
             }
             
