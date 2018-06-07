@@ -140,10 +140,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6N1-aI-m4m">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6N1-aI-m4m">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.02003282867372036" green="0.0039319680072367191" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
                                 <userDefinedRuntimeAttributes>
@@ -158,7 +157,7 @@
                                     <action selector="popupClose:" destination="LRv-vF-yIh" eventType="touchUpInside" id="9Jp-KK-dUM"/>
                                 </connections>
                             </button>
-                            <view alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lyw-10-SNp">
+                            <view alpha="0.90000000000000002" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lyw-10-SNp">
                                 <rect key="frame" x="39" y="319" width="297" height="189"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -190,7 +189,12 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6N1-aI-m4m" firstAttribute="trailing" secondItem="rfu-ew-BGB" secondAttribute="trailing" id="G0c-6N-nWi"/>
+                            <constraint firstItem="6N1-aI-m4m" firstAttribute="leading" secondItem="rfu-ew-BGB" secondAttribute="leading" id="P9r-FB-9sG"/>
+                            <constraint firstItem="6N1-aI-m4m" firstAttribute="top" secondItem="rfu-ew-BGB" secondAttribute="top" id="RB7-Wk-tWT"/>
+                            <constraint firstItem="6N1-aI-m4m" firstAttribute="bottom" secondItem="rfu-ew-BGB" secondAttribute="bottom" id="SsW-Gd-Zji"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="aMY-pV-zOr"/>
                     </view>
                 </viewController>
