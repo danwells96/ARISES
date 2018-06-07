@@ -51,6 +51,7 @@ class ViewControllerGraph: UIViewController{
     @IBOutlet var leftGestureRecognizer: UISwipeGestureRecognizer!
     @IBOutlet weak var DateTitle: UILabel!
     
+    @IBOutlet weak var currentGlucose: UILabel!
     //Gesture Recognisers
     @IBAction func upGesture(_ sender: Any) {
         print("I found an upswipe")
@@ -486,6 +487,7 @@ class ViewControllerGraph: UIViewController{
         
         for meal in todayFoodArray{
             let combinedDate = keyDay + " " + meal.time!
+            print(meal)
             extraPoints.append(ChartPoint(x: ChartAxisValueDate(date: dateFormatter.date(from: combinedDate)!, formatter: dateFormatter), y: ChartAxisValueDouble(0.5)))
         }
         
@@ -596,6 +598,10 @@ class ViewControllerGraph: UIViewController{
         }else{
             nowIndicator = ChartPoint(x: ChartAxisValueDate(date: dateFormatter.date(from: today)!, formatter: dateFormatter), y: ChartAxisValueDouble(6))
         }
+        //let currGlucose = nowIndicator.y.scalar
+        currentGlucose.text = "6.0"
+        currentGlucose.sizeToFit()
+        
         //want pred only on "today"
         predictedGlucosePoints.insert(nowIndicator, at: 0) //prediction made continuous
         

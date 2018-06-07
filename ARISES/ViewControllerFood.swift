@@ -196,6 +196,10 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     //Will likely be replaced with a button to select and used for expanding
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        
+        //(dateFormatter.date(from: "\(Date())"))!
         if showFavouritesFood == true{
             ModelController().addMeal(
                 name: loggedMeals[indexPath.row].name!,

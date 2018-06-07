@@ -68,7 +68,7 @@ class ViewControllerMain: UIViewController {
         case .food:
             //containerFood.alpha = 0.0
             view.bringSubview(toFront: viewFood)
-            /*UIView.animate(withDuration: 0.5, delay: 0, options: .curveLinear, animations: {
+            /*UIView.animate(withDuration: 0.1, delay: 0, options: .curveLinear, animations: {
                 self.containerFood.alpha = 1.0
             }, completion: nil)*/
             containerFood.isHidden = false
@@ -82,11 +82,11 @@ class ViewControllerMain: UIViewController {
 
         case .exercise:
             self.view.bringSubview(toFront: self.viewExercise)
-            /*UIView.animate(withDuration: 0, animations: {
+            /*UIView.animate(withDuration: 0.001, animations: {
                 self.viewExercise.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
                 
             }) { (finished) in
-                UIView.animate(withDuration: 0.4, animations: {
+                UIView.animate(withDuration: 0.3, animations: {
                     self.viewExercise.transform = CGAffineTransform.identity
                 })
             }*/
@@ -105,12 +105,12 @@ class ViewControllerMain: UIViewController {
             indicatorExercise.isHidden = true
             
         case .health:
-            self.view.bringSubview(toFront: self.viewHealth)
-           /*UIView.animate(withDuration: 0, animations: {
+           self.view.bringSubview(toFront: self.viewHealth)
+           /*UIView.animate(withDuration: 0.001, animations: {
                 self.viewHealth.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-                
+            
             }) { (finished) in
-                UIView.animate(withDuration: 0.4, animations: {
+                UIView.animate(withDuration: 0.3, animations: {
                     self.viewHealth.transform = CGAffineTransform.identity
                 })
             }*/
