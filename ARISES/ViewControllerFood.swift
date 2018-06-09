@@ -203,7 +203,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         if showFavouritesFood == true{
             ModelController().addMeal(
                 name: loggedMeals[indexPath.row].name!,
-                time: ModelController().formatDateToTime(date: Date()),
+                time: dateFormatter.string(from: Date()),
                 date: Date(),
                 carbs: loggedMeals[indexPath.row].carbs,
                 fat: loggedMeals[indexPath.row].fat,

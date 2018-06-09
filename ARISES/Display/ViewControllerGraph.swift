@@ -500,7 +500,7 @@ class ViewControllerGraph: UIViewController{
         
         for meal in todayFoodArray{
             let combinedDate = keyDay + " " + meal.time!
-            //print(meal)
+            //print(meal.time)
             extraPoints.append(ChartPoint(x: ChartAxisValueDate(date: dateFormatter.date(from: combinedDate)!, formatter: dateFormatter), y: ChartAxisValueInt(Int(meal.carbs))))
             //print("carbs taken in \(meal.carbs)")
         }
