@@ -201,6 +201,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         
         //(dateFormatter.date(from: "\(Date())"))!
         if showFavouritesFood == true{
+            /*
             ModelController().addMeal(
                 name: loggedMeals[indexPath.row].name!,
                 time: dateFormatter.string(from: Date()),
@@ -209,7 +210,14 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
                 fat: loggedMeals[indexPath.row].fat,
                 protein: loggedMeals[indexPath.row].protein)
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { 
+            */
+            foodNameTextField.text = loggedMeals[indexPath.row].name
+            foodTimeField.text = dateFormatter.string(from: Date())
+            carbsTextField.text = String(loggedMeals[indexPath.row].carbs)
+            proteinTextField.text = String(loggedMeals[indexPath.row].protein)
+            fatTextField.text = String(loggedMeals[indexPath.row].fat)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.showFavouritesFood = false
             }
         }

@@ -200,12 +200,20 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if showFavouritesExercise == true{
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH:mm"
+            /*
             ModelController().addExercise(
                 name: loggedExercise[indexPath.row].name!,
                 time: ModelController().formatDateToTime(date: Date()),
                 date: Date(),
                 intensity: loggedExercise[indexPath.row].intensity!,
                 duration: loggedExercise[indexPath.row].duration!)
+            */
+            exerciseNameField.text = loggedExercise[indexPath.row].name
+            exerciseTimeField.text = dateFormatter.string(from: Date())
+            exerciseDurationField.text = loggedExercise[indexPath.row].duration
+            exerciseIntensityField.text = loggedExercise[indexPath.row].intensity
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1){
                 self.showFavouritesExercise = false
