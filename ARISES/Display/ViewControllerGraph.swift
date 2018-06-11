@@ -313,7 +313,9 @@ class ViewControllerGraph: UIViewController{
         
 
         nc.addObserver(self, selector: #selector(mealsUpdated), name: Notification.Name("FoodAdded"), object: nil)
-            
+        nc.addObserver(self, selector: #selector(mealsUpdated), name: Notification.Name("ExerciseAdded"), object: nil)
+        nc.addObserver(self, selector: #selector(mealsUpdated), name: Notification.Name("InsulinAdded"), object: nil)
+
 
         print(rawData.count, rawValues.count)
         //Second Transforms
@@ -473,8 +475,6 @@ class ViewControllerGraph: UIViewController{
         
         //set function to today() when live code
         let day = main.today
-//        let wd = weekdayFormatter.string(from: day)
-//        print("Today is \(wd)")
         
         var dateArray = [ChartAxisValueDate]()
         var valueArray = [ChartAxisValueDouble]()
@@ -716,7 +716,7 @@ class ViewControllerGraph: UIViewController{
                 let w: CGFloat = 80
                 let h: CGFloat = 60
                 var text : String = ""
-                let font = UIFont.boldSystemFont(ofSize: 9)
+                let font = UIFont.boldSystemFont(ofSize: 12)
                 
                 
                 
