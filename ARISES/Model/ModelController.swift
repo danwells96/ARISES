@@ -104,6 +104,9 @@ class ModelController {
         newExercise.duration = duration
         currentDay.addToExercise(newExercise)
         PersistenceService.saveContext()
+        
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name("ExerciseAdded"), object: nil)
     }
     
     func addGlucose(value: Double, time: String, date: Date){
@@ -114,6 +117,8 @@ class ModelController {
         newGlucose.time = time
         currentDay.addToGlucose(newGlucose)
         PersistenceService.saveContext()
+        
+        
     }
     
     func addInslin(units: Double, time: String, date: Date){
@@ -124,6 +129,9 @@ class ModelController {
         newInsulin.time = time
         currentDay.addToInsulin(newInsulin)
         PersistenceService.saveContext()
+        
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name("InsulinAdded"), object: nil)
     }
     func toggleFavouriteFood(item: Meals){
         
