@@ -476,6 +476,7 @@
                         <outlet property="carbsTextField" destination="wMy-H5-4FY" id="HVZ-qv-KiF"/>
                         <outlet property="fatTextField" destination="0Cd-sx-Ahs" id="TY2-Ey-cvC"/>
                         <outlet property="favouritesButton" destination="1rn-Le-rQx" id="Ybj-vp-iSj"/>
+                        <outlet property="foodAddButton" destination="0pI-Iu-eQV" id="Zp0-DT-SR2"/>
                         <outlet property="foodLogTable" destination="6QN-ht-td4" id="O2j-mL-Rp1"/>
                         <outlet property="foodNameTextField" destination="aoz-Lq-GqU" id="nna-0q-n9T"/>
                         <outlet property="foodTimeField" destination="YHY-0J-bdq" id="BT8-aV-n9T"/>
@@ -1559,6 +1560,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
+                        <outlet property="exerciseAddButton" destination="OYm-JV-cfP" id="HOS-TX-Zhq"/>
                         <outlet property="exerciseDurationField" destination="eBL-gT-zy7" id="VlR-5W-3k1"/>
                         <outlet property="exerciseIntensityField" destination="sz4-FU-8iE" id="o1D-u0-xJe"/>
                         <outlet property="exerciseLogTable" destination="ymx-Sq-99t" id="Sw3-Jw-uMf"/>
