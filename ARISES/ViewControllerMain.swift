@@ -46,7 +46,12 @@ class ViewControllerMain: UIViewController {
     @IBOutlet weak var insulinTimeField: UITextField!
     private var insulinTimePicker = UIDatePicker()
 
-    var today = Calendar.current.startOfDay(for: Date())
+    var today = Calendar.current.startOfDay(for: Date()){
+        didSet{
+            let nc = NotificationCenter.default
+            nc.post(name: Notification.Name("dayChanged"), object: nil)
+        }
+    }
     
     // Variables for rounding and shadow extension
     private var shadowLayer: CAShapeLayer!
