@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ARISES/Display/ViewControllerGraph.swift"
-            timestampString = "550420784.005491"
+            timestampString = "550424208.711194"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "rawData"
             landmarkType = "24">
             <Locations>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ARISES/Display/ViewControllerGraph.swift"
-            timestampString = "550420784.005904"
+            timestampString = "550424208.7112941"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "743"
-            endingLineNumber = "743"
+            startingLineNumber = "714"
+            endingLineNumber = "714"
             landmarkName = "initChart()"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ARISES/Display/ViewControllerGraph.swift"
-            timestampString = "550420784.006286"
+            timestampString = "550424208.711373"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "750"
-            endingLineNumber = "750"
+            startingLineNumber = "721"
+            endingLineNumber = "721"
             landmarkName = "initChart()"
             landmarkType = "7">
          </BreakpointContent>

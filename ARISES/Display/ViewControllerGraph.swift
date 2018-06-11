@@ -44,7 +44,6 @@ class ViewControllerGraph: UIViewController{
     @IBOutlet weak var leftView1: CustomView!
     @IBOutlet weak var leftView2: CustomView!
     @IBOutlet weak var leftView3: CustomView!
-    @IBOutlet weak var leftView4: CustomView!
     
     @IBOutlet var rightGestureRecognizer: UISwipeGestureRecognizer!
     
@@ -56,10 +55,7 @@ class ViewControllerGraph: UIViewController{
     let picker = UIDatePicker()
     @IBOutlet weak var currentGlucose: UILabel!
     //Gesture Recognisers
-    @IBAction func upGesture(_ sender: Any) {
-        print("I found an upswipe")
-        
-    }
+   
     
     @IBAction func rightGesture(_ sender: UISwipeGestureRecognizer) {
         print("right")
@@ -97,7 +93,6 @@ class ViewControllerGraph: UIViewController{
         leftView1.setNeedsDisplay()
         leftView2.setNeedsDisplay()
         leftView3.setNeedsDisplay()
-        leftView4.setNeedsDisplay()
         rightView.setNeedsDisplay()
         rightView2.setNeedsDisplay()
         rightView3.setNeedsDisplay()
@@ -442,7 +437,7 @@ class ViewControllerGraph: UIViewController{
     
     fileprivate lazy var chartSettings: ChartSettings = {
         var chartSettings = ChartSettings()
-        chartSettings.leading = -14
+        chartSettings.leading = -15
         chartSettings.top = 10
         chartSettings.trailing = 10
         chartSettings.bottom = 10
@@ -593,7 +588,6 @@ class ViewControllerGraph: UIViewController{
         calcRanges(Arr: tMinus1Compare, view: leftView1)
         calcRanges(Arr: tMinus2Compare, view: leftView2)
         calcRanges(Arr: tMinus3Compare, view: leftView3)
-        calcRanges(Arr: tMinus4Compare, view: leftView4)
         calcRanges(Arr: tPlus1Compare, view: rightView)
         calcRanges(Arr: tPlus2Compare, view: rightView2)
         calcRanges(Arr: tPlus3Compare, view: rightView3)
