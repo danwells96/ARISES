@@ -378,12 +378,10 @@ class ViewControllerGraph: UIViewController{
     func createDatePicker(){
         //PLACEHOLDER
         let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .none
+        formatter.dateFormat = "EEEE dd MMMM, yyyy"
         pickerTextField.text = formatter.string(from: Date())
         
         //Format Picker mode For Date
-            
         picker.datePickerMode = .date
         
         //Toolbar
@@ -401,29 +399,18 @@ class ViewControllerGraph: UIViewController{
         
         //format date
         let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .none
+        formatter.dateFormat = "EEEE dd MMMM, yyyy"
+
         let dateString = formatter.string(from: picker.date)
+        print("Date string: \(dateString)")
         pickerTextField.text = dateString
         
         self.view.endEditing(true)
         
-        //pass the picker date to variable today
-        let formatter2 = DateFormatter()
-        formatter2.locale = Locale(identifier: "en_GB")
-        formatter2.dateStyle = .short
-        formatter2.timeStyle = .none
-    
-        let todayString = picker.date
+        //pass picker date to variable today
+        main.today = picker.date
         
-        //print("today string is: \(todayString)") //today string is: 11/06/2018
-        // let todaystring = todayString + " 00:00"
-        // print("today is : \(todaystring)") //today is : 11/06/2018 00:00
-        /*  if todaystring != main.today{
-         main.today = todaystring
-         }
-         */
-        main.today = todayString
+        //update chart & sidebars
         for view in (chart?.view.subviews)! {
             view.removeFromSuperview()
         }
@@ -480,19 +467,21 @@ class ViewControllerGraph: UIViewController{
         timeFormatter.dateFormat = "HH:mm"
         let hourFormatter = DateFormatter()
         hourFormatter.dateFormat = "H" // remove pre-0s from x axis
-        let pickerFormatter = DateFormatter()
-        pickerFormatter.dateFormat = "hh:mm a"
-        let longDayFormatter = DateFormatter()
-        longDayFormatter.dateStyle = .long
-        longDayFormatter.timeStyle = .none
+        
+        let weekdayFormatter = DateFormatter()
+        weekdayFormatter.dateFormat = "EEEE dd MMMM, yyyy"
         
         //set function to today() when live code
         let day = main.today
+//        let wd = weekdayFormatter.string(from: day)
+//        print("Today is \(wd)")
+        
         var dateArray = [ChartAxisValueDate]()
         var valueArray = [ChartAxisValueDouble]()
         var points = [ChartPoint]()
-        
         var extraPoints = [ChartPoint]()
+        var predictedGlucosePoints: [ChartPoint] = []
+        var nowIndicator: ChartPoint
         
         dateArray.removeAll()
         valueArray.removeAll()
@@ -609,25 +598,22 @@ class ViewControllerGraph: UIViewController{
         calcRanges(Arr: tPlus2Compare, view: rightView2)
         calcRanges(Arr: tPlus3Compare, view: rightView3)
         
-        let todayDate = main.today
-        let todayString = todayDate
-        let todayDate2 = todayString
-        var predictedGlucosePoints: [ChartPoint] = []
+        let todayDate2 = main.today
         
-        let now = dayFormatter.string(from: Date())
-        let nowDate = dayFormatter.date(from: now)
+        let nowString = dayFormatter.string(from: Date())
+        let nowDate = dayFormatter.date(from: nowString)
         
+        let currTime = timeFormatter.string(from: Date())
+        print("current time is : \(currTime)")
         
         if(todayDate2 == nowDate){
-
-                    predictedGlucosePoints = [("08/06/2018 18:27", 9), ("08/06/2018 19:30", 9.8), ("08/06/2018 20:00", 10.2)].map {
-
+                    predictedGlucosePoints = [(nowString + " 18:27", 9), (nowString + " 19:30", 9.8), (nowString + " 20:00", 10.2)].map {
                         return ChartPoint(
                             x: ChartAxisValueDate(date: dateFormatter.date(from: $0.0)!, formatter: dateFormatter),
                             y: ChartAxisValueDouble($0.1)
                         )
-                }
-            }
+                    }
+        }
             
             //Something needs changing to initialise chart point
             let chartPoints = points
@@ -643,8 +629,9 @@ class ViewControllerGraph: UIViewController{
             let startTime: Date? = main.today
             let endTime: Date? = Calendar.current.date(byAdding: .day, value: 1, to: startTime!)
 
-            pickerTextField.text = longDayFormatter.string(from: startTime!)
+            pickerTextField.text = weekdayFormatter.string(from: startTime!)
             pickerTextField.sizeToFit()
+        
             //Axis Labels
             let xLabelGenerator = ChartAxisLabelsGeneratorDate(labelSettings: xLabelSettings, formatter: hourFormatter)
             let yLabelGenerator = ChartAxisLabelsGeneratorNumber(labelSettings: yLabelSettings)
@@ -653,11 +640,9 @@ class ViewControllerGraph: UIViewController{
             
             //Axis models
             let xModel = ChartAxisModel(firstModelValue: (startTime!.timeIntervalSince1970), lastModelValue: (endTime!.timeIntervalSince1970), axisTitleLabel: ChartAxisLabel(text: "", settings: yLabelSettings), axisValuesGenerator: xValues, labelsGenerator: xLabelGenerator)//dayFormatter.string(from: startTime!)
-            
-            //put date on top of chart
         
         
-            let yModel = ChartAxisModel(firstModelValue: 0, lastModelValue: 20, axisTitleLabel: ChartAxisLabel(text: "", settings: yLabelSettings.defaultVertical()), axisValuesGenerator: generator, labelsGenerator: yLabelGenerator) //glucose (mM/L)
+            let yModel = ChartAxisModel(firstModelValue: 0, lastModelValue: 20, axisTitleLabel: ChartAxisLabel(text: "", settings: yLabelSettings.defaultVertical()), axisValuesGenerator: generator, labelsGenerator: yLabelGenerator)
             
             
             // generate axes layers and calculate chart inner frame, based on the axis models
@@ -674,7 +659,6 @@ class ViewControllerGraph: UIViewController{
             var carbChartSettings = chartSettings
             carbChartSettings.axisStrokeWidth = 0
             let coordsSpaceCarbs = ChartCoordsSpaceRightBottomSingleAxis(chartSettings: carbChartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yHighModels)
-            //let yHighAxes = coordsSpaceCarbs.yHighAxesLayers
             let yHighAxes = coordsSpaceCarbs.yAxisLayer
 
         // layer displays data-line
@@ -683,7 +667,7 @@ class ViewControllerGraph: UIViewController{
             
             let pointslineLayer = ChartPointsLineLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, lineModels: [lineModel, lineModelExtra])
             
-            var nowIndicator: ChartPoint
+        
             if(points.count > 0){
                 nowIndicator = points.last!
             }else{
@@ -849,7 +833,6 @@ class ViewControllerGraph: UIViewController{
         }
     }
     /*
-     <<<<<<< HEAD
      class Env {
      static var iPad: Bool {
      return UIDevice.current.userInterfaceIdiom == .pad
