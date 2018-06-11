@@ -19,6 +19,9 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet weak var exerciseIntensityField: UITextField!
     @IBOutlet weak var exerciseDurationField: UITextField!
     @IBOutlet weak var exerciseLogTable: UITableView!
+    
+    @IBOutlet weak var exerciseAddButton: UIButton!
+    
     //picker related variables
     private let exerciseIntensity = ["Low", "Medium", "High"]
     private var exerciseIntensityPicker = UIPickerView()
@@ -27,7 +30,27 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
     //table related variables
     @IBOutlet weak var favouritesButton: UIButton!
     
-    private var currentDay = Date()
+    private var currentDay = Date(){
+        didSet{
+            if currentDay != Calendar.current.startOfDay(for: Date()) {
+                exerciseTimeField.isHidden = true
+                exerciseNameField.isHidden = true
+                exerciseIntensityField.isHidden = true
+                exerciseDurationField.isHidden = true
+                favouritesButton.isHidden = true
+                exerciseAddButton.isHidden = true
+                //add constraint adjustment to fill full size
+            }
+            else{
+                exerciseTimeField.isHidden = false
+                exerciseNameField.isHidden = false
+                exerciseIntensityField.isHidden = false
+                exerciseDurationField.isHidden = false
+                favouritesButton.isHidden = false
+                exerciseAddButton.isHidden = false
+            }
+        }
+    }
     
     private var loggedExercise = [Exercise]()
     

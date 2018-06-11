@@ -23,10 +23,34 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     @IBOutlet weak var fatTextField: UITextField!
     @IBOutlet weak var foodNameTextField: UITextField!
 
+    @IBOutlet weak var foodAddButton: UIButton!
+    
     //defining picker related variables
     private var foodTimePicker = UIDatePicker()
     
-    private var currentDay = Date()
+    private var currentDay = Date(){
+        didSet{
+            if currentDay != Calendar.current.startOfDay(for: Date()) {
+                foodTimeField.isHidden = true
+                foodNameTextField.isHidden = true
+                carbsTextField.isHidden = true
+                proteinTextField.isHidden = true
+                fatTextField.isHidden = true
+                favouritesButton.isHidden = true
+                foodAddButton.isHidden = true
+                //add constraint adjustment to fill full size
+            }
+            else{
+                foodTimeField.isHidden = false
+                foodNameTextField.isHidden = false
+                carbsTextField.isHidden = false
+                proteinTextField.isHidden = false
+                fatTextField.isHidden = false
+                favouritesButton.isHidden = false
+                foodAddButton.isHidden = false
+            }
+        }
+    }
     
     @IBOutlet weak var favouritesButton: UIButton!
     //defining table related variables
