@@ -44,19 +44,18 @@ class ViewControllerGraph: UIViewController{
     @IBOutlet weak var leftView1: CustomView!
     @IBOutlet weak var leftView2: CustomView!
     @IBOutlet weak var leftView3: CustomView!
-    @IBOutlet weak var leftView4: CustomView!
     
     @IBOutlet var rightGestureRecognizer: UISwipeGestureRecognizer!
     
     @IBOutlet var leftGestureRecognizer: UISwipeGestureRecognizer!
-    @IBOutlet weak var DateTitle: UILabel!
+    //@IBOutlet weak var DateTitle: UILabel!
     
+    
+    @IBOutlet weak var pickerTextField: UITextField!
+    let picker = UIDatePicker()
     @IBOutlet weak var currentGlucose: UILabel!
     //Gesture Recognisers
-    @IBAction func upGesture(_ sender: Any) {
-        print("I found an upswipe")
-        
-    }
+   
     
     @IBAction func rightGesture(_ sender: UISwipeGestureRecognizer) {
         print("right")
@@ -94,7 +93,6 @@ class ViewControllerGraph: UIViewController{
         leftView1.setNeedsDisplay()
         leftView2.setNeedsDisplay()
         leftView3.setNeedsDisplay()
-        leftView4.setNeedsDisplay()
         rightView.setNeedsDisplay()
         rightView2.setNeedsDisplay()
         rightView3.setNeedsDisplay()
@@ -301,6 +299,8 @@ class ViewControllerGraph: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        createDatePicker()
+        
         let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.pannedView(sender:)))
         panRecognizer.require(toFail: leftGestureRecognizer)
         panRecognizer.require(toFail: rightGestureRecognizer)
@@ -308,7 +308,9 @@ class ViewControllerGraph: UIViewController{
         
 
         nc.addObserver(self, selector: #selector(mealsUpdated), name: Notification.Name("FoodAdded"), object: nil)
-            
+        nc.addObserver(self, selector: #selector(mealsUpdated), name: Notification.Name("ExerciseAdded"), object: nil)
+        nc.addObserver(self, selector: #selector(mealsUpdated), name: Notification.Name("InsulinAdded"), object: nil)
+
 
         print(rawData.count, rawValues.count)
         //Second Transforms
@@ -370,7 +372,50 @@ class ViewControllerGraph: UIViewController{
             self.initChart()
         }
     }
-    
+    func createDatePicker(){
+        //PLACEHOLDER
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE dd MMMM, yyyy"
+        pickerTextField.text = formatter.string(from: Date())
+        
+        //Format Picker mode For Date
+        picker.datePickerMode = .date
+        
+        //Toolbar
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        //done button for toolbar
+        let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+        toolbar.setItems([done], animated: false)
+        pickerTextField.inputAccessoryView = toolbar
+        pickerTextField.inputView = picker
+        
+    }
+    @objc func donePressed(){
+        
+        //format date
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE dd MMMM, yyyy"
+
+        let dateString = formatter.string(from: picker.date)
+        print("Date string: \(dateString)")
+        pickerTextField.text = dateString
+        
+        self.view.endEditing(true)
+        
+        //pass picker date to variable today
+        main.today = picker.date
+        
+        //update chart & sidebars
+        for view in (chart?.view.subviews)! {
+            view.removeFromSuperview()
+        }
+        initChart()
+        chart?.view.setNeedsDisplay()
+        updateSideViews()
+        
+    }
     
     @objc private func mealsUpdated(){
         initChart()
@@ -392,7 +437,7 @@ class ViewControllerGraph: UIViewController{
     
     fileprivate lazy var chartSettings: ChartSettings = {
         var chartSettings = ChartSettings()
-        chartSettings.leading = -14
+        chartSettings.leading = -15
         chartSettings.top = 10
         chartSettings.trailing = 10
         chartSettings.bottom = 10
@@ -419,16 +464,19 @@ class ViewControllerGraph: UIViewController{
         timeFormatter.dateFormat = "HH:mm"
         let hourFormatter = DateFormatter()
         hourFormatter.dateFormat = "H" // remove pre-0s from x axis
-        let pickerFormatter = DateFormatter()
-        pickerFormatter.dateFormat = "hh:mm a"
+        
+        let weekdayFormatter = DateFormatter()
+        weekdayFormatter.dateFormat = "EEEE dd MMMM, yyyy"
         
         //set function to today() when live code
         let day = main.today
+        
         var dateArray = [ChartAxisValueDate]()
         var valueArray = [ChartAxisValueDouble]()
         var points = [ChartPoint]()
-        
         var extraPoints = [ChartPoint]()
+        var predictedGlucosePoints: [ChartPoint] = []
+        var nowIndicator: ChartPoint
         
         dateArray.removeAll()
         valueArray.removeAll()
@@ -540,30 +588,26 @@ class ViewControllerGraph: UIViewController{
         calcRanges(Arr: tMinus1Compare, view: leftView1)
         calcRanges(Arr: tMinus2Compare, view: leftView2)
         calcRanges(Arr: tMinus3Compare, view: leftView3)
-        calcRanges(Arr: tMinus4Compare, view: leftView4)
         calcRanges(Arr: tPlus1Compare, view: rightView)
         calcRanges(Arr: tPlus2Compare, view: rightView2)
         calcRanges(Arr: tPlus3Compare, view: rightView3)
         
-        let todayDate = main.today
-        let todayString = todayDate
-        let todayDate2 = todayString
-        var predictedGlucosePoints: [ChartPoint] = []
+        let todayDate2 = main.today
         
-        let now = dayFormatter.string(from: Date())
-        let nowDate = dayFormatter.date(from: now)
+        let nowString = dayFormatter.string(from: Date())
+        let nowDate = dayFormatter.date(from: nowString)
         
+        let currTime = timeFormatter.string(from: Date())
+        print("current time is : \(currTime)")
         
         if(todayDate2 == nowDate){
-
-                    predictedGlucosePoints = [("08/06/2018 18:27", 9), ("08/06/2018 19:30", 9.8), ("08/06/2018 20:00", 10.2)].map {
-
+                    predictedGlucosePoints = [(nowString + " 18:27", 9), (nowString + " 19:30", 9.8), (nowString + " 20:00", 10.2)].map {
                         return ChartPoint(
                             x: ChartAxisValueDate(date: dateFormatter.date(from: $0.0)!, formatter: dateFormatter),
                             y: ChartAxisValueDouble($0.1)
                         )
-                }
-            }
+                    }
+        }
             
             //Something needs changing to initialise chart point
             let chartPoints = points
@@ -573,12 +617,15 @@ class ViewControllerGraph: UIViewController{
             let yLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 9))
             let xLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 8), fontColor: UIColor.black, rotation: 0, rotationKeep: .top)
             
-            let xValues = ChartAxisValuesGeneratorDate(unit: .hour, preferredDividers: 8, minSpace: 0.5, maxTextSize: 12)
+            let xValues = ChartAxisValuesGeneratorDate(unit: .hour, preferredDividers: 4, minSpace: 0.5, maxTextSize: 12)
             
             // create axis models with axis values and axis title
-            let startTime: Date? = main.today
+            let startTime: Date? = Calendar.current.startOfDay(for: main.today)
             let endTime: Date? = Calendar.current.date(byAdding: .day, value: 1, to: startTime!)
-            
+
+            pickerTextField.text = weekdayFormatter.string(from: startTime!)
+            pickerTextField.sizeToFit()
+        
             //Axis Labels
             let xLabelGenerator = ChartAxisLabelsGeneratorDate(labelSettings: xLabelSettings, formatter: hourFormatter)
             let yLabelGenerator = ChartAxisLabelsGeneratorNumber(labelSettings: yLabelSettings)
@@ -587,15 +634,9 @@ class ViewControllerGraph: UIViewController{
             
             //Axis models
             let xModel = ChartAxisModel(firstModelValue: (startTime!.timeIntervalSince1970), lastModelValue: (endTime!.timeIntervalSince1970), axisTitleLabel: ChartAxisLabel(text: "", settings: yLabelSettings), axisValuesGenerator: xValues, labelsGenerator: xLabelGenerator)//dayFormatter.string(from: startTime!)
-            
-            //put date on top of chart
-            let longDayFormatter = DateFormatter()
-            longDayFormatter.dateStyle = .long
-            longDayFormatter.timeStyle = .none
-            DateTitle.text = longDayFormatter.string(from: startTime!)
-            DateTitle.sizeToFit()
-            
-            let yModel = ChartAxisModel(firstModelValue: 0, lastModelValue: 20, axisTitleLabel: ChartAxisLabel(text: "", settings: yLabelSettings.defaultVertical()), axisValuesGenerator: generator, labelsGenerator: yLabelGenerator) //glucose (mM/L)
+        
+        
+            let yModel = ChartAxisModel(firstModelValue: 0, lastModelValue: 20, axisTitleLabel: ChartAxisLabel(text: "", settings: yLabelSettings.defaultVertical()), axisValuesGenerator: generator, labelsGenerator: yLabelGenerator)
             
             
             // generate axes layers and calculate chart inner frame, based on the axis models
@@ -608,20 +649,19 @@ class ViewControllerGraph: UIViewController{
             let yLabelGeneratorCarbs = ChartAxisLabelsGeneratorNumber(labelSettings: yLabelSettingsCarbs)
             let yHighModels = ChartAxisModel(firstModelValue: 0, lastModelValue: 200, axisTitleLabel: ChartAxisLabel(text: "", settings: yLabelSettings.defaultVertical()), axisValuesGenerator: ChartAxisGeneratorMultiplier(200), labelsGenerator: yLabelGeneratorCarbs)
             
-            //(axisValues: [ChartAxisValueInt(0), ChartAxisValueInt(200)], lineColor: UIColor.clear, labelSpaceReservationMode: .fixed(20))
-            
-            //let coordsSpaceCarbs = ChartCoordsSpace(chartSettings: chartSettings, chartSize: chartFrame.size, xModel: xModel, yModel: yHighModels)
-            let coordsSpaceCarbs = ChartCoordsSpaceRightBottomSingleAxis(chartSettings: chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yHighModels)
-            //let yHighAxes = coordsSpaceCarbs.yHighAxesLayers
+            //Removes axis from chart for carb graph
+            var carbChartSettings = chartSettings
+            carbChartSettings.axisStrokeWidth = 0
+            let coordsSpaceCarbs = ChartCoordsSpaceRightBottomSingleAxis(chartSettings: carbChartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yHighModels)
             let yHighAxes = coordsSpaceCarbs.yAxisLayer
-            
-            // layer displays data-line
+
+        // layer displays data-line
             let lineModel = ChartLineModel(chartPoints: chartPoints, lineColor: UIColor.blue, lineWidth: 3, animDuration: 1, animDelay: 0)
             let lineModelExtra = ChartLineModel(chartPoints: extraPoints, lineColor: UIColor.clear, lineWidth: 3, animDuration: 1, animDelay: 0)
             
             let pointslineLayer = ChartPointsLineLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, lineModels: [lineModel, lineModelExtra])
             
-            var nowIndicator: ChartPoint
+        
             if(points.count > 0){
                 nowIndicator = points.last!
             }else{
@@ -670,7 +710,7 @@ class ViewControllerGraph: UIViewController{
                 let w: CGFloat = 80
                 let h: CGFloat = 60
                 var text : String = ""
-                let font = UIFont.boldSystemFont(ofSize: 9)
+                let font = UIFont.boldSystemFont(ofSize: 12)
                 
                 
                 
@@ -687,14 +727,14 @@ class ViewControllerGraph: UIViewController{
                 for meal in meals{
                     if(meal.time! == timeDate){
                         circleView.data = "🍎"
-                        text = "\(meal.name!) Carbs: \(meal.carbs) Protein: \(meal.protein) Fat: \(meal.fat) "
+                        text = "\(meal.name!): C(\(meal.carbs)) P(\(meal.protein)) F(\(meal.fat))"
                         circleView.fillColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
                     }
                 }
                 for exercise in exercises{
                     if(exercise.time == timeDate){
                         circleView.data = "🤾‍♀️"
-                        text = "\(exercise.name!) for \(exercise.duration!)"
+                        text = "\(exercise.name!): \(exercise.duration!)"
                         /*if let chartViewScreenLoc = layer.containerToGlobalScreenLoc(chartPointModel.chartPoint) {
                          let x: CGFloat = {
                          let attempt = chartViewScreenLoc.x - (w/2)
@@ -740,11 +780,11 @@ class ViewControllerGraph: UIViewController{
                         }()
                         
                         if(circleView.data != ""){
-                            let bu = InfoBubble(point: CGPoint(x: x + (24), y: chartViewScreenLoc.y), preferredSize: CGSize(width: w, height: h), superview: self.view, text: text, font: font, textColor: UIColor.yellow)
+                            let bu = InfoBubble(point: CGPoint(x: x + (24), y: chartViewScreenLoc.y), preferredSize: CGSize(width: w, height: h), superview: self.view, text: text, font: font, textColor: UIColor.magenta)
                             chart.addSubview(bu)
                             
                             if((circleView.data == "🍎") || (circleView.data == "🤾‍♀️") || (circleView.data == "💉")){
-                                UIView.animate(withDuration: 3.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+                                UIView.animate(withDuration: 5.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
                                     bu.alpha = 0.0
                                 }, completion: {finished in bu.removeFromSuperview()})
                             }
@@ -787,7 +827,6 @@ class ViewControllerGraph: UIViewController{
         }
     }
     /*
-     <<<<<<< HEAD
      class Env {
      static var iPad: Bool {
      return UIDevice.current.userInterfaceIdiom == .pad
