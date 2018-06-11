@@ -626,7 +626,7 @@ class ViewControllerGraph: UIViewController{
             let xValues = ChartAxisValuesGeneratorDate(unit: .hour, preferredDividers: 4, minSpace: 0.5, maxTextSize: 12)
             
             // create axis models with axis values and axis title
-            let startTime: Date? = main.today
+            let startTime: Date? = Calendar.current.startOfDay(for: main.today)
             let endTime: Date? = Calendar.current.date(byAdding: .day, value: 1, to: startTime!)
 
             pickerTextField.text = weekdayFormatter.string(from: startTime!)
@@ -733,14 +733,14 @@ class ViewControllerGraph: UIViewController{
                 for meal in meals{
                     if(meal.time! == timeDate){
                         circleView.data = "🍎"
-                        text = "\(meal.name!) Carbs: \(meal.carbs) Protein: \(meal.protein) Fat: \(meal.fat) "
+                        text = "\(meal.name!): C(\(meal.carbs)) P(\(meal.protein)) F(\(meal.fat))"
                         circleView.fillColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
                     }
                 }
                 for exercise in exercises{
                     if(exercise.time == timeDate){
                         circleView.data = "🤾‍♀️"
-                        text = "\(exercise.name!) for \(exercise.duration!)"
+                        text = "\(exercise.name!): \(exercise.duration!)"
                         /*if let chartViewScreenLoc = layer.containerToGlobalScreenLoc(chartPointModel.chartPoint) {
                          let x: CGFloat = {
                          let attempt = chartViewScreenLoc.x - (w/2)
@@ -786,11 +786,11 @@ class ViewControllerGraph: UIViewController{
                         }()
                         
                         if(circleView.data != ""){
-                            let bu = InfoBubble(point: CGPoint(x: x + (24), y: chartViewScreenLoc.y), preferredSize: CGSize(width: w, height: h), superview: self.view, text: text, font: font, textColor: UIColor.yellow)
+                            let bu = InfoBubble(point: CGPoint(x: x + (24), y: chartViewScreenLoc.y), preferredSize: CGSize(width: w, height: h), superview: self.view, text: text, font: font, textColor: UIColor.magenta)
                             chart.addSubview(bu)
                             
                             if((circleView.data == "🍎") || (circleView.data == "🤾‍♀️") || (circleView.data == "💉")){
-                                UIView.animate(withDuration: 3.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+                                UIView.animate(withDuration: 5.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
                                     bu.alpha = 0.0
                                 }, completion: {finished in bu.removeFromSuperview()})
                             }
