@@ -19,7 +19,7 @@ struct customType{
 class ViewControllerGraph: UIViewController{
     
     //Today temp variable till real-time data available
-    private var today: String = /*"27/11/2015 00:00"*/ "8/06/2018 00:00"
+    let main = ViewControllerMain()
     
     var tMinus1Compare : [Double] = []
     var tMinus2Compare : [Double] = []
@@ -62,9 +62,9 @@ class ViewControllerGraph: UIViewController{
         print("right")
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
-        let tempDate = dateFormatter.date(from: today)
-        let tempDate2 = Calendar.current.date(byAdding: .day, value: -1, to: tempDate!)
-        today = dateFormatter.string(from: tempDate2!)
+        let tempDate = main.today
+        let tempDate2 = Calendar.current.date(byAdding: .day, value: -1, to: tempDate)
+        main.today = tempDate2!
         
         for view in (chart?.view.subviews)! {
             view.removeFromSuperview()
@@ -78,9 +78,9 @@ class ViewControllerGraph: UIViewController{
         print("left")
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
-        let tempDate = dateFormatter.date(from: today)
-        let tempDate2 = Calendar.current.date(byAdding: .day, value: +1, to: tempDate!)
-        today = dateFormatter.string(from: tempDate2!)
+        let tempDate = main.today
+        let tempDate2 = Calendar.current.date(byAdding: .day, value: +1, to: tempDate)
+        main.today = tempDate2!
         
         for view in (chart?.view.subviews)! {
             view.removeFromSuperview()
@@ -198,7 +198,6 @@ class ViewControllerGraph: UIViewController{
                              "08/06/2018 10:49",
                              "08/06/2018 15:49"
         
-        
     ]
     
     var rawValues: [Double] = [0,
@@ -295,8 +294,7 @@ class ViewControllerGraph: UIViewController{
                                3.6,
                                4.1,
                                4.4
-                               
-        
+
     ]
     
     
@@ -308,8 +306,10 @@ class ViewControllerGraph: UIViewController{
         panRecognizer.require(toFail: rightGestureRecognizer)
         chartView.addGestureRecognizer(panRecognizer)
         
+
         nc.addObserver(self, selector: #selector(mealsUpdated), name: Notification.Name("FoodAdded"), object: nil)
-        
+            
+
         print(rawData.count, rawValues.count)
         //Second Transforms
         var transform = CATransform3DIdentity
@@ -423,7 +423,7 @@ class ViewControllerGraph: UIViewController{
         pickerFormatter.dateFormat = "hh:mm a"
         
         //set function to today() when live code
-        let day = dateFormatter.date(from: today)
+        let day = main.today
         var dateArray = [ChartAxisValueDate]()
         var valueArray = [ChartAxisValueDouble]()
         var points = [ChartPoint]()
@@ -443,19 +443,19 @@ class ViewControllerGraph: UIViewController{
         tPlus3Compare.removeAll()
         
         
-        let keyDay = dayFormatter.string(from: day!)
-        let tMinus1 = Calendar.current.date(byAdding: .day, value: -1, to: day!)
-        let tMinus2 = Calendar.current.date(byAdding: .day, value: -2, to: day!)
-        let tMinus3 = Calendar.current.date(byAdding: .day, value: -3, to: day!)
-        let tMinus4 = Calendar.current.date(byAdding: .day, value: -4, to: day!)
-        let tPlus1 = Calendar.current.date(byAdding: .day, value: 1, to: day!)
-        let tPlus2 = Calendar.current.date(byAdding: .day, value: 2, to: day!)
-        let tPlus3 = Calendar.current.date(byAdding: .day, value: 3, to: day!)
+        let keyDay = dayFormatter.string(from: day)
+        let tMinus1 = Calendar.current.date(byAdding: .day, value: -1, to: day)
+        let tMinus2 = Calendar.current.date(byAdding: .day, value: -2, to: day)
+        let tMinus3 = Calendar.current.date(byAdding: .day, value: -3, to: day)
+        let tMinus4 = Calendar.current.date(byAdding: .day, value: -4, to: day)
+        let tPlus1 = Calendar.current.date(byAdding: .day, value: 1, to: day)
+        let tPlus2 = Calendar.current.date(byAdding: .day, value: 2, to: day)
+        let tPlus3 = Calendar.current.date(byAdding: .day, value: 3, to: day)
         
-        let todayArray = ModelController().fetchGlucose(day: day!)
-        let todayFoodArray = ModelController().fetchMeals(day: day!)
-        let todayInsulinArray = ModelController().fetchInsulin(day: day!)
-        let todayExerciseArray = ModelController().fetchExercise(day: day!)
+        let todayArray = ModelController().fetchGlucose(day: day)
+        let todayFoodArray = ModelController().fetchMeals(day: day)
+        let todayInsulinArray = ModelController().fetchInsulin(day: day)
+        let todayExerciseArray = ModelController().fetchExercise(day: day)
         let tMinus1Array = ModelController().fetchGlucose(day: tMinus1!)
         let tMinus2Array = ModelController().fetchGlucose(day: tMinus2!)
         let tMinus3Array = ModelController().fetchGlucose(day: tMinus3!)
@@ -500,7 +500,8 @@ class ViewControllerGraph: UIViewController{
         
         for meal in todayFoodArray{
             let combinedDate = keyDay + " " + meal.time!
-            //print(meal.time)
+                //print(meal)
+                //print(meal.time)
             extraPoints.append(ChartPoint(x: ChartAxisValueDate(date: dateFormatter.date(from: combinedDate)!, formatter: dateFormatter), y: ChartAxisValueInt(Int(meal.carbs))))
             //print("carbs taken in \(meal.carbs)")
         }
@@ -544,9 +545,9 @@ class ViewControllerGraph: UIViewController{
         calcRanges(Arr: tPlus2Compare, view: rightView2)
         calcRanges(Arr: tPlus3Compare, view: rightView3)
         
-        let todayDate = dateFormatter.date(from: today)
-        let todayString = dayFormatter.string(from: todayDate!)
-        let todayDate2 = dayFormatter.date(from: todayString)
+        let todayDate = main.today
+        let todayString = todayDate
+        let todayDate2 = todayString
         var predictedGlucosePoints: [ChartPoint] = []
         
         let now = dayFormatter.string(from: Date())
@@ -554,258 +555,260 @@ class ViewControllerGraph: UIViewController{
         
         
         if(todayDate2 == nowDate){
-            predictedGlucosePoints = [("08/06/2018 18:27", 9), ("08/06/2018 19:30", 9.8), ("08/06/2018 20:00", 10.2)].map {
-                return ChartPoint(
-                    x: ChartAxisValueDate(date: dateFormatter.date(from: $0.0)!, formatter: dateFormatter),
-                    y: ChartAxisValueDouble($0.1)
-                )
-            }
-        }
-        
-        //Something needs changing to initialise chart point
-        let chartPoints = points
-        for point in chartPoints{
-            print(point)
-        }
-        let yLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 9))
-        let xLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 8), fontColor: UIColor.black, rotation: 0, rotationKeep: .top)
-        
-        let xValues = ChartAxisValuesGeneratorDate(unit: .hour, preferredDividers: 8, minSpace: 0.5, maxTextSize: 12)
-        
-        // create axis models with axis values and axis title
-        let startTime: Date? = dateFormatter.date(from: today)
-        let endTime: Date? = Calendar.current.date(byAdding: .day, value: 1, to: startTime!)
-        
-        //Axis Labels
-        let xLabelGenerator = ChartAxisLabelsGeneratorDate(labelSettings: xLabelSettings, formatter: hourFormatter)
-        let yLabelGenerator = ChartAxisLabelsGeneratorNumber(labelSettings: yLabelSettings)
-        let generator = ChartAxisGeneratorMultiplier(4)
-        
-        
-        //Axis models
-        let xModel = ChartAxisModel(firstModelValue: (startTime!.timeIntervalSince1970), lastModelValue: (endTime!.timeIntervalSince1970), axisTitleLabel: ChartAxisLabel(text: "", settings: yLabelSettings), axisValuesGenerator: xValues, labelsGenerator: xLabelGenerator)//dayFormatter.string(from: startTime!)
-        
-        //put date on top of chart
-        let longDayFormatter = DateFormatter()
-        longDayFormatter.dateStyle = .long
-        longDayFormatter.timeStyle = .none
-        DateTitle.text = longDayFormatter.string(from: startTime!)
-        DateTitle.sizeToFit()
-        
-        let yModel = ChartAxisModel(firstModelValue: 0, lastModelValue: 20, axisTitleLabel: ChartAxisLabel(text: "", settings: yLabelSettings.defaultVertical()), axisValuesGenerator: generator, labelsGenerator: yLabelGenerator) //glucose (mM/L)
-        
-        
-        // generate axes layers and calculate chart inner frame, based on the axis models
-        let chartFrame = self.chartView.frame
-        let coordsSpace = ChartCoordsSpaceLeftBottomSingleAxis(chartSettings: chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)
-        let (xAxisLayer, yAxisLayer, innerframe) = (coordsSpace.xAxisLayer, coordsSpace.yAxisLayer, coordsSpace.chartInnerFrame)
-        
-        // carbs axis
-        let yLabelSettingsCarbs = ChartLabelSettings(font: UIFont.systemFont(ofSize: 0))
-        let yLabelGeneratorCarbs = ChartAxisLabelsGeneratorNumber(labelSettings: yLabelSettingsCarbs)
-        let yHighModels = ChartAxisModel(firstModelValue: 0, lastModelValue: 200, axisTitleLabel: ChartAxisLabel(text: "", settings: yLabelSettings.defaultVertical()), axisValuesGenerator: ChartAxisGeneratorMultiplier(200), labelsGenerator: yLabelGeneratorCarbs)
-        
-        //(axisValues: [ChartAxisValueInt(0), ChartAxisValueInt(200)], lineColor: UIColor.clear, labelSpaceReservationMode: .fixed(20))
-        
-        //let coordsSpaceCarbs = ChartCoordsSpace(chartSettings: chartSettings, chartSize: chartFrame.size, xModel: xModel, yModel: yHighModels)
-        let coordsSpaceCarbs = ChartCoordsSpaceRightBottomSingleAxis(chartSettings: chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yHighModels)
-        //let yHighAxes = coordsSpaceCarbs.yHighAxesLayers
-        let yHighAxes = coordsSpaceCarbs.yAxisLayer
-        
-        // layer displays data-line
-        let lineModel = ChartLineModel(chartPoints: chartPoints, lineColor: UIColor.blue, lineWidth: 3, animDuration: 1, animDelay: 0)
-        let lineModelExtra = ChartLineModel(chartPoints: extraPoints, lineColor: UIColor.clear, lineWidth: 3, animDuration: 1, animDelay: 0)
-        
-        let pointslineLayer = ChartPointsLineLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, lineModels: [lineModel, lineModelExtra])
-        
-        var nowIndicator: ChartPoint
-        if(points.count > 0){
-            nowIndicator = points.last!
-        }else{
-            nowIndicator = ChartPoint(x: ChartAxisValueDate(date: dateFormatter.date(from: today)!, formatter: dateFormatter), y: ChartAxisValueDouble(6))
-        }
-        //let currGlucose = nowIndicator.y.scalar
-        currentGlucose.text = "6.0"
-        currentGlucose.sizeToFit()
-        
-        //want pred only on "today"
-        predictedGlucosePoints.insert(nowIndicator, at: 0) //prediction made continuous
-        
-        /////////////////// find predcted range ? ////////////////////////////
-        let sortedGlucose = predictedGlucosePoints.sorted {(obj1, obj2) in return obj1.y.scalar < obj2.y.scalar}
-        let lowPoint = sortedGlucose.first!
-        let predictedLow: [ChartPoint] = [nowIndicator, lowPoint]
-        let HighPoint = sortedGlucose.last!
-        let predictedHigh: [ChartPoint] = [nowIndicator, HighPoint]
-        
-        //predication linemodel
-        let lineModelPred = ChartLineModel(chartPoints: predictedGlucosePoints, lineColor: UIColor.red, lineWidth: 3, lineJoin: LineJoin.bevel, lineCap: LineCap.round, animDuration: 1, animDelay: 0, dashPattern: [5, 5])
-        //predicted range
-        let newColor = UIColor(red: 0.6, green: 0.5, blue: 1, alpha: 1)
-        let lineModelLow = ChartLineModel(chartPoints: predictedLow, lineColor: newColor, lineWidth: 1.5, animDuration: 1, animDelay: 0, dashPattern: [2, 2])
-        let lineModeHigh = ChartLineModel(chartPoints: predictedHigh, lineColor: newColor, lineWidth: 1.5, animDuration: 1, animDelay: 0, dashPattern: [2, 2])
-        let prediction = ChartPointsLineLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, lineModels: [lineModelPred, lineModelLow, lineModeHigh])
-        
-        
-        // create Guideline Layer
-        let glLSettings = ChartGuideLinesDottedLayerSettings(linesColor: UIColor.gray, linesWidth: 0.9)
-        let guidelinesLayer = ChartGuideLinesDottedLayer(xAxisLayer: xAxisLayer, yAxisLayer: yAxisLayer, settings: glLSettings)
-        
-        
-        // mark data points
-        let circleViewGenerator = {(chartPointModel: ChartPointLayerModel, layer: ChartPointsLayer, chart: Chart) -> UIView? in
-            let circleView = ChartPointEllipseView(center: chartPointModel.screenLoc, diameter: 12)
-            
-            circleView.animDuration = 1.0
-            circleView.fillColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
-            circleView.borderColor = UIColor.clear
-            circleView.borderWidth = 0.9
-            //   circleView.borderColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
-            circleView.isUserInteractionEnabled = true
-            
-            //Change w and h depending on text size
-            let w: CGFloat = 80
-            let h: CGFloat = 60
-            var text : String = ""
-            let font = UIFont.boldSystemFont(ofSize: 9)
-            
-            
-            
-            // Showing meal details on correct point click
-            // Gets meals and times they were at to identify which point in the graph is the one where the meal was consumed
-            let meals = ModelController().fetchMeals(day: day!)
-            let exercises = ModelController().fetchExercise(day: day!)
-            let insulins = ModelController().fetchInsulin(day: day!)
-            let xVal = chartPointModel.chartPoint.x.scalar
-            let time = Date.init(timeIntervalSince1970: xVal)
-            let timeDate = timeFormatter.string(from: time)
-            
-            //searches through meals for the day for meals that align with data point on the graph in terms of time
-            for meal in meals{
-                if(meal.time! == timeDate){
-                    circleView.data = "🍎"
-                    text = "\(meal.name!) Carbs: \(meal.carbs) Protein: \(meal.protein) Fat: \(meal.fat) "
-                    circleView.fillColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
-                }
-            }
-            for exercise in exercises{
-                if(exercise.time == timeDate){
-                    circleView.data = "🤾‍♀️"
-                    text = "\(exercise.name!) for \(exercise.duration!)"
-                    /*if let chartViewScreenLoc = layer.containerToGlobalScreenLoc(chartPointModel.chartPoint) {
-                     let x: CGFloat = {
-                     let attempt = chartViewScreenLoc.x - (w/2)
-                     let leftBound: CGFloat = chart.bounds.origin.x
-                     let rightBound = chart.bounds.size.width - 5
-                     if attempt < leftBound {
-                     return chart.view.frame.origin.x
-                     } else if attempt + w > rightBound {
-                     return rightBound - w
-                     }
-                     return attempt
-                     }()
-                     
-                     
-                     let bu = InfoBubble(point: CGPoint(x: x, y: chartViewScreenLoc.y), preferredSize: CGSize(width: 30, height: 20), superview: self.view, text: circleView.data!, font: font, textColor: UIColor.yellow)
-                     chart.addSubview(bu)
-                     }*/
-                    circleView.fillColor = #colorLiteral(red: 0, green: 0.6383251441, blue: 1, alpha: 1)
-                }
-            }
-            //Doesnt do anything currently
-            for insulin in insulins{
-                if(insulin.time == timeDate){
-                    circleView.data = "💉"
-                    text = "Bolus insulin of \(insulin.units) units"
-                    circleView.fillColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+
+                    predictedGlucosePoints = [("08/06/2018 18:27", 9), ("08/06/2018 19:30", 9.8), ("08/06/2018 20:00", 10.2)].map {
+
+                        return ChartPoint(
+                            x: ChartAxisValueDate(date: dateFormatter.date(from: $0.0)!, formatter: dateFormatter),
+                            y: ChartAxisValueDouble($0.1)
+                        )
                 }
             }
             
-            //Touch handler for food, exercise and insulin extra info
-            circleView.touchHandler = {
-                if let chartViewScreenLoc = layer.containerToGlobalScreenLoc(chartPointModel.chartPoint) {
-                    let x: CGFloat = {
-                        let attempt = chartViewScreenLoc.x - (w/2)
-                        let leftBound: CGFloat = chart.bounds.origin.x
-                        let rightBound = chart.bounds.size.width - 5
-                        if attempt < leftBound {
-                            return chart.view.frame.origin.x
-                        } else if attempt + w > rightBound {
-                            return rightBound - w
-                        }
-                        return attempt
-                    }()
-                    
-                    if(circleView.data != ""){
-                        let bu = InfoBubble(point: CGPoint(x: x + (24), y: chartViewScreenLoc.y), preferredSize: CGSize(width: w, height: h), superview: self.view, text: text, font: font, textColor: UIColor.yellow)
-                        chart.addSubview(bu)
+            //Something needs changing to initialise chart point
+            let chartPoints = points
+            for point in chartPoints{
+                print(point)
+            }
+            let yLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 9))
+            let xLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 8), fontColor: UIColor.black, rotation: 0, rotationKeep: .top)
+            
+            let xValues = ChartAxisValuesGeneratorDate(unit: .hour, preferredDividers: 8, minSpace: 0.5, maxTextSize: 12)
+            
+            // create axis models with axis values and axis title
+            let startTime: Date? = main.today
+            let endTime: Date? = Calendar.current.date(byAdding: .day, value: 1, to: startTime!)
+            
+            //Axis Labels
+            let xLabelGenerator = ChartAxisLabelsGeneratorDate(labelSettings: xLabelSettings, formatter: hourFormatter)
+            let yLabelGenerator = ChartAxisLabelsGeneratorNumber(labelSettings: yLabelSettings)
+            let generator = ChartAxisGeneratorMultiplier(4)
+            
+            
+            //Axis models
+            let xModel = ChartAxisModel(firstModelValue: (startTime!.timeIntervalSince1970), lastModelValue: (endTime!.timeIntervalSince1970), axisTitleLabel: ChartAxisLabel(text: "", settings: yLabelSettings), axisValuesGenerator: xValues, labelsGenerator: xLabelGenerator)//dayFormatter.string(from: startTime!)
+            
+            //put date on top of chart
+            let longDayFormatter = DateFormatter()
+            longDayFormatter.dateStyle = .long
+            longDayFormatter.timeStyle = .none
+            DateTitle.text = longDayFormatter.string(from: startTime!)
+            DateTitle.sizeToFit()
+            
+            let yModel = ChartAxisModel(firstModelValue: 0, lastModelValue: 20, axisTitleLabel: ChartAxisLabel(text: "", settings: yLabelSettings.defaultVertical()), axisValuesGenerator: generator, labelsGenerator: yLabelGenerator) //glucose (mM/L)
+            
+            
+            // generate axes layers and calculate chart inner frame, based on the axis models
+            let chartFrame = self.chartView.frame
+            let coordsSpace = ChartCoordsSpaceLeftBottomSingleAxis(chartSettings: chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)
+            let (xAxisLayer, yAxisLayer, innerframe) = (coordsSpace.xAxisLayer, coordsSpace.yAxisLayer, coordsSpace.chartInnerFrame)
+            
+            // carbs axis
+            let yLabelSettingsCarbs = ChartLabelSettings(font: UIFont.systemFont(ofSize: 0))
+            let yLabelGeneratorCarbs = ChartAxisLabelsGeneratorNumber(labelSettings: yLabelSettingsCarbs)
+            let yHighModels = ChartAxisModel(firstModelValue: 0, lastModelValue: 200, axisTitleLabel: ChartAxisLabel(text: "", settings: yLabelSettings.defaultVertical()), axisValuesGenerator: ChartAxisGeneratorMultiplier(200), labelsGenerator: yLabelGeneratorCarbs)
+            
+            //(axisValues: [ChartAxisValueInt(0), ChartAxisValueInt(200)], lineColor: UIColor.clear, labelSpaceReservationMode: .fixed(20))
+            
+            //let coordsSpaceCarbs = ChartCoordsSpace(chartSettings: chartSettings, chartSize: chartFrame.size, xModel: xModel, yModel: yHighModels)
+            let coordsSpaceCarbs = ChartCoordsSpaceRightBottomSingleAxis(chartSettings: chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yHighModels)
+            //let yHighAxes = coordsSpaceCarbs.yHighAxesLayers
+            let yHighAxes = coordsSpaceCarbs.yAxisLayer
+            
+            // layer displays data-line
+            let lineModel = ChartLineModel(chartPoints: chartPoints, lineColor: UIColor.blue, lineWidth: 3, animDuration: 1, animDelay: 0)
+            let lineModelExtra = ChartLineModel(chartPoints: extraPoints, lineColor: UIColor.clear, lineWidth: 3, animDuration: 1, animDelay: 0)
+            
+            let pointslineLayer = ChartPointsLineLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, lineModels: [lineModel, lineModelExtra])
+            
+            var nowIndicator: ChartPoint
+            if(points.count > 0){
+                nowIndicator = points.last!
+            }else{
+                nowIndicator = ChartPoint(x: ChartAxisValueDate(date: main.today, formatter: dateFormatter), y: ChartAxisValueDouble(6))
+            }
+            //let currGlucose = nowIndicator.y.scalar
+            currentGlucose.text = "6.0"
+            currentGlucose.sizeToFit()
+            
+            //want pred only on "today"
+            predictedGlucosePoints.insert(nowIndicator, at: 0) //prediction made continuous
+            
+            /////////////////// find predcted range ? ////////////////////////////
+            let sortedGlucose = predictedGlucosePoints.sorted {(obj1, obj2) in return obj1.y.scalar < obj2.y.scalar}
+            let lowPoint = sortedGlucose.first!
+            let predictedLow: [ChartPoint] = [nowIndicator, lowPoint]
+            let HighPoint = sortedGlucose.last!
+            let predictedHigh: [ChartPoint] = [nowIndicator, HighPoint]
+            
+            //predication linemodel
+            let lineModelPred = ChartLineModel(chartPoints: predictedGlucosePoints, lineColor: UIColor.red, lineWidth: 3, lineJoin: LineJoin.bevel, lineCap: LineCap.round, animDuration: 1, animDelay: 0, dashPattern: [5, 5])
+            //predicted range
+            let newColor = UIColor(red: 0.6, green: 0.5, blue: 1, alpha: 1)
+            let lineModelLow = ChartLineModel(chartPoints: predictedLow, lineColor: newColor, lineWidth: 1.5, animDuration: 1, animDelay: 0, dashPattern: [2, 2])
+            let lineModeHigh = ChartLineModel(chartPoints: predictedHigh, lineColor: newColor, lineWidth: 1.5, animDuration: 1, animDelay: 0, dashPattern: [2, 2])
+            let prediction = ChartPointsLineLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, lineModels: [lineModelPred, lineModelLow, lineModeHigh])
+            
+            
+            // create Guideline Layer
+            let glLSettings = ChartGuideLinesDottedLayerSettings(linesColor: UIColor.gray, linesWidth: 0.9)
+            let guidelinesLayer = ChartGuideLinesDottedLayer(xAxisLayer: xAxisLayer, yAxisLayer: yAxisLayer, settings: glLSettings)
+            
+            
+            // mark data points
+            let circleViewGenerator = {(chartPointModel: ChartPointLayerModel, layer: ChartPointsLayer, chart: Chart) -> UIView? in
+                let circleView = ChartPointEllipseView(center: chartPointModel.screenLoc, diameter: 12)
+                
+                circleView.animDuration = 1.0
+                circleView.fillColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
+                circleView.borderColor = UIColor.clear
+                circleView.borderWidth = 0.9
+                //   circleView.borderColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
+                circleView.isUserInteractionEnabled = true
+                
+                //Change w and h depending on text size
+                let w: CGFloat = 80
+                let h: CGFloat = 60
+                var text : String = ""
+                let font = UIFont.boldSystemFont(ofSize: 9)
+                
+                
+                
+                // Showing meal details on correct point click
+                // Gets meals and times they were at to identify which point in the graph is the one where the meal was consumed
+                let meals = ModelController().fetchMeals(day: day)
+                let exercises = ModelController().fetchExercise(day: day)
+                let insulins = ModelController().fetchInsulin(day: day)
+                let xVal = chartPointModel.chartPoint.x.scalar
+                let time = Date.init(timeIntervalSince1970: xVal)
+                let timeDate = timeFormatter.string(from: time)
+                
+                //searches through meals for the day for meals that align with data point on the graph in terms of time
+                for meal in meals{
+                    if(meal.time! == timeDate){
+                        circleView.data = "🍎"
+                        text = "\(meal.name!) Carbs: \(meal.carbs) Protein: \(meal.protein) Fat: \(meal.fat) "
+                        circleView.fillColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
+                    }
+                }
+                for exercise in exercises{
+                    if(exercise.time == timeDate){
+                        circleView.data = "🤾‍♀️"
+                        text = "\(exercise.name!) for \(exercise.duration!)"
+                        /*if let chartViewScreenLoc = layer.containerToGlobalScreenLoc(chartPointModel.chartPoint) {
+                         let x: CGFloat = {
+                         let attempt = chartViewScreenLoc.x - (w/2)
+                         let leftBound: CGFloat = chart.bounds.origin.x
+                         let rightBound = chart.bounds.size.width - 5
+                         if attempt < leftBound {
+                         return chart.view.frame.origin.x
+                         } else if attempt + w > rightBound {
+                         return rightBound - w
+                         }
+                         return attempt
+                         }()
+                         
+                         
+                         let bu = InfoBubble(point: CGPoint(x: x, y: chartViewScreenLoc.y), preferredSize: CGSize(width: 30, height: 20), superview: self.view, text: circleView.data!, font: font, textColor: UIColor.yellow)
+                         chart.addSubview(bu)
+                         }*/
+                        circleView.fillColor = #colorLiteral(red: 0, green: 0.6383251441, blue: 1, alpha: 1)
+                    }
+                }
+                //Doesnt do anything currently
+                for insulin in insulins{
+                    if(insulin.time == timeDate){
+                        circleView.data = "💉"
+                        text = "Bolus insulin of \(insulin.units) units"
+                        circleView.fillColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+                    }
+                }
+                
+                //Touch handler for food, exercise and insulin extra info
+                circleView.touchHandler = {
+                    if let chartViewScreenLoc = layer.containerToGlobalScreenLoc(chartPointModel.chartPoint) {
+                        let x: CGFloat = {
+                            let attempt = chartViewScreenLoc.x - (w/2)
+                            let leftBound: CGFloat = chart.bounds.origin.x
+                            let rightBound = chart.bounds.size.width - 5
+                            if attempt < leftBound {
+                                return chart.view.frame.origin.x
+                            } else if attempt + w > rightBound {
+                                return rightBound - w
+                            }
+                            return attempt
+                        }()
                         
-                        if((circleView.data == "🍎") || (circleView.data == "🤾‍♀️") || (circleView.data == "💉")){
-                            UIView.animate(withDuration: 3.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
-                                bu.alpha = 0.0
-                            }, completion: {finished in bu.removeFromSuperview()})
+                        if(circleView.data != ""){
+                            let bu = InfoBubble(point: CGPoint(x: x + (24), y: chartViewScreenLoc.y), preferredSize: CGSize(width: w, height: h), superview: self.view, text: text, font: font, textColor: UIColor.yellow)
+                            chart.addSubview(bu)
+                            
+                            if((circleView.data == "🍎") || (circleView.data == "🤾‍♀️") || (circleView.data == "💉")){
+                                UIView.animate(withDuration: 3.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+                                    bu.alpha = 0.0
+                                }, completion: {finished in bu.removeFromSuperview()})
+                            }
                         }
                     }
                 }
+                
+                return circleView
             }
             
-            return circleView
+            let chartPointsCircleLayer = ChartPointsViewsLayer(xAxis: xAxisLayer.axis, yAxis: yHighAxes.axis, chartPoints: extraPoints, viewGenerator: circleViewGenerator, displayDelay: 0, delayBetweenItems: 0.05, mode: .translate)
+
+            // create chart instance with frame and layers
+            let chart = Chart(
+                view: self.chartView!,
+                innerFrame: innerframe,
+                settings: ChartSettings.init(),
+                layers: [
+                    xAxisLayer,
+                    yAxisLayer,
+                    yHighAxes,
+                    guidelinesLayer,
+                    pointslineLayer,
+                    prediction,
+                    
+                    chartPointsCircleLayer
+                ]
+            )
+            
+            
+            view.addSubview(chart.view)
+            self.chart = chart
         }
         
-        let chartPointsCircleLayer = ChartPointsViewsLayer(xAxis: xAxisLayer.axis, yAxis: yHighAxes.axis, chartPoints: extraPoints, viewGenerator: circleViewGenerator, displayDelay: 0, delayBetweenItems: 0.05, mode: .translate)
-        
-        
-        
-        // create chart instance with frame and layers
-        let chart = Chart(
-            view: self.chartView!,
-            innerFrame: innerframe,
-            settings: ChartSettings.init(),
-            layers: [
-                xAxisLayer,
-                yAxisLayer,
-                yHighAxes,
-                guidelinesLayer,
-                pointslineLayer,
-                prediction,
-                
-                chartPointsCircleLayer
-            ]
-        )
-        
-        
-        view.addSubview(chart.view)
-        self.chart = chart
-    }
-    
-    @objc func rotated() {
-        for view in self.chartView.subviews {
-            view.removeFromSuperview()
+        @objc func rotated() {
+            for view in self.chartView.subviews {
+                view.removeFromSuperview()
+            }
+            initChart()
         }
-        initChart()
     }
-}
-/*
- class Env {
- static var iPad: Bool {
- return UIDevice.current.userInterfaceIdiom == .pad
- }
- }
- */
-extension ChartPointEllipseView{
-    private struct extra{
-        static var data:String? = nil
-    }
-    
-    var data:String?{
-        get{
-            return objc_getAssociatedObject(self, &extra.data) as? String
+    /*
+     <<<<<<< HEAD
+     class Env {
+     static var iPad: Bool {
+     return UIDevice.current.userInterfaceIdiom == .pad
+     }
+     }
+     */
+
+    extension ChartPointEllipseView{
+        private struct extra{
+            static var data:String? = nil
         }
         
-        set{
-            if let unwrappedData = newValue {
-                objc_setAssociatedObject(self, &extra.data, unwrappedData as NSString?, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        var data:String?{
+            get{
+                return objc_getAssociatedObject(self, &extra.data) as? String
+            }
+            
+            set{
+                if let unwrappedData = newValue {
+                    objc_setAssociatedObject(self, &extra.data, unwrappedData as NSString?, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                }
             }
         }
-    }
 }

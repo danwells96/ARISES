@@ -46,6 +46,7 @@ class ViewControllerMain: UIViewController {
     @IBOutlet weak var insulinTimeField: UITextField!
     private var insulinTimePicker = UIDatePicker()
 
+    var today = Calendar.current.startOfDay(for: Date())
     
     // Variables for rounding and shadow extension
     private var shadowLayer: CAShapeLayer!
