@@ -49,8 +49,11 @@ class ViewControllerGraph: UIViewController{
     @IBOutlet var rightGestureRecognizer: UISwipeGestureRecognizer!
     
     @IBOutlet var leftGestureRecognizer: UISwipeGestureRecognizer!
-    @IBOutlet weak var DateTitle: UILabel!
+    //@IBOutlet weak var DateTitle: UILabel!
     
+    
+    @IBOutlet weak var pickerTextField: UITextField!
+    let picker = UIDatePicker()
     @IBOutlet weak var currentGlucose: UILabel!
     //Gesture Recognisers
     @IBAction func upGesture(_ sender: Any) {
@@ -301,6 +304,8 @@ class ViewControllerGraph: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        createDatePicker()
+        
         let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.pannedView(sender:)))
         panRecognizer.require(toFail: leftGestureRecognizer)
         panRecognizer.require(toFail: rightGestureRecognizer)
@@ -370,7 +375,63 @@ class ViewControllerGraph: UIViewController{
             self.initChart()
         }
     }
+    func createDatePicker(){
+        //PLACEHOLDER
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        pickerTextField.text = formatter.string(from: Date())
+        
+        //Format Picker mode For Date
+            
+        picker.datePickerMode = .date
+        
+        //Toolbar
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        //done button for toolbar
+        let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+        toolbar.setItems([done], animated: false)
+        pickerTextField.inputAccessoryView = toolbar
+        pickerTextField.inputView = picker
+        
+    }
+    @objc func donePressed(){
+        
+        //format date
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        let dateString = formatter.string(from: picker.date)
+        pickerTextField.text = dateString
+        
+        self.view.endEditing(true)
+        
+        //pass the picker date to variable today
+        let formatter2 = DateFormatter()
+        formatter2.locale = Locale(identifier: "en_GB")
+        formatter2.dateStyle = .short
+        formatter2.timeStyle = .none
     
+        let todayString = picker.date
+        
+        //print("today string is: \(todayString)") //today string is: 11/06/2018
+        // let todaystring = todayString + " 00:00"
+        // print("today is : \(todaystring)") //today is : 11/06/2018 00:00
+        /*  if todaystring != main.today{
+         main.today = todaystring
+         }
+         */
+        main.today = todayString
+        for view in (chart?.view.subviews)! {
+            view.removeFromSuperview()
+        }
+        initChart()
+        chart?.view.setNeedsDisplay()
+        updateSideViews()
+        
+    }
     
     @objc private func mealsUpdated(){
         initChart()
@@ -421,6 +482,9 @@ class ViewControllerGraph: UIViewController{
         hourFormatter.dateFormat = "H" // remove pre-0s from x axis
         let pickerFormatter = DateFormatter()
         pickerFormatter.dateFormat = "hh:mm a"
+        let longDayFormatter = DateFormatter()
+        longDayFormatter.dateStyle = .long
+        longDayFormatter.timeStyle = .none
         
         //set function to today() when live code
         let day = main.today
@@ -573,12 +637,14 @@ class ViewControllerGraph: UIViewController{
             let yLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 9))
             let xLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 8), fontColor: UIColor.black, rotation: 0, rotationKeep: .top)
             
-            let xValues = ChartAxisValuesGeneratorDate(unit: .hour, preferredDividers: 8, minSpace: 0.5, maxTextSize: 12)
+            let xValues = ChartAxisValuesGeneratorDate(unit: .hour, preferredDividers: 4, minSpace: 0.5, maxTextSize: 12)
             
             // create axis models with axis values and axis title
             let startTime: Date? = main.today
             let endTime: Date? = Calendar.current.date(byAdding: .day, value: 1, to: startTime!)
-            
+
+            pickerTextField.text = longDayFormatter.string(from: startTime!)
+            pickerTextField.sizeToFit()
             //Axis Labels
             let xLabelGenerator = ChartAxisLabelsGeneratorDate(labelSettings: xLabelSettings, formatter: hourFormatter)
             let yLabelGenerator = ChartAxisLabelsGeneratorNumber(labelSettings: yLabelSettings)
@@ -589,12 +655,8 @@ class ViewControllerGraph: UIViewController{
             let xModel = ChartAxisModel(firstModelValue: (startTime!.timeIntervalSince1970), lastModelValue: (endTime!.timeIntervalSince1970), axisTitleLabel: ChartAxisLabel(text: "", settings: yLabelSettings), axisValuesGenerator: xValues, labelsGenerator: xLabelGenerator)//dayFormatter.string(from: startTime!)
             
             //put date on top of chart
-            let longDayFormatter = DateFormatter()
-            longDayFormatter.dateStyle = .long
-            longDayFormatter.timeStyle = .none
-            DateTitle.text = longDayFormatter.string(from: startTime!)
-            DateTitle.sizeToFit()
-            
+        
+        
             let yModel = ChartAxisModel(firstModelValue: 0, lastModelValue: 20, axisTitleLabel: ChartAxisLabel(text: "", settings: yLabelSettings.defaultVertical()), axisValuesGenerator: generator, labelsGenerator: yLabelGenerator) //glucose (mM/L)
             
             
@@ -608,14 +670,14 @@ class ViewControllerGraph: UIViewController{
             let yLabelGeneratorCarbs = ChartAxisLabelsGeneratorNumber(labelSettings: yLabelSettingsCarbs)
             let yHighModels = ChartAxisModel(firstModelValue: 0, lastModelValue: 200, axisTitleLabel: ChartAxisLabel(text: "", settings: yLabelSettings.defaultVertical()), axisValuesGenerator: ChartAxisGeneratorMultiplier(200), labelsGenerator: yLabelGeneratorCarbs)
             
-            //(axisValues: [ChartAxisValueInt(0), ChartAxisValueInt(200)], lineColor: UIColor.clear, labelSpaceReservationMode: .fixed(20))
-            
-            //let coordsSpaceCarbs = ChartCoordsSpace(chartSettings: chartSettings, chartSize: chartFrame.size, xModel: xModel, yModel: yHighModels)
-            let coordsSpaceCarbs = ChartCoordsSpaceRightBottomSingleAxis(chartSettings: chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yHighModels)
+            //Removes axis from chart for carb graph
+            var carbChartSettings = chartSettings
+            carbChartSettings.axisStrokeWidth = 0
+            let coordsSpaceCarbs = ChartCoordsSpaceRightBottomSingleAxis(chartSettings: carbChartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yHighModels)
             //let yHighAxes = coordsSpaceCarbs.yHighAxesLayers
             let yHighAxes = coordsSpaceCarbs.yAxisLayer
-            
-            // layer displays data-line
+
+        // layer displays data-line
             let lineModel = ChartLineModel(chartPoints: chartPoints, lineColor: UIColor.blue, lineWidth: 3, animDuration: 1, animDelay: 0)
             let lineModelExtra = ChartLineModel(chartPoints: extraPoints, lineColor: UIColor.clear, lineWidth: 3, animDuration: 1, animDelay: 0)
             
