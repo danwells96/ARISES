@@ -15,19 +15,11 @@ struct customType{
     var time: String
     var value: Double
 }
-/*
-protocol dateChangeDelegate : class {
-    func updateDay(_ newDay: Date)
-}
-*/
+
 class ViewControllerGraph: UIViewController{
     
     
-    //weak var graphDelegate: dateChangeDelegate?
-    
-    //Today temp variable till real-time data available
-    //let main = ViewControllerMain()
-    //let main = ViewControllerMain()
+
 
     var today = Calendar.current.startOfDay(for: Date())
     
@@ -76,14 +68,8 @@ class ViewControllerGraph: UIViewController{
         let tempDate2 = Calendar.current.date(byAdding: .day, value: -1, to: tempDate)
         today = tempDate2!
         updateDay()
-//        graphDelegate?.updateDay(tempDate2!)
-        
-        print("Graph today: \(today)")
-    //    print("VC today: \(ViewControllerMain.today)")
- 
 
 
-        
         for view in (chart?.view.subviews)! {
             view.removeFromSuperview()
         }
@@ -99,7 +85,7 @@ class ViewControllerGraph: UIViewController{
         let tempDate = today
         let tempDate2 = Calendar.current.date(byAdding: .day, value: +1, to: tempDate)
         today = tempDate2!
-//        graphDelegate?.updateDay(tempDate2!)
+
         updateDay()
         
         for view in (chart?.view.subviews)! {
@@ -371,7 +357,7 @@ class ViewControllerGraph: UIViewController{
     func updateDay(){
         let nc = NotificationCenter.default
         nc.post(name: Notification.Name("dayChanged"), object: today)
-        print("Day Changed to \(today)")
+ 
     }
     
     var startLocation = CGPoint()
