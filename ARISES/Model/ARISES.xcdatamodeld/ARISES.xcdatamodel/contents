@@ -57,9 +57,9 @@
         <element name="Exercise" positionX="97" positionY="-115" width="128" height="133"/>
         <element name="Favourites" positionX="-153" positionY="-232" width="128" height="88"/>
         <element name="Glucose" positionX="97" positionY="207" width="128" height="88"/>
+        <element name="Illness" positionX="99" positionY="551" width="128" height="88"/>
         <element name="Insulin" positionX="97" positionY="326" width="128" height="88"/>
         <element name="Meals" positionX="97" positionY="32" width="128" height="148"/>
         <element name="Stress" positionX="99" positionY="443" width="128" height="88"/>
-        <element name="Illness" positionX="99" positionY="551" width="128" height="88"/>
     </elements>
 </model>

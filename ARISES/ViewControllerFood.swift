@@ -26,6 +26,8 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     //defining picker related variables
     private var foodTimePicker = UIDatePicker()
     
+    private var currentDay = Date()
+    
     @IBOutlet weak var favouritesButton: UIButton!
     //defining table related variables
     private var loggedMeals = [Meals]()
@@ -56,6 +58,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     //MARK: - Override
     override func viewDidLoad() {
         super.viewDidLoad()
+
         foodLogTable.dataSource = self
         foodLogTable.delegate = self
         
@@ -74,6 +77,9 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         foodNameTextField.inputAccessoryView = toolBar
         
         favouritesButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(updateDay(notification:)), name: Notification.Name("dayChanged"), object: nil)
+        
         updateTable()
         
     }
@@ -139,6 +145,11 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         picker.sourceType = .camera
         
         present(picker, animated: true, completion: nil)
+    }
+    
+    @objc func updateDay(notification: Notification) {
+        currentDay = notification.object as! Date
+        updateTable()
     }
     
     //MARK: - Table functions
@@ -246,7 +257,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
             self.loggedMeals = loggedMeals
         }
         else{
-            let loggedMeals = ModelController().fetchMeals(day: Date())
+            let loggedMeals = ModelController().fetchMeals(day: currentDay)
             self.loggedMeals = loggedMeals
         }
         self.foodLogTable.reloadData()
@@ -260,7 +271,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
             ModelController().addMeal(
                     name: foodNameTextField.text!,
                     time: foodTimeField.text!,
-                    date: Date(),
+                    date: currentDay,
                     carbs: Int32(carbsTextField.text!)!,
                     fat: Int32(fatTextField.text!)!,
                     protein: Int32(proteinTextField.text!)!)

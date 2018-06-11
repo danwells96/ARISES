@@ -15,11 +15,21 @@ struct customType{
     var time: String
     var value: Double
 }
-
+/*
+protocol dateChangeDelegate : class {
+    func updateDay(_ newDay: Date)
+}
+*/
 class ViewControllerGraph: UIViewController{
     
+    
+    //weak var graphDelegate: dateChangeDelegate?
+    
     //Today temp variable till real-time data available
-    let main = ViewControllerMain()
+    //let main = ViewControllerMain()
+    //let main = ViewControllerMain()
+
+    var today = Calendar.current.startOfDay(for: Date())
     
     var tMinus1Compare : [Double] = []
     var tMinus2Compare : [Double] = []
@@ -62,9 +72,17 @@ class ViewControllerGraph: UIViewController{
         print("right")
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
-        let tempDate = main.today
+        let tempDate = today
         let tempDate2 = Calendar.current.date(byAdding: .day, value: -1, to: tempDate)
-        main.today = tempDate2!
+        today = tempDate2!
+        updateDay()
+//        graphDelegate?.updateDay(tempDate2!)
+        
+        print("Graph today: \(today)")
+    //    print("VC today: \(ViewControllerMain.today)")
+ 
+
+
         
         for view in (chart?.view.subviews)! {
             view.removeFromSuperview()
@@ -78,9 +96,11 @@ class ViewControllerGraph: UIViewController{
         print("left")
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
-        let tempDate = main.today
+        let tempDate = today
         let tempDate2 = Calendar.current.date(byAdding: .day, value: +1, to: tempDate)
-        main.today = tempDate2!
+        today = tempDate2!
+//        graphDelegate?.updateDay(tempDate2!)
+        updateDay()
         
         for view in (chart?.view.subviews)! {
             view.removeFromSuperview()
@@ -347,6 +367,13 @@ class ViewControllerGraph: UIViewController{
         
     }
     
+    
+    func updateDay(){
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name("dayChanged"), object: today)
+        print("Day Changed to \(today)")
+    }
+    
     var startLocation = CGPoint()
     
     @objc func pannedView(sender:UIPanGestureRecognizer){
@@ -423,7 +450,7 @@ class ViewControllerGraph: UIViewController{
         pickerFormatter.dateFormat = "hh:mm a"
         
         //set function to today() when live code
-        let day = main.today
+        let day = today
         var dateArray = [ChartAxisValueDate]()
         var valueArray = [ChartAxisValueDouble]()
         var points = [ChartPoint]()
@@ -545,7 +572,7 @@ class ViewControllerGraph: UIViewController{
         calcRanges(Arr: tPlus2Compare, view: rightView2)
         calcRanges(Arr: tPlus3Compare, view: rightView3)
         
-        let todayDate = main.today
+        let todayDate = today
         let todayString = todayDate
         let todayDate2 = todayString
         var predictedGlucosePoints: [ChartPoint] = []
@@ -576,7 +603,7 @@ class ViewControllerGraph: UIViewController{
             let xValues = ChartAxisValuesGeneratorDate(unit: .hour, preferredDividers: 8, minSpace: 0.5, maxTextSize: 12)
             
             // create axis models with axis values and axis title
-            let startTime: Date? = main.today
+            let startTime: Date? = today
             let endTime: Date? = Calendar.current.date(byAdding: .day, value: 1, to: startTime!)
             
             //Axis Labels
@@ -625,7 +652,7 @@ class ViewControllerGraph: UIViewController{
             if(points.count > 0){
                 nowIndicator = points.last!
             }else{
-                nowIndicator = ChartPoint(x: ChartAxisValueDate(date: main.today, formatter: dateFormatter), y: ChartAxisValueDouble(6))
+                nowIndicator = ChartPoint(x: ChartAxisValueDate(date: today, formatter: dateFormatter), y: ChartAxisValueDouble(6))
             }
             //let currGlucose = nowIndicator.y.scalar
             currentGlucose.text = "6.0"

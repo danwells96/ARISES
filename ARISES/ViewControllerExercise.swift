@@ -27,6 +27,8 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
     //table related variables
     @IBOutlet weak var favouritesButton: UIButton!
     
+    private var currentDay = Date()
+    
     private var loggedExercise = [Exercise]()
     
     private var showFavouritesExercise = false{
@@ -64,6 +66,8 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         exerciseNameField.inputAccessoryView = toolBar
         
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(updateDay(notification:)), name: Notification.Name("dayChanged"), object: nil)
         
         
         favouritesButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
@@ -222,6 +226,11 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
         
     }
     
+    @objc func updateDay(notification: Notification) {
+        currentDay = notification.object as! Date
+        updateTable()
+    }
+    
     private func updateTable(){
         if showFavouritesExercise == true{
             let loggedExercise = ModelController().fetchFavouritesExercise()
@@ -229,7 +238,7 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
             self.exerciseLogTable.reloadData()
         }
         else{
-            let loggedExercise = ModelController().fetchExercise(day: Date())
+            let loggedExercise = ModelController().fetchExercise(day: currentDay)
             self.loggedExercise = loggedExercise
             self.exerciseLogTable.reloadData()
         }
@@ -245,7 +254,7 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
             ModelController().addExercise(
                 name: exerciseNameField.text!,
                 time: exerciseTimeField.text!,
-                date: Date(),
+                date: currentDay,
                 intensity: exerciseIntensityField.text!,
                 duration: exerciseDurationField.text!)
             showFavouritesExercise = false

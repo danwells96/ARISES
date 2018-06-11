@@ -12,7 +12,6 @@ import CoreData
 class ModelController {
     
     //TODO: - To Do List
-    //TODO: Fetch requests require sorting. Short times currently sort incorrectly
     //TODO: Abstract functions to apply to food, exercise and days etc.
     //TODO: Test and validate/tighten up corner cases for data values
     //TODO: Ensure optionals never cause exceptions e.g. with Guard

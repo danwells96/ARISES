@@ -18,7 +18,8 @@ enum MainViewState
     case advice
 }
 
-class ViewControllerMain: UIViewController {
+class ViewControllerMain: UIViewController{
+
     
     //TODO: Save and restore open view between app closing
     
@@ -45,13 +46,10 @@ class ViewControllerMain: UIViewController {
     @IBOutlet weak var glucoseClockOutlet: UIButton!
     @IBOutlet weak var insulinTimeField: UITextField!
     private var insulinTimePicker = UIDatePicker()
-
-    var today = Calendar.current.startOfDay(for: Date()){
-        didSet{
-            let nc = NotificationCenter.default
-            nc.post(name: Notification.Name("dayChanged"), object: nil)
-        }
-    }
+    
+    
+    
+        
     
     // Variables for rounding and shadow extension
     private var shadowLayer: CAShapeLayer!
@@ -88,8 +86,17 @@ class ViewControllerMain: UIViewController {
         insulinTextField.inputAccessoryView = toolBar
 
         createInsulinTimePicker()
+        
+       // let nc = NotificationCenter.default
+       // nc.addObserver(self, selector: #selector(updateDay(notification:)), name: Notification.Name("dayChanged"), object: nil)
+
 
     }
+    /*
+    @objc func updateDay(notification: Notification) {
+        self.today = notification.object as! Date
+    }
+ */
     
     //MARK: - View re-positioning
     //Func to set state cases
