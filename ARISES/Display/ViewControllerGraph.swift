@@ -413,7 +413,7 @@ class ViewControllerGraph: UIViewController{
         self.view.endEditing(true)
         
         //pass picker date to variable today
-        today = picker.date
+        today = Calendar.current.startOfDay(for: picker.date)
         updateDay()
         picker.date = Date()
         //update chart & sidebars
