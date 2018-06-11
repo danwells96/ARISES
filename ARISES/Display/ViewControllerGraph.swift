@@ -388,6 +388,7 @@ class ViewControllerGraph: UIViewController{
         //Format Picker mode For Date
         picker.datePickerMode = .date
         
+        
         //Toolbar
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
@@ -413,7 +414,8 @@ class ViewControllerGraph: UIViewController{
         
         //pass picker date to variable today
         today = picker.date
-        
+        updateDay()
+        picker.date = Date()
         //update chart & sidebars
         for view in (chart?.view.subviews)! {
             view.removeFromSuperview()
