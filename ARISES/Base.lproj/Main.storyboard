@@ -2071,23 +2071,30 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
+                            <imageView userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeHolderBasal" translatesAutoresizingMaskIntoConstraints="NO" id="sO0-rE-GzH">
+                                <rect key="frame" x="80" y="140" width="205" height="70"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="ZEV-bY-Kyk" firstAttribute="leading" secondItem="hhK-5Y-w2W" secondAttribute="trailing" constant="-4" id="2hj-cg-Owp"/>
+                            <constraint firstItem="ZEV-bY-Kyk" firstAttribute="leading" secondItem="sO0-rE-GzH" secondAttribute="trailing" constant="7" id="4NR-s1-Jif"/>
                             <constraint firstItem="ZEV-bY-Kyk" firstAttribute="bottom" secondItem="Ag7-z6-FpG" secondAttribute="bottom" id="4PO-Ov-BPK"/>
                             <constraint firstItem="hhK-5Y-w2W" firstAttribute="leading" secondItem="5Fg-oh-rg7" secondAttribute="leading" id="6Lf-JL-NdX"/>
+                            <constraint firstItem="sO0-rE-GzH" firstAttribute="top" secondItem="Sl2-m7-8Gi" secondAttribute="bottom" constant="42" id="7hW-dp-Nvz"/>
                             <constraint firstItem="ZEV-bY-Kyk" firstAttribute="top" secondItem="H6f-sj-yes" secondAttribute="top" constant="-5" id="Cbv-Xb-zzN"/>
                             <constraint firstItem="hhK-5Y-w2W" firstAttribute="centerX" secondItem="xht-JE-6FD" secondAttribute="centerX" id="FL9-AF-Kzb"/>
                             <constraint firstItem="hhK-5Y-w2W" firstAttribute="leading" secondItem="ux8-yy-1UR" secondAttribute="leading" constant="2" id="I4g-gY-FfB"/>
                             <constraint firstItem="46k-yS-dMo" firstAttribute="bottom" secondItem="ux8-yy-1UR" secondAttribute="bottom" constant="7" id="Ka0-Qz-xRK"/>
                             <constraint firstItem="H6f-sj-yes" firstAttribute="top" secondItem="5Fg-oh-rg7" secondAttribute="bottom" constant="10" id="Lo0-b2-GS4"/>
+                            <constraint firstItem="46k-yS-dMo" firstAttribute="bottom" secondItem="sO0-rE-GzH" secondAttribute="bottom" constant="55" id="Lx3-RB-JLw"/>
                             <constraint firstItem="ux8-yy-1UR" firstAttribute="top" secondItem="5Fg-oh-rg7" secondAttribute="bottom" constant="3" id="O87-FG-7nY"/>
                             <constraint firstItem="H6f-sj-yes" firstAttribute="bottom" secondItem="Sl2-m7-8Gi" secondAttribute="bottom" id="Pye-Mo-uB4"/>
                             <constraint firstItem="ZEV-bY-Kyk" firstAttribute="top" secondItem="46k-yS-dMo" secondAttribute="top" constant="42" id="QLl-XT-iQv"/>
                             <constraint firstItem="46k-yS-dMo" firstAttribute="bottom" secondItem="H6f-sj-yes" secondAttribute="bottom" constant="167" id="XqO-vZ-bZ0"/>
                             <constraint firstItem="46k-yS-dMo" firstAttribute="bottom" secondItem="ZEV-bY-Kyk" secondAttribute="bottom" constant="15" id="ZR9-KB-4OW"/>
+                            <constraint firstItem="sO0-rE-GzH" firstAttribute="leading" secondItem="Ag7-z6-FpG" secondAttribute="trailing" constant="16" id="aZy-Ul-0u4"/>
                             <constraint firstItem="46k-yS-dMo" firstAttribute="bottom" secondItem="hhK-5Y-w2W" secondAttribute="bottom" constant="-35" id="apf-Vx-Aie"/>
                             <constraint firstAttribute="trailing" secondItem="H6f-sj-yes" secondAttribute="trailing" constant="107" id="dKY-LE-7ys"/>
                             <constraint firstItem="hhK-5Y-w2W" firstAttribute="top" secondItem="46k-yS-dMo" secondAttribute="top" constant="30" id="jh8-Lo-iIW"/>
@@ -2154,6 +2161,7 @@
         <image name="hyper" width="75" height="90"/>
         <image name="hypo" width="70" height="90"/>
         <image name="ill" width="79" height="162"/>
+        <image name="placeHolderBasal" width="369" height="83"/>
         <image name="settings" width="800" height="800"/>
         <image name="star black transparency" width="175" height="167"/>
         <image name="stressed" width="100" height="100"/>
