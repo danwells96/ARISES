@@ -11,13 +11,17 @@ import Foundation
 class SettingsBundleHelper {
     struct SettingsBundleKeys {
         static let basalEnabled = "showBasalPreference"
-        //static let
+        static let reset = "reloadGlucosePreference"
     }
     
     class func checkAndExecuteSettings() {
         if UserDefaults.standard.bool(forKey: SettingsBundleKeys.basalEnabled) {
             print("Basal showing")
         }//else if UserDefaults.standard.bool(forKey: SettingsBundleKeys.)
+        else if(UserDefaults.standard.bool(forKey: SettingsBundleKeys.reset)){
+            print("reset")
+            //No function currently to delete from model controller
+        }
     }
     
     class func setVersionAndBuildNumber() {

@@ -10,6 +10,20 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
+			<string>Reload Glucose</string>
+			<key>Key</key>
+			<string>reloadGlucosePreference</string>
+			<key>DefaultValue</key>
+			<false/>
+			<key>TrueValue</key>
+			<true/>
+			<key>FalseValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
 			<string>Show Basal</string>
 			<key>Key</key>
 			<string>showBasalPreference</string>
