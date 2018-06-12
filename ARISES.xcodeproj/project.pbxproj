@@ -51,6 +51,7 @@
 		37EFD4DB20C9ECD500A751FA /* ViewControllerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EFD4DA20C9ECD500A751FA /* ViewControllerSettings.swift */; };
 		BB0C55C520BC66E9003F46CE /* Favourites.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0C55BE20BC66E9003F46CE /* Favourites.swift */; };
 		BBF1205720D02736002ACBC7 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BBF1205620D02736002ACBC7 /* Settings.bundle */; };
+		BBF1205920D029B2002ACBC7 /* SettingsBundleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF1205820D029B2002ACBC7 /* SettingsBundleHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -116,6 +117,7 @@
 		93597E8CC10506F00FC893FB /* libPods-ARISES.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ARISES.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB0C55BE20BC66E9003F46CE /* Favourites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favourites.swift; sourceTree = "<group>"; };
 		BBF1205620D02736002ACBC7 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		BBF1205820D029B2002ACBC7 /* SettingsBundleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBundleHelper.swift; sourceTree = "<group>"; };
 		E37BF63307A2A5AF11BA9831 /* Pods-ARISES.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARISES.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARISES/Pods-ARISES.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -193,7 +195,6 @@
 				378658AD20AC675D007C13B2 /* ViewControllerTableViewCell.swift */,
 				375587D1209E086D00594532 /* Info.plist */,
 				371470F820A082A600AB76EF /* README.md */,
-				BBF1205620D02736002ACBC7 /* Settings.bundle */,
 			);
 			path = ARISES;
 			sourceTree = "<group>";
@@ -201,6 +202,7 @@
 		375587D7209E08DB00594532 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BBF1205620D02736002ACBC7 /* Settings.bundle */,
 				375587C5209E086C00594532 /* AppDelegate.swift */,
 				37B3716120B47EF20048A942 /* PersistenceService.swift */,
 				375587CE209E086D00594532 /* LaunchScreen.storyboard */,
@@ -221,6 +223,7 @@
 				371070D520AD904300365AC4 /* ExerciseIcon.png */,
 				37E140DC20B311EA00688EC0 /* greyStar.png */,
 				378658AB20AC659C007C13B2 /* Star.jpg */,
+				BBF1205820D029B2002ACBC7 /* SettingsBundleHelper.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				3718B85C20AC99B6006F1A47 /* ViewControllerFood.swift in Sources */,
 				3718B86420AC9A75006F1A47 /* ViewControllerGraph.swift in Sources */,
 				37CFC5D120BEDD250051FDFC /* IndicatorControllerFood.swift in Sources */,
+				BBF1205920D029B2002ACBC7 /* SettingsBundleHelper.swift in Sources */,
 				BB0C55C520BC66E9003F46CE /* Favourites.swift in Sources */,
 				378658AE20AC675D007C13B2 /* ViewControllerTableViewCell.swift in Sources */,
 				370F921720BD637B0081C570 /* Insulin.swift in Sources */,

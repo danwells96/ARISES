@@ -2119,6 +2119,7 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="Basal" destination="sO0-rE-GzH" id="hZB-uO-krb"/>
                         <outlet property="chartView" destination="hhK-5Y-w2W" id="GA6-zY-V6M"/>
                         <outlet property="currentGlucose" destination="Z6U-cI-lXW" id="gkd-jY-r3j"/>
                         <outlet property="leftGestureRecognizer" destination="N4Q-XD-b3a" id="ghS-PO-EA0"/>

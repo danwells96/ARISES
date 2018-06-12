@@ -15,6 +15,10 @@
 			<string>showBasalPreference</string>
 			<key>DefaultValue</key>
 			<true/>
+			<key>TrueValue</key>
+			<true/>
+			<key>FalseValue</key>
+			<false/>
 		</dict>
 	</array>
 </dict>

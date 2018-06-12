@@ -40,6 +40,7 @@ class ViewControllerGraph: UIViewController{
     @IBOutlet weak var leftView2: CustomView!
     @IBOutlet weak var leftView3: CustomView!
     
+    @IBOutlet weak var Basal: UIImageView!
     @IBOutlet var rightGestureRecognizer: UISwipeGestureRecognizer!
     
     @IBOutlet var leftGestureRecognizer: UISwipeGestureRecognizer!
@@ -296,6 +297,10 @@ class ViewControllerGraph: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        registerSettingsBundle()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewControllerGraph.defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
+        defaultsChanged()
         createDatePicker()
         
         let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.pannedView(sender:)))
@@ -364,6 +369,21 @@ class ViewControllerGraph: UIViewController{
             print(dy)
         }else if(sender.state == UIGestureRecognizerState.changed){
             print("location: \(sender.location(in: self.view))")
+        }
+    }
+    
+    func registerSettingsBundle(){
+        let appDefaults = [String:AnyObject]()
+        UserDefaults.standard.register(defaults: appDefaults)
+    }
+    
+    @objc func defaultsChanged(){
+        if(UserDefaults.standard.bool(forKey: "showBasalPreference")){
+            Basal.isHidden = false
+            print("Basal shown")
+        }else{
+            print("Basal hidden")
+            Basal.isHidden = true
         }
     }
     
