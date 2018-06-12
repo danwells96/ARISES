@@ -8,22 +8,42 @@
 	<array>
 		<dict>
 			<key>Type</key>
-			<string>PSMultiValueSpecifier</string>
-			<key>Title</key>
-			<string></string>
-		</dict>
-		<dict>
-			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
 			<string>Show Basal</string>
 			<key>Key</key>
 			<string>showBasalPreference</string>
 			<key>DefaultValue</key>
-			<true/>
+			<false/>
 			<key>TrueValue</key>
 			<true/>
 			<key>FalseValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Other Filters</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Option 1</string>
+			<key>Key</key>
+			<string>filterOption1</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Option 2</string>
+			<key>Key</key>
+			<string>filterOption2</string>
+			<key>DefaultValue</key>
 			<false/>
 		</dict>
 	</array>
