@@ -269,8 +269,8 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
         
         let currentDay = loggedDays[indexPath.row]
         
-        
         cell.dateInLog.text = currentDay.date
+        
         
         if ModelController().itemInFavouritesDay(item: currentDay){
             cell.favouriteHealthButton.tintColor = #colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1)
