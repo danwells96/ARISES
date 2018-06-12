@@ -11,11 +11,6 @@ import UIKit
 import Foundation
 import SwiftCharts
 
-struct customType{
-    var time: String
-    var value: Double
-}
-
 class ViewControllerGraph: UIViewController{
     
     //Today temp variable till real-time data available
