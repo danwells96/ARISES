@@ -11,18 +11,13 @@ import Foundation
 class SettingsBundleHelper {
     struct SettingsBundleKeys {
         static let basalEnabled = "showBasalPreference"
+        //static let
     }
     
     class func checkAndExecuteSettings() {
         if UserDefaults.standard.bool(forKey: SettingsBundleKeys.basalEnabled) {
-            //UserDefaults.standard.set(false, forKey: SettingsBundleKeys.Reset)
-            //let appDomain: String? = Bundle.main.bundleIdentifier
-            //UserDefaults.standard.removePersistentDomain(forName: appDomain!)
-            print("D \(UserDefaults.standard.bool(forKey: "showBasalPreference"))")
-            // reset userDefaults..
-            // CoreDataDataModel().deleteAllData()
-            // delete all other user data here..
-        }
+            print("Basal showing")
+        }//else if UserDefaults.standard.bool(forKey: SettingsBundleKeys.)
     }
     
     class func setVersionAndBuildNumber() {

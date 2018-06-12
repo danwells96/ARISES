@@ -380,9 +380,7 @@ class ViewControllerGraph: UIViewController{
     @objc func defaultsChanged(){
         if(UserDefaults.standard.bool(forKey: "showBasalPreference")){
             Basal.isHidden = false
-            print("Basal shown")
         }else{
-            print("Basal hidden")
             Basal.isHidden = true
         }
     }
