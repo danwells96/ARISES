@@ -25,6 +25,9 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
 
     @IBOutlet weak var foodAddButton: UIButton!
     
+    @IBOutlet weak var logTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var barBottomConstraint: NSLayoutConstraint!
+    
     //defining picker related variables
     private var foodTimePicker = UIDatePicker()
     
@@ -39,6 +42,8 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
                 favouritesButton.isHidden = true
                 foodAddButton.isHidden = true
                 //add constraint adjustment to fill full size
+                logTopConstraint.constant = 0
+                barBottomConstraint.constant = 0
             }
             else{
                 foodTimeField.isHidden = false
@@ -48,6 +53,9 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
                 fatTextField.isHidden = false
                 favouritesButton.isHidden = false
                 foodAddButton.isHidden = false
+                logTopConstraint.constant = 8
+                barBottomConstraint.constant = 8
+                
             }
         }
     }
@@ -296,9 +304,9 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
                     name: foodNameTextField.text!,
                     time: foodTimeField.text!,
                     date: currentDay,
-                    carbs: Int32(carbsTextField.text!)!,
-                    fat: Int32(fatTextField.text!)!,
-                    protein: Int32(proteinTextField.text!)!)
+                    carbs: Int32((Double(carbsTextField.text!)?.rounded())!),
+                    fat: Int32((Double(fatTextField.text!)?.rounded())!),
+                    protein: Int32((Double(proteinTextField.text!)?.rounded())!))
             showFavouritesFood = false
             
             foodNameTextField.text = ""

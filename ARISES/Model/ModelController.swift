@@ -78,7 +78,7 @@ class ModelController {
     
     //MARK: - Data object setting (add/toggle)
     func addMeal(name: String, time: String, date: Date, carbs: Int32, fat: Int32, protein: Int32){
-        
+        print("meal added")
         let currentDay = findOrMakeDay(day: date)
         let newMeal = Meals(context: PersistenceService.context)
         newMeal.name = name
@@ -363,12 +363,17 @@ class ModelController {
         }
     }
     
-    //TOFIX: - Broken predicate returning [] only on Chelle's phone
+    //TOFIX: - Predicate compares strings -> Doesn't work for most date formats
     func fetchDay(degreeOfTimeTravel: Int) -> [Day]{
         let fetchRequest: NSFetchRequest<Day> = Day.fetchRequest()
-        let oldestDay = Calendar.current.date(byAdding: .day, value: degreeOfTimeTravel, to: Date())
+        //let oldestDay = Calendar.current.date(byAdding: .day, value: degreeOfTimeTravel, to: Date())
 
-        //fetchRequest.predicate = NSPredicate(format: "date BETWEEN {%@, %@}", formatDateToDay(date: oldestDay!), formatDateToDay(date: Date()))
+
+       // fetchRequest.predicate = NSPredicate(format: "date BETWEEN {%@, %@}", formatDateToDay(date: oldestDay!), formatDateToDay(date: Date()))
+
+        let sectionSortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        let sortDescriptors = [sectionSortDescriptor]
+        fetchRequest.sortDescriptors = sortDescriptors
         let foundDay = try? PersistenceService.context.fetch(fetchRequest)
         
         if(foundDay == nil){

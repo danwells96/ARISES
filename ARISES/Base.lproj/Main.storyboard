@@ -473,6 +473,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
+                        <outlet property="barBottomConstraint" destination="U5g-7d-sRp" id="IBr-RW-l4d"/>
                         <outlet property="carbsTextField" destination="wMy-H5-4FY" id="HVZ-qv-KiF"/>
                         <outlet property="fatTextField" destination="0Cd-sx-Ahs" id="TY2-Ey-cvC"/>
                         <outlet property="favouritesButton" destination="1rn-Le-rQx" id="Ybj-vp-iSj"/>
@@ -480,6 +481,7 @@
                         <outlet property="foodLogTable" destination="6QN-ht-td4" id="O2j-mL-Rp1"/>
                         <outlet property="foodNameTextField" destination="aoz-Lq-GqU" id="nna-0q-n9T"/>
                         <outlet property="foodTimeField" destination="YHY-0J-bdq" id="BT8-aV-n9T"/>
+                        <outlet property="logTopConstraint" destination="mvF-zW-nYW" id="j0B-Dj-1vF"/>
                         <outlet property="proteinTextField" destination="3OL-gV-rpO" id="kJx-33-OZ5"/>
                     </connections>
                 </viewController>
@@ -601,7 +603,7 @@
                                                     </connections>
                                                 </button>
                                                 <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="equalCentering" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="abN-Ri-pum">
-                                                    <rect key="frame" x="15" y="40" width="173" height="44.5"/>
+                                                    <rect key="frame" x="15" y="40" width="173.5" height="44.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lpC-MF-AuP">
@@ -622,10 +624,10 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Nhp-Wy-nRu">
-                                                            <rect key="frame" x="61" y="0.0" width="50.5" height="44.5"/>
+                                                            <rect key="frame" x="61.5" y="0.0" width="50.5" height="44.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="10.3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lvf-Xp-wSl">
-                                                                    <rect key="frame" x="6" y="0.0" width="39" height="24"/>
+                                                                    <rect key="frame" x="5.5" y="0.0" width="39" height="24"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -639,7 +641,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="LTp-OB-VTY">
-                                                            <rect key="frame" x="122.5" y="0.0" width="50.5" height="44.5"/>
+                                                            <rect key="frame" x="123" y="0.0" width="50.5" height="44.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="15.2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p1P-c5-cKJ">
                                                                     <rect key="frame" x="6" y="0.0" width="38.5" height="24"/>
@@ -1563,6 +1565,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
+                        <outlet property="barBottomConstraint" destination="Mlk-n1-4fO" id="aqj-Rz-gmn"/>
                         <outlet property="exerciseAddButton" destination="OYm-JV-cfP" id="HOS-TX-Zhq"/>
                         <outlet property="exerciseDurationField" destination="eBL-gT-zy7" id="VlR-5W-3k1"/>
                         <outlet property="exerciseIntensityField" destination="sz4-FU-8iE" id="o1D-u0-xJe"/>
@@ -1570,6 +1573,7 @@
                         <outlet property="exerciseNameField" destination="puk-Mj-5ce" id="g66-4y-3c2"/>
                         <outlet property="exerciseTimeField" destination="uDK-N7-5NN" id="tc5-iC-hp6"/>
                         <outlet property="favouritesButton" destination="u5I-Ji-La1" id="30k-Cz-fGF"/>
+                        <outlet property="logTopConstraint" destination="Sfy-bQ-ePq" id="KP7-hd-xSN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UBf-gV-Zdz" userLabel="First Responder" sceneMemberID="firstResponder"/>

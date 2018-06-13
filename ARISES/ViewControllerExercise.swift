@@ -20,6 +20,9 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet weak var exerciseDurationField: UITextField!
     @IBOutlet weak var exerciseLogTable: UITableView!
     
+    @IBOutlet weak var logTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var barBottomConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var exerciseAddButton: UIButton!
     
     //picker related variables
@@ -40,6 +43,8 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
                 favouritesButton.isHidden = true
                 exerciseAddButton.isHidden = true
                 //add constraint adjustment to fill full size
+                logTopConstraint.constant = 0
+                barBottomConstraint.constant = 0
             }
             else{
                 exerciseTimeField.isHidden = false
@@ -48,6 +53,8 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
                 exerciseDurationField.isHidden = false
                 favouritesButton.isHidden = false
                 exerciseAddButton.isHidden = false
+                logTopConstraint.constant = 8
+                barBottomConstraint.constant = 8
             }
         }
     }
