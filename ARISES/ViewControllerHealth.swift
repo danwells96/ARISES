@@ -251,7 +251,6 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
     
     func didPressViewDayButton(_ tag: Int) {
         let nc = NotificationCenter.default
-        print(loggedDays[tag].date)
         nc.post(name: Notification.Name("setDay"), object: (loggedDays[tag].date)!)
     }
     
