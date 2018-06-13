@@ -35,6 +35,11 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     private var currentDay = Date(){
         didSet{
+            exerciseNameField.text = ""
+            exerciseTimeField.text = ""
+            exerciseDurationField.text = ""
+            exerciseIntensityField.text = ""
+            
             if currentDay != Calendar.current.startOfDay(for: Date()) {
                 exerciseTimeField.isHidden = true
                 exerciseNameField.isHidden = true

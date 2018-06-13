@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mwq-xa-FnX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mwq-xa-FnX">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -533,7 +533,7 @@
                                                     </connections>
                                                 </button>
                                                 <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="equalCentering" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="abN-Ri-pum">
-                                                    <rect key="frame" x="15" y="40" width="173" height="44.5"/>
+                                                    <rect key="frame" x="15" y="40" width="173.5" height="44.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lpC-MF-AuP">
@@ -571,7 +571,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="LTp-OB-VTY">
-                                                            <rect key="frame" x="122.5" y="0.0" width="50.5" height="44.5"/>
+                                                            <rect key="frame" x="123" y="0.0" width="50.5" height="44.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="15.2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p1P-c5-cKJ">
                                                                     <rect key="frame" x="6" y="0.0" width="38.5" height="24"/>
@@ -847,9 +847,11 @@
                         <outlet property="filterIllnessOutlet" destination="ves-CV-vQa" id="FbX-p7-tsa"/>
                         <outlet property="filterStressOutlet" destination="cs5-Cf-Ysz" id="VMw-8N-WIK"/>
                         <outlet property="healthLogTable" destination="T9G-c0-t2o" id="oei-Kr-au5"/>
+                        <outlet property="illnessLabel" destination="Ohj-Ee-wqC" id="ziM-A7-Laq"/>
                         <outlet property="illnessSwitch" destination="XGa-b8-dey" id="ZdC-tV-L1o"/>
                         <outlet property="sevenDaysOutlet" destination="xGd-F8-KEK" id="lDL-Vy-GTR"/>
                         <outlet property="sixtyDaysOutlet" destination="YZn-yc-TVh" id="rlm-hC-7Kr"/>
+                        <outlet property="stressLabel" destination="wTa-cF-Nl8" id="aCw-ik-zqi"/>
                         <outlet property="stressSwitch" destination="IOY-9P-BIi" id="0by-5o-vIN"/>
                         <outlet property="thirtyDaysOutlet" destination="rOK-oz-Cxm" id="zPc-5Q-M2m"/>
                     </connections>

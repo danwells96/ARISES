@@ -34,6 +34,12 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     private var currentDay = Date(){
         didSet{
             
+            foodNameTextField.text = ""
+            foodTimeField.text = ""
+            carbsTextField.text = ""
+            proteinTextField.text = ""
+            fatTextField.text = ""
+            
             if currentDay != Calendar.current.startOfDay(for: Date()) {
                 foodTimeField.isHidden = true
                 foodNameTextField.isHidden = true

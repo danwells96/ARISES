@@ -25,6 +25,8 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var filterStressOutlet: UIButton!
     @IBOutlet weak var filterIllnessOutlet: UIButton!
     
+    @IBOutlet weak var illnessLabel: UILabel!
+    @IBOutlet weak var stressLabel: UILabel!
     @IBOutlet weak var sevenDaysOutlet: UIButton!
     @IBOutlet weak var thirtyDaysOutlet: UIButton!
     @IBOutlet weak var sixtyDaysOutlet: UIButton!
@@ -114,6 +116,23 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
     private var stressStart: Date? = nil
     private var illnessStart: Date? = nil
 
+    private var currentDay = Date(){
+        didSet{
+            
+            if currentDay != Calendar.current.startOfDay(for: Date()) {
+                stressLabel.isHidden = true
+                illnessLabel.isHidden = true
+                stressSwitch.isHidden = true
+                illnessSwitch.isHidden = true
+            }
+            else{
+                stressLabel.isHidden = false
+                illnessLabel.isHidden = false
+                stressSwitch.isHidden = false
+                illnessSwitch.isHidden = false
+            }
+        }
+    }
 
     //MARK: Override
     override func viewDidLoad() {
@@ -127,6 +146,9 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
         illnessSwitch.onTintColor = #colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1)
         stressSwitch.setOn(false, animated: true)
         illnessSwitch.setOn(false, animated: true)
+        
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(updateDay(notification:)), name: Notification.Name("dayChanged"), object: nil)
         
 
     }
@@ -258,6 +280,11 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
     
     func didPressCameraButton(_tag: Int){
         print("incomplete functionality")
+    }
+    
+    @objc func updateDay(notification: Notification) {
+        currentDay = notification.object as! Date
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
