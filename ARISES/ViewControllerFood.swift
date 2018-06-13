@@ -33,6 +33,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     
     private var currentDay = Date(){
         didSet{
+            /*
             if currentDay != Calendar.current.startOfDay(for: Date()) {
                 foodTimeField.isHidden = true
                 foodNameTextField.isHidden = true
@@ -57,6 +58,8 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
                 barBottomConstraint.constant = 8
                 
             }
+ */
+            print("set")
         }
     }
     
