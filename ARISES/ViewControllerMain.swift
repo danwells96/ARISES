@@ -40,6 +40,13 @@ class ViewControllerMain: UIViewController{
     @IBOutlet weak var indicatorHealth: UIView!
     @IBOutlet weak var indicatorAdvice: UIView!
     
+    //Labels
+    @IBOutlet weak var foodLabel: UILabel!
+    @IBOutlet weak var exerciseLabel: UILabel!
+    @IBOutlet weak var adviceLabel: UILabel!
+    @IBOutlet weak var healthLabel: UILabel!
+    
+    
     //Insulin outlets
     @IBOutlet weak var glucoseButtonOutlet: UIButton!
     @IBOutlet weak var insulinTextField: UITextField!
@@ -115,6 +122,11 @@ class ViewControllerMain: UIViewController{
             indicatorAdvice.isHidden = false
             indicatorHealth.isHidden = false
             indicatorExercise.isHidden = false
+            
+            foodLabel.isHidden = true
+            healthLabel.isHidden = false
+            exerciseLabel.isHidden = false
+            adviceLabel.isHidden = false
 
         case .exercise:
             self.view.bringSubview(toFront: self.viewExercise)
@@ -140,6 +152,12 @@ class ViewControllerMain: UIViewController{
             indicatorHealth.isHidden = false
             indicatorExercise.isHidden = true
             
+            foodLabel.isHidden = false
+            healthLabel.isHidden = false
+            exerciseLabel.isHidden = true
+            adviceLabel.isHidden = false
+
+            
         case .health:
            self.view.bringSubview(toFront: self.viewHealth)
            /*UIView.animate(withDuration: 0.001, animations: {
@@ -162,6 +180,12 @@ class ViewControllerMain: UIViewController{
             indicatorAdvice.isHidden = false
             indicatorHealth.isHidden = true
             indicatorExercise.isHidden = false
+            
+           foodLabel.isHidden = false
+           healthLabel.isHidden = true
+           exerciseLabel.isHidden = false
+           adviceLabel.isHidden = false
+
         case .advice:
             //containerAdvice.alpha = 0.0
             view.bringSubview(toFront: viewAdvice)
@@ -176,6 +200,12 @@ class ViewControllerMain: UIViewController{
             indicatorAdvice.isHidden = true
             indicatorHealth.isHidden = false
             indicatorExercise.isHidden = false
+            
+            foodLabel.isHidden = false
+            healthLabel.isHidden = false
+            exerciseLabel.isHidden = false
+            adviceLabel.isHidden = true
+
         case .uninitialised:
             print("uninitialised view state")
         }
