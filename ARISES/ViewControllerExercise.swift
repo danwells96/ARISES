@@ -61,8 +61,8 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
                 logTopConstraint.constant = 8
                 barBottomConstraint.constant = 8
             }
+            self.showFavouritesExercise = false
         }
-        
     }
     
     private var loggedExercise = [Exercise]()
@@ -254,10 +254,11 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
             exerciseTimeField.text = dateFormatter.string(from: Date())
             exerciseDurationField.text = loggedExercise[indexPath.row].duration
             exerciseIntensityField.text = loggedExercise[indexPath.row].intensity
-            
+            /*
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1){
                 self.showFavouritesExercise = false
             }
+            */
         }
         
     }

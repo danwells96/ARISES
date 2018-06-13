@@ -62,8 +62,8 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
                 foodAddButton.isHidden = false
                 logTopConstraint.constant = 8
                 barBottomConstraint.constant = 8
-                
             }
+            self.showFavouritesFood = false
         }
     }
     
@@ -266,10 +266,10 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
             carbsTextField.text = String(loggedMeals[indexPath.row].carbs)
             proteinTextField.text = String(loggedMeals[indexPath.row].protein)
             fatTextField.text = String(loggedMeals[indexPath.row].fat)
-            
+            /*
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.showFavouritesFood = false
-            }
+            }*/
         }
         else if selectedCellIndexPath.contains(indexPath){
             selectedCellIndexPath = selectedCellIndexPath.filter() { $0 != indexPath }
