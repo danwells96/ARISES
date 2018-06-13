@@ -64,6 +64,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
                 barBottomConstraint.constant = 8
             }
             self.showFavouritesFood = false
+            view.endEditing(true)
         }
     }
     

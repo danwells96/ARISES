@@ -62,6 +62,7 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
                 barBottomConstraint.constant = 8
             }
             self.showFavouritesExercise = false
+            view.endEditing(true)
         }
     }
     
