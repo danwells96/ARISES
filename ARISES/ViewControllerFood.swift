@@ -119,9 +119,22 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(updateDay(notification:)), name: Notification.Name("dayChanged"), object: nil)
         
+        nc.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+        nc.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         updateTable()
         
     }
+    
+    
+    @objc func keyboardWillShow(sender: NSNotification) {
+        self.view.frame.origin.y = -65 // Move view 150 points upward
+    }
+    
+    @objc func keyboardWillHide(sender: NSNotification) {
+        self.view.frame.origin.y = 0 // Move view to original position
+    }
+    
     
     //MARK: - Picker functions
     //Food Time picker

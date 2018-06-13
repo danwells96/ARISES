@@ -105,10 +105,21 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(updateDay(notification:)), name: Notification.Name("dayChanged"), object: nil)
         
+        nc.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+        nc.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         favouritesButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
         updateTable()
 
+    }
+    
+    @objc func keyboardWillShow(sender: NSNotification) {
+        self.view.frame.origin.y = -65 // Move view 150 points upward
+    }
+    
+    @objc func keyboardWillHide(sender: NSNotification) {
+        self.view.frame.origin.y = 0 // Move view to original position
     }
     
     //MARK: - Picker functions
