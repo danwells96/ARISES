@@ -47,7 +47,8 @@ class ViewControllerMain: UIViewController{
     @IBOutlet weak var insulinTimeField: UITextField!
     private var insulinTimePicker = UIDatePicker()
     
-    
+
+    //private var currentDay = Date()
     
         
     
@@ -86,17 +87,13 @@ class ViewControllerMain: UIViewController{
         insulinTextField.inputAccessoryView = toolBar
 
         createInsulinTimePicker()
-        
-       // let nc = NotificationCenter.default
-       // nc.addObserver(self, selector: #selector(updateDay(notification:)), name: Notification.Name("dayChanged"), object: nil)
-
-
-    }
-    /*
-    @objc func updateDay(notification: Notification) {
-        self.today = notification.object as! Date
-    }
+/*
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(updateDay(notification:)), name: Notification.Name("dayChanged"), object: nil)
  */
+
+    }
+
     
     //MARK: - View re-positioning
     //Func to set state cases
@@ -184,6 +181,14 @@ class ViewControllerMain: UIViewController{
         }
     }
 
+
+    /*
+    @objc func updateDay(notification: Notification) {
+        currentDay = notification.object as! Date
+        
+    }
+ */
+    
     @IBAction func healthButton(_ sender: UIButton) {
         //Would provide a delay after clicking (in seconds)
         //DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -235,13 +240,18 @@ class ViewControllerMain: UIViewController{
                 //add insulin if not nil
                 if (self.insulinTextField.text != ""){
                     if self.insulinTimeField.text != ""{
-                        ModelController().addInslin(units: Double((self.insulinTextField.text)!)!, time: self.insulinTimeField.text!, date: Date())
-                   
+                       ModelController().addInslin(units: Double((self.insulinTextField.text)!)!, time: self.insulinTimeField.text!, date: Date())
+                      
+                       // ModelController().addInslin(units: Double((self.insulinTextField.text)!)!, time: self.insulinTimeField.text!, date: self.currentDay)
+
                     self.insulinTextField.text = ""
                     }
                     else{
                         let currentTime = ModelController().formatDateToHHmm(date: Date())
                         ModelController().addInslin(units: Double((self.insulinTextField.text)!)!, time: currentTime, date: Date())
+  
+                       // ModelController().addInslin(units: Double((self.insulinTextField.text)!)!, time: currentTime, date: self.currentDay)
+
                         self.insulinTextField.text = ""
                         self.insulinTimeField.text = ""
                     }

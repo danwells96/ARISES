@@ -35,7 +35,6 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     private var currentDay = Date(){
         didSet{
-            /*
             if currentDay != Calendar.current.startOfDay(for: Date()) {
                 exerciseTimeField.isHidden = true
                 exerciseNameField.isHidden = true
@@ -57,8 +56,6 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
                 logTopConstraint.constant = 8
                 barBottomConstraint.constant = 8
             }
- */
-            print("set")
         }
         
     }
