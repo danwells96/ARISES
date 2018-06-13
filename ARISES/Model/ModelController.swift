@@ -350,6 +350,9 @@ class ModelController {
         let fetchRequest: NSFetchRequest<Exercise> = Exercise.fetchRequest()
         let dayToShow = formatDateToDay(date: day)
         fetchRequest.predicate = NSPredicate(format: "day.date == %@", dayToShow)
+        let sectionSortDescriptor = NSSortDescriptor(key: "time", ascending: true)
+        let sortDescriptors = [sectionSortDescriptor]
+        fetchRequest.sortDescriptors = sortDescriptors
         let foundExercise = try? PersistenceService.context.fetch(fetchRequest)
         if(foundExercise == nil){
             print("Error fetching exercise")
