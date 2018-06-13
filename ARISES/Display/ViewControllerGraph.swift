@@ -11,7 +11,7 @@ import UIKit
 import Foundation
 import SwiftCharts
 
-class ViewControllerGraph: UIViewController{
+class ViewControllerGraph: UIViewController {
     
     //Today tmp variable till real-time data available
     var today = Calendar.current.startOfDay(for: Date())
