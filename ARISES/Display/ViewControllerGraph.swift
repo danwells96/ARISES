@@ -141,6 +141,8 @@ class ViewControllerGraph: UIViewController{
         nc.addObserver(self, selector: #selector(mealsUpdated), name: Notification.Name("FoodAdded"), object: nil)
         nc.addObserver(self, selector: #selector(mealsUpdated), name: Notification.Name("ExerciseAdded"), object: nil)
         nc.addObserver(self, selector: #selector(mealsUpdated), name: Notification.Name("InsulinAdded"), object: nil)
+        nc.addObserver(self, selector: #selector(setDay(notification:)), name: Notification.Name("setDay"), object: nil)
+
         
         
         print(rawData.count, rawValues.count)
@@ -151,7 +153,7 @@ class ViewControllerGraph: UIViewController{
         rightSideViewContainer.layer.transform = CATransform3DRotate(transform, CGFloat(45 * Double.pi / 180), 0, 1, 0)
         
         // for rotating the chart when in horizontal view
-        NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        nc.addObserver(self, selector: #selector(rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         
         //Adding data from arrays into core data
         let dateFormatter = DateFormatter()
@@ -183,6 +185,24 @@ class ViewControllerGraph: UIViewController{
     func updateDay(){
         let nc = NotificationCenter.default
         nc.post(name: Notification.Name("dayChanged"), object: today)
+    }
+    
+    @objc func setDay(notification: Notification){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+
+        let dayToSet = notification.object as! String
+        today = dateFormatter.date(from: dayToSet)!
+
+        updateDay()
+        
+        for view in (chart?.view.subviews)! {
+            view.removeFromSuperview()
+        }
+        initChart()
+        chart?.view.setNeedsDisplay()
+        updateSideViews()
     }
     
     var startLocation = CGPoint()

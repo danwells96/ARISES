@@ -16,6 +16,7 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var stressSwitch: UISwitch!
     @IBOutlet weak var illnessSwitch: UISwitch!
     
+
     
     @IBOutlet weak var healthLogTable: UITableView!
     @IBOutlet weak var filterHypoOutlet: UIButton!
@@ -247,6 +248,14 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
             updateTable()
         }
     }
+    
+    func didPressViewDayButton(_ tag: Int) {
+        let nc = NotificationCenter.default
+        print(loggedDays[tag].date)
+        nc.post(name: Notification.Name("setDay"), object: (loggedDays[tag].date)!)
+    }
+    
+    
     
     func didPressCameraButton(_tag: Int){
         print("incomplete functionality")

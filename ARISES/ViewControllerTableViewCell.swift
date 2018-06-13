@@ -8,9 +8,11 @@
 
 import UIKit
 
-protocol tableCellDelegate : class {
+
+@objc protocol tableCellDelegate : class {
     func didPressButton(_ tag: Int)
     func didPressCameraButton(_tag: Int)
+    @objc optional func didPressViewDayButton(_ tag: Int)
 }
 
 class ViewControllerTableViewCell: UITableViewCell {
@@ -77,5 +79,9 @@ class ViewControllerTableViewCell: UITableViewCell {
     @IBAction func buttonPressedCamera(_ sender: UIButton) {
         cellDelegate?.didPressCameraButton(_tag: self.tag)
     }
+    @IBAction func didPressViewDay(_ sender: Any) {
+        cellDelegate?.didPressViewDayButton!(self.tag)
+    }
+    
 
 }
