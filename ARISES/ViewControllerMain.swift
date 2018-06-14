@@ -57,7 +57,7 @@ class ViewControllerMain: UIViewController{
 
     //private var currentDay = Date()
     
-        
+    private var keyboardOpen = false
     
     // Variables for rounding and shadow extension
     private var shadowLayer: CAShapeLayer!
@@ -94,6 +94,11 @@ class ViewControllerMain: UIViewController{
         insulinTextField.inputAccessoryView = toolBar
 
         createInsulinTimePicker()
+        
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+        nc.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 /*
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(updateDay(notification:)), name: Notification.Name("dayChanged"), object: nil)
@@ -101,6 +106,12 @@ class ViewControllerMain: UIViewController{
 
     }
 
+    @objc func keyboardWillShow(sender: NSNotification) {
+        keyboardOpen = true
+    }
+    @objc func keyboardWillHide(sender: NSNotification) {
+        keyboardOpen = false
+    }
     
     //MARK: - View re-positioning
     //Func to set state cases
@@ -127,6 +138,8 @@ class ViewControllerMain: UIViewController{
             healthLabel.isHidden = false
             exerciseLabel.isHidden = false
             adviceLabel.isHidden = false
+            
+        
 
         case .exercise:
             self.view.bringSubview(toFront: self.viewExercise)
@@ -227,14 +240,34 @@ class ViewControllerMain: UIViewController{
     }
     
     @IBAction func foodButton(_ sender: UIButton) {
-        self.state = .food
+
+        if keyboardOpen == true{
+                view.endEditing(true)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                    self.state = .food
+            }
+        }
+        else{
+            self.state = .food
+        }
     }
     
     @IBAction func exerciseButton(_ sender: UIButton) {
-        self.state = .exercise
+        if keyboardOpen == true{
+            view.endEditing(true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                self.state = .exercise
+            }
+        }
+        else{
+            self.state = .exercise
+        }
     }
     
+    
     @IBAction func adviceButton(_ sender: UIButton) {
+
+        
         self.state = .advice
     }
     
