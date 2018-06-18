@@ -11,7 +11,13 @@ Scrolling across x-axis would allow users to access detailed data on a certain d
 **On the main graph:**
 This seciton displays monitored glucose level on a day (would be taken from patients' wearables) and it pops entries of daily meals, execises and insulin dosage on the main graph instantly so users can keep track of what time they did those activities. Meesages of detailed information can be obtained when points are tapped. 
 
-For example, a message on how much macronutrients (like carbs, protein and fats) each meal contains would popups when you tap on a meal point. A message for exercise would include exercise done, time it's done and intensity. An insulin message tells what time and how many units of insulin are given.
+For example:
+
+A popup message saying the amount of carbs, protein and fats come with each meal would show when you tap on a meal point. 
+
+A message for exercise would include exercise done, time it's done and intensity. 
+
+An insulin message tells what time and how many units of insulin are given.
 
 **On the sideviews:**
 It shows range bars (min, max, avg) for individual day.
