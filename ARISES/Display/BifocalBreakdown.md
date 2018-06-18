@@ -9,7 +9,7 @@
 * Scrolling across x-axis would allow users to access detailed data on a certain day.
 
 * **The main graph:**
-This seciton displays monitored glucose level on a day (would be taken from patients' wearables) and it pops entries of daily meals, execises and insulin dosage on the main graph instantly so users can keep track on what time they did those activities. Mesages of detailed information can be obtained when points are tapped. 
+shows monitored glucose level on a day (would be taken from patients' wearables) and it pops entries of daily meals, execises and insulin dosage on the main graph instantly so users can keep track on what time they did those activities. Mesages of detailed information can be obtained when points are tapped. 
 
   * A popup message saying the amount of carbs, protein and fats come with each meal would show when you tap on a meal point. 
 
@@ -17,8 +17,7 @@ This seciton displays monitored glucose level on a day (would be taken from pati
 
   * An insulin message tells what time and how many units of insulin are given.
 
-* **The sideviews:**
-It shows range bars (min, max, avg) for individual day.
+* **The sideviews:** shows range bars (min, max, avg) for individual day.
 
 
 ## ChartBase Setup
