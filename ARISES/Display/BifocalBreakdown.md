@@ -1,4 +1,4 @@
 # Bifocal display explained
 
-![Image of BifocalScreenshot]
-(https://github.com/danwells96/ARISES/blob/master/ARISES/Display/BifocalScreenshot.jpg)
+![Image of Bifocal]
+(https://github.com/danwells96/ARISES/blob/master/ARISES/Display/Bifocal.png)
