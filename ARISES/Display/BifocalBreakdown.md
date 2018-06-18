@@ -9,7 +9,6 @@ Only range bars are shown on the side indicating maxima, minima and average.  Th
 
 
 ## Chart Base Setup
-
 The entire bifocal consists of three parts: 
   * Leftside view containers
   * Main graph section
@@ -30,6 +29,7 @@ The high and low bands are coloured differently to draw users attention. Colour 
 #### *drawMiddleBand()*
 * **Description:**
 This function draws a rectangle with orgin (0,0) - top left corner, and extends itself to the reqired height (30% of total height). After it draws/marks, it colours the marked area with selected color.
+
 * **Returns:**
 This would give the background of image below (without the range bars).
 
@@ -39,8 +39,10 @@ This would give the background of image below (without the range bars).
 * **Description:**
 This function is created to draw maximun and minimum dashes as well as the average circle on side views. 
 It uses UIBezierPath() as a drawing tool. Both line width and stroke colour can be set using this method.
+
 * **Parameter:**
-It takes no parameters but the output of sorting the glucose array on certain day would gives maximum and minimum. The the difference between the height of maximum/minimum is with respect to glucose level of 20(mM/L) would be the stroke length of the range bar.
+It takes no parameters but the output of sorting the glucose array on certain day would gives maximum and minimum. The difference  in heights of maximum & minimum with respect to glucose level of 20(mM/L) would be the stroke length of the range bar.
+
 * **Returns:** An UIView with a drawn range bar
 
 A sample view it creates would be: ![image of range bar](rangeBar.png)
@@ -59,18 +61,22 @@ In this section we do everything graph related. Things like:
 Methods implemented are: 
 #### *rightGesture* 
 * **Description:** An IBAction func. Once a right swpie gesture is detected, main graph would be replaced by data from one day on the LHS. All other views update accordingly. (Everything shifts to the right)
+
 * **Parameter:** The sender is UISwipeGestureRecognizer
 
 #### *leftGesture* 
 * **Description:** An IBAction func. Similar to rightGesture but detects left swipes. When a left swipe is made, it bring RHS data to the centre. (Everything shifts left) 
+
 * **Parameter:** The sender is UISwipeGestureRecognizer
 
 #### *sideTransforms()*
 * **Description:** Skews the sideView containers into Bifocal shape. Left view container is 3D rotated 45 degrees around y - axis and right view container is rotated by -45 degrees.
+
 * **Output:** The reshaped version of sideViews as required by clients
 
 #### *loadData()*
 * **Description:** Loads data into core data. Produces array of glucose items on selected day
+
 * **Improvements:** Can be made to access data from a csv file
 
 #### *addNotifications()*
@@ -84,6 +90,7 @@ Methods implemented are:
 
 #### *updateViews()*
 * **Description:** Removes current drawings and plots on the main graph, replots chart, adds events popups and updates sideviews.
+
 * **Output:** Updated bifocal section
 
 #### *createDatePicker()*
@@ -91,12 +98,15 @@ Methods implemented are:
 
 #### *calcRanges()*
 * **Description:** Finds a maximum, a minimum in a array as well as calculates an average value.
+
 * **Parameters:** An array of Doubles: data in the array to be calculated 
+
 * **Returns:** Passes results to side views. Side view redraws range bar accordingly.
 
 #### *initChart()*
-* **Description:** Chart is constructed using layers. 
-Draws popups and attaches messages to them.
-Dates changes accordingly with swipes and plots changes accordingly.
-Changes of dates gets passed in to update chart. 
+* **Description:** 
+  * Chart is constructed using layers. 
+  * Draws popups and attaches messages to them.
+  * Dates changes accordingly with swipes and plots changes accordingly.
+  * Changes of dates gets passed in to update chart. 
 Modifications are made on top of an iOS chart library which can be found here: https://github.com/i-schuetz/SwiftCharts.git 
