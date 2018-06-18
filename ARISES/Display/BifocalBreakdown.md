@@ -15,6 +15,7 @@ The entire bifocal consists of three parts:
   * Main graph section
   * Rightside view containers
 
+## Left & Right sideviews
 Each of the side view containers has three subviews of type CustomView (UIView) which are customized to show colours bands as a background. 
 #### *ChartBGView.swift* and *CustomView.swift*
 The same colour bands are used on the main chart as well thus *ChartBGView.swift* follows the same logic as the *CustomView.swift* in term of filling the background color bands. But *CustomView.swift* is also used to draw range bars on each sideview using calculated values for glucose values storing in core data on a day.
@@ -26,7 +27,7 @@ Therefore, the top half of chart would be in **high** range, the bottom 4/20 (20
 
 The high and low bands are coloured differently to draw users attention. Colour palette here is simple and can be modified. (Colour combinations particularly red & green are avoided as diabetes suffering from retinopathy have problems distinguishing between them.)
 
-##### *drawMiddleBand()*
+#### *drawMiddleBand()*
 * **Description:**
 This function draws a rectangle with orgin (0,0) - top left corner, and extends itself to the reqired height (30% of total height). After it draws/marks, it colours the marked area with selected color.
 * **Returns:**
@@ -43,10 +44,14 @@ Here's a code snippet that colors the middle section white:
         #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1).set()
         UIRectFill(middleRect)
     
-##### *drawRangeBar()*
+#### *drawRangeBar()*
 * **Description:**
 This function is created to draw maximun and minimum dashes as well as the average circle on side views. 
 It uses UIBezierPath() as a drawing tool. Both line width and stroke colour can be set using this method.
 * **Parameter:**
 It takes no parameters but the output of sorting the glucose array on certain day would gives maximum and minimum. The the difference between the height of maximum/minimum is with respect to glucose level of 20(mM/L) would be the stroke length of the range bar.
 * **Returns:** An UIView with a drawn range bar
+
+A sample view it creates would be: ![image of range bar](rangeBar.png)
+
+## Main graph section
