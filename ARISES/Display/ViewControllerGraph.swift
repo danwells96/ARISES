@@ -12,18 +12,13 @@ import Foundation
 import SwiftCharts
 
 class ViewControllerGraph: UIViewController {
-    
-    /// tmp variable till real-time data available
-    var today = Calendar.current.startOfDay(for: Date())
-    
-    ///Initialise Notifications
-    let nc = NotificationCenter.default
-    
+
     //MARK: Properties
     @IBOutlet weak var chartView: ChartBaseView!
     private var chart: Chart?
     private var dataLoaded: Bool = false
     private var didLayout: Bool = false
+    
     @IBOutlet weak var rightSideViewContainer: UIView!
     @IBOutlet weak var leftSideViewContainer: UIView!
     @IBOutlet weak var rightView: CustomView!
@@ -32,6 +27,7 @@ class ViewControllerGraph: UIViewController {
     @IBOutlet weak var leftView1: CustomView!
     @IBOutlet weak var leftView2: CustomView!
     @IBOutlet weak var leftView3: CustomView!
+    
     @IBOutlet weak var Basal: UIImageView!
     @IBOutlet var rightGestureRecognizer: UISwipeGestureRecognizer!
     @IBOutlet var leftGestureRecognizer: UISwipeGestureRecognizer!
@@ -39,8 +35,7 @@ class ViewControllerGraph: UIViewController {
     let picker = UIDatePicker()
     @IBOutlet weak var currentGlucose: UILabel!
     
-    
-    ///Actions: swpie right to bring LHS data to the centre
+    //Actions: swpie to bring side data to the centre
     @IBAction func rightGesture(_ sender: UISwipeGestureRecognizer) {
         let tempDate = today
         let tempDate2 = Calendar.current.date(byAdding: .day, value: -1, to: tempDate)
@@ -48,7 +43,6 @@ class ViewControllerGraph: UIViewController {
         updateDay()
         updateViews()
     }
-    /// Swipe to the left and bring RHS data to the centre
     @IBAction func leftGesture(_ sender: UISwipeGestureRecognizer) {
         let tempDate = today
         let tempDate2 = Calendar.current.date(byAdding: .day, value: +1, to: tempDate)
@@ -57,6 +51,14 @@ class ViewControllerGraph: UIViewController {
         updateViews()
     }
     
+    
+    
+    /// tmp variable till real-time data available
+    var today = Calendar.current.startOfDay(for: Date())
+    
+    /// Declares Notifications
+    let nc = NotificationCenter.default
+    
     /* arrays storing sideviews' data: (Minus -> leftView, Plus -> rightView)  */
     var tMinus1Compare : [Double] = []
     var tMinus2Compare : [Double] = []
@@ -64,6 +66,7 @@ class ViewControllerGraph: UIViewController {
     var tPlus1Compare : [Double] = []
     var tPlus2Compare : [Double] = []
     var tPlus3Compare : [Double] = []
+    
     
     /// Array storing date and time info needed for plot. To be updated with real-time data.
     var rawData: [String] = ["10/06/2018 2:30", "10/06/2018 6:30", "10/06/2018 7:30", "10/06/2018 8:30", "10/06/2018 9:30",
@@ -82,6 +85,7 @@ class ViewControllerGraph: UIViewController {
                              
                              ]
 
+    
     /// Array storing past glucose measurements. To be updated with real-time data from wearables.
     var rawValues: [Double] = [12, 12.8, 12.7, 10.8, 9.3, 7.5, 8, 6, 8.7, 14.5,
                                
@@ -95,25 +99,33 @@ class ViewControllerGraph: UIViewController {
                                
                                ]
 
+    
     override func viewDidLoad() {
         /* In this func:
          Transform sideView containers into bifocal. Load tmp arrays into CoreData.
          Show date picker.  Update settings.  Update popups.
          */
         super.viewDidLoad()
-        
         sideTransforms()
         loadData()
         createDatePicker()
         settingPreferences()
         addNotifications()
     
-        /* Pan gesture not in use
+        /*
+        // Pan gesture not in use
          let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.pannedView(sender:)))
          panRecognizer.require(toFail: leftGestureRecognizer)
          panRecognizer.require(toFail: rightGestureRecognizer)
          chartView.addGestureRecognizer(panRecognizer)
         */
+    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if !self.didLayout{
+            self.didLayout = true
+            self.initChart()
+        }
     }
     
     /*
@@ -132,7 +144,8 @@ class ViewControllerGraph: UIViewController {
      print("location: \(sender.location(in: self.view))")
      }
      }
-     */
+    */
+    
     
     ///Load data from arrays into core data
     func loadData(){
@@ -159,9 +172,12 @@ class ViewControllerGraph: UIViewController {
                 ModelController().addGlucose(value: rawValues[i], time: timeString, date: day!)
             }
         }else {
+            
             print("Already loaded data in")
         }
     }
+    
+    
     /// Shape sideView containers into Bifocal
     func sideTransforms(){
         var transform = CATransform3DIdentity
@@ -170,24 +186,25 @@ class ViewControllerGraph: UIViewController {
         rightSideViewContainer.layer.transform = CATransform3DRotate(transform, CGFloat(45 * Double.pi / 180), 0, 1, 0)
     }
     
+    
     /// Notifications for when events are added
     func addNotifications(){
         nc.addObserver(self, selector: #selector(mealsUpdated), name: Notification.Name("FoodAdded"), object: nil)
         nc.addObserver(self, selector: #selector(mealsUpdated), name: Notification.Name("ExerciseAdded"), object: nil)
         nc.addObserver(self, selector: #selector(mealsUpdated), name: Notification.Name("InsulinAdded"), object: nil)
         nc.addObserver(self, selector: #selector(setDay(notification:)), name: Notification.Name("setDay"), object: nil)
-        
     }
+    @objc private func mealsUpdated(){
+        initChart()
+        chart?.view.setNeedsDisplay()
+    }
+
     
-    /**
-    Update app when settings changed
-     */
+    /// Registers settings bundle. Updates app when settings changed
     func settingPreferences(){
-        
-        //Register Settings Bundle
         let appDefaults = [String:AnyObject]()
         UserDefaults.standard.register(defaults: appDefaults)
-        //
+        
         NotificationCenter.default.addObserver(self, selector: #selector(ViewControllerGraph.defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
         defaultsChanged()
     }
@@ -199,10 +216,11 @@ class ViewControllerGraph: UIViewController {
         }
     }
     
+    
     /**
      Update popups according to days when swiping across.
      - parameter notification: Popups to be updated
-     - returns: Updated bifocal section with corrct popups on selected day
+     - returns: Updated bifocal section with correct notifications/popups as date changes
      */
     @objc func setDay(notification: Notification){
         let dateFormatter = DateFormatter()
@@ -215,14 +233,11 @@ class ViewControllerGraph: UIViewController {
         updateDay()
         updateViews()
     }
-    
-    /**
-     update notification/popups when date changed
-     */
     func updateDay(){
         let nc = NotificationCenter.default
         nc.post(name: Notification.Name("dayChanged"), object: today)
     }
+    
     
     /**
      Remove current data and plots on the central chart, redraw chart with events and update side views.
@@ -242,14 +257,7 @@ class ViewControllerGraph: UIViewController {
         rightView3.setNeedsDisplay()
     }
     
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        if !self.didLayout{
-            self.didLayout = true
-            self.initChart()
-        }
-    }
+
     
     /**
      Combine weekday and date for pickerfield
@@ -260,39 +268,38 @@ class ViewControllerGraph: UIViewController {
         let weekdayFormatter = DateFormatter()
         weekdayFormatter.dateFormat = "EEEE dd MMMM, yyyy"
         pickerTextField.text = weekdayFormatter.string(from:date)
+        pickerTextField.sizeToFit()
     }
     
-    /// Create a date picker and format the date as required
+    
+    /**
+     Create a date picker and format the date as required. Pass picker date to tmp'today' when done
+     - returns: date in string format
+     */
     func createDatePicker(){
+        
         formatWeekday(date: Date())  //PLACEHOLDER
         picker.datePickerMode = .date
         
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
-        ///done button for when finishing selection
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
         toolbar.setItems([done], animated: false)
         pickerTextField.inputAccessoryView = toolbar
         pickerTextField.inputView = picker
-        
     }
     @objc func donePressed(){
         formatWeekday(date: picker.date)
         self.view.endEditing(true)
 
-        //Pass picker date to tmp variable 'today'
         today = Calendar.current.startOfDay(for: picker.date)
         updateDay()
         picker.date = Date()
         updateViews()
     }
     
-    /// Draw popups in when activities added
-    @objc private func mealsUpdated(){
-        initChart()
-        chart?.view.setNeedsDisplay()
-    }
+    
     
     /**
      Calculate max, min and average for sideView glucose
@@ -311,7 +318,8 @@ class ViewControllerGraph: UIViewController {
         }
     }
     
-    ///frame settings for graph
+    
+    ///Frame settings for graph
     fileprivate lazy var chartSettings: ChartSettings = {
         var chartSettings = ChartSettings()
         chartSettings.leading = -15
@@ -328,6 +336,7 @@ class ViewControllerGraph: UIViewController {
         return chartSettings
     }()
     
+    
     /**
      Plot glucose data in Layers.
      Draw popups and attach messages to them.
@@ -335,8 +344,6 @@ class ViewControllerGraph: UIViewController {
      - returns: updated ChartView
      */
     private func initChart(){
-        let weekdayFormatter = DateFormatter()
-        weekdayFormatter.dateFormat = "EEEE dd MMMM, yyyy"
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
         let dayFormatter = DateFormatter()
@@ -350,8 +357,10 @@ class ViewControllerGraph: UIViewController {
         let day = today
         var dateArray = [ChartAxisValueDate]()
         var valueArray = [ChartAxisValueDouble]()
+        
         ///glucose data points array
         var points = [ChartPoint]()
+        
         ///popup points array
         var extraPoints = [ChartPoint]()
         var predictedGlucosePoints: [ChartPoint] = []
@@ -448,8 +457,7 @@ class ViewControllerGraph: UIViewController {
         calcRanges(Arr: tPlus3Compare, view: rightView3)
         
         
-        /* Popup real-time activity points:
-         exercise points on the bottom, insulin points on top, meal points' level vary wrt carbs level */
+        // y-position of activity POPUPs on the graph:
         for meal in todayFoodArray{
             let combinedDate = keyDay + " " + meal.time!
             extraPoints.append(ChartPoint(x: ChartAxisValueDate(date: dateFormatter.date(from: combinedDate)!, formatter: dateFormatter), y: ChartAxisValueInt(Int(meal.carbs))))
@@ -465,6 +473,7 @@ class ViewControllerGraph: UIViewController {
             extraPoints.append(ChartPoint(x: ChartAxisValueDate(date: dateFormatter.date(from: combinedDate)!, formatter: dateFormatter), y: ChartAxisValueDouble(195.0)))
         }
         extraPoints.sort(by: {$0.x.scalar < $1.x.scalar})   //sort pop-ups after events added
+        
         
         //Axis Labels settings
         let yLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 9))
@@ -490,11 +499,14 @@ class ViewControllerGraph: UIViewController {
         let yModel = ChartAxisModel(firstModelValue: 0, lastModelValue: 20, axisTitleLabel: ChartAxisLabel(text: "", settings: yLabelSettings.defaultVertical()), axisValuesGenerator: generator, labelsGenerator: yLabelGenerator)
         
         let yHighModels = ChartAxisModel(firstModelValue: 0, lastModelValue: 200, axisTitleLabel: ChartAxisLabel(text: "", settings: yLabelSettings.defaultVertical()), axisValuesGenerator: ChartAxisGeneratorMultiplier(200), labelsGenerator: yLabelGeneratorCarbs)
-
         
         //Change date title accordingly
-        pickerTextField.text = weekdayFormatter.string(from: startTime!)
-        pickerTextField.sizeToFit()
+        formatWeekday(date: startTime!)
+        
+        
+        //let currGlucose = nowIndicator.y.scalar
+        currentGlucose.text = "6.0"
+        currentGlucose.sizeToFit()
         
         // Generate Axes layers and calculate chart innerframe
         let chartFrame = self.chartView.frame
@@ -529,12 +541,6 @@ class ViewControllerGraph: UIViewController {
             nowIndicator = ChartPoint(x: ChartAxisValueDate(date: today, formatter: dateFormatter), y: ChartAxisValueDouble(6))
         }
         predictedGlucosePoints.insert(nowIndicator, at: 0)
-        
-
-        //let currGlucose = nowIndicator.y.scalar
-        currentGlucose.text = "6.0"
-        currentGlucose.sizeToFit()
-        
         
         /////////////////// draw predcted range ? ////////////////////
         let sortedGlucose = predictedGlucosePoints.sorted {(obj1, obj2) in return obj1.y.scalar < obj2.y.scalar}
