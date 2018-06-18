@@ -1,9 +1,4 @@
 # ARISES Specification
-
-## Function
-An innovative healthcare app for diabetes management
-___
-Features
 ========= 
 ### ***Bi-focal Display:*** lorem ipsum.
 ---
