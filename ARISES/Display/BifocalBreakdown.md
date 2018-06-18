@@ -4,7 +4,7 @@
 
 
 ### Functionalities
-The most important infomation gets displayed on the main graph while less relevant data is displayed on the side views. 
+* The most important infomation gets displayed on the main graph while less relevant data is displayed on the side views. 
 
 * Scrolling across x-axis would allow users to access detailed data on a certain day.
 
