@@ -67,8 +67,30 @@ In this section we do everything graph related. Things like:
 
 Methods implemented are: 
 #### *rightGesture* 
-* **Description:** An IBAction func. Once a right swpie gesture, main graph is replaced with data from one day on the left. All other views update accordingly. (Everything shifts right)
+* **Description:** An IBAction func. Once a right swpie gesture is detected, main graph would be replaced by data from one day on the LHS. All other views update accordingly. (Everything shifts to the right)
 * **Parameter:** The sender is UISwipeGestureRecognizer
+
 #### *leftGesture* 
 * **Description:** An IBAction func. Similar to rightGesture but detects left swipes. When a left swipe is made, it bring RHS data to the centre. (Everything shifts left) 
 * **Parameter:** The sender is UISwipeGestureRecognizer
+
+#### *sideTransforms()*
+* **Description:** Skews the sideView containers into Bifocal shape. Left view container is 3D rotated 45 degrees around y - axis and right view container is rotated by -45 degrees.
+* **Output:** The reshaped version of sideViews as required by clients
+
+#### *loadData()*
+* **Description:** Loads data into core data. Produces array of glucose items on selected day
+* **Improvements:** Can be made to access data from a csv file
+
+#### *addNotifications()*
+* **Description:** Adds popups on to main graph immediately when activity are added
+
+#### *settingPreferences()*
+* **Description:** Registers settings bundle. Updates app when settings changed so the UI responds to preferences user selected. For example, user may rather have the basal rate turned off, and when they switch off that button, the basal rate would disappear from graph.
+
+#### *setDay()*
+* **Description:** When users swiping across and the chart lands on a certain day or the user picks a date from the picker field, the popups list would be fetched for that day. So users get correct past activities for selected day.
+
+#### *updateViews()*
+* **Description:** Removes current drawings and plots on the main graph, replots chart, adds events popups and updates sideviews.
+* **Output:** Updated bifocal section
