@@ -224,7 +224,6 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
         let _ = 1
     }
 
-    
     //MARK: - Table functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return loggedExercise.count
@@ -261,7 +260,6 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
         else{
             cell.loggedExerciseTime.isHidden = false
         }
-        
         return(cell)
     }
     
@@ -278,7 +276,6 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
             exerciseIntensityField.text = loggedExercise[indexPath.row].intensity
         }
     }
-    
 
     ///Updates the table by re-fetching either a list of exercise for that day, or the user's favourites
     private func updateTable(){
@@ -306,13 +303,10 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
                 duration: exerciseDurationField.text!)
             showFavouritesExercise = false
 
-            
             exerciseNameField.text = ""
             exerciseTimeField.text = ""
             exerciseDurationField.text = ""
             exerciseIntensityField.text = ""
         }
-        
     }
-
 }

@@ -30,7 +30,9 @@ class Day: NSManagedObject {
                 tempHigh = index.value
             }
         }
-        return (tempLow, (temp / Double((self.glucose?.count)!)), tempHigh)
+        //Average is rounded to 2 decimal places
+        let tempAvg = Double(round(100*(temp / Double((self.glucose?.count)!)))/100)
+        return (tempLow, tempAvg, tempHigh)
     }
 
     //MARK: - Meal stats

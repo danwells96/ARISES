@@ -107,9 +107,6 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         fatTextField.inputAccessoryView = toolBar
         foodNameTextField.inputAccessoryView = toolBar
         
-        
-
-        
         let nc = NotificationCenter.default
         //Observer to update currentDay variable to match graph's day
         nc.addObserver(self, selector: #selector(updateDay(notification:)), name: Notification.Name("dayChanged"), object: nil)

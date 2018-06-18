@@ -89,7 +89,6 @@ class ViewControllerMain: UIViewController{
         }
     }
     
-    
     //MARK: - Override viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,7 +123,6 @@ class ViewControllerMain: UIViewController{
         nc.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
         nc.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        
     }
     
     //MARK: - Update Day
@@ -330,7 +328,6 @@ class ViewControllerMain: UIViewController{
     @IBAction func settingsPopup(_ sender: Any) {
         UIApplication.shared.open(URL(string:UIApplicationOpenSettingsURLString)!)
     }
-    
 }
 
 //MARK: - Extensions

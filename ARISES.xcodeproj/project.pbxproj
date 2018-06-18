@@ -55,7 +55,6 @@
 		370F921620BD637B0081C570 /* Insulin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insulin.swift; sourceTree = "<group>"; };
 		3712A23920C566DD006DB63C /* Illness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Illness.swift; sourceTree = "<group>"; };
 		3712A23B20C566FF006DB63C /* Stress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stress.swift; sourceTree = "<group>"; };
-		371470F820A082A600AB76EF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3718079420B818ED00D7C81A /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		3718079A20B81E2100D7C81A /* Meals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meals.swift; sourceTree = "<group>"; };
 		3718079C20B81EB300D7C81A /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
@@ -159,7 +158,6 @@
 				3718B86520AC9CE3006F1A47 /* ViewControllerMain.swift */,
 				378658AD20AC675D007C13B2 /* ViewControllerTableViewCell.swift */,
 				375587D1209E086D00594532 /* Info.plist */,
-				371470F820A082A600AB76EF /* README.md */,
 			);
 			path = ARISES;
 			sourceTree = "<group>";

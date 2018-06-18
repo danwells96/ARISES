@@ -79,5 +79,4 @@ class ViewControllerTableViewCell: UITableViewCell {
         cellDelegate?.didPressViewDayButton!(self.tag)
     }
     
-
 }
