@@ -34,15 +34,6 @@ This function draws a rectangle with orgin (0,0) - top left corner, and extends 
 This would give the background of image below (without the range bars).
 
 ![Image of sideview](sideview.png)
-
-Here's a code snippet that colors the middle section white:
-
-        let middleRect = CGRect(
-            origin: CGPoint(x: 0.0, y: bounds.height/2),
-            size: CGSize(width: frame.width, height: frame.height * 0.3)
-        )
-        #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1).set()
-        UIRectFill(middleRect)
     
 #### *drawRangeBar()*
 * **Description:**
