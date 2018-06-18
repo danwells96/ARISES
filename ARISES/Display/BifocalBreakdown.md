@@ -93,3 +93,10 @@ Methods implemented are:
 * **Description:** Finds a maximum, a minimum in a array as well as calculates an average value.
 * **Parameters:** An array of Doubles: data in the array to be calculated 
 * **Returns:** Passes results to side views. Side view redraws range bar accordingly.
+
+#### *initChart()*
+* **Description:** Chart is constructed using layers. 
+Draws popups and attaches messages to them.
+Dates changes accordingly with swipes and plots changes accordingly.
+Changes of dates gets passed in to update chart. 
+Modifications are made on top of an iOS chart library which can be found here: https://github.com/i-schuetz/SwiftCharts.git 
