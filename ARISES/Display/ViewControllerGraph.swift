@@ -1,40 +1,24 @@
 //
 //  ViewControllerGraph.swift
 //  ARISES
-//
+//  This file deals with everything graph related. Base chart library (Podfile): https://github.com/i-schuetz/SwiftCharts.git
+
 //  Created by Ryan Armiger on 16/05/2018.
 //  Copyright © 2018 Ryan Armiger. All rights reserved.
 //
-
 
 import UIKit
 import Foundation
 import SwiftCharts
 
 class ViewControllerGraph: UIViewController {
-    
-    //Today tmp variable till real-time data available
-    var today = Calendar.current.startOfDay(for: Date())
-    
-    /* arrays storing sideviews' data: (Minus -> leftView, Plus -> rightView)  */
-    var tMinus1Compare : [Double] = []
-    var tMinus2Compare : [Double] = []
-    var tMinus3Compare : [Double] = []
-    //var tMinus4Compare : [Double] = []
-    var tPlus1Compare : [Double] = []
-    var tPlus2Compare : [Double] = []
-    var tPlus3Compare : [Double] = []
-    
-    //Initialise Notifications
-    let nc = NotificationCenter.default
-    
+
     //MARK: Properties
     @IBOutlet weak var chartView: ChartBaseView!
     private var chart: Chart?
     private var dataLoaded: Bool = false
     private var didLayout: Bool = false
     
-    //Outlets: Container & side views
     @IBOutlet weak var rightSideViewContainer: UIView!
     @IBOutlet weak var leftSideViewContainer: UIView!
     @IBOutlet weak var rightView: CustomView!
@@ -43,35 +27,23 @@ class ViewControllerGraph: UIViewController {
     @IBOutlet weak var leftView1: CustomView!
     @IBOutlet weak var leftView2: CustomView!
     @IBOutlet weak var leftView3: CustomView!
+    
     @IBOutlet weak var Basal: UIImageView!
-    
-    
-    //Outlets: Left & Right Gesture Recognizers
     @IBOutlet var rightGestureRecognizer: UISwipeGestureRecognizer!
     @IBOutlet var leftGestureRecognizer: UISwipeGestureRecognizer!
-    
-    
-    //Outlet: Date Picker
     @IBOutlet weak var pickerTextField: UITextField!
     let picker = UIDatePicker()
-    
-    
-    //Outlet: Current glucose tag
     @IBOutlet weak var currentGlucose: UILabel!
     
-    
-    //Actions: Gesture Recognisers
+    //Actions: swpie to bring side data to the centre
     @IBAction func rightGesture(_ sender: UISwipeGestureRecognizer) {
-        //Swipe right: bring LHS data to main graph by adding 1 to curr date
         let tempDate = today
         let tempDate2 = Calendar.current.date(byAdding: .day, value: -1, to: tempDate)
         today = tempDate2!
         updateDay()
         updateViews()
     }
-    
     @IBAction func leftGesture(_ sender: UISwipeGestureRecognizer) {
-        //Swipe left: bring RHS data onto main chart by adding 1 to current date
         let tempDate = today
         let tempDate2 = Calendar.current.date(byAdding: .day, value: +1, to: tempDate)
         today = tempDate2!
@@ -79,25 +51,24 @@ class ViewControllerGraph: UIViewController {
         updateViews()
     }
     
-    private func updateViews(){
-        // Update graph contents with active events
-        for view in (chart?.view.subviews)! {
-            view.removeFromSuperview()
-        }
-        
-        initChart()
-        chart?.view.setNeedsDisplay()
-        leftView1.setNeedsDisplay()
-        leftView2.setNeedsDisplay()
-        leftView3.setNeedsDisplay()
-        rightView.setNeedsDisplay()
-        rightView2.setNeedsDisplay()
-        rightView3.setNeedsDisplay()
-        
-    }
-
-
-    // rawData n rawValues: To be updated with real-time data from wearables
+    
+    
+    /// tmp variable till real-time data available
+    var today = Calendar.current.startOfDay(for: Date())
+    
+    /// Declares Notifications
+    let nc = NotificationCenter.default
+    
+    /* arrays storing sideviews' data: (Minus -> leftView, Plus -> rightView)  */
+    var tMinus1Compare : [Double] = []
+    var tMinus2Compare : [Double] = []
+    var tMinus3Compare : [Double] = []
+    var tPlus1Compare : [Double] = []
+    var tPlus2Compare : [Double] = []
+    var tPlus3Compare : [Double] = []
+    
+    
+    /// Array storing date and time info needed for plot. To be updated with real-time data.
     var rawData: [String] = ["10/06/2018 2:30", "10/06/2018 6:30", "10/06/2018 7:30", "10/06/2018 8:30", "10/06/2018 9:30",
                              "10/06/2018 14:00","10/06/2018 16:30", "10/06/2018 18:30", "10/06/2018 20:30", "10/06/2018 22:30",
                              
@@ -115,6 +86,7 @@ class ViewControllerGraph: UIViewController {
                              ]
 
     
+    /// Array storing past glucose measurements. To be updated with real-time data from wearables.
     var rawValues: [Double] = [12, 12.8, 12.7, 10.8, 9.3, 7.5, 8, 6, 8.7, 14.5,
                                
                                10, 12, 11.6, 11.1, 7.7, 2.8, 2.7, 3.8, 13.6, 5,
@@ -128,38 +100,55 @@ class ViewControllerGraph: UIViewController {
                                ]
 
     
-    
     override func viewDidLoad() {
+        /* In this func:
+         Transform sideView containers into bifocal. Load tmp arrays into CoreData.
+         Show date picker.  Update settings.  Update popups.
+         */
         super.viewDidLoad()
-        
-        //APP default settings
-        registerSettingsBundle()
-        
-        //Update when setting preferences changed
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewControllerGraph.defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
-        defaultsChanged()
-        
+        sideTransforms()
+        loadData()
         createDatePicker()
-        
-        let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.pannedView(sender:)))
-        panRecognizer.require(toFail: leftGestureRecognizer)
-        panRecognizer.require(toFail: rightGestureRecognizer)
-        chartView.addGestureRecognizer(panRecognizer)
-        
-        //Notifications for when events are added
-        nc.addObserver(self, selector: #selector(mealsUpdated), name: Notification.Name("FoodAdded"), object: nil)
-        nc.addObserver(self, selector: #selector(mealsUpdated), name: Notification.Name("ExerciseAdded"), object: nil)
-        nc.addObserver(self, selector: #selector(mealsUpdated), name: Notification.Name("InsulinAdded"), object: nil)
-        nc.addObserver(self, selector: #selector(setDay(notification:)), name: Notification.Name("setDay"), object: nil)
-
-        
-        //Transforms for sideViews -> Bifocal frame
-        var transform = CATransform3DIdentity
-        transform.m34 = -1 / 500.0
-        leftSideViewContainer.layer.transform = CATransform3DRotate(transform, CGFloat(-45 * Double.pi / 180), 0, 1, 0)
-        rightSideViewContainer.layer.transform = CATransform3DRotate(transform, CGFloat(45 * Double.pi / 180), 0, 1, 0)
-        
-        //Adding data from arrays into core data
+        settingPreferences()
+        addNotifications()
+    
+        /*
+        // Pan gesture not in use
+         let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.pannedView(sender:)))
+         panRecognizer.require(toFail: leftGestureRecognizer)
+         panRecognizer.require(toFail: rightGestureRecognizer)
+         chartView.addGestureRecognizer(panRecognizer)
+        */
+    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if !self.didLayout{
+            self.didLayout = true
+            self.initChart()
+        }
+    }
+    
+    /*
+     /// for when pan gesture is enabled
+     var startLocation = CGPoint()
+     @objc func pannedView(sender:UIPanGestureRecognizer){
+     if(sender.state == UIGestureRecognizerState.began){
+     print("Started pan")
+     startLocation = sender.location(in: self.view)
+     }else if(sender.state == UIGestureRecognizerState.ended){
+     print("Finished")
+     let stopLocation = sender.location(in: self.view)
+     let dy = startLocation.y - stopLocation.y
+     print(dy)
+     }else if(sender.state == UIGestureRecognizerState.changed){
+     print("location: \(sender.location(in: self.view))")
+     }
+     }
+    */
+    
+    
+    ///Load data from arrays into core data
+    func loadData(){
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
         let dayFormatter = DateFormatter()
@@ -172,8 +161,9 @@ class ViewControllerGraph: UIViewController {
         let tmpString = dayFormatter.string(from: tmpDate!)
         let tmpDay = dayFormatter.date(from: tmpString)
         
-        let glucoseLogs = ModelController().fetchGlucose(day: tmpDay!) //produces array of glucose items
-        if glucoseLogs.count ==  0{
+        ///Produces array of glucose items on selected day
+        let glucoseLogs = ModelController().fetchGlucose(day: tmpDay!)
+        if glucoseLogs.count == 0{
             for i in (glucoseLogs.count)...(rawData.count - 1){
                 let date = dateFormatter.date(from: rawData[i])
                 let timeString = timeFormatter.string(from: date!)
@@ -182,16 +172,56 @@ class ViewControllerGraph: UIViewController {
                 ModelController().addGlucose(value: rawValues[i], time: timeString, date: day!)
             }
         }else {
+            
             print("Already loaded data in")
         }
+    }
+    
+    
+    /// Shape sideView containers into Bifocal
+    func sideTransforms(){
+        var transform = CATransform3DIdentity
+        transform.m34 = -1 / 500.0
+        leftSideViewContainer.layer.transform = CATransform3DRotate(transform, CGFloat(-45 * Double.pi / 180), 0, 1, 0)
+        rightSideViewContainer.layer.transform = CATransform3DRotate(transform, CGFloat(45 * Double.pi / 180), 0, 1, 0)
+    }
+    
+    
+    /// Notifications for when events are added
+    func addNotifications(){
+        nc.addObserver(self, selector: #selector(mealsUpdated), name: Notification.Name("FoodAdded"), object: nil)
+        nc.addObserver(self, selector: #selector(mealsUpdated), name: Notification.Name("ExerciseAdded"), object: nil)
+        nc.addObserver(self, selector: #selector(mealsUpdated), name: Notification.Name("InsulinAdded"), object: nil)
+        nc.addObserver(self, selector: #selector(setDay(notification:)), name: Notification.Name("setDay"), object: nil)
+    }
+    @objc private func mealsUpdated(){
+        initChart()
+        chart?.view.setNeedsDisplay()
+    }
+
+    
+    /// Registers settings bundle. Updates app when settings changed
+    func settingPreferences(){
+        let appDefaults = [String:AnyObject]()
+        UserDefaults.standard.register(defaults: appDefaults)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewControllerGraph.defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
+        defaultsChanged()
+    }
+    @objc func defaultsChanged(){
+        if(UserDefaults.standard.bool(forKey: "showBasalPreference")){
+            Basal.isHidden = false
+        }else if(!(UserDefaults.standard.bool(forKey: "showBasalPreference"))){
+            Basal.isHidden = true
+        }
     }
     
-    func updateDay(){
-        let nc = NotificationCenter.default
-        nc.post(name: Notification.Name("dayChanged"), object: today)
-    }
     
+    /**
+     Update popups according to days when swiping across.
+     - parameter notification: Popups to be updated
+     - returns: Updated bifocal section with correct notifications/popups as date changes
+     */
     @objc func setDay(notification: Notification){
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
@@ -203,84 +233,79 @@ class ViewControllerGraph: UIViewController {
         updateDay()
         updateViews()
     }
+    func updateDay(){
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name("dayChanged"), object: today)
+    }
     
-    var startLocation = CGPoint()
     
-    @objc func pannedView(sender:UIPanGestureRecognizer){
-        if(sender.state == UIGestureRecognizerState.began){
-            print("Started pan")
-            startLocation = sender.location(in: self.view)
-        }else if(sender.state == UIGestureRecognizerState.ended){
-            print("Finished")
-            let stopLocation = sender.location(in: self.view)
-            let dy = startLocation.y - stopLocation.y
-            print(dy)
-        }else if(sender.state == UIGestureRecognizerState.changed){
-            print("location: \(sender.location(in: self.view))")
+    /**
+     Remove current data and plots on the central chart, redraw chart with events and update side views.
+     - returns: The updated bifocal section
+     */
+    private func updateViews(){
+        for view in (chart?.view.subviews)! {
+            view.removeFromSuperview()
         }
+        initChart()
+        chart?.view.setNeedsDisplay()
+        leftView1.setNeedsDisplay()
+        leftView2.setNeedsDisplay()
+        leftView3.setNeedsDisplay()
+        rightView.setNeedsDisplay()
+        rightView2.setNeedsDisplay()
+        rightView3.setNeedsDisplay()
     }
     
-    func registerSettingsBundle(){
-        let appDefaults = [String:AnyObject]()
-        UserDefaults.standard.register(defaults: appDefaults)
+
+    
+    /**
+     Combine weekday and date for pickerfield
+     - parameter date: Date to be transformed
+     - returns: date in string format
+     */
+    func formatWeekday(date: Date){
+        let weekdayFormatter = DateFormatter()
+        weekdayFormatter.dateFormat = "EEEE dd MMMM, yyyy"
+        pickerTextField.text = weekdayFormatter.string(from:date)
+        pickerTextField.sizeToFit()
     }
     
-    @objc func defaultsChanged(){
-        if(UserDefaults.standard.bool(forKey: "showBasalPreference")){
-            Basal.isHidden = false
-        }else if(!(UserDefaults.standard.bool(forKey: "showBasalPreference"))){
-            Basal.isHidden = true
-        }
-    }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        if !self.didLayout{
-            self.didLayout = true
-            self.initChart()
-        }
-    }
+    /**
+     Create a date picker and format the date as required. Pass picker date to tmp'today' when done
+     - returns: date in string format
+     */
     func createDatePicker(){
-        //PLACEHOLDER
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE dd MMMM, yyyy"
-        pickerTextField.text = formatter.string(from: Date())
         
-        //Format Picker mode For Date
+        formatWeekday(date: Date())  //PLACEHOLDER
         picker.datePickerMode = .date
         
-        //Toolbar
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
-        //done button for toolbar
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
         toolbar.setItems([done], animated: false)
         pickerTextField.inputAccessoryView = toolbar
         pickerTextField.inputView = picker
-        
     }
     @objc func donePressed(){
-        
-        //Format date
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE dd MMMM, yyyy"
-        let dateString = formatter.string(from: picker.date)
-        pickerTextField.text = dateString
+        formatWeekday(date: picker.date)
         self.view.endEditing(true)
-        
-        //Pass picker date to variable today
+
         today = Calendar.current.startOfDay(for: picker.date)
         updateDay()
         picker.date = Date()
         updateViews()
     }
     
-    @objc private func mealsUpdated(){
-        initChart()
-        chart?.view.setNeedsDisplay()
-    }
     
+    
+    /**
+     Calculate max, min and average for sideView glucose
+     - parameter Arr: Glucose measurements on a day
+     - parameter view: SideView to be updated with calculated values
+     */
     private func calcRanges(Arr: [Double], view: CustomView){
         if Arr.count > 0 {
             view.dailyHigh = CGFloat(Arr.max()!)
@@ -293,6 +318,8 @@ class ViewControllerGraph: UIViewController {
         }
     }
     
+    
+    ///Frame settings for graph
     fileprivate lazy var chartSettings: ChartSettings = {
         var chartSettings = ChartSettings()
         chartSettings.leading = -15
@@ -309,10 +336,14 @@ class ViewControllerGraph: UIViewController {
         return chartSettings
     }()
     
+    
+    /**
+     Plot glucose data in Layers.
+     Draw popups and attach messages to them.
+     Change of dates gets passed in to update chart.
+     - returns: updated ChartView
+     */
     private func initChart(){
-        //Date & Time Formats:
-        let weekdayFormatter = DateFormatter()
-        weekdayFormatter.dateFormat = "EEEE dd MMMM, yyyy"
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
         let dayFormatter = DateFormatter()
@@ -322,16 +353,18 @@ class ViewControllerGraph: UIViewController {
         let hourFormatter = DateFormatter()
         hourFormatter.dateFormat = "H"
         
-        
         //set function to today() when live code
         let day = today
-        
-        //MARK: Declarations for var and arr
         var dateArray = [ChartAxisValueDate]()
         var valueArray = [ChartAxisValueDouble]()
+        
+        ///glucose data points array
         var points = [ChartPoint]()
+        
+        ///popup points array
         var extraPoints = [ChartPoint]()
         var predictedGlucosePoints: [ChartPoint] = []
+        ///last points in points array
         var nowIndicator: ChartPoint
         
         points.removeAll()
@@ -398,7 +431,6 @@ class ViewControllerGraph: UIViewController {
         }
         points.sort(by: {$0.x.scalar < $1.x.scalar})   //sort points by time
         
-        //might just do comparison directly out of tPlus1Array
         for item in tPlus1Array{
             if(item.value != 0){
                 tPlus1Compare.append(item.value)
@@ -416,7 +448,7 @@ class ViewControllerGraph: UIViewController {
                 tPlus3Compare.append(item.value)
             }
         }
-        //Calculate daily high, low & avg for sideViews
+
         calcRanges(Arr: tMinus1Compare, view: leftView1)
         calcRanges(Arr: tMinus2Compare, view: leftView2)
         calcRanges(Arr: tMinus3Compare, view: leftView3)
@@ -425,11 +457,10 @@ class ViewControllerGraph: UIViewController {
         calcRanges(Arr: tPlus3Compare, view: rightView3)
         
         
-        /* Popup real-time activity points:
-         exercise points on the bottom, insulin points on top, meal points' level vary wrt carbs level */
+        // y-position of activity POPUPs on the graph:
         for meal in todayFoodArray{
             let combinedDate = keyDay + " " + meal.time!
-            extraPoints.append(ChartPoint(x: ChartAxisValueDate(date: dateFormatter.date(from: combinedDate)!, formatter: dateFormatter), y: ChartAxisValueInt(Int(meal.carbs)))) //carbs: Int, change y highAxisValue type if this changes to Double
+            extraPoints.append(ChartPoint(x: ChartAxisValueDate(date: dateFormatter.date(from: combinedDate)!, formatter: dateFormatter), y: ChartAxisValueInt(Int(meal.carbs))))
         }
         
         for exercise in todayExerciseArray{
@@ -441,32 +472,25 @@ class ViewControllerGraph: UIViewController {
             let combinedDate = keyDay + " " + insulin.time!
             extraPoints.append(ChartPoint(x: ChartAxisValueDate(date: dateFormatter.date(from: combinedDate)!, formatter: dateFormatter), y: ChartAxisValueDouble(195.0)))
         }
-        extraPoints.sort(by: {$0.x.scalar < $1.x.scalar})   //sort pop-ups in time order
+        extraPoints.sort(by: {$0.x.scalar < $1.x.scalar})   //sort pop-ups after events added
         
-        /*
-        //Something needs changing to initialise chart point
-        let chartPoints = points
-        for point in chartPoints{
-            print(point)
-        }
-        */
         
-        // create axis models with axis values and axis title
+        //Axis Labels settings
         let yLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 9))
         let xLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 8), fontColor: UIColor.black, rotation: 0, rotationKeep: .top)
         let yLabelSettingsCarbs = ChartLabelSettings(font: UIFont.systemFont(ofSize: 0))
         var carbChartSettings = chartSettings
-        carbChartSettings.axisStrokeWidth = 0   //Removes axis from chart for carb graph
+        carbChartSettings.axisStrokeWidth = 0   //Removes carb axis from chart
         
-        //Axis Labels
+        //Generate axis labels
         let xValues = ChartAxisValuesGeneratorDate(unit: .hour, preferredDividers: 4, minSpace: 0.5, maxTextSize: 12)
         let xLabelGenerator = ChartAxisLabelsGeneratorDate(labelSettings: xLabelSettings, formatter: hourFormatter)
         let yLabelGenerator = ChartAxisLabelsGeneratorNumber(labelSettings: yLabelSettings)
         let generator = ChartAxisGeneratorMultiplier(4)
-        
         let yLabelGeneratorCarbs = ChartAxisLabelsGeneratorNumber(labelSettings: yLabelSettingsCarbs)
         
-        //Axis models
+        
+        //Create axis models with axis values
         let startTime: Date? = Calendar.current.startOfDay(for: today)
         let endTime: Date? = Calendar.current.date(byAdding: .day, value: 1, to: startTime!)
         
@@ -475,29 +499,31 @@ class ViewControllerGraph: UIViewController {
         let yModel = ChartAxisModel(firstModelValue: 0, lastModelValue: 20, axisTitleLabel: ChartAxisLabel(text: "", settings: yLabelSettings.defaultVertical()), axisValuesGenerator: generator, labelsGenerator: yLabelGenerator)
         
         let yHighModels = ChartAxisModel(firstModelValue: 0, lastModelValue: 200, axisTitleLabel: ChartAxisLabel(text: "", settings: yLabelSettings.defaultVertical()), axisValuesGenerator: ChartAxisGeneratorMultiplier(200), labelsGenerator: yLabelGeneratorCarbs)
-
         
         //Change date title accordingly
-        pickerTextField.text = weekdayFormatter.string(from: startTime!)
-        pickerTextField.sizeToFit()
+        formatWeekday(date: startTime!)
         
-        // generate Axes layers and calculate chart inner frame, based on the axis models
+        
+        //let currGlucose = nowIndicator.y.scalar
+        currentGlucose.text = "6.0"
+        currentGlucose.sizeToFit()
+        
+        // Generate Axes layers and calculate chart innerframe
         let chartFrame = self.chartView.frame
         let coordsSpace = ChartCoordsSpaceLeftBottomSingleAxis(chartSettings: chartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yModel)
         let coordsSpaceCarbs = ChartCoordsSpaceRightBottomSingleAxis(chartSettings: carbChartSettings, chartFrame: chartFrame, xModel: xModel, yModel: yHighModels)
         let (xAxisLayer, yAxisLayer, innerframe, yHighAxes) = (coordsSpace.xAxisLayer, coordsSpace.yAxisLayer, coordsSpace.chartInnerFrame, coordsSpaceCarbs.yAxisLayer)
 
-        //Layer: Guideline
+        //Guideline Layer
         let glLSettings = ChartGuideLinesDottedLayerSettings(linesColor: UIColor.gray, linesWidth: 0.9)
         let guidelinesLayer = ChartGuideLinesDottedLayer(xAxisLayer: xAxisLayer, yAxisLayer: yAxisLayer, settings: glLSettings)
         
-        //Layer: datapoints-line
+        // Datalines Layer
         let lineModel = ChartLineModel(chartPoints: points, lineColor: UIColor.blue, lineWidth: 3, animDuration: 1, animDelay: 0)
         let lineModelExtra = ChartLineModel(chartPoints: extraPoints, lineColor: UIColor.clear, lineWidth: 3, animDuration: 1, animDelay: 0)
         let pointslineLayer = ChartPointsLineLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, lineModels: [lineModel, lineModelExtra])
         
-        
-        //Add prediction points when "today is today"
+        //Add prediction points when appropriate
         let nowString = dayFormatter.string(from: Date())
         let nowDate = dayFormatter.date(from: nowString)
         if(day == nowDate){
@@ -508,18 +534,13 @@ class ViewControllerGraph: UIViewController {
                 )
             }
         }
-        //prediction made continuous if not on an empty data arr
+        //pred made continuous with non-empty arr
         if(points.count > 0){
             nowIndicator = points.last!
         }else{
             nowIndicator = ChartPoint(x: ChartAxisValueDate(date: today, formatter: dateFormatter), y: ChartAxisValueDouble(6))
         }
         predictedGlucosePoints.insert(nowIndicator, at: 0)
-        
-
-        //let currGlucose = nowIndicator.y.scalar
-        currentGlucose.text = "6.0"
-        currentGlucose.sizeToFit()
         
         /////////////////// draw predcted range ? ////////////////////
         let sortedGlucose = predictedGlucosePoints.sorted {(obj1, obj2) in return obj1.y.scalar < obj2.y.scalar}
@@ -529,7 +550,7 @@ class ViewControllerGraph: UIViewController {
         let predictedHigh: [ChartPoint] = [nowIndicator, HighPoint]
         
         
-        //Layer: prediciton
+        //Prediciton Layer w/ ranges
         let newColor = UIColor(red: 0.6, green: 0.5, blue: 1, alpha: 1)
         let lineModelPred = ChartLineModel(chartPoints: predictedGlucosePoints, lineColor: UIColor.red, lineWidth: 3, lineJoin: LineJoin.bevel, lineCap: LineCap.round, animDuration: 1, animDelay: 0, dashPattern: [5, 5])
         let lineModelLow = ChartLineModel(chartPoints: predictedLow, lineColor: newColor, lineWidth: 1.5, animDuration: 1, animDelay: 0, dashPattern: [2, 2])
@@ -537,7 +558,8 @@ class ViewControllerGraph: UIViewController {
         let prediction = ChartPointsLineLayer(xAxis: xAxisLayer.axis, yAxis: yAxisLayer.axis, lineModels: [lineModelPred, lineModelLow, lineModeHigh])
         
         
-        //Layer: instant popups
+        //POPUPS Layer
+        ///Instant popups on the graph for when activities added. Detailed meassages shown when points tapped.
         let circleViewGenerator = {(chartPointModel: ChartPointLayerModel, layer: ChartPointsLayer, chart: Chart) -> UIView? in
             let circleView = ChartPointEllipseView(center: chartPointModel.screenLoc, diameter: 12)
             circleView.animDuration = 1.0
@@ -545,15 +567,12 @@ class ViewControllerGraph: UIViewController {
             circleView.borderColor = UIColor.clear
             circleView.borderWidth = 0.9
             circleView.isUserInteractionEnabled = true
-            
-            //Change w and h depending on text size
-            let w: CGFloat = 80
+            let w: CGFloat = 80            //TODO: Change w and h depending on text size
             let h: CGFloat = 60
             var text : String = ""
             let font = UIFont.boldSystemFont(ofSize: 12)
             
-            // Showing meal details on correct point click
-            // Gets meals and times they were at to identify which point in the graph is the one where the meal was consumed
+            // Gets meals and times they were at on selected day
             let meals = ModelController().fetchMeals(day: day)
             let exercises = ModelController().fetchExercise(day: day)
             let insulins = ModelController().fetchInsulin(day: day)
@@ -561,7 +580,7 @@ class ViewControllerGraph: UIViewController {
             let time = Date.init(timeIntervalSince1970: xVal)
             let timeDate = timeFormatter.string(from: time)
             
-            //searches through meals for the day for meals that align with data point on the graph in terms of time
+            //searches through activities and align popup with data point in terms of time for the day
             for meal in meals{
                 if(meal.time! == timeDate){
                     circleView.data = "🍎"
@@ -584,7 +603,6 @@ class ViewControllerGraph: UIViewController {
                 }
             }
             
-            //Touch handler for food, exercise and insulin extra info
             circleView.touchHandler = {
                 if let chartViewScreenLoc = layer.containerToGlobalScreenLoc(chartPointModel.chartPoint) {
                     let x: CGFloat = {
@@ -617,25 +635,23 @@ class ViewControllerGraph: UIViewController {
         let chartPointsCircleLayer = ChartPointsViewsLayer(xAxis: xAxisLayer.axis, yAxis: yHighAxes.axis, chartPoints: extraPoints, viewGenerator: circleViewGenerator, displayDelay: 0, delayBetweenItems: 0.05, mode: .translate)
         
         
-        // create chart instance with frame and layers
+        //Create chart instance with frame and layers
         let chart = Chart(
             view: self.chartView!,
             innerFrame: innerframe,
             settings: ChartSettings.init(),
-            layers: [
-                xAxisLayer,
-                yAxisLayer,
-                yHighAxes,
-                guidelinesLayer,
-                pointslineLayer,
-                prediction,
-                chartPointsCircleLayer
+            layers: [xAxisLayer,
+                     yAxisLayer,
+                     yHighAxes,
+                     guidelinesLayer,
+                     pointslineLayer,
+                     prediction,
+                     chartPointsCircleLayer
             ]
         )
         
         view.addSubview(chart.view)
         self.chart = chart
-        
     }
 }
 
