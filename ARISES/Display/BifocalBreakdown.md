@@ -10,3 +10,8 @@ Only range bars are shown on the side indicating maxima, minima and average.  Th
 
 
 ### Chart Base Setup
+
+The entire bifocal consists of three parts: 
+  * Leftside view containers
+  * Main graph section
+  * Rightside view containers
