@@ -94,3 +94,11 @@ Methods implemented are:
 #### *updateViews()*
 * **Description:** Removes current drawings and plots on the main graph, replots chart, adds events popups and updates sideviews.
 * **Output:** Updated bifocal section
+
+#### *createDatePicker()*
+* **Description:** Creates a date picker field on top of bifocal display. Sets it to current date initially. Allows users to pick a date in the past. Chart updates according to date selected. Side views update as well.
+
+#### *calcRanges()*
+* **Description:** Finds a maximum, a minimum in a array as well as calculates an average value.
+* **Parameters:** An array of Doubles: data in the array to be calculated 
+* **Returns:** Passes results to side views. Side view redraws range bar accordingly.
