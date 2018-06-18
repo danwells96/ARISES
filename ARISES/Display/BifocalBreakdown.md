@@ -6,25 +6,24 @@
 ### Functionalities
 The most important infomation gets displayed on the main graph while less relevant data is displayed on the side views. 
 
-For example, on the image above only range bars(maxima, minima and averages) are shown on the sides.  
-The monitored glucoses, popups (meals, exercises, insulin dosages) and predicitons (only if main graph is on today) are plotted on main graph.
-
 Scrolling across x-axis would allow users to access detailed data on a certain day.
 
+**On the main graph:**
 This seciton displays monitored glucose level on a day (would be taken from patients' wearables) and it pops entries of daily meals, execises and insulin dosage on the main graph instantly so users can keep track of what time they did those activities. Meesages of detailed information can be obtained when points are tapped. 
 
 For example, a message on how much macronutrients (like carbs, protein and fats) each meal contains would popups when you tap on a meal point. A message for exercise would include exercise done, time it's done and intensity. An insulin message tells what time and how many units of insulin are given.
 
+**On the sideviews:**
+It shows range bars (min, max, avg) for individual day.
 
 
-
-## Chart Base Setup
-The entire bifocal consists of three parts: 
+## ChartBase Setup
+The bifocal display consists of three parts: 
   * Leftside view containers
   * Main graph section
   * Rightside view containers
 
-## Left & Right sideviews
+## Left & Right Sideview Containers
 Each of the side view containers has three subviews of type CustomView (UIView) which are customized to show colours bands as a background. 
 #### *ChartBGView.swift* and *CustomView.swift*
 The same colour bands are used on the main chart as well thus *ChartBGView.swift* follows the same logic as the *CustomView.swift* in term of filling the background color bands. But *CustomView.swift* is also used to draw range bars on each sideview using calculated values for glucose values storing in core data on a day.
