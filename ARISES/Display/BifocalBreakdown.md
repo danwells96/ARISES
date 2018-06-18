@@ -109,4 +109,5 @@ Methods implemented are:
   * Draws popups and attaches messages to them.
   * Dates changes accordingly with swipes and plots changes accordingly.
   * Changes of dates gets passed in to update chart. 
+
 Modifications are made on top of an iOS chart library which can be found here: https://github.com/i-schuetz/SwiftCharts.git 
