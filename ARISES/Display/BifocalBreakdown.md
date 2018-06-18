@@ -54,4 +54,21 @@ It takes no parameters but the output of sorting the glucose array on certain da
 
 A sample view it creates would be: ![image of range bar](rangeBar.png)
 
+
 ## Main graph section
+
+### *ViewControllerGraph.swift*
+In this section we do everything graph related. Things like:
+* Transform sideView containers into bifocal. 
+* Load tmp arrays into CoreData.
+* Show date picker.  
+* Update settings.  
+* Update popups.
+
+Methods implemented are: 
+#### *rightGesture* 
+* **Description:** An IBAction func. Once a right swpie gesture, main graph is replaced with data from one day on the left. All other views update accordingly. (Everything shifts right)
+* **Parameter:** The sender is UISwipeGestureRecognizer
+#### *leftGesture* 
+* **Description:** An IBAction func. Similar to rightGesture but detects left swipes. When a left swipe is made, it bring RHS data to the centre. (Everything shifts left) 
+* **Parameter:** The sender is UISwipeGestureRecognizer
