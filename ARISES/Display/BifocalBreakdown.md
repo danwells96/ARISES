@@ -8,14 +8,26 @@
 
 * Scrolling across x-axis would allow users to access detailed data on a certain day.
 
-* **The main graph:**
-shows monitored glucose level on a day (would be taken from patients' wearables) and it pops entries of daily meals, execises and insulin dosage on the main graph instantly so users can keep track on what time they did those activities. Mesages of detailed information can be obtained when points are tapped. 
+* The icon on the top right corner allows user to add insulin
 
-  * A popup message saying the amount of carbs, protein and fats come with each meal would show when you tap on a meal point. 
+* The settings icon on the top left allow user to go to the settings page and make changes
 
-  * A message for exercise would include exercise done, time it's done and intensity. 
+* DatePicker allows user the current date they are visulising. When tapped user can go to a day in the past.
 
-  * An insulin message tells what time and how many units of insulin are given.
+* When graph is currently not on today, tap on datePicker where the default popup date is set to today and click on that would take the user back to today.
+
+* **The main graph:** 
+  * shows monitored glucose level on a day (to be taken from patients' wearables). To keep the graph area as clean as possible the time interval displayed on the x axis is set to 6 hours.
+  
+  * it pops daily meals, execises and insulin dosage on the main graph instantly. Users can keep track on what time they did those activities. 
+  
+  * Mesages of detailed information can be obtained when points are tapped. 
+
+    * A popup message saying the amount of carbs, protein and fats come with each meal would show when you tap on a meal point. 
+
+    * A message for exercise would include exercise done, time it's done and intensity. 
+
+    * An insulin message tells what time and how many units of insulin are given.
 
 * **The sideviews:** shows range bars (min, max, avg) for individual day.
 
