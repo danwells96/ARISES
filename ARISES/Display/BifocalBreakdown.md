@@ -1,14 +1,16 @@
 # Bifocal Display Breakdown
 
-### About
-Bifocal display is where the most important infomation are displayed on the main graph while less relevant data is displayed on the side views. Scroll across x-axis would allow users to access detailed data on a selected date.
-
-**As the image shown below:**
-Only range bars are shown on the side indicating maxima, minima and average.  The monitored glucoses, popups (meals, exercises, insulin dosages) and prediciton (only if main graph is on today) are plotted on main graph.
-
 ![Image of Bifocal](Bifocal.png)
 
+
 ### Functionalities
+The most important infomation gets displayed on the main graph while less relevant data is displayed on the side views. 
+
+For example, on the image above only range bars(maxima, minima and averages) are shown on the sides.  
+The monitored glucoses, popups (meals, exercises, insulin dosages) and predicitons (only if main graph is on today) are plotted on main graph.
+
+Scrolling across x-axis would allow users to access detailed data on a certain day.
+
 This seciton displays monitored glucose level on a day (would be taken from patients' wearables) and it pops entries of daily meals, execises and insulin dosage on the main graph instantly so users can keep track of what time they did those activities. Meesages of detailed information can be obtained when points are tapped. 
 
 For example, a message on how much macronutrients (like carbs, protein and fats) each meal contains would popups when you tap on a meal point. A message for exercise would include exercise done, time it's done and intensity. An insulin message tells what time and how many units of insulin are given.
