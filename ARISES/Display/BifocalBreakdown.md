@@ -63,12 +63,12 @@ A view it creates would be: ![image of range bar](rangeBar.png)
 ## Main graph section
 
 ### *ViewControllerGraph.swift*
-In this section we do everything graph related. Things like:
+In this section we do everything graph related. For example:
 * Transform sideView containers into bifocal. 
-* Load tmp arrays into CoreData.
+* Load tmp arrays into Core Data.
 * Show date picker.  
 * Update settings.  
-* Update popups.
+* Update popups and attached messages.
 
 Methods implemented are: 
 #### *rightGesture* 
