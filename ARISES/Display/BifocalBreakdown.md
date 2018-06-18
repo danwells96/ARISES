@@ -24,9 +24,18 @@ The same colour bands are used on the main chart as well thus *ChartBGView.swift
 The bands are calculated based on glucose level. 
 If the total height of the Custom View is considered as an equivalent glucose level of 20 (mM/)L  then a 'safe' range for patients to stay in would be between 4 and 10. Above 10 would be classified as a hyper and below 4 would be seen as a hypo.
 
-Therefore, the top half of chart would be in **high** range, the bottom 4/20 (20%) of chart would be in **low** range and anything left in between would be of normal. The high and low bands are coloured differently to draw users attention. Colour palette here is simple and can be modified. (Colour combinations particularly red & green are avoided as diabetes suffering from retinopathy have problems distinguishing between them.)
+Therefore, the top half of chart would be in **high** range, the bottom 4/20 (20%) of chart would be in **low** range and 6/20 (~30%)section in the middle would be of normal. 
 
-Here's a code snippet that colors the middle section:
+The high and low bands are coloured differently to draw users attention. Colour palette here is simple and can be modified. (Colour combinations particularly red & green are avoided as diabetes suffering from retinopathy have problems distinguishing between them.)
+##### drawMiddleBand()
+* Description: 
+This function draws a rectangle with orgin (0,0) - top left corner, and extends itself to the reqired height (30% of total height). After it draws/marks, it colours the marked area with selected color.
+* Returns:
+This would give the image below:
+![Image of sideband]
+(sideband.png)
+
+Here's a code snippet that colors the middle section white:
 
 
         let middleRect = CGRect(
