@@ -6,33 +6,37 @@
 ### Description:
 * //add image
 ### Files:
-* ### ARISES.xcdatamodeld: //short description
-    #### //add image
-    #### Description: //longer description
-* ### Illness.swift: //short desription
-    ##### Computed Property: //description
-        Code:
-        Return:
-* ### Stress.swift: //short desription
-    ##### Computed Property: //description
-        Code:
-        Return:
-* ### Glucose.swift: //short desription
-    ##### Computed Property: //description
-        Code:
-        Return:
-* ### Day.swift: //short desription
-    ##### Computed Properties: //description
-    * Property 1:  
-        Code:  
-        Return:
-* ### Insulin.swift, Meals.swift, Exercise.swift, Favourites.swift
-    #### Description: //longish description
-
-    
+#### *ARISES.xcdatamodeld:* //short description
+    //add image
+    Description: //longer description
+#### *Insulin.swift, Meals.swift, Exercise.swift, Favourites.swift*
+    //longish description
+#### *Illness.swift:* //short desription
+    Code:
+    Return:
+#### *Stress.swift:* //short desription
+    Code:
+    Return:
+#### *Glucose.swift:* //short desription
+    Code:
+    Return:
+#### *Day.swift:* //short desription
+##### Property 1:  
+    Code:  
+    Return:        
+##### Property 2:  
+    Code:  
+    Return: 
 ---
 ## ***Model Controller:*** lorem ipsum.
-### Controller: ModelController.swift
+### *ModelController.swift:*
+#### Functions:
+##### Function 1:  
+    Code:  
+    Return:        
+##### Function 2:  
+    Code:  
+    Return: 
 ---
 ## ***Data logs:*** lorem ipsum.
 ### Controller: ViewControllerTableViewCell.swift
