@@ -6,9 +6,9 @@
 //  Copyright © 2018 Ryan Armiger. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
+///State enum for domain tabs
 enum MainViewState
 {
     case uninitialised
@@ -19,51 +19,68 @@ enum MainViewState
 }
 
 class ViewControllerMain: UIViewController{
-
     
-    //TODO: Save and restore open view between app closing
-    
-    //MARK: - Properties
+    //MARK: - Outlets
     // Views with status indicators
-    @IBOutlet weak var viewHealth: UIView!
-    @IBOutlet weak var viewFood: UIView!
-    @IBOutlet weak var viewAdvice: UIView!
-    @IBOutlet weak var viewExercise: UIView!
+    @IBOutlet weak private var viewHealth: UIView!
+    @IBOutlet weak private var viewFood: UIView!
+    @IBOutlet weak private var viewAdvice: UIView!
+    @IBOutlet weak private var viewExercise: UIView!
     // Containers for embedding view contents
-    @IBOutlet weak var containerHealth: UIView!
-    @IBOutlet weak var containerFood: UIView!
-    @IBOutlet weak var containerAdvice: UIView!
-    @IBOutlet weak var containerExercise: UIView!
+    @IBOutlet weak private var containerHealth: UIView!
+    @IBOutlet weak private var containerFood: UIView!
+    @IBOutlet weak private var containerAdvice: UIView!
+    @IBOutlet weak private var containerExercise: UIView!
     // Indicator outlet for toggling
-    @IBOutlet weak var indicatorFood: UIView!
-    @IBOutlet weak var indicatorExercise: UIView!
-    @IBOutlet weak var indicatorHealth: UIView!
-    @IBOutlet weak var indicatorAdvice: UIView!
+    @IBOutlet weak private var indicatorFood: UIView!
+    @IBOutlet weak private var indicatorExercise: UIView!
+    @IBOutlet weak private var indicatorHealth: UIView!
+    @IBOutlet weak private var indicatorAdvice: UIView!
     
     //Labels
-    @IBOutlet weak var foodLabel: UILabel!
-    @IBOutlet weak var exerciseLabel: UILabel!
-    @IBOutlet weak var adviceLabel: UILabel!
-    @IBOutlet weak var healthLabel: UILabel!
+    @IBOutlet weak private var foodLabel: UILabel!
+    @IBOutlet weak private var exerciseLabel: UILabel!
+    @IBOutlet weak private var adviceLabel: UILabel!
+    @IBOutlet weak private var healthLabel: UILabel!
     
     
     //Insulin outlets
-    @IBOutlet weak var glucoseButtonOutlet: UIButton!
-    @IBOutlet weak var insulinTextField: UITextField!
-    @IBOutlet weak var glucoseClockOutlet: UIButton!
-    @IBOutlet weak var insulinTimeField: UITextField!
+    @IBOutlet weak private var glucoseButtonOutlet: UIButton!
+    @IBOutlet weak private var insulinTextField: UITextField!
+    @IBOutlet weak private var glucoseClockOutlet: UIButton!
+    @IBOutlet weak private var insulinTimeField: UITextField!
+    
+    //MARK: - Properties
+    ///Tracks date set by graph and hides insulin entry fields when not on current day
+    private var currentDay = Date(){
+        didSet{
+            if currentDay != Calendar.current.startOfDay(for: Date()) {
+                glucoseButtonOutlet.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+                glucoseButtonOutlet.isHidden = true
+                insulinTextField.isHidden = true
+                glucoseClockOutlet.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+                glucoseClockOutlet.isHidden = true
+                insulinTimeField.isHidden = true
+            }
+            else{
+                glucoseButtonOutlet.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+                glucoseButtonOutlet.isHidden = false
+                insulinTextField.isHidden = true
+                glucoseClockOutlet.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+                glucoseClockOutlet.isHidden = true
+                insulinTimeField.isHidden = true
+            }
+        }
+    }
     private var insulinTimePicker = UIDatePicker()
-    
-
-    //private var currentDay = Date()
-    
+    ///Stores whether keyboard is open, to smooth transitions between tabs
     private var keyboardOpen = false
     
     // Variables for rounding and shadow extension
     private var shadowLayer: CAShapeLayer!
     private var cornerRadius: CGFloat = 25.0
-    private var fillColor: UIColor = .blue // the color applied to the shadowLayer, rather than the view's backgroundColor
-    //Variable to track state of views
+    private var fillColor: UIColor = .blue
+    ///Variable to track state of views
     private var state: MainViewState = .uninitialised
     {
         didSet
@@ -72,18 +89,20 @@ class ViewControllerMain: UIViewController{
         }
     }
     
-   
-    //MARK: - Override
+    
+    //MARK: - Override viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         self.state = .food
         
         glucoseButtonOutlet.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+        glucoseButtonOutlet.isHidden = false
         insulinTextField.isHidden = true
         glucoseClockOutlet.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
         glucoseClockOutlet.isHidden = true
         insulinTimeField.isHidden = true
         
+        //Data entry 'done' toolbars
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -92,24 +111,33 @@ class ViewControllerMain: UIViewController{
         toolBar.setItems([flexible, doneButton], animated: true)
         
         insulinTextField.inputAccessoryView = toolBar
-
+        
+        //Instantiates picker for insulin time entry
         createInsulinTimePicker()
         
         let nc = NotificationCenter.default
+        //Observer to update currentDay variable to match graph's day
+        nc.addObserver(self, selector: #selector(updateDay(notification:)), name: Notification.Name("dayChanged"), object: nil)
+        
+
+        //Observers to determine keyboard state
         nc.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
         nc.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-/*
-        let nc = NotificationCenter.default
-        nc.addObserver(self, selector: #selector(updateDay(notification:)), name: Notification.Name("dayChanged"), object: nil)
- */
-
+        
     }
-
-    @objc func keyboardWillShow(sender: NSNotification) {
+    
+    //MARK: - Update Day
+    ///Updates the currentDay variable with a date provided via notification from ViewControllerGraph
+    @objc private func updateDay(notification: Notification) {
+        currentDay = notification.object as! Date
+    }
+    
+    //MARK: - Functions for tracking when keyboard open
+    @objc private func keyboardWillShow(sender: NSNotification) {
         keyboardOpen = true
     }
-    @objc func keyboardWillHide(sender: NSNotification) {
+    @objc private func keyboardWillHide(sender: NSNotification) {
         keyboardOpen = false
     }
     
@@ -120,11 +148,7 @@ class ViewControllerMain: UIViewController{
         switch self.state
         {
         case .food:
-            //containerFood.alpha = 0.0
             view.bringSubview(toFront: viewFood)
-            /*UIView.animate(withDuration: 0.1, delay: 0, options: .curveLinear, animations: {
-                self.containerFood.alpha = 1.0
-            }, completion: nil)*/
             containerFood.isHidden = false
             containerAdvice.isHidden = true
             containerHealth.isHidden = true
@@ -139,23 +163,8 @@ class ViewControllerMain: UIViewController{
             exerciseLabel.isHidden = false
             adviceLabel.isHidden = false
             
-        
-
         case .exercise:
             self.view.bringSubview(toFront: self.viewExercise)
-            /*UIView.animate(withDuration: 0.001, animations: {
-                self.viewExercise.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-                
-            }) { (finished) in
-                UIView.animate(withDuration: 0.3, animations: {
-                    self.viewExercise.transform = CGAffineTransform.identity
-                })
-            }*/
-            /*containerExercise.alpha = 0.0
-            view.bringSubview(toFront: viewExercise)
-            UIView.animate(withDuration: 0.5, delay: 0, options: .curveLinear, animations: {
-                self.containerExercise.alpha = 1.0
-            }, completion: nil)*/
             containerFood.isHidden = true
             containerAdvice.isHidden = true
             containerHealth.isHidden = true
@@ -169,22 +178,9 @@ class ViewControllerMain: UIViewController{
             healthLabel.isHidden = false
             exerciseLabel.isHidden = true
             adviceLabel.isHidden = false
-
             
         case .health:
-           self.view.bringSubview(toFront: self.viewHealth)
-           /*UIView.animate(withDuration: 0.001, animations: {
-                self.viewHealth.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-            
-            }) { (finished) in
-                UIView.animate(withDuration: 0.3, animations: {
-                    self.viewHealth.transform = CGAffineTransform.identity
-                })
-            }*/
-            //containerHealth.alpha = 0
-           //UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
-            //    self.containerHealth.alpha = 1.0
-            //}, completion: nil)
+            self.view.bringSubview(toFront: self.viewHealth)
             containerFood.isHidden = true
             containerAdvice.isHidden = true
             containerHealth.isHidden = false
@@ -194,17 +190,13 @@ class ViewControllerMain: UIViewController{
             indicatorHealth.isHidden = true
             indicatorExercise.isHidden = false
             
-           foodLabel.isHidden = false
-           healthLabel.isHidden = true
-           exerciseLabel.isHidden = false
-           adviceLabel.isHidden = false
-
+            foodLabel.isHidden = false
+            healthLabel.isHidden = true
+            exerciseLabel.isHidden = false
+            adviceLabel.isHidden = false
+            
         case .advice:
-            //containerAdvice.alpha = 0.0
             view.bringSubview(toFront: viewAdvice)
-            /*UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: {
-                self.containerAdvice.alpha = 1.0
-            }, completion: nil)*/
             containerFood.isHidden = true
             containerAdvice.isHidden = false
             containerHealth.isHidden = true
@@ -218,33 +210,23 @@ class ViewControllerMain: UIViewController{
             healthLabel.isHidden = false
             exerciseLabel.isHidden = false
             adviceLabel.isHidden = true
-
+            
         case .uninitialised:
             print("uninitialised view state")
         }
     }
-
-
-    /*
-    @objc func updateDay(notification: Notification) {
-        currentDay = notification.object as! Date
-        
-    }
- */
     
-    @IBAction func healthButton(_ sender: UIButton) {
-        //Would provide a delay after clicking (in seconds)
-        //DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+    //MARK: - Buttons to open each domain
+    @IBAction private func healthButton(_ sender: UIButton) {
         self.state = .health
-        //}
     }
     
-    @IBAction func foodButton(_ sender: UIButton) {
-
+    @IBAction private func foodButton(_ sender: UIButton) {
+        //If keyboard is open and tab is swapped, dismiss it and then change state smoothly
         if keyboardOpen == true{
-                view.endEditing(true)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                    self.state = .food
+            view.endEditing(true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                self.state = .food
             }
         }
         else{
@@ -252,7 +234,7 @@ class ViewControllerMain: UIViewController{
         }
     }
     
-    @IBAction func exerciseButton(_ sender: UIButton) {
+    @IBAction private func exerciseButton(_ sender: UIButton) {
         if keyboardOpen == true{
             view.endEditing(true)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
@@ -264,15 +246,13 @@ class ViewControllerMain: UIViewController{
         }
     }
     
-    
-    @IBAction func adviceButton(_ sender: UIButton) {
-
-        
+    @IBAction private func adviceButton(_ sender: UIButton) {
         self.state = .advice
     }
     
+    
     //MARK: - Insulin actions
-    @IBAction func glucoseClockButton(_ sender: Any) {
+    @IBAction private func glucoseClockButton(_ sender: Any) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
             if self.glucoseClockOutlet.tintColor == #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1) {
                 self.glucoseClockOutlet.tintColor = #colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1)
@@ -285,7 +265,7 @@ class ViewControllerMain: UIViewController{
         }
     }
     
-    @IBAction func glucoseButton(_ sender: Any) {
+    @IBAction private func glucoseButton(_ sender: Any) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
             if self.glucoseButtonOutlet.tintColor == #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1) {
                 self.glucoseButtonOutlet.tintColor = #colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1)
@@ -299,22 +279,17 @@ class ViewControllerMain: UIViewController{
                 self.glucoseClockOutlet.isHidden = true
                 self.glucoseClockOutlet.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
                 self.insulinTimeField.isHidden = true
-
+                
                 //add insulin if not nil
                 if (self.insulinTextField.text != ""){
                     if self.insulinTimeField.text != ""{
-                       ModelController().addInslin(units: Double((self.insulinTextField.text)!)!, time: self.insulinTimeField.text!, date: Date())
-                      
-                       // ModelController().addInslin(units: Double((self.insulinTextField.text)!)!, time: self.insulinTimeField.text!, date: self.currentDay)
-
-                    self.insulinTextField.text = ""
+                        ModelController().addInslin(units: Double((self.insulinTextField.text)!)!, time: self.insulinTimeField.text!, date: Date())
+                        self.insulinTextField.text = ""
                     }
                     else{
                         let currentTime = ModelController().formatDateToHHmm(date: Date())
                         ModelController().addInslin(units: Double((self.insulinTextField.text)!)!, time: currentTime, date: Date())
-  
-                       // ModelController().addInslin(units: Double((self.insulinTextField.text)!)!, time: currentTime, date: self.currentDay)
-
+                        
                         self.insulinTextField.text = ""
                         self.insulinTimeField.text = ""
                     }
@@ -322,9 +297,9 @@ class ViewControllerMain: UIViewController{
             }
         }
     }
-        
-        
-    //Food Time picker
+    
+    
+    //Insulin Time picker
     private func createInsulinTimePicker(){
         
         let doneButtonBar = UIToolbar()
@@ -345,25 +320,21 @@ class ViewControllerMain: UIViewController{
         insulinTimeField.text = ModelController().formatDateToHHmm(date: insulinTimePicker.date)
         self.view.endEditing(true)
     }
-
+    
     @objc private func doneWithKeypad(){
         view.endEditing(true)
     }
     
-    //MARK: - Settings popup
-    
+    //MARK: - Settings
+    //Opens phone settings
     @IBAction func settingsPopup(_ sender: Any) {
         UIApplication.shared.open(URL(string:UIApplicationOpenSettingsURLString)!)
-//        let popupViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "settings") as! ViewControllerSettings
-//        self.addChildViewController(popupViewController)
-//        popupViewController.view.frame = self.view.frame
-//        self.view.addSubview(popupViewController.view)
-//        popupViewController.didMove(toParentViewController: self)
     }
     
 }
+
 //MARK: - Extensions
-//MARK: Rounding and shadow extensions
+//Rounding view and shadow extension
 extension UIView {
     func setRadius(radius: CGFloat? = nil) {
         self.layer.cornerRadius = radius ?? self.frame.width / 8
@@ -458,18 +429,5 @@ extension UIView {
         }
     }
 }
-/*
-extension UILabel {
-    @IBInspectable
-    var image: UIImage? {
-        get {
-            return self.image
-        }
-        set {
-            self.image = newValue
-        }
-    }
- }
- */
-    
+
 

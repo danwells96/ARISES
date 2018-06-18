@@ -8,7 +8,7 @@
 
 import UIKit
 
-
+///Table cell delegate for button actions
 @objc protocol tableCellDelegate : class {
     func didPressButton(_ tag: Int)
     func didPressCameraButton(_tag: Int)
@@ -17,7 +17,8 @@ import UIKit
 
 class ViewControllerTableViewCell: UITableViewCell {
 
-    //MARK: Properties
+    //MARK: - Outlets
+    //Food outlets
     @IBOutlet weak var loggedFoodName: UILabel!
     @IBOutlet weak var loggedFoodTime: UILabel!
     @IBOutlet weak var loggedFoodCarbs: UILabel!
@@ -27,16 +28,16 @@ class ViewControllerTableViewCell: UITableViewCell {
     @IBOutlet weak var editFoodButton: UIButton!
     @IBOutlet weak var camera: UIButton!
     @IBOutlet weak var favouriteFoodButton: UIButton!
-    @IBOutlet weak var favouriteExerciseButton: UIButton!
     
-    @IBOutlet weak var favouriteHealthButton: UIButton!
+    //Exercise outlets
+    @IBOutlet weak var favouriteExerciseButton: UIButton!
     @IBOutlet weak var loggedExerciseDuration: UILabel!
     @IBOutlet weak var loggedExerciseName: UILabel!
     @IBOutlet weak var loggedExerciseTime: UILabel!
     
+    //Health outlets
     @IBOutlet weak var dateInLog: UILabel!
-
-    
+    @IBOutlet weak var favouriteHealthButton: UIButton!
     @IBOutlet weak var loggedHealthHypoIcon: UIButton!
     @IBOutlet weak var loggedHealthHyperIcon: UIButton!
     @IBOutlet weak var loggedHealthExerciseIcon: UIButton!
@@ -46,26 +47,22 @@ class ViewControllerTableViewCell: UITableViewCell {
     @IBOutlet weak var loggedHealthAvgLabel: UILabel!
     @IBOutlet weak var loggedHealthHighLabel: UILabel!
     
-    
+    //MARK: - Properties
+    //cell delegate property
     weak var cellDelegate: tableCellDelegate?
 
     
-    // var expanded = false
-    
-    
-    //MARK: Override
+    //MARK: - Overrides
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
-        
         super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
     }
     
-    // connect the button from your cell with this method
+    //MARK: - Cell button delegates
     @IBAction func buttonPressed(_ sender: UIButton) {
         cellDelegate?.didPressButton(self.tag)
     }
@@ -75,7 +72,6 @@ class ViewControllerTableViewCell: UITableViewCell {
     @IBAction func buttonPressedHealth(_ sender: UIButton) {
         cellDelegate?.didPressButton(self.tag)
     }
-    
     @IBAction func buttonPressedCamera(_ sender: UIButton) {
         cellDelegate?.didPressCameraButton(_tag: self.tag)
     }

@@ -6,34 +6,28 @@
 //  Copyright © 2018 Ryan Armiger. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate, tableCellDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-
-    //TODO: solve keyboard covering name in some phones
-    //TODO: Auto layout table cells
+    //MARK: - Outlets
+    @IBOutlet weak private var foodTimeField: UITextField!
+    @IBOutlet weak private var foodLogTable: UITableView!
+    @IBOutlet weak private var carbsTextField: UITextField!
+    @IBOutlet weak private var proteinTextField: UITextField!
+    @IBOutlet weak private var fatTextField: UITextField!
+    @IBOutlet weak private var foodNameTextField: UITextField!
+    @IBOutlet weak private var foodAddButton: UIButton!
+    @IBOutlet weak private var logTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak private var barBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak private var favouritesButton: UIButton!
     
     //MARK: - Properties
-    @IBOutlet weak var foodTimeField: UITextField!
-    @IBOutlet weak var foodLogTable: UITableView!
-    @IBOutlet weak var carbsTextField: UITextField!
-    @IBOutlet weak var proteinTextField: UITextField!
-    @IBOutlet weak var fatTextField: UITextField!
-    @IBOutlet weak var foodNameTextField: UITextField!
-
-    @IBOutlet weak var foodAddButton: UIButton!
-    
-    @IBOutlet weak var logTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var barBottomConstraint: NSLayoutConstraint!
-    
-    //defining picker related variables
     private var foodTimePicker = UIDatePicker()
-    
+    ///Tracks date set by graph and hides data entry fields when not on current day
     private var currentDay = Date(){
         didSet{
-            
+
             foodNameTextField.text = ""
             foodTimeField.text = ""
             carbsTextField.text = ""
@@ -48,7 +42,6 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
                 fatTextField.isHidden = true
                 favouritesButton.isHidden = true
                 foodAddButton.isHidden = true
-                //add constraint adjustment to fill full size
                 logTopConstraint.constant = 0
                 barBottomConstraint.constant = 0
             }
@@ -67,15 +60,15 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
             view.endEditing(true)
         }
     }
-    
-    @IBOutlet weak var favouritesButton: UIButton!
-    //defining table related variables
+
+    //Table variables
+    ///Stores an array of Meals objects fetched from the model to display in the table
     private var loggedMeals = [Meals]()
     private var expanded = false
-    var selectedCellIndexPath = [IndexPath?]()
-    let selectedCellHeight: CGFloat = 89.0
-    let unselectedCellHeight: CGFloat = 40.0
-    //Variable tracking state of favourites views
+    private var selectedCellIndexPath = [IndexPath?]()
+    private let selectedCellHeight: CGFloat = 89.0
+    private let unselectedCellHeight: CGFloat = 40.0
+    ///Tracks whether to show favourites or daily log
     private var showFavouritesFood = false{
         didSet{
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
@@ -90,20 +83,18 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         }
     }
 
-    //var expanded: Bool = false
-    //var selection: IndexPath?
-    //private var height: CGFloat = 40
-    
-
-    //MARK: - Override
+    //MARK: - Override viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //Table view delegate requirements
         foodLogTable.dataSource = self
         foodLogTable.delegate = self
         
+        //Instantiation of time picker
         createFoodTimePicker()
         
+        //Data entry 'done' toolbars
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -116,22 +107,33 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         fatTextField.inputAccessoryView = toolBar
         foodNameTextField.inputAccessoryView = toolBar
         
-        favouritesButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+        
+
+        
         let nc = NotificationCenter.default
+        //Observer to update currentDay variable to match graph's day
         nc.addObserver(self, selector: #selector(updateDay(notification:)), name: Notification.Name("dayChanged"), object: nil)
         
+        //Observers to determine keyboard state and move view so that fields aren't obscured
         nc.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        
         nc.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        favouritesButton.tintColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
         updateTable()
         
     }
     
+    //MARK: - Update Day
+    ///Updates the currentDay variable with a date provided via notification from ViewControllerGraph and re-fetches the table
+    @objc private func updateDay(notification: Notification) {
+        currentDay = notification.object as! Date
+        updateTable()
+    }
     
+    //MARK: - Functions for moving view to prevent keyboard obscuring fields
     @objc func keyboardWillShow(sender: NSNotification) {
         self.view.frame.origin.y = -65 // Move view 150 points upward
     }
-    
     @objc func keyboardWillHide(sender: NSNotification) {
         self.view.frame.origin.y = 0 // Move view to original position
     }
@@ -156,7 +158,6 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     }
     
     @objc private func doneWithPicker(){
-
         foodTimeField.text = ModelController().formatDateToHHmm(date: foodTimePicker.date)
         self.view.endEditing(true)
     }
@@ -167,7 +168,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     
     //MARK: - Favourite buttons
     //Toggle between favourite and daily log views
-    @IBAction func toggleFavourites(_ sender: Any) {
+    @IBAction private func toggleFavourites(_ sender: Any) {
         if self.showFavouritesFood == false{
             showFavouritesFood = true
             selectedCellIndexPath = []
@@ -175,22 +176,19 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         else{
             showFavouritesFood = false
         }
-        //Testing day computed properties
-    /*    let curDay = ModelController().findOrMakeDay(day: Date())
-        print("\(String(describing: curDay.glucoseTags))")
- */
     }
     
-    //TODO: Either add remove buttons in expanded or allow a way to remove favourites
+    //TODO: Add a way to remove favourites
+    ///Delegate function to toggle whether a meal is favourited
     func didPressButton(_ tag: Int) {
         if showFavouritesFood != true{
             let toFav = loggedMeals[tag]
-            //print("I have toggled \(toFav.name!)")
             ModelController().toggleFavouriteFood(item: toFav)
             updateTable()
         }
     }
     
+    //FIXME: Currently broken delegate function for a camera button
     func didPressCameraButton(_tag: Int){
         let picker = UIImagePickerController()
         
@@ -200,17 +198,12 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         present(picker, animated: true, completion: nil)
     }
     
-    @objc func updateDay(notification: Notification) {
-        currentDay = notification.object as! Date
-        updateTable()
-    }
-    
     //MARK: - Table functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return loggedMeals.count
     }
     
-    //Provides "setup" for cell
+    ///Provides setup for table cells, setting each label
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ViewControllerTableViewCell
@@ -243,8 +236,6 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
             cell.loggedFoodFat.isHidden = true
             cell.loggedFoodProtein.isHidden = true
             cell.loggedFoodCarbs.isHidden = true
-            //cell.loggedFoodTime.text = "Select"
-            //cell.loggedFoodTime.textColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
         }
         else{
             cell.loggedFoodTime.isHidden = false
@@ -256,34 +247,18 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         return(cell)
     }
     
-    //Allows selecting a favourite to add to daily log
-    //Will likely be replaced with a button to select and used for expanding
+    //Allows selecting a favourite to add to daily log if showing favourites, else toggles expanding of cell
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
-        
-        //(dateFormatter.date(from: "\(Date())"))!
+
         if showFavouritesFood == true{
-            /*
-            ModelController().addMeal(
-                name: loggedMeals[indexPath.row].name!,
-                time: dateFormatter.string(from: Date()),
-                date: Date(),
-                carbs: loggedMeals[indexPath.row].carbs,
-                fat: loggedMeals[indexPath.row].fat,
-                protein: loggedMeals[indexPath.row].protein)
-            
-            */
             foodNameTextField.text = loggedMeals[indexPath.row].name
             foodTimeField.text = dateFormatter.string(from: Date())
             carbsTextField.text = String(loggedMeals[indexPath.row].carbs)
             proteinTextField.text = String(loggedMeals[indexPath.row].protein)
             fatTextField.text = String(loggedMeals[indexPath.row].fat)
-            /*
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.showFavouritesFood = false
-            }*/
         }
         else if selectedCellIndexPath.contains(indexPath){
             selectedCellIndexPath = selectedCellIndexPath.filter() { $0 != indexPath }
@@ -296,7 +271,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
             tableView.endUpdates()
         }
     }
-    
+    //Allows expanding of cells by changing cell height for specific rows
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if selectedCellIndexPath.contains(indexPath) {
             return selectedCellHeight
@@ -304,6 +279,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         return unselectedCellHeight
     }
     
+    ///Updates the table by re-fetching either a list of meals for that day, or the user's favourites
     private func updateTable(){
         if showFavouritesFood == true{
             let loggedMeals = ModelController().fetchFavouritesFood()
@@ -317,10 +293,9 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     }
 
     //MARK: - Add food button
-    @IBAction func addFoodToLog(_ sender: Any) {
+    @IBAction private func addFoodToLog(_ sender: Any) {
 
         if ((foodNameTextField.text != "") && (foodTimeField.text != "") && (carbsTextField.text != "") && (proteinTextField.text != "") && (fatTextField.text != "")){
-    
             ModelController().addMeal(
                     name: foodNameTextField.text!,
                     time: foodTimeField.text!,
@@ -337,5 +312,6 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
             fatTextField.text = ""
         }
     }
-
 }
+
+

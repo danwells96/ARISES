@@ -9,5 +9,4 @@ import UIKit
 import CoreData
 
 class Favourites: NSManagedObject {
-    
 }

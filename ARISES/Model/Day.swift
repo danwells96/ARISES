@@ -10,15 +10,14 @@ import UIKit
 import CoreData
 
 class Day: NSManagedObject {
-    //TODO: add guards so doesn't crash if empty (might not)
-    //TODO: check corner cases
     
     //MARK: - Glucose stats
+    ///Returns an optional tuple containing low, avg and high glucose values (as doubles) for that day or nil if no glucose logs exist
     var glucoseStats: (low: Double, average: Double, high: Double)?  {
         guard self.glucose?.anyObject() != nil else {
             return nil
         }
-        var tempLow = Double(0)
+        var tempLow = Double(200)
         var temp = Double(0)
         var tempHigh = Double(0)
         
@@ -35,6 +34,7 @@ class Day: NSManagedObject {
     }
 
     //MARK: - Meal stats
+    ///Returns an optional tuple containing total macros for that day or 0s if no meal objects found
     var foodStats: (totCarbs: Int32, totProtein: Int32, totFat: Int32)?  {
         guard self.meals?.anyObject() != nil else {
             return (0, 0, 0)
@@ -54,6 +54,7 @@ class Day: NSManagedObject {
 
     }
     //MARK: - Misc stats
+    ///Returns the total duration of stress logs for the day as a string in HH:mm format or "0" if no logs exist
     var stressDuration: String{
         guard self.stress?.anyObject() != nil else{
             return "0"
@@ -67,6 +68,7 @@ class Day: NSManagedObject {
         timeFormatter.dateFormat = "HH:mm"
         return timeFormatter.string(from: date)
     }
+    ///Returns the total duration of illness logs for the day as a string in HH:mm format or "0" if no logs exist
     var illnessDuration: String{
         guard self.illness?.anyObject() != nil else{
             return "0"
@@ -82,6 +84,7 @@ class Day: NSManagedObject {
     }
     
     //MARK: - Tags e.g. Hypo/Hyper
+    ///Returns an optional array of strings, containing any tags ("hypo"/"hyper") that exist in the glucose logs, an empty array if none exist, and Nil if no glucose logs exist.
     var glucoseTags: [String]? {
         guard self.glucose?.anyObject() != nil else{
             return nil
@@ -103,10 +106,7 @@ class Day: NSManagedObject {
         if trackHyper == true{
             tagArray.append("Hyper")
         }
-        
         return tagArray
     }
-    
-    
-    
+
 }

@@ -10,7 +10,6 @@
 		18BAA0D1968514F524648FEA /* libPods-ARISES.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93597E8CC10506F00FC893FB /* libPods-ARISES.a */; };
 		370F921520BD61C90081C570 /* Glucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F921420BD61C90081C570 /* Glucose.swift */; };
 		370F921720BD637B0081C570 /* Insulin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F921620BD637B0081C570 /* Insulin.swift */; };
-		371070D620AD904300365AC4 /* ExerciseIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 371070D520AD904300365AC4 /* ExerciseIcon.png */; };
 		3712A23A20C566DD006DB63C /* Illness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3712A23920C566DD006DB63C /* Illness.swift */; };
 		3712A23C20C566FF006DB63C /* Stress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3712A23B20C566FF006DB63C /* Stress.swift */; };
 		3718079520B818ED00D7C81A /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718079420B818ED00D7C81A /* Exercise.swift */; };
@@ -23,31 +22,16 @@
 		3718B86220AC9A60006F1A47 /* ViewControllerHealth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718B86120AC9A60006F1A47 /* ViewControllerHealth.swift */; };
 		3718B86420AC9A75006F1A47 /* ViewControllerGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718B86320AC9A75006F1A47 /* ViewControllerGraph.swift */; };
 		3718B86620AC9CE3006F1A47 /* ViewControllerMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718B86520AC9CE3006F1A47 /* ViewControllerMain.swift */; };
-		3718BA2820C95F070023F10E /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 3718BA2720C95F060023F10E /* settings.png */; };
-		3718BA2C20C981810023F10E /* Screen Shot 2018-06-07 at 15.55.07 (1).png in Resources */ = {isa = PBXBuildFile; fileRef = 3718BA2B20C981800023F10E /* Screen Shot 2018-06-07 at 15.55.07 (1).png */; };
 		375587C6209E086C00594532 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375587C5209E086C00594532 /* AppDelegate.swift */; };
 		375587CB209E086C00594532 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 375587C9209E086C00594532 /* Main.storyboard */; };
 		375587CD209E086D00594532 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 375587CC209E086D00594532 /* Assets.xcassets */; };
 		375587D0209E086D00594532 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 375587CE209E086D00594532 /* LaunchScreen.storyboard */; };
-		375CD7A620BC71E100EC09AE /* star black transparency.png in Resources */ = {isa = PBXBuildFile; fileRef = 375CD7A520BC71E100EC09AE /* star black transparency.png */; };
-		378658AC20AC659D007C13B2 /* Star.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 378658AB20AC659C007C13B2 /* Star.jpg */; };
 		378658AE20AC675D007C13B2 /* ViewControllerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378658AD20AC675D007C13B2 /* ViewControllerTableViewCell.swift */; };
 		37A9ACE520B45025001B16BB /* ChartBGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A9ACE420B45025001B16BB /* ChartBGView.swift */; };
 		37A9ACE720B45062001B16BB /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A9ACE620B45062001B16BB /* CustomView.swift */; };
 		37B3716220B47EF20048A942 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B3716120B47EF20048A942 /* PersistenceService.swift */; };
 		37B568BB20B485600014F735 /* ARISES.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 37B568B920B485600014F735 /* ARISES.xcdatamodeld */; };
-		37BF2B3320C81A39009CD3FB /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF2B2E20C81A37009CD3FB /* heart.png */; };
-		37BF2B3420C81A39009CD3FB /* advice.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF2B2F20C81A37009CD3FB /* advice.png */; };
-		37BF2B3520C81A39009CD3FB /* exercise2.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF2B3020C81A38009CD3FB /* exercise2.png */; };
-		37BF2B3620C81A39009CD3FB /* apple.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF2B3120C81A38009CD3FB /* apple.png */; };
-		37BF2B3720C81A39009CD3FB /* blood.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF2B3220C81A39009CD3FB /* blood.png */; };
 		37CFC5D120BEDD250051FDFC /* IndicatorControllerFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CFC5D020BEDD250051FDFC /* IndicatorControllerFood.swift */; };
-		37DD060B20C6DB9600BC7BD7 /* hypo.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DD060A20C6DB9600BC7BD7 /* hypo.png */; };
-		37DD060D20C6DB9D00BC7BD7 /* hyper.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DD060C20C6DB9D00BC7BD7 /* hyper.png */; };
-		37DD060F20C6DBA300BC7BD7 /* exercise.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DD060E20C6DBA300BC7BD7 /* exercise.png */; };
-		37DD061120C6DBB100BC7BD7 /* ill.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DD061020C6DBB100BC7BD7 /* ill.png */; };
-		37DD061320C6DBB700BC7BD7 /* stressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DD061220C6DBB700BC7BD7 /* stressed.png */; };
-		37E140DD20B311EA00688EC0 /* greyStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E140DC20B311EA00688EC0 /* greyStar.png */; };
 		BB0C55C520BC66E9003F46CE /* Favourites.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0C55BE20BC66E9003F46CE /* Favourites.swift */; };
 		BBF1205720D02736002ACBC7 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BBF1205620D02736002ACBC7 /* Settings.bundle */; };
 		BBF1205920D029B2002ACBC7 /* SettingsBundleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF1205820D029B2002ACBC7 /* SettingsBundleHelper.swift */; };
@@ -69,7 +53,6 @@
 /* Begin PBXFileReference section */
 		370F921420BD61C90081C570 /* Glucose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Glucose.swift; sourceTree = "<group>"; };
 		370F921620BD637B0081C570 /* Insulin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insulin.swift; sourceTree = "<group>"; };
-		371070D520AD904300365AC4 /* ExerciseIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ExerciseIcon.png; sourceTree = "<group>"; };
 		3712A23920C566DD006DB63C /* Illness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Illness.swift; sourceTree = "<group>"; };
 		3712A23B20C566FF006DB63C /* Stress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stress.swift; sourceTree = "<group>"; };
 		371470F820A082A600AB76EF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -83,34 +66,19 @@
 		3718B86120AC9A60006F1A47 /* ViewControllerHealth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerHealth.swift; sourceTree = "<group>"; };
 		3718B86320AC9A75006F1A47 /* ViewControllerGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerGraph.swift; sourceTree = "<group>"; };
 		3718B86520AC9CE3006F1A47 /* ViewControllerMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerMain.swift; sourceTree = "<group>"; };
-		3718BA2720C95F060023F10E /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
-		3718BA2B20C981800023F10E /* Screen Shot 2018-06-07 at 15.55.07 (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2018-06-07 at 15.55.07 (1).png"; sourceTree = "<group>"; };
 		375587C2209E086C00594532 /* ARISES.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARISES.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		375587C5209E086C00594532 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		375587CA209E086C00594532 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		375587CC209E086D00594532 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		375587CF209E086D00594532 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		375587D1209E086D00594532 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		375CD7A520BC71E100EC09AE /* star black transparency.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star black transparency.png"; sourceTree = "<group>"; };
-		378658AB20AC659C007C13B2 /* Star.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Star.jpg; sourceTree = "<group>"; };
 		378658AD20AC675D007C13B2 /* ViewControllerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTableViewCell.swift; sourceTree = "<group>"; };
 		37A9ACE420B45025001B16BB /* ChartBGView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartBGView.swift; sourceTree = "<group>"; };
 		37A9ACE620B45062001B16BB /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		37B3716120B47EF20048A942 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		37B568BA20B485600014F735 /* ARISES.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ARISES.xcdatamodel; sourceTree = "<group>"; };
-		37BF2B2E20C81A37009CD3FB /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
-		37BF2B2F20C81A37009CD3FB /* advice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = advice.png; sourceTree = "<group>"; };
-		37BF2B3020C81A38009CD3FB /* exercise2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exercise2.png; sourceTree = "<group>"; };
-		37BF2B3120C81A38009CD3FB /* apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = apple.png; sourceTree = "<group>"; };
-		37BF2B3220C81A39009CD3FB /* blood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blood.png; sourceTree = "<group>"; };
 		37CFC5B820BED6DF0051FDFC /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		37CFC5D020BEDD250051FDFC /* IndicatorControllerFood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorControllerFood.swift; sourceTree = "<group>"; };
-		37DD060A20C6DB9600BC7BD7 /* hypo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hypo.png; sourceTree = "<group>"; };
-		37DD060C20C6DB9D00BC7BD7 /* hyper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hyper.png; sourceTree = "<group>"; };
-		37DD060E20C6DBA300BC7BD7 /* exercise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exercise.png; sourceTree = "<group>"; };
-		37DD061020C6DBB100BC7BD7 /* ill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ill.png; sourceTree = "<group>"; };
-		37DD061220C6DBB700BC7BD7 /* stressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stressed.png; sourceTree = "<group>"; };
-		37E140DC20B311EA00688EC0 /* greyStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greyStar.png; sourceTree = "<group>"; };
 		863CAE274477E894C42E1381 /* Pods-ARISES.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARISES.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARISES/Pods-ARISES.debug.xcconfig"; sourceTree = "<group>"; };
 		93597E8CC10506F00FC893FB /* libPods-ARISES.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ARISES.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB0C55BE20BC66E9003F46CE /* Favourites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favourites.swift; sourceTree = "<group>"; };
@@ -203,23 +171,7 @@
 				375587C5209E086C00594532 /* AppDelegate.swift */,
 				37B3716120B47EF20048A942 /* PersistenceService.swift */,
 				375587CE209E086D00594532 /* LaunchScreen.storyboard */,
-				375CD7A520BC71E100EC09AE /* star black transparency.png */,
 				375587CC209E086D00594532 /* Assets.xcassets */,
-				37BF2B2F20C81A37009CD3FB /* advice.png */,
-				37BF2B3120C81A38009CD3FB /* apple.png */,
-				37BF2B3220C81A39009CD3FB /* blood.png */,
-				37BF2B3020C81A38009CD3FB /* exercise2.png */,
-				37BF2B2E20C81A37009CD3FB /* heart.png */,
-				3718BA2720C95F060023F10E /* settings.png */,
-				37DD060A20C6DB9600BC7BD7 /* hypo.png */,
-				37DD060C20C6DB9D00BC7BD7 /* hyper.png */,
-				3718BA2B20C981800023F10E /* Screen Shot 2018-06-07 at 15.55.07 (1).png */,
-				37DD061020C6DBB100BC7BD7 /* ill.png */,
-				37DD061220C6DBB700BC7BD7 /* stressed.png */,
-				37DD060E20C6DBA300BC7BD7 /* exercise.png */,
-				371070D520AD904300365AC4 /* ExerciseIcon.png */,
-				37E140DC20B311EA00688EC0 /* greyStar.png */,
-				378658AB20AC659C007C13B2 /* Star.jpg */,
 				BBF1205820D029B2002ACBC7 /* SettingsBundleHelper.swift */,
 			);
 			path = "Supporting Files";
@@ -316,26 +268,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37BF2B3720C81A39009CD3FB /* blood.png in Resources */,
-				378658AC20AC659D007C13B2 /* Star.jpg in Resources */,
-				37DD061120C6DBB100BC7BD7 /* ill.png in Resources */,
-				3718BA2C20C981810023F10E /* Screen Shot 2018-06-07 at 15.55.07 (1).png in Resources */,
-				37DD060F20C6DBA300BC7BD7 /* exercise.png in Resources */,
-				37DD060D20C6DB9D00BC7BD7 /* hyper.png in Resources */,
-				37DD061320C6DBB700BC7BD7 /* stressed.png in Resources */,
-				3718BA2820C95F070023F10E /* settings.png in Resources */,
 				375587D0209E086D00594532 /* LaunchScreen.storyboard in Resources */,
-				375CD7A620BC71E100EC09AE /* star black transparency.png in Resources */,
-				37BF2B3320C81A39009CD3FB /* heart.png in Resources */,
-				37DD060B20C6DB9600BC7BD7 /* hypo.png in Resources */,
 				BBF1205720D02736002ACBC7 /* Settings.bundle in Resources */,
 				375587CD209E086D00594532 /* Assets.xcassets in Resources */,
 				375587CB209E086C00594532 /* Main.storyboard in Resources */,
-				37E140DD20B311EA00688EC0 /* greyStar.png in Resources */,
-				371070D620AD904300365AC4 /* ExerciseIcon.png in Resources */,
-				37BF2B3520C81A39009CD3FB /* exercise2.png in Resources */,
-				37BF2B3620C81A39009CD3FB /* apple.png in Resources */,
-				37BF2B3420C81A39009CD3FB /* advice.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

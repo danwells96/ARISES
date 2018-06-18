@@ -11,12 +11,10 @@ import CoreData
 
 class ModelController {
     
-    //TODO: - To Do List
-    //TODO: Abstract functions to apply to food, exercise and days etc.
-    //TODO: Test and validate/tighten up corner cases for data values
-    //TODO: Ensure optionals never cause exceptions e.g. with Guard
-    
+    //TODO: - Abstract functions to apply to food, exercise and days etc.
+
     //MARK: - Basic date formatting functions
+    //Returns strings
     func formatDateToDay(date: Date) -> String{
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
@@ -35,8 +33,11 @@ class ModelController {
         return timeFormatter.string(from: date)
     }
 
-    
     //MARK: - Private functions
+    /**
+     Checks for an existing favourites object
+     - Returns: Existing favourites object or a newly created favourites object if none existed
+     */
     private func checkForExistingFavourites() -> Favourites{
         let favFetch: NSFetchRequest<Favourites> = Favourites.fetchRequest()
         let checkFav = try? PersistenceService.context.fetch(favFetch)
@@ -54,9 +55,13 @@ class ModelController {
         return checkFav![0]
     }
 
+    /**
+     Checks for an existing Day log or creates one
+     - parameter day: Date of day log to be found (type Date)
+     - returns: Day object with date (not time) corresponding to input date, or a newly created Day object for that date
+    */
     func findOrMakeDay(day: Date) -> Day{
         let day = formatDateToDay(date: day)
-        //predicate date
         let dateFetch: NSFetchRequest<Day> = Day.fetchRequest()
         dateFetch.predicate = NSPredicate(format: "date == %@", day)
         let checkForDay = try? PersistenceService.context.fetch(dateFetch)
@@ -73,10 +78,21 @@ class ModelController {
         }
         print("Error finding or creating day log")
         return checkForDay![0]
-        //Should never happen and will almost certainly crash if it does
+        //Should never happen
     }
     
     //MARK: - Data object setting (add/toggle)
+    
+    /**
+     Adds a new meal log to core data
+     - parameter name: String, Name of meal to add
+     - parameter time: String, Time of meal consumed
+     - parameter date: Date, Date of meal to add
+     - parameter carbs: Int32, Total carbs (grams) of meal to add
+     - parameter fat: Int32, Total fat (grams) of meal to add
+     - parameter protein: Int32, Total protein (grams) of meal to add
+     - note: Posts a notification "FoodAdded" which is picked up by viewControllerGraph and IndicatorControllerFood to update views
+    */
     func addMeal(name: String, time: String, date: Date, carbs: Int32, fat: Int32, protein: Int32){
         print("meal added")
         let currentDay = findOrMakeDay(day: date)
@@ -94,6 +110,15 @@ class ModelController {
 
     }
     
+    /**
+     Adds a new exercise log to core data
+     - parameter name: String, Name of exercise to add
+     - parameter time: String, Time of exercise done
+     - parameter date: Date, Date of exercise to add
+     - parameter intensity: String, inensity of exercise to add
+     - parameter duration: String, duration of exercise to add
+     - note: Posts a notification "ExerciseAdded" which is picked up by viewControllerGraph to update views
+     */
     func addExercise(name: String, time: String, date: Date, intensity: String, duration: String){
         
         let currentDay = findOrMakeDay(day: date)
@@ -109,6 +134,12 @@ class ModelController {
         nc.post(name: Notification.Name("ExerciseAdded"), object: nil)
     }
     
+    /**
+     Adds a new glucose log to core data
+     - parameter value: Double, Value of glucose in mM/L
+     - parameter time: String, Time of glucose log
+     - parameter date: Date, Date of glucose log to add
+     */
     func addGlucose(value: Double, time: String, date: Date){
         
         let currentDay = findOrMakeDay(day: date)
@@ -117,10 +148,16 @@ class ModelController {
         newGlucose.time = time
         currentDay.addToGlucose(newGlucose)
         PersistenceService.saveContext()
-        
-        
+
     }
     
+    /**
+     Adds a new insulin log to core data
+     - parameter units: Double, Insulin units injected
+     - parameter time: String, Time of insulin injection
+     - parameter date: Date, Date of insulin injected
+     - note: Posts a notification "InsulinAdded" which is picked up by viewControllerGraph to update views
+     */
     func addInslin(units: Double, time: String, date: Date){
         
         let currentDay = findOrMakeDay(day: date)
@@ -133,6 +170,11 @@ class ModelController {
         let nc = NotificationCenter.default
         nc.post(name: Notification.Name("InsulinAdded"), object: nil)
     }
+    
+    /**
+     Toggles whether a meal is favourited in core data
+     - parameter item: Meals, Meals object to toggle
+     */
     func toggleFavouriteFood(item: Meals){
         
         let favList = checkForExistingFavourites()
@@ -149,6 +191,10 @@ class ModelController {
         PersistenceService.saveContext()
     }
     
+    /**
+     Toggles whether an exercise is favourited in core data
+     - parameter item: Exercise, Exercise object to toggle
+     */
     func toggleFavouriteExercise(item: Exercise){
         
         let favList = checkForExistingFavourites()
@@ -166,6 +212,10 @@ class ModelController {
         
     }
     
+    /**
+     Toggles whether a day is favourited in core data
+     - parameter item: Day, Day object to toggle
+     */
     func toggleFavouriteDay(item: Day){
         
         let favList = checkForExistingFavourites()
@@ -183,6 +233,11 @@ class ModelController {
         
     }
     
+    /**
+     Adds a stress log to core data
+     - parameter start: Date, Date containing start time of a stress log
+     - parameter end: Date, Date containing end time of a stress log
+     */
     func addStress(start: Date, end: Date){
         
         let currentDay = findOrMakeDay(day: start)
@@ -192,6 +247,11 @@ class ModelController {
         currentDay.addToStress(newStress)
         PersistenceService.saveContext()
     }
+    /**
+     Adds an illness log to core data
+     - parameter start: Date, Date containing start time of an illness log
+     - parameter end: Date, Date containing end time of an illness log
+     */
     func addIllness(start: Date, end: Date){
         
         let currentDay = findOrMakeDay(day: start)
@@ -204,8 +264,7 @@ class ModelController {
     
     //MARK: - Data object getting (fetch/return)
 
-    
-    //Returns true if item is favourites - currently only meals
+    ///Returns true if item (Meals object) is in favourites
     func itemInFavouritesFood(item: Meals) -> Bool{
         
         let favList = checkForExistingFavourites()
@@ -217,6 +276,7 @@ class ModelController {
         return false
     }
     
+    ///Returns true if item (Exercise object) is in favourites
     func itemInFavouritesExercise(item: Exercise) -> Bool{
         
         let favList = checkForExistingFavourites()
@@ -228,6 +288,7 @@ class ModelController {
         return false
     }
     
+    ///Returns true if item (Day object) is in favourites
     func itemInFavouritesDay(item: Day) -> Bool{
         
         let favList = checkForExistingFavourites()
@@ -238,7 +299,11 @@ class ModelController {
         }
         return false
     }
-    //Currently only fetches meals
+
+    /**
+     Fetches an array of Meals objects that are favourited, sorted by name
+     - returns: Array of favourited Meals objects sorted by name or an empty array if no favourite Meals exist
+    */
     func fetchFavouritesFood() -> [Meals]{
         let fetchRequest: NSFetchRequest<Meals> = Meals.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "favourite != nil")
@@ -256,6 +321,10 @@ class ModelController {
         }
     }
     
+    /**
+     Fetches an array of Exercise objects that are favourited, sorted by name
+     - returns: Array of favourited Exercise objects sorted by name or an empty array if no favourite Exercise exist
+     */
     func fetchFavouritesExercise() -> [Exercise]{
         let fetchRequest: NSFetchRequest<Exercise> = Exercise.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "favourite != nil")
@@ -272,6 +341,10 @@ class ModelController {
             return foundExercise!
         }
     }
+    /**
+     Fetches an array of Day objects that are favourited, sorted by date
+     - returns: Array of favourited Day objects sorted by date or an empty array if no favourite Day objects exist
+     */
     func fetchFavouritesDays() -> [Day]{
         let fetchRequest: NSFetchRequest<Day> = Day.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "favourite != nil")
@@ -289,11 +362,15 @@ class ModelController {
         }
     }
     
+    /**
+     Fetches an array of Meals objects, sorted by time
+     - parameter day: Date, date of day object whose meals are to be fetched
+     - returns: Array of Meals objects sorted by time or an empty array if no Meals objects exist
+     */
     func fetchMeals(day: Date) -> [Meals]{
         let fetchRequest: NSFetchRequest<Meals> = Meals.fetchRequest()
         let dayToShow = ModelController().formatDateToDay(date: day)
         fetchRequest.predicate = NSPredicate(format: "day.date == %@", dayToShow)
-        //Sorts by short time - currently not correctly
         let sectionSortDescriptor = NSSortDescriptor(key: "time", ascending: true)
         let sortDescriptors = [sectionSortDescriptor]
         fetchRequest.sortDescriptors = sortDescriptors
@@ -307,6 +384,11 @@ class ModelController {
         }
     }
     
+    /**
+     Fetches an array of Glucose objects, sorted by time
+     - parameter day: Date, date of day object whose glucose logs are to be fetched
+     - returns: Array of Glucose objects sorted by time or an empty array if no Glucose objects exist
+     */
     func fetchGlucose(day: Date) -> [Glucose]{
         let fetchRequest: NSFetchRequest<Glucose> = Glucose.fetchRequest()
         let dayToShow = formatDateToDay(date: day)
@@ -325,14 +407,15 @@ class ModelController {
         }
     }
     
-    
-    
-    
+    /**
+     Fetches an array of Insulin objects, sorted by time
+     - parameter day: Date, date of day object whose insulin logs are to be fetched
+     - returns: Array of Insulin objects sorted by time or an empty array if no Insulin objects exist
+     */
     func fetchInsulin(day: Date) -> [Insulin]{
         let fetchRequest: NSFetchRequest<Insulin> = Insulin.fetchRequest()
         let dayToShow = formatDateToDay(date: day)
         fetchRequest.predicate = NSPredicate(format: "day.date == %@", dayToShow)
-        //Sorts by short time - currently not correctly
         let sectionSortDescriptor = NSSortDescriptor(key: "time", ascending: true)
         let sortDescriptors = [sectionSortDescriptor]
         fetchRequest.sortDescriptors = sortDescriptors
@@ -346,6 +429,11 @@ class ModelController {
         }
     }
     
+    /**
+     Fetches an array of Exercise objects, sorted by time
+     - parameter day: Date, date of day object whose exercise logs are to be fetched
+     - returns: Array of Exercise  objects sorted by time or an empty array if no Exercise objects exist
+     */
     func fetchExercise(day: Date) -> [Exercise]{
         let fetchRequest: NSFetchRequest<Exercise> = Exercise.fetchRequest()
         let dayToShow = formatDateToDay(date: day)
@@ -363,7 +451,13 @@ class ModelController {
         }
     }
     
-    //TOFIX: - Predicate compares strings -> Doesn't work for most date formats
+
+    /**
+     Fetches an array of Day objects, sorted by date
+     - parameter degreeOfTimeTravel: Int, number of days in the past to show
+     - returns: Array of Day objects sorted by date or an empty array if no Day objects exist
+     - bug: Predicate compares strings -> Doesn't work for most date formats, so filtering by number of previous days has been commented out.
+     */
     func fetchDay(degreeOfTimeTravel: Int) -> [Day]{
         let fetchRequest: NSFetchRequest<Day> = Day.fetchRequest()
         //let oldestDay = Calendar.current.date(byAdding: .day, value: degreeOfTimeTravel, to: Date())

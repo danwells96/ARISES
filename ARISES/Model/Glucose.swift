@@ -11,6 +11,7 @@ import UIKit
 import CoreData
 
 class Glucose: NSManagedObject {
+    ///Returns an optional string. "hypo" if below 3.9, "hyper" if above 11.1 *Note the case of the strings*
     var tag: String? {
         get {
             if(value < 3.9){
