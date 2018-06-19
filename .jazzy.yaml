@@ -9,11 +9,19 @@ theme: apple
 skip_undocumented: false
 hide_documentation_coverage: false
 min_acl: private
+documentation: DocFiles/*.md
+abstract: DocFiles/Sections/*.md
 xcodebuild_arguments:
 - -scheme
 - ARISES
 
+
 custom_categories:
+
+  - name: Documentation
+    children:
+    - Design History
+
   - name: Model
     children:
     - ModelController
