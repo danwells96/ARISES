@@ -2,7 +2,6 @@
 //  ViewControllerGraph.swift
 //  ARISES
 //  This file deals with everything graph related. Base chart library (Podfile): https://github.com/i-schuetz/SwiftCharts.git
-
 //  Created by Ryan Armiger on 16/05/2018.
 //  Copyright © 2018 Ryan Armiger. All rights reserved.
 //
