@@ -74,7 +74,11 @@ It takes no parameters but the output of sorting the glucose array on certain da
 
 * **Returns:** An UIView with a drawn range bar
 
-A view it creates would be: ![image of range bar](rangeBar.png)
+A view it creates would be: 
+<p align="center">
+	<img src="rangeBar.png" alt="Image of range bar"/>
+</p>
+
 
 
 ## Main graph section
