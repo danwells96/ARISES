@@ -39,9 +39,9 @@
 
 ## ChartBase Setup
 The bifocal display consists of three parts: 
-  * Leftside view containers
+  * Leftside view container
   * Main graph section
-  * Rightside view containers
+  * Rightside view container
 
 ## Left & Right Sideview Containers
 Each of the side view containers has three subviews of type CustomView (UIView) which are customized to show colours bands as a background. 
@@ -49,7 +49,7 @@ Each of the side view containers has three subviews of type CustomView (UIView) 
 The same colour bands are used on the main chart as well thus *ChartBGView.swift* follows the same logic as the *CustomView.swift* in term of filling the background color bands. But *CustomView.swift* is also used to draw range bars on each sideview using calculated values for glucose values storing in core data on a day.
 
 ###### Bands calculations
-The bands are calculated based on glucose level. If the total height of the Custom View is considered as an equivalent glucose level of 20 (mM/)L  then a 'safe' range for patients to stay in would be between 4 and 10. Above 10 would be classified as a hyper and below 4 would be seen as a hypo.
+The bands are calculated based on glucose level. If the total height of the Custom View is considered as an equivalent glucose level of 20 (mM/)L  then a 'safe'[1] range for patients to stay in would be between 4 and 10. Above 10 would be classified as a hyper and below 4 would be seen as a hypo.
 
 Therefore, the top half of chart would be in **high** range, the bottom 4/20 (20%) of chart would be in **low** range and 6/20 (~30%)section in the middle would be of normal. 
 
@@ -167,3 +167,4 @@ Modifications are made on top of an iOS chart library which can be found here: h
 The touchHandler detects where the finger tapped on the screen and compares the x-position of the touch with x coordinates of popups it stored. If they match or close to a certain degree the infoBubble is enabled which prints a message to user. If touches happens outside screen frame it returns the edge cases.
 
 
+[1]-"Hypoglycemia". National Institute of Diabetes and Digestive and Kidney Diseases. October 2008. Archived from the original on 1 July 2015. Retrieved 28 June 2015.
