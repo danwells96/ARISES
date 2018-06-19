@@ -36,7 +36,7 @@ class Day: NSManagedObject {
     }
 
     //MARK: - Meal stats
-    ///Returns an optional tuple containing total macros for that day or 0s if no meal objects found
+    ///Returns an optional tuple containing total macros for that day or (0,0,0) if no meal objects found
     var foodStats: (totCarbs: Int32, totProtein: Int32, totFat: Int32)?  {
         guard self.meals?.anyObject() != nil else {
             return (0, 0, 0)
