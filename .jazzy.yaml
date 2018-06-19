@@ -1,0 +1,74 @@
+
+module: ARISES
+author: Ryan Armiger, Becky Elkington, Xiaoyu Ma, Dan Wells
+github_url: https://github.com/danwells96/ARISES
+
+clean: true
+exclude: [Packages]
+theme: apple
+skip_undocumented: false
+hide_documentation_coverage: false
+min_acl: private
+xcodebuild_arguments:
+- -scheme
+- ARISES
+
+custom_categories:
+  - name: Model
+    children:
+    - ModelController
+    - PersistenceService
+    - Insulin
+    - Glucose
+    - Day
+    - Favourites
+    - Meals
+    - Exercise
+    - Illness
+    - Stress
+
+  - name: Graph
+    children:
+    - ViewControllerGraph
+    - ChartBGView
+    - CustomView
+
+  - name: Main View
+    children:
+    - ViewControllerMain
+    - MainViewState
+
+  - name: Food Domain
+    children:
+    - ViewControllerFood
+    - IndicatorControllerFood
+
+  - name: Exercise Domain
+    children:
+    - ViewControllerExercise
+
+  - name: Health Domain
+    children:
+    - ViewControllerHealth
+
+  - name: Advice Domain
+    children:
+    - ViewControllerAdvice
+
+  - name: Tables
+    children:
+    - ViewControllerTableViewCell
+    - tableCellDelegate
+
+  - name: Settings
+    children:
+    - SettingsBundleHelper
+    - ChartBGView
+    - CustomView
+
+  - name: Extensions
+    children:
+    - UIView
+    - ChartPointEllipseView
+
+
