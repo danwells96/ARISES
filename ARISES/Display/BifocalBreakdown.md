@@ -8,9 +8,9 @@
 ### Functionalities
 * The most important infomation gets displayed on the main graph while less relevant data is displayed on the side views. 
 
-* Scrolling across x-axis would allow users to access detailed data on a certain day.
+* Scrolling left and right allows users to change the day's data which is being viewed in more detail.
 
-* The *'Add Insulin'* icon on the top right corner allows user to add insulin.
+* The *Add Insulin* icon on the top right corner allows user to add insulin.
 
 * The *Settings* icon on the top left allows the user to go to the settings page and make changes to the application.
 
