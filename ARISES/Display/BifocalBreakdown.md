@@ -2,7 +2,7 @@
 <p align="center">
 	<img src="Bifocal.png" alt="Image of Bifocal"/>
 </p>
-![Image of Bifocal](Bifocal.png)
+
 
 
 ### Functionalities
@@ -59,7 +59,10 @@ This function draws a rectangle with orgin (0,0) - top left corner, and extends 
 * **Returns:**
 This would give the background of image below (without the range bars).
 
-![Image of sideview](sideview.png)
+<p align="center">
+	<img src="sideview.png" alt="Image of sideview"/>
+</p>
+
     
 #### *drawRangeBar()*
 * **Description:**
