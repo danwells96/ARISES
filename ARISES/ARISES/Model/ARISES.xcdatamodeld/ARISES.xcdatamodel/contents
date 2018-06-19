@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17E202" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Day" representedClassName=".Day" syncable="YES" codeGenerationType="category">
+        <attribute name="date" attributeType="String" syncable="YES"/>
+        <relationship name="exercise" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Exercise" inverseName="day" inverseEntity="Exercise" syncable="YES"/>
+        <relationship name="favourite" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Favourites" inverseName="days" inverseEntity="Favourites" syncable="YES"/>
+        <relationship name="glucose" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Glucose" inverseName="day" inverseEntity="Glucose" syncable="YES"/>
+        <relationship name="illness" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Illness" inverseName="day" inverseEntity="Illness" syncable="YES"/>
+        <relationship name="insulin" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Insulin" inverseName="day" inverseEntity="Insulin" syncable="YES"/>
+        <relationship name="meals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Meals" inverseName="day" inverseEntity="Meals" syncable="YES"/>
+        <relationship name="stress" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Stress" inverseName="day" inverseEntity="Stress" syncable="YES"/>
+    </entity>
+    <entity name="Exercise" representedClassName=".Exercise" syncable="YES" codeGenerationType="category">
+        <attribute name="duration" attributeType="String" syncable="YES"/>
+        <attribute name="intensity" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="time" attributeType="String" syncable="YES"/>
+        <relationship name="day" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="exercise" inverseEntity="Day" syncable="YES"/>
+        <relationship name="favourite" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Favourites" inverseName="exercise" inverseEntity="Favourites" syncable="YES"/>
+    </entity>
+    <entity name="Favourites" representedClassName=".Favourites" syncable="YES" codeGenerationType="category">
+        <relationship name="days" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Day" inverseName="favourite" inverseEntity="Day" syncable="YES"/>
+        <relationship name="exercise" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Exercise" inverseName="favourite" inverseEntity="Exercise" syncable="YES"/>
+        <relationship name="meals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Meals" inverseName="favourite" inverseEntity="Meals" syncable="YES"/>
+    </entity>
+    <entity name="Glucose" representedClassName=".Glucose" syncable="YES" codeGenerationType="category">
+        <attribute name="time" attributeType="String" syncable="YES"/>
+        <attribute name="value" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="day" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="glucose" inverseEntity="Day" syncable="YES"/>
+    </entity>
+    <entity name="Illness" representedClassName=".Illness" syncable="YES" codeGenerationType="category">
+        <attribute name="end" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="start" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="day" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="illness" inverseEntity="Day" syncable="YES"/>
+    </entity>
+    <entity name="Insulin" representedClassName=".Insulin" syncable="YES" codeGenerationType="category">
+        <attribute name="time" attributeType="String" syncable="YES"/>
+        <attribute name="units" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="day" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="insulin" inverseEntity="Day" syncable="YES"/>
+    </entity>
+    <entity name="Meals" representedClassName=".Meals" syncable="YES" codeGenerationType="category">
+        <attribute name="carbs" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="fat" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="protein" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="time" attributeType="String" syncable="YES"/>
+        <relationship name="day" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="meals" inverseEntity="Day" syncable="YES"/>
+        <relationship name="favourite" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Favourites" inverseName="meals" inverseEntity="Favourites" syncable="YES"/>
+    </entity>
+    <entity name="Stress" representedClassName=".Stress" syncable="YES" codeGenerationType="category">
+        <attribute name="end" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="start" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="day" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="stress" inverseEntity="Day" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Day" positionX="-153" positionY="11" width="128" height="163"/>
+        <element name="Exercise" positionX="97" positionY="-115" width="128" height="133"/>
+        <element name="Favourites" positionX="-153" positionY="-232" width="128" height="88"/>
+        <element name="Glucose" positionX="97" positionY="207" width="128" height="88"/>
+        <element name="Illness" positionX="99" positionY="551" width="128" height="88"/>
+        <element name="Insulin" positionX="97" positionY="326" width="128" height="88"/>
+        <element name="Meals" positionX="97" positionY="32" width="128" height="148"/>
+        <element name="Stress" positionX="99" positionY="443" width="128" height="88"/>
+    </elements>
+</model>
