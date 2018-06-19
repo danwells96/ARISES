@@ -10,13 +10,13 @@
 
 * Scrolling across x-axis would allow users to access detailed data on a certain day.
 
-* The icon on the top right corner allows user to add insulin
+* The *'Add Insulin'* icon on the top right corner allows user to add insulin.
 
-* The settings icon on the top left allow user to go to the settings page and make changes
+* The settings icon on the top left allows the user to go to the settings page and make changes to the application.
 
-* DatePicker allows user the current date they are visulising. When tapped user can go to a day in the past.
+* DatePicker allows user the current date they are visualising. When tapped user can navigate to another day.
 
-* When graph is currently not on today, tap on datePicker where the default popup date is set to today and click on that would take the user back to today.
+* When the graph is currently not on today, tap on datePicker where the default popup date is set to today and click on that would take the user back to today.
 
 * **The main graph:** 
   * shows monitored glucose level on a day (to be taken from patients' wearables). To keep the graph area as clean as possible the time interval displayed on the x axis is set to 6 hours.
