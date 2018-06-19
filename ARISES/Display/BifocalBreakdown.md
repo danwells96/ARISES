@@ -12,26 +12,29 @@
 
 * The *'Add Insulin'* icon on the top right corner allows user to add insulin.
 
-* The settings icon on the top left allows the user to go to the settings page and make changes to the application.
+* The *Settings* icon on the top left allows the user to go to the settings page and make changes to the application.
 
-* DatePicker allows user the current date they are visualising. When tapped user can navigate to another day.
+* *DatePicker* allows user the current date they are visualising. When tapped user can navigate to another day.
 
-* When the graph is currently not on today, tap on datePicker where the default popup date is set to today and click on that would take the user back to today.
+* When the graph is currently not on today, tap on *DatePicker* where the default popup date is set to today and click on that would take the user back to today.
 
 * **The main graph:** 
-  * shows monitored glucose level on a day (to be taken from patients' wearables). To keep the graph area as clean as possible the time interval displayed on the x axis is set to 6 hours.
+  * Shows monitored glucose level on a day (to be taken from patients' wearables).
   
-  * it pops daily meals, execises and insulin dosage on the main graph instantly. Users can keep track on what time they did those activities. 
+  * To keep the graph area as clean as possible the time interval displayed on the x axis is set to 6 hours.
   
-  * Mesages of detailed information can be obtained when points are tapped. 
+  * Daily meals, execises and insulin dosage are updated on the main graph as soon as they are logged. Users can keep track on what time they did those activities. 
+  
+  * Messages of detailed information can be obtained when points are tapped. 
 
-    * A popup message saying the amount of carbs, protein and fats come with each meal would show when you tap on a meal point. 
+    * A popup message displaying the amount of carbs, protein and fats associated with each meal will appear when you tap on a meal point. 
 
-    * A message for exercise would include exercise done, time it's done and intensity. 
+    * A message for exercise would include exercise's name, duration and intensity. 
 
-    * An insulin message tells what time and how many units of insulin are given.
+    * An insulin message states how many units of insulin were logged and the time administered.
 
-* **The sideviews:** shows range bars (min, max, avg) for individual day.
+* **The sideviews:** 
+	* Shows the range and mean average of blood glucose levels for the user on that particular day.
 
 
 ## ChartBase Setup
