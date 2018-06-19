@@ -454,17 +454,11 @@ class ModelController {
 
     /**
      Fetches an array of Day objects, sorted by date
-     - parameter degreeOfTimeTravel: Int, number of days in the past to show
      - returns: Array of Day objects sorted by date or an empty array if no Day objects exist
-     - bug: Predicate compares strings -> Doesn't work for most date formats, so filtering by number of previous days has been commented out.
+     - note: Currently fetches ALL days, then filters in ViewControllerHealth to last 7/30/60. This is due to Day.date being a "string" not a Date, and therefore not being filterable using a fetch predicate. Ideally this would be refactored for efficiency when many Days are stored, but even within several years, it is unlikely to have much effect on performance.
      */
-    func fetchDay(degreeOfTimeTravel: Int) -> [Day]{
+    func fetchDay() -> [Day]{
         let fetchRequest: NSFetchRequest<Day> = Day.fetchRequest()
-        //let oldestDay = Calendar.current.date(byAdding: .day, value: degreeOfTimeTravel, to: Date())
-
-
-       // fetchRequest.predicate = NSPredicate(format: "date BETWEEN {%@, %@}", formatDateToDay(date: oldestDay!), formatDateToDay(date: Date()))
-
         let sectionSortDescriptor = NSSortDescriptor(key: "date", ascending: true)
         let sortDescriptors = [sectionSortDescriptor]
         fetchRequest.sortDescriptors = sortDescriptors
@@ -475,7 +469,6 @@ class ModelController {
             return[]
         }
         else{
-            //print("returned array \(foundDay)")
             return foundDay!
         }
     }

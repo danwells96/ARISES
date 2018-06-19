@@ -377,22 +377,33 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
     
     ///Updates the table by re-fetching either a list of filtered days, or the user's favourites
     private func updateTable(){
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        
         if showFavouritesHealth == true{
             let loggedDays = ModelController().fetchFavouritesDays()
             self.loggedDays = loggedDays
         }
         else{
+            //Filtering to previous 7/30/60 days
             if(daysToShow == "seven"){
-                let loggedDays = ModelController().fetchDay(degreeOfTimeTravel: -7)
-                self.loggedDays = loggedDays
+                let loggedDays = ModelController().fetchDay()
+                self.loggedDays = loggedDays.filter({ (Day) -> Bool in
+                    dateFormatter.date(from: Day.date!)! > Calendar.current.date(byAdding: .day, value: -7, to: Date())!
+                })
             }
             else if(daysToShow == "thirty"){
-                let loggedDays = ModelController().fetchDay(degreeOfTimeTravel: -30)
-                self.loggedDays = loggedDays
+                let loggedDays = ModelController().fetchDay()
+                self.loggedDays = loggedDays.filter({ (Day) -> Bool in
+                    dateFormatter.date(from: Day.date!)! > Calendar.current.date(byAdding: .day, value: -30, to: Date())!              })
             }
             else if(daysToShow == "sixty"){
-                let loggedDays = ModelController().fetchDay(degreeOfTimeTravel: -60)
-                self.loggedDays = loggedDays
+                let loggedDays = ModelController().fetchDay()
+                self.loggedDays = loggedDays.filter({ (Day) -> Bool in
+                    dateFormatter.date(from: Day.date!)! > Calendar.current.date(byAdding: .day, value: -60, to: Date())!
+                })
             }
         }
         //Filter based on tags
