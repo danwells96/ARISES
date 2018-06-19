@@ -1,5 +1,7 @@
 # Bifocal Display Breakdown
-
+<p align="center">
+	<img src="Bifocal.png" alt="Image of Bifocal"/>
+</p>
 ![Image of Bifocal](Bifocal.png)
 
 
