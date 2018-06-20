@@ -703,27 +703,20 @@
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerExercise.swift",
       "line": 223,
-      "symbol": "ViewControllerExercise.didPressCameraButton(_tag:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerExercise.swift",
-      "line": 228,
       "symbol": "ViewControllerExercise.tableView(_:numberOfRowsInSection:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerExercise.swift",
-      "line": 267,
+      "line": 262,
       "symbol": "ViewControllerExercise.tableView(_:didSelectRowAt:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerExercise.swift",
-      "line": 295,
+      "line": 290,
       "symbol": "ViewControllerExercise.addExercise(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -739,13 +732,6 @@
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerFood.swift",
       "line": 14,
       "symbol": "ViewControllerFood.foodTimeField",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerFood.swift",
-      "line": 15,
-      "symbol": "ViewControllerFood.foodLogTable",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
@@ -780,147 +766,49 @@
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerFood.swift",
       "line": 20,
-      "symbol": "ViewControllerFood.foodAddButton",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerFood.swift",
-      "line": 21,
-      "symbol": "ViewControllerFood.logTopConstraint",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerFood.swift",
-      "line": 22,
-      "symbol": "ViewControllerFood.barBottomConstraint",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerFood.swift",
-      "line": 23,
       "symbol": "ViewControllerFood.favouritesButton",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerFood.swift",
+      "line": 21,
+      "symbol": "ViewControllerFood.foodAddButton",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerFood.swift",
+      "line": 23,
+      "symbol": "ViewControllerFood.foodLogTable",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerFood.swift",
+      "line": 25,
+      "symbol": "ViewControllerFood.logTopConstraint",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerFood.swift",
       "line": 26,
-      "symbol": "ViewControllerFood.foodTimePicker",
+      "symbol": "ViewControllerFood.barBottomConstraint",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerFood.swift",
-      "line": 67,
-      "symbol": "ViewControllerFood.expanded",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerFood.swift",
-      "line": 68,
-      "symbol": "ViewControllerFood.selectedCellIndexPath",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerFood.swift",
-      "line": 69,
-      "symbol": "ViewControllerFood.selectedCellHeight",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerFood.swift",
-      "line": 70,
-      "symbol": "ViewControllerFood.unselectedCellHeight",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerFood.swift",
-      "line": 87,
-      "symbol": "ViewControllerFood.viewDidLoad()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerFood.swift",
-      "line": 131,
-      "symbol": "ViewControllerFood.keyboardWillShow(sender:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerFood.swift",
-      "line": 134,
-      "symbol": "ViewControllerFood.keyboardWillHide(sender:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerFood.swift",
-      "line": 141,
-      "symbol": "ViewControllerFood.createFoodTimePicker()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerFood.swift",
-      "line": 157,
+      "line": 172,
       "symbol": "ViewControllerFood.doneWithPicker()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerFood.swift",
-      "line": 162,
+      "line": 177,
       "symbol": "ViewControllerFood.doneWithKeypad()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerFood.swift",
-      "line": 168,
-      "symbol": "ViewControllerFood.toggleFavourites(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerFood.swift",
-      "line": 189,
-      "symbol": "ViewControllerFood.didPressCameraButton(_tag:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerFood.swift",
-      "line": 199,
-      "symbol": "ViewControllerFood.tableView(_:numberOfRowsInSection:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerFood.swift",
-      "line": 248,
-      "symbol": "ViewControllerFood.tableView(_:didSelectRowAt:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerFood.swift",
-      "line": 272,
-      "symbol": "ViewControllerFood.tableView(_:heightForRowAt:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerFood.swift",
-      "line": 293,
-      "symbol": "ViewControllerFood.addFoodToLog(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
@@ -1171,28 +1059,21 @@
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerHealth.swift",
-      "line": 290,
-      "symbol": "ViewControllerHealth.didPressCameraButton(_tag:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerHealth.swift",
-      "line": 303,
+      "line": 298,
       "symbol": "ViewControllerHealth.tableView(_:numberOfRowsInSection:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerHealth.swift",
-      "line": 441,
+      "line": 436,
       "symbol": "ViewControllerHealth.tableView(_:didSelectRowAt:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerHealth.swift",
-      "line": 456,
+      "line": 451,
       "symbol": "ViewControllerHealth.tableView(_:heightForRowAt:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -1452,230 +1333,216 @@
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
       "line": 14,
-      "symbol": "tableCellDelegate.didPressCameraButton(_tag:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 15,
       "symbol": "tableCellDelegate.didPressViewDayButton(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 18,
+      "line": 17,
       "symbol": "ViewControllerTableViewCell",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 22,
+      "line": 21,
       "symbol": "ViewControllerTableViewCell.loggedFoodName",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 23,
+      "line": 22,
       "symbol": "ViewControllerTableViewCell.loggedFoodTime",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 24,
+      "line": 23,
       "symbol": "ViewControllerTableViewCell.loggedFoodCarbs",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 25,
+      "line": 24,
       "symbol": "ViewControllerTableViewCell.loggedFoodProtein",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 26,
+      "line": 25,
       "symbol": "ViewControllerTableViewCell.loggedFoodFat",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 28,
+      "line": 27,
       "symbol": "ViewControllerTableViewCell.editFoodButton",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 29,
+      "line": 28,
       "symbol": "ViewControllerTableViewCell.camera",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 30,
+      "line": 29,
       "symbol": "ViewControllerTableViewCell.favouriteFoodButton",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 33,
+      "line": 32,
       "symbol": "ViewControllerTableViewCell.favouriteExerciseButton",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 34,
+      "line": 33,
       "symbol": "ViewControllerTableViewCell.loggedExerciseDuration",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 35,
+      "line": 34,
       "symbol": "ViewControllerTableViewCell.loggedExerciseName",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 36,
+      "line": 35,
       "symbol": "ViewControllerTableViewCell.loggedExerciseTime",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 39,
+      "line": 38,
       "symbol": "ViewControllerTableViewCell.dateInLog",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 40,
+      "line": 39,
       "symbol": "ViewControllerTableViewCell.favouriteHealthButton",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 41,
+      "line": 40,
       "symbol": "ViewControllerTableViewCell.loggedHealthHypoIcon",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 42,
+      "line": 41,
       "symbol": "ViewControllerTableViewCell.loggedHealthHyperIcon",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 43,
+      "line": 42,
       "symbol": "ViewControllerTableViewCell.loggedHealthExerciseIcon",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 44,
+      "line": 43,
       "symbol": "ViewControllerTableViewCell.loggedHealthStressedIcon",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 45,
+      "line": 44,
       "symbol": "ViewControllerTableViewCell.loggedHealthIllnessIcon",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 46,
+      "line": 45,
       "symbol": "ViewControllerTableViewCell.loggedHealthLowLabel",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 47,
+      "line": 46,
       "symbol": "ViewControllerTableViewCell.loggedHealthAvgLabel",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 48,
+      "line": 47,
       "symbol": "ViewControllerTableViewCell.loggedHealthHighLabel",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 52,
+      "line": 51,
       "symbol": "ViewControllerTableViewCell.cellDelegate",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 56,
+      "line": 55,
       "symbol": "ViewControllerTableViewCell.awakeFromNib()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 61,
+      "line": 60,
       "symbol": "ViewControllerTableViewCell.setSelected(_:animated:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 66,
+      "line": 65,
       "symbol": "ViewControllerTableViewCell.buttonPressed(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 69,
+      "line": 68,
       "symbol": "ViewControllerTableViewCell.buttonPressedExercise(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 72,
+      "line": 71,
       "symbol": "ViewControllerTableViewCell.buttonPressedHealth(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 75,
-      "symbol": "ViewControllerTableViewCell.buttonPressedCamera(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/ViewControllerTableViewCell.swift",
-      "line": 78,
+      "line": 74,
       "symbol": "ViewControllerTableViewCell.didPressViewDay(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
