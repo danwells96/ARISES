@@ -9,31 +9,43 @@
 import CoreData
 import UIKit
 
+/**
+ Controls all UI elements within the health domain. This includes illness and stress entry, favouriting system, managing the day log and filtering.
+ */
 class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableViewDelegate, tableCellDelegate{
 
     //MARK: - Outlets
-    @IBOutlet weak var favouritesButton: UIButton!
+    //Stress and Illness entry
     @IBOutlet weak var stressSwitch: UISwitch!
     @IBOutlet weak var illnessSwitch: UISwitch!
+    @IBOutlet weak var illnessLabel: UILabel!
+    @IBOutlet weak var stressLabel: UILabel!
+    //Favouriting
+    @IBOutlet weak var favouritesButton: UIButton!
+    //Daily log
     @IBOutlet weak var healthLogTable: UITableView!
+    //Filtering outlets
     @IBOutlet weak var filterHypoOutlet: UIButton!
     @IBOutlet weak var filterHyperOutlet: UIButton!
     @IBOutlet weak var filterExerciseOutlet: UIButton!
     @IBOutlet weak var filterStressOutlet: UIButton!
     @IBOutlet weak var filterIllnessOutlet: UIButton!
-    @IBOutlet weak var illnessLabel: UILabel!
-    @IBOutlet weak var stressLabel: UILabel!
     @IBOutlet weak var sevenDaysOutlet: UIButton!
     @IBOutlet weak var thirtyDaysOutlet: UIButton!
     @IBOutlet weak var sixtyDaysOutlet: UIButton!
     
+
+    
     //MARK: - Properties
     //Table properties
+    ///Stores index of selected cell to allow expanding to show more info when selected
     private var selectedCellIndexPath = [IndexPath?]()
+    ///Height for a cell which has been selected and expanded
     private let selectedCellHeight: CGFloat = 89.0
+    ///Height for an unselected and contracted cell
     private let unselectedCellHeight: CGFloat = 40.0
     
-    ///Tracks whether to show favourites or daily log
+    ///Tracks whether to show favourites or log and updates table to show that
     private var showFavouritesHealth = false{
         didSet{
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
@@ -79,6 +91,7 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
             }
         }
     }
+    ///Variable to store whether to filter by Hypos and updates the table
     private var filterHypo = false{
         didSet{
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05){
@@ -86,6 +99,7 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
             }
         }
     }
+    ///Variable to store whether to filter by Exercise and updates the table
     private var filterExercise = false{
         didSet{
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05){
@@ -93,6 +107,7 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
             }
         }
     }
+    ///Variable to store whether to filter by Hyper and updates the table
     private var filterHyper = false{
         didSet{
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05){
@@ -100,6 +115,7 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
             }
         }
     }
+    ///Variable to store whether to filter by Stress and updates the table
     private var filterStress = false{
         didSet{
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05){
@@ -107,6 +123,7 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
             }
         }
     }
+    ///Variable to store whether to filter by Illness and updates the table
     private var filterIllness = false{
         didSet{
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05){
@@ -143,6 +160,12 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
     }
 
     //MARK: - Override viewDidLoad
+    /**viewDidLoad override to set:
+     Button colours,
+     Initial filtering settings,
+     Stress and Illness default state,
+     Observers to act on current graph day changing,
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -158,8 +181,6 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
         let nc = NotificationCenter.default
         //Observer to update currentDay variable to match graph's day
         nc.addObserver(self, selector: #selector(updateDay(notification:)), name: Notification.Name("dayChanged"), object: nil)
-        
-
     }
     
     //MARK: - Update Day
@@ -170,21 +191,23 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
     
     //MARK: - Filter actions
     //Filters toggle and set colours to show state
+    
+    ///Sets filtering to previous 7 days
     @IBAction private func sevenDaysButton(_ sender: UIButton) {
         daysToShow  = "seven"
         showFavouritesHealth = false
     }
-    
+    ///Sets filtering to previous 30 days
     @IBAction private func thirtyDaysButton(_ sender: UIButton) {
         daysToShow = "thirty"
         showFavouritesHealth = false
     }
-    
+    ///Sets filtering to previous 60 days
     @IBAction private func sixtyDaysButton(_ sender: UIButton) {
         daysToShow = "sixty"
         showFavouritesHealth = false
     }
-
+    ///Toggles filtering by Hypos
     @IBAction private func filterHypoButton(_ sender: Any) {
         if filterHypo == false{
             filterHypo = true
@@ -196,6 +219,7 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
 
         }
     }
+    ///Toggles filtering by Hypers
     @IBAction private func filterHyperButton(_ sender: Any) {
         if filterHyper == false{
             filterHyper = true
@@ -206,6 +230,7 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
             filterHyperOutlet.setTitleColor(#colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1), for: .normal)
         }
     }
+    ///Toggles filtering by Exercise
     @IBAction private func filterExerciseButton(_ sender: Any) {
         if filterExercise == false{
             filterExercise = true
@@ -216,6 +241,7 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
             filterExerciseOutlet.setTitleColor(#colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1), for: .normal)
         }
     }
+    ///Toggles filtering by Stress
     @IBAction private func filterStressButton(_ sender: Any) {
         if filterStress == false{
             filterStress = true
@@ -226,6 +252,7 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
             filterStressOutlet.setTitleColor(#colorLiteral(red: 0.3921568627, green: 0.737254902, blue: 0.4392156863, alpha: 1), for: .normal)
         }
     }
+    ///Toggles filtering by Illness
     @IBAction private func filterIllnessButton(_ sender: Any) {
         if filterIllness == false{
             filterIllness = true
@@ -238,8 +265,11 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
     }
     
     //MARK: - Stress and Illness actions
-    //When turned on, stores start date
-    //When turned off, adds start and end to a stress log
+    /**
+     Stress switch:
+     When turned on, stores start date
+     When turned off, adds start and end date to a stress log
+     */
     @IBAction private func stressSwitchButton(_ sender: Any) {
         if stressSwitch.isOn{
             stressStart = Date()
@@ -249,7 +279,11 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
             stressStart = nil
         }
     }
-
+    /**
+     Illness switch:
+     When turned on, stores start date
+     When turned off, adds start and end date to a illness log
+     */
     @IBAction private func illnessSwitchButton(_ sender: Any) {
         if illnessSwitch.isOn{
             illnessStart = Date()
@@ -261,7 +295,7 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
     }
     
     //MARK: - Favourite buttons
-    //Toggle between favourite and daily log views
+    ///Toggle between favourite and daily log views
     @IBAction private func toggleFavourites(_ sender: Any) {
         if self.showFavouritesHealth == false{
             showFavouritesHealth = true
@@ -276,7 +310,7 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
-    //TODO: Add a way to remove favourites
+    //TODO: Add a way to remove favourites, probably an alert on tapping the star while in favourites. Without checking, it's too easy to unfavourite.
     ///Delegate function to toggle whether a day is favourited
     func didPressButton(_ tag: Int) {
         if showFavouritesHealth != true{
@@ -287,7 +321,7 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
     }
     
     //MARK: - View Day Button
-    ///When pressed in log, sends a notificaiton with that day, which is picked up by graph and set as shown day
+    ///When pressed in log, sends a notification with that day, which is picked up by graph and set as shown day
     func  didPressViewDayButton(_ tag: Int) {
         let nc = NotificationCenter.default
         nc.post(name: Notification.Name("setDay"), object: (loggedDays[tag].date)!)
@@ -295,6 +329,7 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
     
     
     //MARK: - Table functions
+    ///Table funcion to set number of rows equal to total loggedDays
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return loggedDays.count
     }
@@ -370,7 +405,7 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
         return(cell)
     }
     
-    ///Updates the table by re-fetching either a list of filtered days, or the user's favourites
+    ///Updates the table by re-fetching and filtering the returned array of days, or the user's favourites
     private func updateTable(){
         
         let dateFormatter = DateFormatter()
@@ -432,7 +467,7 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
         self.healthLogTable.reloadData()
     }
     
-    //Allows expanding of table cell when selected
+    ///Allows selecting a favourite to add to daily log if showing favourites, else toggles expanding of cell
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if selectedCellIndexPath.contains(indexPath){
@@ -447,7 +482,7 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
-    //Allows cell to be expanded by adjusting row height for that cell
+    ///Allows expanding of cells by changing cell height for specific rows
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if selectedCellIndexPath.contains(indexPath) {
             return selectedCellHeight
