@@ -253,9 +253,6 @@
                                                     <rect key="frame" x="41" y="5" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="📷"/>
-                                                    <connections>
-                                                        <action selector="buttonPressedCamera:" destination="dQm-8S-9YR" eventType="touchUpInside" id="gpZ-0a-mtI"/>
-                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SAU-Sm-gg6">
                                                     <rect key="frame" x="217" y="48" width="30" height="30"/>
@@ -266,20 +263,20 @@
                                                     </state>
                                                 </button>
                                                 <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="equalCentering" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Zjo-TY-qsQ">
-                                                    <rect key="frame" x="15" y="40" width="197" height="44.5"/>
+                                                    <rect key="frame" x="15" y="40" width="197.5" height="44.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3KA-p1-gFK">
-                                                            <rect key="frame" x="0.0" y="0.0" width="60.5" height="44.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="61" height="44.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="10g" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Op3-oh-MGY">
-                                                                    <rect key="frame" x="13.5" y="0.0" width="33.5" height="24"/>
+                                                                    <rect key="frame" x="13.5" y="0.0" width="34" height="24"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Carbs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHa-qm-1IK">
-                                                                    <rect key="frame" x="7.5" y="24" width="45.5" height="20.5"/>
+                                                                    <rect key="frame" x="7.5" y="24" width="46" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -287,7 +284,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="h8I-kv-plT">
-                                                            <rect key="frame" x="68.5" y="0.0" width="60" height="44.5"/>
+                                                            <rect key="frame" x="69" y="0.0" width="60" height="44.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="10g" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qk9-2t-czV">
                                                                     <rect key="frame" x="13" y="0.0" width="33.5" height="24"/>
@@ -307,7 +304,7 @@
                                                             </constraints>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="LZ8-xq-4r5">
-                                                            <rect key="frame" x="136.5" y="0.0" width="60.5" height="44.5"/>
+                                                            <rect key="frame" x="137" y="0.0" width="60.5" height="44.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="10g" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KXz-ed-Nqw">
                                                                     <rect key="frame" x="13.5" y="0.0" width="33.5" height="24"/>
@@ -316,7 +313,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Fat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OwY-qy-ire">
-                                                                    <rect key="frame" x="18.5" y="24" width="24" height="20.5"/>
+                                                                    <rect key="frame" x="18" y="24" width="24" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -332,7 +329,6 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="camera" destination="Gf1-GS-8eE" id="73n-ep-TrH"/>
                                             <outlet property="editFoodButton" destination="SAU-Sm-gg6" id="cif-Ze-wrd"/>
                                             <outlet property="favouriteFoodButton" destination="Ex3-8Y-q6D" id="N21-FK-2H2"/>
                                             <outlet property="loggedFoodCarbs" destination="Op3-oh-MGY" id="cXy-hE-UbZ"/>

@@ -200,17 +200,8 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         }
     }
     
-    //FIXME: Currently broken delegate function for a camera button
-    func didPressCameraButton(_tag: Int){
-        let picker = UIImagePickerController()
-        
-        picker.delegate = self
-        picker.sourceType = .camera
-        
-        present(picker, animated: true, completion: nil)
-    }
-    
     //MARK: - Table functions
+    ///Table funcion to set number of rows equal to total meals
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return loggedMeals.count
     }
@@ -259,7 +250,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         return(cell)
     }
     
-    //Allows selecting a favourite to add to daily log if showing favourites, else toggles expanding of cell
+    ///Allows selecting a favourite to add to daily log if showing favourites, else toggles expanding of cell
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let dateFormatter = DateFormatter()
@@ -283,7 +274,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
             tableView.endUpdates()
         }
     }
-    //Allows expanding of cells by changing cell height for specific rows
+    ///Allows expanding of cells by changing cell height for specific rows
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if selectedCellIndexPath.contains(indexPath) {
             return selectedCellHeight
@@ -305,6 +296,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     }
 
     //MARK: - Add food button
+    ///Calls ModelController function addMeal with contents of data entry fields, if they are all filled
     @IBAction private func addFoodToLog(_ sender: Any) {
 
         if ((foodNameTextField.text != "") && (foodTimeField.text != "") && (carbsTextField.text != "") && (proteinTextField.text != "") && (fatTextField.text != "")){

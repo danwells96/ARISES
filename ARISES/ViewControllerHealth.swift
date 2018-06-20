@@ -286,11 +286,6 @@ class ViewControllerHealth: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
-    //FIXME: Currently broken delegate function for a camera button
-    func didPressCameraButton(_tag: Int){
-        print("incomplete functionality")
-    }
-    
     //MARK: - View Day Button
     ///When pressed in log, sends a notificaiton with that day, which is picked up by graph and set as shown day
     func  didPressViewDayButton(_ tag: Int) {

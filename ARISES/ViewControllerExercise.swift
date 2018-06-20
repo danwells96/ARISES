@@ -218,11 +218,6 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
             updateTable()
         }
     }
-    
-    //FIXME: Currently broken delegate function for a camera button
-    func didPressCameraButton(_tag: Int) {
-        let _ = 1
-    }
 
     //MARK: - Table functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
