@@ -1,7 +1,7 @@
 # Bifocal Display Breakdown
 
 <p align="center">
-	<img src="Bifocal.png" alt="Image of Bifocal"/>
+	<img src="https://github.com/danwells96/ARISES/Display/Bifocal.png" alt="Image of Bifocal"/>
 </p>
 
 
