@@ -1,6 +1,5 @@
 # Bifocal Display Breakdown
 
-
 ![Image of Bifocal](Bifocal.png)
 
 
