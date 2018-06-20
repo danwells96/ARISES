@@ -9,5 +9,7 @@
 import UIKit
 import CoreData
 
+///Exercise NSManagedObject category/extension file
 class Exercise: NSManagedObject {
+
 }

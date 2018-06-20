@@ -9,5 +9,7 @@
 import UIKit
 import CoreData
 
+///Meals NSManagedObject category/extension file
 class Meals: NSManagedObject {
+
 }

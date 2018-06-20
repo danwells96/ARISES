@@ -8,5 +8,7 @@
 import UIKit
 import CoreData
 
+///Favourites NSManagedObject category/extension file
 class Favourites: NSManagedObject {
+
 }

@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+///Insulin NSManagedObject category/extension file
 class Insulin: NSManagedObject {
-    
+
 }

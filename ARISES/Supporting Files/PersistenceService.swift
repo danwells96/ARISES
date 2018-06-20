@@ -9,17 +9,19 @@
 import Foundation
 import CoreData
 
+///Initialises a persistent store and provides functions to allow ModelController to add objects to it's context and save that context.
 class PersistenceService{
+    ///Init for PersistenceService class
     private init(){}
     
+    /// Initialises a space for groups of related model objects that represent a view of a persistent store. Changes are held in memory in the context until saved to a persistent store
     static var context: NSManagedObjectContext{
         return persistentContainer.viewContext
     }
-    
+    ///The persistent container or store for the application
     static var persistentContainer: NSPersistentContainer = {
         /*
-         The persistent container for the application. This implementation
-         creates and returns a container, having loaded the store for the
+         This implementation creates and returns a container, having loaded the store for the
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
          */
@@ -44,6 +46,7 @@ class PersistenceService{
     }()
     
     // MARK: - Core Data Saving support
+    ///Saves the context to a persistent store
     static func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {

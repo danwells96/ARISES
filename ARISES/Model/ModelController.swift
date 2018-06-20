@@ -86,15 +86,16 @@ class ModelController {
     //MARK: - Data object setting (add/toggle)
     
     
-    /// Adds a new meal log to core data.
-    /// - parameters:
-    ///     - name: String, Name of meal to add.
-    ///     - time: String, Time of meal consumed.
-    ///     - date: Date, Date of meal to add.
-    ///     - carbs: Int32, Total carbs (grams) of meal to add.
-    ///     - fat: Int32, Total fat (grams) of meal to add.
-    ///     - protein: Int32, Total protein (grams) of meal to add.
-    /// - Note: Posts a notification "FoodAdded" which is picked up by viewControllerGraph and IndicatorControllerFood to update views.
+    /** Adds a new meal log to core data.
+     - parameters:
+        - name: String, Name of meal to add.
+        - time: String, Time of meal consumed.
+        - date: Date, Date of meal to add.
+        - carbs: Int32, Total carbs (grams) of meal to add.
+        - fat: Int32, Total fat (grams) of meal to add.
+        - protein: Int32, Total protein (grams) of meal to add.
+     - Note: Posts a notification "FoodAdded" which is picked up by viewControllerGraph and IndicatorControllerFood to update views.
+     */
     func addMeal(name: String, time: String, date: Date, carbs: Int32, fat: Int32, protein: Int32){
         print("meal added")
         let currentDay = findOrMakeDay(day: date)

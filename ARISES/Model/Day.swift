@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+///Day NSManagedObject category/extension file: Contains many computed properties for summarily displaying related object information
 class Day: NSManagedObject {
     
     //MARK: - Glucose stats
