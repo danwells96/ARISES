@@ -10,6 +10,16 @@ import UIKit
 import CoreData
 
 ///Exercise NSManagedObject category/extension file
+/**
+ - Note: The following auto-generated properties are managed within ARISES.xcdatamodeld:
+     fetchRequest(),
+     duration,
+     intensity,
+     name,
+     time,
+     day,
+     favourite
+ */
 class Exercise: NSManagedObject {
 
 }

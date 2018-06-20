@@ -15,7 +15,6 @@ xcodebuild_arguments:
 - -scheme
 - ARISES
 
-
 custom_categories:
 
   - name: Documentation

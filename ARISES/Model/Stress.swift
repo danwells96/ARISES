@@ -10,6 +10,13 @@ import UIKit
 import CoreData
 
 ///Stress NSManagedObject category/extension file: Contains a computed property `duration` to compute duration of a stress log
+/**
+ - Note: The following auto-generated properties are managed within ARISES.xcdatamodeld:
+     fetchRequest(),
+     end,
+     start,
+     day
+ */
 class Stress: NSManagedObject {
     ///Returns total duration of the stress log
     var duration: Double {

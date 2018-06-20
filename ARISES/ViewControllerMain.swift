@@ -72,11 +72,13 @@ class ViewControllerMain: UIViewController{
             }
         }
     }
+    ///Instantiates Date Picker for insulin time selection
     private var insulinTimePicker = UIDatePicker()
     ///Stores whether keyboard is open, to smooth transitions between tabs
     private var keyboardOpen = false
     
     // Variables for rounding and shadow extension
+
     private var shadowLayer: CAShapeLayer!
     private var cornerRadius: CGFloat = 25.0
     private var fillColor: UIColor = .blue

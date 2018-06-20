@@ -10,6 +10,13 @@ import UIKit
 import CoreData
 
 ///Illness NSManagedObject category/extension file: Contains a computed property `duration` to compute duration of an illness log
+/**
+ - Note: The following auto-generated properties are managed within ARISES.xcdatamodeld:
+     fetchRequest(),
+     end,
+     start,
+     day
+ */
 class Illness: NSManagedObject {
     ///Returns total duration of the illness log
     var duration: Double {

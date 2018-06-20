@@ -211,7 +211,7 @@
             <h1 id='bifocal-display-breakdown' class='heading'>Bifocal Display Breakdown</h1>
 
 <p align="center">
-    <img src="https://github.com/danwells96/ARISES/blob/master/ARISES/Display/Bifocal.png" alt="Image of Bifocal"/>
+    <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/ARISES/Display/Bifocal.png" alt="Image of Bifocal"/>
 </p>
 <h3 id='functionalities' class='heading'>Functionalities</h3>
 
@@ -257,7 +257,7 @@
 <p>The same colour bands are used on the main chart as well thus <em>ChartBGView.swift</em> follows the same logic as the <em>CustomView.swift</em> in term of filling the background color bands. But <em>CustomView.swift</em> is also used to draw range bars on each sideview using calculated values for glucose values storing in core data on a day.</p>
 <h6 id='bands-calculations' class='heading'>Bands calculations</h6>
 
-<p>The bands are calculated based on glucose level. If the total height of the Custom View is considered as an equivalent glucose level of 20 (mM/)L  then a &lsquo;safe&rsquo;<a href="https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-problems/low-blood-glucose-hypoglycemia">[1]</a> range for patients to stay in would be between 4 and 10. Above 10 would be classified as a hyper and below 4 would be seen as a hypo.</p>
+<p>The bands are calculated based on glucose level. If the total height of the Custom View is considered as an equivalent glucose level of 20 (mM/)L  then a &lsquo;safe&rsquo;[<a href="https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-problems/low-blood-glucose-hypoglycemia">1</a>] range for patients to stay in would be between 4 and 10. Above 10 would be classified as a hyper and below 4 would be seen as a hypo.</p>
 
 <p>Therefore, the top half of chart would be in <strong>high</strong> range, the bottom 4/20 (20%) of chart would be in <strong>low</strong> range and 6/20 (~30%)section in the middle would be of normal. </p>
 
@@ -272,7 +272,7 @@ This would give the background of image below (without the range bars).</p></li>
 </ul>
 
 <p align="center">
-    <img src="https://github.com/danwells96/ARISES/blob/master/ARISES/Display/sideview.png" alt="Image of sideview"/>
+    <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/ARISES/Display/sideview.png" alt="Image of sideview"/>
 </p>
 <h4 id='em-drawrangebar-em' class='heading'><em>drawRangeBar()</em></h4>
 
@@ -288,7 +288,7 @@ It takes no parameters but the output of sorting the glucose array on certain da
 <p>A view it creates would be: </p>
 
 <p align="center">
-    <img src="https://github.com/danwells96/ARISES/blob/master/ARISES/Display/rangeBar.png" alt="Image of range bar"/>
+    <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/ARISES/Display/rangeBar.png" alt="Image of range bar"/>
 </p>
 <h2 id='main-graph-section' class='heading'>Main graph section</h2>
 <h3 id='em-viewcontrollergraph-swift-em' class='heading'><em>ViewControllerGraph.swift</em></h3>
@@ -303,7 +303,7 @@ It takes no parameters but the output of sorting the glucose array on certain da
 <li>Update popups and attached messages.</li>
 </ul>
 
-<p>Modifications are made on top of an iOS chart library which can be found [here][[2]]</p>
+<p>Modifications are made on top of an iOS chart library which can be found <a href="https://github.com/i-schuetz/SwiftCharts.git">here</a></p>
 
 <ul>
 <li>Layers: xAxisLayer, yAxisLayer, yHighAxes, guidelinesLayer, pointslineLayer, prediction, chartPointsCircleLayer</li>
@@ -324,10 +324,6 @@ It takes no parameters but the output of sorting the glucose array on certain da
 <p><strong>chartPointsCircleLayer</strong> is where popups are set up. It has a touchHandler to deal with touch events which is to print a message based on the points being tapped.</p>
 
 <p>The touchHandler detects where the finger tapped on the screen and compares the x-position of the touch with x coordinates of popups it stored. If they match or close to a certain degree the infoBubble is enabled which prints a message to user. If touches happens outside screen frame it returns the edge cases.</p>
-
-<p><a href="https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-problems/low-blood-glucose-hypoglycemia">[1]</a>:<q>Hypoglycemia</q>. National Institute of Diabetes and Digestive and Kidney Diseases. October 2008. Archived from the original on 1 July 2015. Retrieved 28 June 2015.</p>
-
-<p><a href="https://github.com/i-schuetz/SwiftCharts.git">[2]</a>:SwiftCharts git repository</p>
 
           </section>
           <section class="section task-group-section">

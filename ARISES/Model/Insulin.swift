@@ -10,6 +10,13 @@ import UIKit
 import CoreData
 
 ///Insulin NSManagedObject category/extension file
+/**
+ - Note: The following auto-generated properties are managed within ARISES.xcdatamodeld:
+    fetchRequest(),
+    time,
+    units,
+    day
+ */
 class Insulin: NSManagedObject {
 
 }
