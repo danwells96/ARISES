@@ -20,7 +20,13 @@ custom_categories:
 
   - name: Documentation
     children:
-    - Design History
+    - Client Design
+    - Final Design
+    - Design Process
+    - Ethics Report
+    - Sustainability Report
+    - Meeting Minutes
+    - Focus Group Report
 
   - name: Model
     children:
