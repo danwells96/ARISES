@@ -331,44 +331,23 @@
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Indicators/IndicatorControllerFood.swift",
-      "line": 12,
-      "symbol": "IndicatorControllerFood",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Indicators/IndicatorControllerFood.swift",
-      "line": 15,
+      "line": 18,
       "symbol": "IndicatorControllerFood.indicatorTotalCarb",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Indicators/IndicatorControllerFood.swift",
-      "line": 16,
+      "line": 19,
       "symbol": "IndicatorControllerFood.indicatorTotalProtein",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Indicators/IndicatorControllerFood.swift",
-      "line": 17,
+      "line": 20,
       "symbol": "IndicatorControllerFood.indicatorTotalFat",
       "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Indicators/IndicatorControllerFood.swift",
-      "line": 22,
-      "symbol": "IndicatorControllerFood.nc",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Indicators/IndicatorControllerFood.swift",
-      "line": 25,
-      "symbol": "IndicatorControllerFood.viewDidLoad()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
