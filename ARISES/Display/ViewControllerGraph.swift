@@ -340,7 +340,7 @@ class ViewControllerGraph: UIViewController {
     }
     
     
-    ///Frame settings for graph
+    ///Frame settings for chart area and axis.
     fileprivate lazy var chartSettings: ChartSettings = {
         var chartSettings = ChartSettings()
         chartSettings.leading = -15
@@ -359,11 +359,10 @@ class ViewControllerGraph: UIViewController {
     
     
     /**
-     Plot glucose data in Layers.
-     Draw popups and attach messages to them.
-     Change of dates gets passed in to update chart.
-     - returns: updated ChartView
-     */
+    *	Plot glucose data in Layers.
+    *	Draw popups and attach messages to them.
+    *	Change of dates gets passed in to update chart.
+    */
     private func initChart(){
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
