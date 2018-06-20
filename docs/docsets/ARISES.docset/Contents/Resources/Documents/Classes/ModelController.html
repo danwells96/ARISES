@@ -14,7 +14,7 @@
     <a title="ModelController Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">ARISES Docs</a> (22% documented)</p>
+        <p><a href="../index.html">ARISES Docs</a> (23% documented)</p>
         <p class="header-right"><a href="https://github.com/danwells96/ARISES"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -39,6 +39,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../design-process.html">Design Process</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../future-work.html">Future Work</a>
               </li>
               <li class="nav-group-task">
                 <a href="../ethics-report.html">Ethics Report</a>
@@ -205,7 +208,7 @@
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Provides fuctions to safely add and fetch objects from the persistent relational database &lsquo;Core Data&rsquo;</p>
 
           </section>
           <section class="section task-group-section">
@@ -231,8 +234,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -242,32 +244,28 @@
 
                         </div>
                       </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:6ARISES15ModelControllerC16formatDateToTimeSS10Foundation0E0V4date_tF"></a>
-                    <a name="//apple_ref/swift/Method/formatDateToTime(date:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6ARISES15ModelControllerC16formatDateToTimeSS10Foundation0E0V4date_tF">formatDateToTime(date:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>date</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Date, date to be formatted and returned as a string</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">formatDateToTime</span><span class="p">(</span><span class="nv">date</span><span class="p">:</span> <span class="kt">Date</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
-
-                        </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>String of input date in user&rsquo;s locale <q>short</q> date format, with time component removed e.g. 20/06/2018</p>
                       </div>
                     </section>
                   </div>
@@ -285,8 +283,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -295,6 +292,29 @@
                           <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">formatDateToHHmm</span><span class="p">(</span><span class="nv">date</span><span class="p">:</span> <span class="kt">Date</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>date</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Date, date to be formatted to HHmm and returned as a string</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>String of input date&rsquo;s time component in HH:mm format e.g. 11:35</p>
                       </div>
                     </section>
                   </div>

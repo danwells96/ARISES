@@ -9,24 +9,26 @@
 import Foundation
 import CoreData
 
+/**
+Provides fuctions to safely add and fetch objects from the persistent relational database 'Core Data'
+ */
 class ModelController {
     
     //TODO: - Abstract functions to apply to food, exercise and days etc.
 
     //MARK: - Basic date formatting functions
     //Returns strings
+    
+    /// - parameter date: Date, date to be formatted and returned as a string
+    /// - returns: String of input date in user's locale "short" date format, with time component removed e.g. 20/06/2018
     func formatDateToDay(date: Date) -> String{
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .none
         return dateFormatter.string(from: date)
     }
-    func formatDateToTime(date: Date) -> String{
-        let timeFormatter = DateFormatter()
-        timeFormatter.dateStyle = .none
-        timeFormatter.timeStyle = .short
-        return timeFormatter.string(from: date)
-    }
+    /// - parameter date: Date, date to be formatted to HHmm and returned as a string
+    /// - returns: String of input date's time component in HH:mm format e.g. 11:35
     func formatDateToHHmm(date: Date) -> String{
         let timeFormatter = DateFormatter()
         timeFormatter.dateFormat = "HH:mm"
