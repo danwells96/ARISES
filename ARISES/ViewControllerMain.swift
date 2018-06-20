@@ -11,10 +11,15 @@ import UIKit
 ///State enum for domain tabs
 enum MainViewState
 {
+    ///A default state currently overwritten in viewDidLoad to .food
     case uninitialised
+    ///State where health domain is visible
     case health
+    ///State where food domain is visible
     case food
+    ///State where exercise domain is visible
     case exercise
+    ///State where advice domain is visible
     case advice
 }
 
@@ -349,7 +354,7 @@ class ViewControllerMain: UIViewController{
 }
 
 //MARK: - Extensions
-///Rounding view and shadow extension
+//Rounding view and shadow inspectable extensions
 extension UIView {
     func setRadius(radius: CGFloat? = nil) {
         self.layer.cornerRadius = radius ?? self.frame.width / 8

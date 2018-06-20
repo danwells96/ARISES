@@ -80,11 +80,7 @@ custom_categories:
   - name: Settings
     children:
     - SettingsBundleHelper
-    - ChartBGView
-    - CustomView
 
-  - name: Extension
-    children:
-    - UIView
+
 
 
