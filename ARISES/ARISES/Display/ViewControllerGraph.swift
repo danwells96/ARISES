@@ -2,6 +2,7 @@
 //  ViewControllerGraph.swift
 //  ARISES
 //  This file deals with everything graph related. Base chart library (Podfile): https://github.com/i-schuetz/SwiftCharts.git
+
 //  Created by Ryan Armiger on 16/05/2018.
 //  Copyright © 2018 Ryan Armiger. All rights reserved.
 //
@@ -12,7 +13,7 @@ import SwiftCharts
 
 class ViewControllerGraph: UIViewController {
 
-    //MARK: Chart Area Variables
+    //MARK: Properties
     @IBOutlet weak var chartView: ChartBaseView!
     private var chart: Chart?
     private var dataLoaded: Bool = false
@@ -98,12 +99,7 @@ class ViewControllerGraph: UIViewController {
                                
                                ]
 
-    /**
-	*	This function is an override of the same function in the superclass which is called after the view has loaded. It calls the functions 
-	*	responsible for rotating the sideView containers, creating the DatePicker, update any settings and add the notification listeners.
-	*	
-	*	- Returns: Null
-	*/
+    
     override func viewDidLoad() {
         /* In this func:
          Transform sideView containers into bifocal. Load tmp arrays into CoreData.
@@ -124,8 +120,6 @@ class ViewControllerGraph: UIViewController {
          chartView.addGestureRecognizer(panRecognizer)
         */
     }
-	
-	
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if !self.didLayout{
@@ -153,11 +147,7 @@ class ViewControllerGraph: UIViewController {
     */
     
     
-    /**
-	*	Loads data from arrays into core data on first launch for test purposes
-	*
-	*	- Returns: Null
-	*/
+    ///Load data from arrays into core data
     func loadData(){
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
@@ -171,7 +161,7 @@ class ViewControllerGraph: UIViewController {
         let tmpString = dayFormatter.string(from: tmpDate!)
         let tmpDay = dayFormatter.date(from: tmpString)
         
-        //Fetches array of glucose items on from the first day of the array to check if the array has been added to Core Data yet.
+        ///Produces array of glucose items on selected day
         let glucoseLogs = ModelController().fetchGlucose(day: tmpDay!)
         if glucoseLogs.count == 0{
             for i in (glucoseLogs.count)...(rawData.count - 1){
@@ -182,16 +172,13 @@ class ViewControllerGraph: UIViewController {
                 ModelController().addGlucose(value: rawValues[i], time: timeString, date: day!)
             }
         }else {
+            
             print("Already loaded data in")
         }
     }
     
     
-    /**
-	*	Rotates the sideView Containers by (+/-)45degrees about the y axis to give the impression of perspective.
-	*
-	*	- Returns: Null
-	*/
+    /// Shape sideView containers into Bifocal
     func sideTransforms(){
         var transform = CATransform3DIdentity
         transform.m34 = -1 / 500.0
@@ -202,21 +189,18 @@ class ViewControllerGraph: UIViewController {
     
     /// Notifications for when events are added
     func addNotifications(){
-        nc.addObserver(self, selector: #selector(dataUpdated), name: Notification.Name("FoodAdded"), object: nil)
-        nc.addObserver(self, selector: #selector(dataUpdated), name: Notification.Name("ExerciseAdded"), object: nil)
-        nc.addObserver(self, selector: #selector(dataUpdated), name: Notification.Name("InsulinAdded"), object: nil)
+        nc.addObserver(self, selector: #selector(mealsUpdated), name: Notification.Name("FoodAdded"), object: nil)
+        nc.addObserver(self, selector: #selector(mealsUpdated), name: Notification.Name("ExerciseAdded"), object: nil)
+        nc.addObserver(self, selector: #selector(mealsUpdated), name: Notification.Name("InsulinAdded"), object: nil)
         nc.addObserver(self, selector: #selector(setDay(notification:)), name: Notification.Name("setDay"), object: nil)
     }
-	
-	/// Called when a notification is received after food, exercise or insulin has been added to Core Data. 
-	/// It reloads the chart data and displays it.
-    @objc private func dataUpdated(){
+    @objc private func mealsUpdated(){
         initChart()
         chart?.view.setNeedsDisplay()
     }
 
     
-    /// Registers settings bundle. Creates a Notification Listener to detect when a change has been made to the Settings.
+    /// Registers settings bundle. Updates app when settings changed
     func settingPreferences(){
         let appDefaults = [String:AnyObject]()
         UserDefaults.standard.register(defaults: appDefaults)
@@ -224,8 +208,6 @@ class ViewControllerGraph: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(ViewControllerGraph.defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
         defaultsChanged()
     }
-	
-	/// Detects which changes that have been made to the Settings and apply them to the UI.
     @objc func defaultsChanged(){
         if(UserDefaults.standard.bool(forKey: "showBasalPreference")){
             Basal.isHidden = false
@@ -238,7 +220,7 @@ class ViewControllerGraph: UIViewController {
     /**
      Update popups according to days when swiping across.
      - parameter notification: Popups to be updated
-     - returns: Updated bifocal section with correct notifications/popups as date changes.
+     - returns: Updated bifocal section with correct notifications/popups as date changes
      */
     @objc func setDay(notification: Notification){
         let dateFormatter = DateFormatter()
@@ -251,8 +233,6 @@ class ViewControllerGraph: UIViewController {
         updateDay()
         updateViews()
     }
-	
-	/// Creates a Notification used to synchronize the Date throughout the app.
     func updateDay(){
         let nc = NotificationCenter.default
         nc.post(name: Notification.Name("dayChanged"), object: today)
@@ -260,8 +240,9 @@ class ViewControllerGraph: UIViewController {
     
     
     /**
-	*	Re-initializes the chart and sideViews with the new data corresponding to the updated Date.
-    */
+     Remove current data and plots on the central chart, redraw chart with events and update side views.
+     - returns: The updated bifocal section
+     */
     private func updateViews(){
         for view in (chart?.view.subviews)! {
             view.removeFromSuperview()
@@ -279,10 +260,10 @@ class ViewControllerGraph: UIViewController {
 
     
     /**
-	*	Takes the date as argument and converts it to the format 'weekday day month, year'
-    * - Parameter date: Date to be transformed
-    * - Returns: String, date in required string format
-    */
+     Combine weekday and date for pickerfield
+     - parameter date: Date to be transformed
+     - returns: date in string format
+     */
     func formatWeekday(date: Date){
         let weekdayFormatter = DateFormatter()
         weekdayFormatter.dateFormat = "EEEE dd MMMM, yyyy"
@@ -292,8 +273,9 @@ class ViewControllerGraph: UIViewController {
     
     
     /**
-    * Create a date picker and formats the date as required and displays it.
-    */
+     Create a date picker and format the date as required. Pass picker date to tmp'today' when done
+     - returns: date in string format
+     */
     func createDatePicker(){
         
         formatWeekday(date: Date())  //PLACEHOLDER
@@ -307,8 +289,6 @@ class ViewControllerGraph: UIViewController {
         pickerTextField.inputAccessoryView = toolbar
         pickerTextField.inputView = picker
     }
-	
-	///	Function called after the user has finished with the DatePicker and synchronizes the date used for the chart with the viewController.
     @objc func donePressed(){
         formatWeekday(date: picker.date)
         self.view.endEditing(true)
@@ -322,9 +302,9 @@ class ViewControllerGraph: UIViewController {
     
     
     /**
-     Calculates the minimum, maximum and mean average for daily glucose measurements and updates the CustomView's member data.
-     - Parameter Arr: Double Array, Glucose measurements for a day.
-     - Parameter view: CustomView, to be updated with calculated values.
+     Calculate max, min and average for sideView glucose
+     - parameter Arr: Glucose measurements on a day
+     - parameter view: SideView to be updated with calculated values
      */
     private func calcRanges(Arr: [Double], view: CustomView){
         if Arr.count > 0 {
@@ -339,7 +319,7 @@ class ViewControllerGraph: UIViewController {
     }
     
     
-    ///Frame settings for chart area and axis.
+    ///Frame settings for graph
     fileprivate lazy var chartSettings: ChartSettings = {
         var chartSettings = ChartSettings()
         chartSettings.leading = -15
@@ -358,10 +338,11 @@ class ViewControllerGraph: UIViewController {
     
     
     /**
-    *	Plot glucose data in Layers.
-    *	Draw popups and attach messages to them.
-    *	Change of dates gets passed in to update chart.
-    */
+     Plot glucose data in Layers.
+     Draw popups and attach messages to them.
+     Change of dates gets passed in to update chart.
+     - returns: updated ChartView
+     */
     private func initChart(){
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
