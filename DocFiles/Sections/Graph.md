@@ -96,7 +96,7 @@ In this section we do everything graph related. For example:
 * Update popups and attached messages.
 
 
-Modifications are made on top of an iOS chart library which can be found here: [https://github.com/i-schuetz/SwiftCharts.git][[2]]
+Modifications are made on top of an iOS chart library which can be found [here][[2]]
 
 * Layers: xAxisLayer, yAxisLayer, yHighAxes, guidelinesLayer, pointslineLayer, prediction, chartPointsCircleLayer
 
