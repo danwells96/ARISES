@@ -14,7 +14,7 @@
     <a title="ViewControllerMain Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">ARISES Docs</a> (63% documented)</p>
+        <p><a href="../index.html">ARISES Docs</a> (40% documented)</p>
         <p class="header-right"><a href="https://github.com/danwells96/ARISES"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -99,6 +99,26 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a href="../Graph.html">Graph</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ViewControllerGraph.html">ViewControllerGraph</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ChartBGView.html">ChartBGView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CustomView.html">CustomView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/ChartPointEllipseView.html">ChartPointEllipseView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/ChartPointEllipseView/extra.html">– extra</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a href="../Main View.html">Main View</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -110,10 +130,75 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a href="../Food Domain.html">Food Domain</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ViewControllerFood.html">ViewControllerFood</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/IndicatorControllerFood.html">IndicatorControllerFood</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Exercise Domain.html">Exercise Domain</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ViewControllerExercise.html">ViewControllerExercise</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Health Domain.html">Health Domain</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ViewControllerHealth.html">ViewControllerHealth</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Advice Domain.html">Advice Domain</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ViewControllerAdvice.html">ViewControllerAdvice</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a href="../Tables.html">Tables</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Tables.html#/c:@M@ARISES@objc(pl)tableCellDelegate">tableCellDelegate</a>
+                <a href="../Classes/ViewControllerTableViewCell.html">ViewControllerTableViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/tableCellDelegate.html">tableCellDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Settings.html">Settings</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/SettingsBundleHelper.html">SettingsBundleHelper</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SettingsBundleHelper/SettingsBundleKeys.html">– SettingsBundleKeys</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Other Classes.html">Other Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AppDelegate.html">AppDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Other Extensions.html">Other Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/UIView.html">UIView</a>
               </li>
             </ul>
           </li>
@@ -134,6 +219,577 @@ Also controls insulin entry views.</p>
 
           </section>
           <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Outlets"></a>
+                <a name="//apple_ref/swift/Section/Outlets" class="dashAnchor"></a>
+                <a href="#/Outlets">
+                  <h3 class="section-name">Outlets</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6ARISES18ViewControllerMainC10viewHealth33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo6UIViewCGXwvp"></a>
+                    <a name="//apple_ref/swift/Property/viewHealth" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES18ViewControllerMainC10viewHealth33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo6UIViewCGXwvp">viewHealth</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="kd">private</span> <span class="k">var</span> <span class="nv">viewHealth</span><span class="p">:</span> <span class="kt">UIView</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6ARISES18ViewControllerMainC8viewFood33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo6UIViewCGXwvp"></a>
+                    <a name="//apple_ref/swift/Property/viewFood" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES18ViewControllerMainC8viewFood33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo6UIViewCGXwvp">viewFood</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="kd">private</span> <span class="k">var</span> <span class="nv">viewFood</span><span class="p">:</span> <span class="kt">UIView</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6ARISES18ViewControllerMainC10viewAdvice33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo6UIViewCGXwvp"></a>
+                    <a name="//apple_ref/swift/Property/viewAdvice" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES18ViewControllerMainC10viewAdvice33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo6UIViewCGXwvp">viewAdvice</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="kd">private</span> <span class="k">var</span> <span class="nv">viewAdvice</span><span class="p">:</span> <span class="kt">UIView</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6ARISES18ViewControllerMainC12viewExercise33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo6UIViewCGXwvp"></a>
+                    <a name="//apple_ref/swift/Property/viewExercise" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES18ViewControllerMainC12viewExercise33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo6UIViewCGXwvp">viewExercise</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="kd">private</span> <span class="k">var</span> <span class="nv">viewExercise</span><span class="p">:</span> <span class="kt">UIView</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6ARISES18ViewControllerMainC15containerHealth33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo6UIViewCGXwvp"></a>
+                    <a name="//apple_ref/swift/Property/containerHealth" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES18ViewControllerMainC15containerHealth33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo6UIViewCGXwvp">containerHealth</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="kd">private</span> <span class="k">var</span> <span class="nv">containerHealth</span><span class="p">:</span> <span class="kt">UIView</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6ARISES18ViewControllerMainC13containerFood33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo6UIViewCGXwvp"></a>
+                    <a name="//apple_ref/swift/Property/containerFood" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES18ViewControllerMainC13containerFood33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo6UIViewCGXwvp">containerFood</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="kd">private</span> <span class="k">var</span> <span class="nv">containerFood</span><span class="p">:</span> <span class="kt">UIView</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6ARISES18ViewControllerMainC15containerAdvice33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo6UIViewCGXwvp"></a>
+                    <a name="//apple_ref/swift/Property/containerAdvice" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES18ViewControllerMainC15containerAdvice33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo6UIViewCGXwvp">containerAdvice</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="kd">private</span> <span class="k">var</span> <span class="nv">containerAdvice</span><span class="p">:</span> <span class="kt">UIView</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6ARISES18ViewControllerMainC17containerExercise33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo6UIViewCGXwvp"></a>
+                    <a name="//apple_ref/swift/Property/containerExercise" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES18ViewControllerMainC17containerExercise33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo6UIViewCGXwvp">containerExercise</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="kd">private</span> <span class="k">var</span> <span class="nv">containerExercise</span><span class="p">:</span> <span class="kt">UIView</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6ARISES18ViewControllerMainC13indicatorFood33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo6UIViewCGXwvp"></a>
+                    <a name="//apple_ref/swift/Property/indicatorFood" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES18ViewControllerMainC13indicatorFood33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo6UIViewCGXwvp">indicatorFood</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="kd">private</span> <span class="k">var</span> <span class="nv">indicatorFood</span><span class="p">:</span> <span class="kt">UIView</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6ARISES18ViewControllerMainC17indicatorExercise33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo6UIViewCGXwvp"></a>
+                    <a name="//apple_ref/swift/Property/indicatorExercise" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES18ViewControllerMainC17indicatorExercise33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo6UIViewCGXwvp">indicatorExercise</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="kd">private</span> <span class="k">var</span> <span class="nv">indicatorExercise</span><span class="p">:</span> <span class="kt">UIView</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6ARISES18ViewControllerMainC15indicatorHealth33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo6UIViewCGXwvp"></a>
+                    <a name="//apple_ref/swift/Property/indicatorHealth" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES18ViewControllerMainC15indicatorHealth33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo6UIViewCGXwvp">indicatorHealth</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="kd">private</span> <span class="k">var</span> <span class="nv">indicatorHealth</span><span class="p">:</span> <span class="kt">UIView</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6ARISES18ViewControllerMainC15indicatorAdvice33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo6UIViewCGXwvp"></a>
+                    <a name="//apple_ref/swift/Property/indicatorAdvice" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES18ViewControllerMainC15indicatorAdvice33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo6UIViewCGXwvp">indicatorAdvice</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="kd">private</span> <span class="k">var</span> <span class="nv">indicatorAdvice</span><span class="p">:</span> <span class="kt">UIView</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6ARISES18ViewControllerMainC9foodLabel33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo7UILabelCGXwvp"></a>
+                    <a name="//apple_ref/swift/Property/foodLabel" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES18ViewControllerMainC9foodLabel33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo7UILabelCGXwvp">foodLabel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="kd">private</span> <span class="k">var</span> <span class="nv">foodLabel</span><span class="p">:</span> <span class="kt">UILabel</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6ARISES18ViewControllerMainC13exerciseLabel33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo7UILabelCGXwvp"></a>
+                    <a name="//apple_ref/swift/Property/exerciseLabel" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES18ViewControllerMainC13exerciseLabel33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo7UILabelCGXwvp">exerciseLabel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="kd">private</span> <span class="k">var</span> <span class="nv">exerciseLabel</span><span class="p">:</span> <span class="kt">UILabel</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6ARISES18ViewControllerMainC11adviceLabel33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo7UILabelCGXwvp"></a>
+                    <a name="//apple_ref/swift/Property/adviceLabel" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES18ViewControllerMainC11adviceLabel33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo7UILabelCGXwvp">adviceLabel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="kd">private</span> <span class="k">var</span> <span class="nv">adviceLabel</span><span class="p">:</span> <span class="kt">UILabel</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6ARISES18ViewControllerMainC11healthLabel33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo7UILabelCGXwvp"></a>
+                    <a name="//apple_ref/swift/Property/healthLabel" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES18ViewControllerMainC11healthLabel33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo7UILabelCGXwvp">healthLabel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="kd">private</span> <span class="k">var</span> <span class="nv">healthLabel</span><span class="p">:</span> <span class="kt">UILabel</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6ARISES18ViewControllerMainC19glucoseButtonOutlet33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo8UIButtonCGXwvp"></a>
+                    <a name="//apple_ref/swift/Property/glucoseButtonOutlet" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES18ViewControllerMainC19glucoseButtonOutlet33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo8UIButtonCGXwvp">glucoseButtonOutlet</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="kd">private</span> <span class="k">var</span> <span class="nv">glucoseButtonOutlet</span><span class="p">:</span> <span class="kt">UIButton</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6ARISES18ViewControllerMainC16insulinTextField33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo06UITextG0CGXwvp"></a>
+                    <a name="//apple_ref/swift/Property/insulinTextField" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES18ViewControllerMainC16insulinTextField33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo06UITextG0CGXwvp">insulinTextField</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="kd">private</span> <span class="k">var</span> <span class="nv">insulinTextField</span><span class="p">:</span> <span class="kt">UITextField</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6ARISES18ViewControllerMainC18glucoseClockOutlet33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo8UIButtonCGXwvp"></a>
+                    <a name="//apple_ref/swift/Property/glucoseClockOutlet" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES18ViewControllerMainC18glucoseClockOutlet33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo8UIButtonCGXwvp">glucoseClockOutlet</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="kd">private</span> <span class="k">var</span> <span class="nv">glucoseClockOutlet</span><span class="p">:</span> <span class="kt">UIButton</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6ARISES18ViewControllerMainC16insulinTimeField33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo06UITextG0CGXwvp"></a>
+                    <a name="//apple_ref/swift/Property/insulinTimeField" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES18ViewControllerMainC16insulinTimeField33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo06UITextG0CGXwvp">insulinTimeField</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="kd">private</span> <span class="k">var</span> <span class="nv">insulinTimeField</span><span class="p">:</span> <span class="kt">UITextField</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
             <div class="task-group">
               <div class="task-name-container">
                 <a name="/Properties"></a>
@@ -218,6 +874,87 @@ Also controls insulin entry views.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">keyboardOpen</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6ARISES18ViewControllerMainC11shadowLayer33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo07CAShapeF0CGvp"></a>
+                    <a name="//apple_ref/swift/Property/shadowLayer" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES18ViewControllerMainC11shadowLayer33_7FFF88770192C51F7AFDAE59970F48B5LLSQySo07CAShapeF0CGvp">shadowLayer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">shadowLayer</span><span class="p">:</span> <span class="kt">CAShapeLayer</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6ARISES18ViewControllerMainC12cornerRadius33_7FFF88770192C51F7AFDAE59970F48B5LL12CoreGraphics7CGFloatVvp"></a>
+                    <a name="//apple_ref/swift/Property/cornerRadius" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES18ViewControllerMainC12cornerRadius33_7FFF88770192C51F7AFDAE59970F48B5LL12CoreGraphics7CGFloatVvp">cornerRadius</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">cornerRadius</span><span class="p">:</span> <span class="kt">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6ARISES18ViewControllerMainC9fillColor33_7FFF88770192C51F7AFDAE59970F48B5LLSo7UIColorCvp"></a>
+                    <a name="//apple_ref/swift/Property/fillColor" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES18ViewControllerMainC9fillColor33_7FFF88770192C51F7AFDAE59970F48B5LLSo7UIColorCvp">fillColor</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">fillColor</span><span class="p">:</span> <span class="kt">UIColor</span></code></pre>
 
                         </div>
                       </div>
@@ -326,6 +1063,73 @@ Also controls insulin entry views.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
 <span class="kd">private</span> <span class="kd">func</span> <span class="nf">updateDay</span><span class="p">(</span><span class="nv">notification</span><span class="p">:</span> <span class="kt">Notification</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Functions%20for%20tracking%20when%20keyboard%20open"></a>
+                <a name="//apple_ref/swift/Section/Functions for tracking when keyboard open" class="dashAnchor"></a>
+                <a href="#/Functions%20for%20tracking%20when%20keyboard%20open">
+                  <h3 class="section-name">Functions for tracking when keyboard open</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6ARISES18ViewControllerMainC16keyboardWillShow33_7FFF88770192C51F7AFDAE59970F48B5LLySo14NSNotificationC6sender_tF"></a>
+                    <a name="//apple_ref/swift/Method/keyboardWillShow(sender:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES18ViewControllerMainC16keyboardWillShow33_7FFF88770192C51F7AFDAE59970F48B5LLySo14NSNotificationC6sender_tF">keyboardWillShow(sender:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">private</span> <span class="kd">func</span> <span class="nf">keyboardWillShow</span><span class="p">(</span><span class="nv">sender</span><span class="p">:</span> <span class="kt">NSNotification</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6ARISES18ViewControllerMainC16keyboardWillHide33_7FFF88770192C51F7AFDAE59970F48B5LLySo14NSNotificationC6sender_tF"></a>
+                    <a name="//apple_ref/swift/Method/keyboardWillHide(sender:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES18ViewControllerMainC16keyboardWillHide33_7FFF88770192C51F7AFDAE59970F48B5LLySo14NSNotificationC6sender_tF">keyboardWillHide(sender:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">private</span> <span class="kd">func</span> <span class="nf">keyboardWillHide</span><span class="p">(</span><span class="nv">sender</span><span class="p">:</span> <span class="kt">NSNotification</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -582,6 +1386,62 @@ This hides other embedded views and brings chosen domain to the front</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">createInsulinTimePicker</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6ARISES18ViewControllerMainC14doneWithPicker33_7FFF88770192C51F7AFDAE59970F48B5LLyyF"></a>
+                    <a name="//apple_ref/swift/Method/doneWithPicker()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES18ViewControllerMainC14doneWithPicker33_7FFF88770192C51F7AFDAE59970F48B5LLyyF">doneWithPicker()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">private</span> <span class="kd">func</span> <span class="nf">doneWithPicker</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6ARISES18ViewControllerMainC14doneWithKeypad33_7FFF88770192C51F7AFDAE59970F48B5LLyyF"></a>
+                    <a name="//apple_ref/swift/Method/doneWithKeypad()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES18ViewControllerMainC14doneWithKeypad33_7FFF88770192C51F7AFDAE59970F48B5LLyyF">doneWithKeypad()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">private</span> <span class="kd">func</span> <span class="nf">doneWithKeypad</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
