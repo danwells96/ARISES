@@ -12,19 +12,24 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     
     //MARK: - Outlets
     @IBOutlet weak private var foodTimeField: UITextField!
-    @IBOutlet weak private var foodLogTable: UITableView!
+    //Food Entry Outlets
     @IBOutlet weak private var carbsTextField: UITextField!
     @IBOutlet weak private var proteinTextField: UITextField!
     @IBOutlet weak private var fatTextField: UITextField!
     @IBOutlet weak private var foodNameTextField: UITextField!
+    @IBOutlet weak private var favouritesButton: UIButton!
     @IBOutlet weak private var foodAddButton: UIButton!
+    //Food daily log table
+    @IBOutlet weak private var foodLogTable: UITableView!
+    //Constraints to allow adjusting when moving between days and hiding data entry outlets
     @IBOutlet weak private var logTopConstraint: NSLayoutConstraint!
     @IBOutlet weak private var barBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak private var favouritesButton: UIButton!
+
     
     //MARK: - Properties
+    ///Instantiation of a date picker for choosing time of meal
     private var foodTimePicker = UIDatePicker()
-    ///Tracks date set by graph and hides data entry fields when not on current day
+    ///Tracks date set by graph and hides data entry fields when not on current day using didSet
     private var currentDay = Date(){
         didSet{
 
@@ -64,9 +69,11 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     //Table variables
     ///Stores an array of Meals objects fetched from the model to display in the table
     private var loggedMeals = [Meals]()
-    private var expanded = false
+    ///Stores index of selected cell to allow expanding to show more info when selected
     private var selectedCellIndexPath = [IndexPath?]()
+    ///Height for a cell which has been selected and expanded
     private let selectedCellHeight: CGFloat = 89.0
+    ///Height for an unselected and contracted cell
     private let unselectedCellHeight: CGFloat = 40.0
     ///Tracks whether to show favourites or daily log
     private var showFavouritesFood = false{
@@ -84,6 +91,13 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     }
 
     //MARK: - Override viewDidLoad
+    /**viewDidLoad override to set initial state of:
+     food log delegate and data source,
+     TimePicker instantiation,
+     Observer to act on current graph day changing,
+     Observers to act based on keyboard state,
+     Calling `updateTable`
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -128,16 +142,17 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     }
     
     //MARK: - Functions for moving view to prevent keyboard obscuring fields
+    /// Moves food view 65 points upward
     @objc func keyboardWillShow(sender: NSNotification) {
-        self.view.frame.origin.y = -65 // Move view 150 points upward
+        self.view.frame.origin.y = -65
     }
+    /// Moves food view to original position
     @objc func keyboardWillHide(sender: NSNotification) {
-        self.view.frame.origin.y = 0 // Move view to original position
+        self.view.frame.origin.y = 0
     }
-    
     
     //MARK: - Picker functions
-    //Food Time picker
+    ///Food Time picker
     private func createFoodTimePicker(){
         
         let doneButtonBar = UIToolbar()
@@ -164,7 +179,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     }
     
     //MARK: - Favourite buttons
-    //Toggle between favourite and daily log views
+    ///Toggle between favourite and daily log views
     @IBAction private func toggleFavourites(_ sender: Any) {
         if self.showFavouritesFood == false{
             showFavouritesFood = true
