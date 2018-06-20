@@ -78,7 +78,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     private let selectedCellHeight: CGFloat = 89.0
     ///Height for an unselected and contracted cell
     private let unselectedCellHeight: CGFloat = 40.0
-    ///Tracks whether to show favourites or daily log
+    ///Tracks whether to show favourites or daily log and updates table to show that
     private var showFavouritesFood = false{
         didSet{
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
@@ -95,8 +95,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
 
     //MARK: - Override viewDidLoad
     /**viewDidLoad override to set initial state of:
-     food log delegate and data source,
-     TimePicker instantiation,
+     TimePicker creation,
      Observer to act on current graph day changing,
      Observers to act based on keyboard state,
      Calling `updateTable`
@@ -104,10 +103,6 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //Table view delegate requirements
-        foodLogTable.dataSource = self
-        foodLogTable.delegate = self
-        
         //Instantiation of time picker
         createFoodTimePicker()
         
@@ -145,17 +140,17 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
     }
     
     //MARK: - Functions for moving view to prevent keyboard obscuring fields
-    /// Moves food view 65 points upward
+    /// Moves food domain view 65 points upward
     @objc func keyboardWillShow(sender: NSNotification) {
         self.view.frame.origin.y = -65
     }
-    /// Moves food view to original position
+    /// Moves food domain view to original position
     @objc func keyboardWillHide(sender: NSNotification) {
         self.view.frame.origin.y = 0
     }
     
     //MARK: - Picker functions
-    ///Food Time picker
+    ///Initialises Food Time picker
     private func createFoodTimePicker(){
         
         let doneButtonBar = UIToolbar()
@@ -193,7 +188,7 @@ class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDat
         }
     }
     
-    //TODO: Add a way to remove favourites
+    //TODO: Add a way to remove favourites, probably an alert on tapping the star while in favourites. Without checking, it's too easy to unfavourite.
     ///Delegate function to toggle whether a meal is favourited
     func didPressButton(_ tag: Int) {
         if showFavouritesFood != true{

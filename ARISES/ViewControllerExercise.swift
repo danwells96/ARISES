@@ -8,27 +8,38 @@
 
 import UIKit
 
+/**
+ Controls all UI elements within the exercise domain. This includes data entry, favouriting system and managing the exercise log.
+ */
 class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDataSource, UITableViewDelegate, tableCellDelegate{
     
     //MARK: - Outlets
+    //Exercise Entry Outlets
     @IBOutlet weak private var exerciseNameField: UITextField!
     @IBOutlet weak private var exerciseTimeField: UITextField!
     @IBOutlet weak private var exerciseIntensityField: UITextField!
     @IBOutlet weak private var exerciseDurationField: UITextField!
-    @IBOutlet weak private var exerciseLogTable: UITableView!
-    @IBOutlet weak private var logTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak private var barBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak private var exerciseAddButton: UIButton!
     @IBOutlet weak private var favouritesButton: UIButton!
+    //Exercise daily log table
+    @IBOutlet weak private var exerciseLogTable: UITableView!
+    //Constraints to allow adjusting when moving between days and hiding data entry outlets
+    @IBOutlet weak private var logTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak private var barBottomConstraint: NSLayoutConstraint!
+
     
     //MARK: - Properties
     //picker related variables
+    ///Array of exercise intensity values to choose from picker view
     private let exerciseIntensity = ["Low", "Medium", "High"]
+    ///Instantiation of a picker view for choosing intensity of exercise
     private var exerciseIntensityPicker = UIPickerView()
+    ///Instantiation of a date picker for choosing time of exercise
     private var exerciseTimePicker = UIDatePicker()
+    ///Instantiation of a date picker for choosing duration of exercise
     private var exerciseDurationPicker = UIDatePicker()
     
-    ///Tracks date set by graph and hides data entry fields when not on current day
+    ///Tracks date set by graph and hides data entry fields when not on current day using didSet
     private var currentDay = Date(){
         didSet{
             exerciseNameField.text = ""
@@ -63,7 +74,7 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     ///Stores an array of Exercise objects fetched from the model to display in the table
     private var loggedExercise = [Exercise]()
-    ///Tracks whether to show favourites or daily log
+    ///Tracks whether to show favourites or daily log and updates table to show that
     private var showFavouritesExercise = false{
         didSet{
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
@@ -80,6 +91,12 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
 
     //MARK: - Override viewDidLoad
+    /**viewDidLoad override to set initial state of:
+     Time and duration picker creation,
+     Observer to act on current graph day changing,
+     Observers to act based on keyboard state,
+     Calling `updateTable`
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -123,15 +140,17 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
    //MARK: - Functions for moving view to prevent keyboard obscuring fields
+    /// Moves exercise domain view 65 points upward
     @objc private func keyboardWillShow(sender: NSNotification) {
-        self.view.frame.origin.y = -65 // Move view 150 points upward
+        self.view.frame.origin.y = -65
     }
+    /// Moves exercise domain view to original position
     @objc private func keyboardWillHide(sender: NSNotification) {
-        self.view.frame.origin.y = 0 // Move view to original position
+        self.view.frame.origin.y = 0
     }
     
     //MARK: - Picker functions
-    //Exercise duration picker
+    ///Initialises exercise duration picker
     private func createExerciseDurationPicker(){
         
         let doneButtonBar = UIToolbar()
@@ -154,7 +173,7 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
         self.view.endEditing(true)
     }
     
-    //Exercise Time picker
+    ///Initialises Exercise Time picker
     private func createExerciseTimePicker(){
         
         let doneButtonBar = UIToolbar()
@@ -177,18 +196,19 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     //Word Pickers: exercise intensity
+    ///Sets number of columns for pickerView to display, here 1
     func numberOfComponents(in pickerView: UIPickerView) -> Int{
         return 1
     }
-    
+    ///Sets number of rows for pickerView to display in each component/column, here to number of items in exerciseIntensity array
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component:Int) -> Int{
         return exerciseIntensity.count
     }
-    
+    ///Sets titles for each item in the row to elements of the exerciseIntensity array
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?{
         return exerciseIntensity[row]
     }
-    
+    ///Adds the selected row's intensity to the intensity text field
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
         exerciseIntensityField.text = exerciseIntensity[row]
         exerciseIntensityField.resignFirstResponder()
@@ -199,7 +219,7 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     //MARK: - Favourite buttons
-    //Toggle between favourite and daily log views
+    ///Toggle between favourite and daily log views
     @IBAction private func toggleFavourites(_ sender: Any) {
         if self.showFavouritesExercise == false{
             showFavouritesExercise = true
@@ -209,7 +229,7 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
         }
     }
     
-    //TODO: Add a way to remove favourites
+    //TODO: Add a way to remove favourites, probably an alert on tapping the star while in favourites. Without checking, it's too easy to unfavourite.
     ///Delegate function to toggle whether a meal is favourited
     func didPressButton(_ tag: Int) {
         if showFavouritesExercise != true{
@@ -220,6 +240,7 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
 
     //MARK: - Table functions
+    ///Table funcion to set number of rows equal to total exercise logs
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return loggedExercise.count
     }
@@ -258,7 +279,7 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
         return(cell)
     }
     
-    //Allows selecting a favourite to add to daily log
+    ///Allows selecting a favourite to add to daily log
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if showFavouritesExercise == true{
@@ -287,6 +308,7 @@ class ViewControllerExercise: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
 
     //MARK: - Add exercise button
+    ///Calls ModelController function addExercise with contents of data entry fields, if they are all filled
     @IBAction private func addExercise(_ sender: Any) {
         if ((exerciseNameField.text != "") && (exerciseTimeField.text != "") && (exerciseDurationField.text != "") && (exerciseIntensityField.text != "")){
 
