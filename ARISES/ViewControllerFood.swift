@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ Controls all UI elements within the food domain. This includes data entry, favouriting system and managing the food log.
+ */
 class ViewControllerFood: UIViewController, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate, tableCellDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //MARK: - Outlets

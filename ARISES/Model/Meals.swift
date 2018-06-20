@@ -9,8 +9,8 @@
 import UIKit
 import CoreData
 
-///Meals NSManagedObject category/extension file
 /**
+ Meals NSManagedObject category/extension file
  - Note: The following auto-generated properties are managed within ARISES.xcdatamodeld:
      fetchRequest(),
      carbs,

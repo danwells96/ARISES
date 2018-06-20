@@ -9,8 +9,8 @@
 import UIKit
 import CoreData
 
-///Day NSManagedObject category/extension file: Contains many computed properties for summarily displaying related object information
 /**
+ Day NSManagedObject category/extension file: Contains many computed properties for summarily displaying related object information
  - Note: The following auto-generated properties are managed within ARISES.xcdatamodeld:
      date,
      exercise,

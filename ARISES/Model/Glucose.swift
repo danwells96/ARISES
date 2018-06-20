@@ -10,8 +10,8 @@
 import UIKit
 import CoreData
 
-///Glucose NSManagedObject category/extension file: Contains a computed property `tag` to mark if a log is in the hypo/hyper range
 /**
+ Glucose NSManagedObject category/extension file: Contains a computed property `tag` to mark if a log is in the hypo/hyper range
  - Note: The following auto-generated properties are managed within ARISES.xcdatamodeld:
     fetchRequest(),
     time,

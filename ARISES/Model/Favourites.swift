@@ -8,8 +8,8 @@
 import UIKit
 import CoreData
 
-///Favourites NSManagedObject category/extension file
 /**
+ Favourites NSManagedObject category/extension file
  - Note: The following auto-generated properties are managed within ARISES.xcdatamodeld:
      fetchRequest(),
      days,
