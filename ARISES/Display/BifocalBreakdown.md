@@ -95,6 +95,29 @@ In this section we do everything graph related. For example:
 * Update settings.  
 * Update popups and attached messages.
 
+
+Modifications are made on top of an iOS chart library which can be found here: https://github.com/i-schuetz/SwiftCharts.git 
+
+* Layers: xAxisLayer, yAxisLayer, yHighAxes, guidelinesLayer, pointslineLayer, prediction, chartPointsCircleLayer
+
+**xAxisLayer** conatins x-axis model and x-axis label settings. It displays time in a day with an interval of 6 hours thus 4 dividers.
+
+**yAxisLayer** conatins glucose axis model and label settings. The axis ranges from 0 to 20 (mM/L) with an interval of 4. 
+
+**yHighAxes** contains an invisible carbs axis on the right side of chart. Meals popups are plotted based on carbs axis and shares the same x-axis with glucose points.
+
+**guidelinesLayer** provides dotted grid lines on graph
+
+**pointslineLayer** draws glucose curve on graph in a solid blue line
+
+**prediction** predicts patient's glucose in the next half an hour (now only tested with fixed data points)
+
+**chartPointsCircleLayer** is where popups are set up. It has a touchHandler to deal with touch events which is to print a message based on the points being tapped.
+
+The touchHandler detects where the finger tapped on the screen and compares the x-position of the touch with x coordinates of popups it stored. If they match or close to a certain degree the infoBubble is enabled which prints a message to user. If touches happens outside screen frame it returns the edge cases.
+#### Functions below this line
+---
+
 Methods implemented are: 
 #### *rightGesture* 
 * **Description:** An IBAction func. Once a right swpie gesture is detected, main graph would be replaced by data from one day on the LHS. All other views update accordingly. (Everything shifts to the right)
@@ -147,26 +170,5 @@ Methods implemented are:
   * Dates changes accordingly with swipes and plots changes accordingly.
   * Changes of dates gets passed in to update chart. 
 
-Modifications are made on top of an iOS chart library which can be found here: https://github.com/i-schuetz/SwiftCharts.git 
-
-* Layers: xAxisLayer, yAxisLayer, yHighAxes, guidelinesLayer, pointslineLayer, prediction, chartPointsCircleLayer
-
-**xAxisLayer** conatins x-axis model and x-axis label settings. It displays time in a day with an interval of 6 hours thus 4 dividers.
-
-**yAxisLayer** conatins glucose axis model and label settings. The axis ranges from 0 to 20 (mM/L) with an interval of 4. 
-
-**yHighAxes** contains an invisible carbs axis on the right side of chart. Meals popups are plotted based on carbs axis and shares the same x-axis with glucose points.
-
-**guidelinesLayer** provides dotted grid lines on graph
-
-**pointslineLayer** draws glucose curve on graph in a solid blue line
-
-**prediction** predicts patient's glucose in the next half an hour (now only tested with fixed data points)
-
-**chartPointsCircleLayer** is where popups are set up. It has a touchHandler to deal with touch events which is to print a message based on the points being tapped.
-
-The touchHandler detects where the finger tapped on the screen and compares the x-position of the touch with x coordinates of popups it stored. If they match or close to a certain degree the infoBubble is enabled which prints a message to user. If touches happens outside screen frame it returns the edge cases.
-#### Functions below this line
----
 
 [[1]](https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-problems/low-blood-glucose-hypoglycemia):"Hypoglycemia". National Institute of Diabetes and Digestive and Kidney Diseases. October 2008. Archived from the original on 1 July 2015. Retrieved 28 June 2015.
