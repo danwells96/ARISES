@@ -14,7 +14,7 @@
     <a title="ViewControllerMain Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">ARISES Docs</a> (31% documented)</p>
+        <p><a href="../index.html">ARISES Docs</a> (34% documented)</p>
         <p class="header-right"><a href="https://github.com/danwells96/ARISES"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -110,6 +110,12 @@
               <li class="nav-group-task">
                 <a href="../Classes/CustomView.html">CustomView</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/ChartPointEllipseView.html">ChartPointEllipseView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/ChartPointEllipseView/extra.html">– extra</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -181,16 +187,10 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Extensions.html">Extensions</a>
+            <a href="../Extension.html">Extension</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Extensions/UIView.html">UIView</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/ChartPointEllipseView.html">ChartPointEllipseView</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/ChartPointEllipseView/extra.html">– extra</a>
               </li>
             </ul>
           </li>
@@ -214,7 +214,8 @@
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Controls transitions between domains by showing and hiding domain and indicator views.
+Also controls insulin entry views.</p>
 
           </section>
           <section class="section task-group-section">
@@ -1011,7 +1012,11 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>viewDidLoad override to set initial state of:
+ Insulin date entry field,
+ TimePicker instantiation,
+ Observer to act on current graph day changing,
+ Observers to act based on keyboard state</p>
 
                       </div>
                       <div class="declaration">
@@ -1155,7 +1160,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Func to set state cases: .food, .exercise, .health or .advice.
+This hides other embedded views and brings chosen domain to the front</p>
 
                       </div>
                       <div class="declaration">
@@ -1193,7 +1199,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Sets state to .health, updating the view to display the health domain</p>
 
                       </div>
                       <div class="declaration">
@@ -1221,7 +1227,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Sets state to .food, updating the view to display the food domain. If keyboard is open when set (only possible from Exercise domain), it is dismissed and state change is delayed to smooth the transition</p>
 
                       </div>
                       <div class="declaration">
@@ -1249,7 +1255,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Sets state to .exercise, updating the view to display the exercise domain. If keyboard is open when set (only possible from Food domain), it is dismissed and state change is delayed to smooth the transition</p>
 
                       </div>
                       <div class="declaration">
@@ -1277,7 +1283,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Sets state to .advice, updating the view to display the advice domain</p>
 
                       </div>
                       <div class="declaration">
@@ -1316,7 +1322,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Insulin clock icon: Toggles a text field with a time picker to enter time of insulin dose</p>
 
                       </div>
                       <div class="declaration">
@@ -1344,7 +1350,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Insulin button (blood symbol): Toggles visibility of insulin text field and insulin clock icon. When closed, if a value has been entered it will be added to the database. If no time value was entered, the current time will be used.</p>
 
                       </div>
                       <div class="declaration">
@@ -1372,7 +1378,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Insulin Time picker</p>
 
                       </div>
                       <div class="declaration">
@@ -1466,7 +1472,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Opens phone settings</p>
 
                       </div>
                       <div class="declaration">

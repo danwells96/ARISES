@@ -48,6 +48,7 @@ custom_categories:
     - ViewControllerGraph
     - ChartBGView
     - CustomView
+    - ChartPointEllipseView
 
   - name: Main View
     children:
@@ -82,9 +83,8 @@ custom_categories:
     - ChartBGView
     - CustomView
 
-  - name: Extensions
+  - name: Extension
     children:
     - UIView
-    - ChartPointEllipseView
 
 

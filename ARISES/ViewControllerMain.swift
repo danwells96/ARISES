@@ -18,6 +18,10 @@ enum MainViewState
     case advice
 }
 
+/**
+Controls transitions between domains by showing and hiding domain and indicator views.
+Also controls insulin entry views.
+ */
 class ViewControllerMain: UIViewController{
     
     //MARK: - Outlets
@@ -78,7 +82,6 @@ class ViewControllerMain: UIViewController{
     private var keyboardOpen = false
     
     // Variables for rounding and shadow extension
-
     private var shadowLayer: CAShapeLayer!
     private var cornerRadius: CGFloat = 25.0
     private var fillColor: UIColor = .blue
@@ -92,6 +95,12 @@ class ViewControllerMain: UIViewController{
     }
     
     //MARK: - Override viewDidLoad
+    /**viewDidLoad override to set initial state of:
+     Insulin date entry field,
+     TimePicker instantiation,
+     Observer to act on current graph day changing,
+     Observers to act based on keyboard state
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         self.state = .food
@@ -142,7 +151,10 @@ class ViewControllerMain: UIViewController{
     }
     
     //MARK: - View re-positioning
-    //Func to set state cases
+    /**
+     Func to set state cases: .food, .exercise, .health or .advice.
+     This hides other embedded views and brings chosen domain to the front
+     */
     private func updateViews()
     {
         switch self.state
@@ -217,10 +229,11 @@ class ViewControllerMain: UIViewController{
     }
     
     //MARK: - Buttons to open each domain
+    ///Sets state to .health, updating the view to display the health domain
     @IBAction private func healthButton(_ sender: UIButton) {
         self.state = .health
     }
-    
+    ///Sets state to .food, updating the view to display the food domain. If keyboard is open when set (only possible from Exercise domain), it is dismissed and state change is delayed to smooth the transition
     @IBAction private func foodButton(_ sender: UIButton) {
         //If keyboard is open and tab is swapped, dismiss it and then change state smoothly
         if keyboardOpen == true{
@@ -233,7 +246,7 @@ class ViewControllerMain: UIViewController{
             self.state = .food
         }
     }
-    
+    ///Sets state to .exercise, updating the view to display the exercise domain. If keyboard is open when set (only possible from Food domain), it is dismissed and state change is delayed to smooth the transition
     @IBAction private func exerciseButton(_ sender: UIButton) {
         if keyboardOpen == true{
             view.endEditing(true)
@@ -245,13 +258,14 @@ class ViewControllerMain: UIViewController{
             self.state = .exercise
         }
     }
-    
+    ///Sets state to .advice, updating the view to display the advice domain
     @IBAction private func adviceButton(_ sender: UIButton) {
         self.state = .advice
     }
     
     
     //MARK: - Insulin actions
+    ///Insulin clock icon: Toggles a text field with a time picker to enter time of insulin dose
     @IBAction private func glucoseClockButton(_ sender: Any) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
             if self.glucoseClockOutlet.tintColor == #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1) {
@@ -264,7 +278,9 @@ class ViewControllerMain: UIViewController{
             }
         }
     }
-    
+    /**
+     Insulin button (blood symbol): Toggles visibility of insulin text field and insulin clock icon. When closed, if a value has been entered it will be added to the database. If no time value was entered, the current time will be used.
+    */
     @IBAction private func glucoseButton(_ sender: Any) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
             if self.glucoseButtonOutlet.tintColor == #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1) {
@@ -299,7 +315,7 @@ class ViewControllerMain: UIViewController{
     }
     
     
-    //Insulin Time picker
+    ///Insulin Time picker
     private func createInsulinTimePicker(){
         
         let doneButtonBar = UIToolbar()
@@ -326,14 +342,14 @@ class ViewControllerMain: UIViewController{
     }
     
     //MARK: - Settings
-    //Opens phone settings
+    ///Opens phone settings
     @IBAction func settingsPopup(_ sender: Any) {
         UIApplication.shared.open(URL(string:UIApplicationOpenSettingsURLString)!)
     }
 }
 
 //MARK: - Extensions
-//Rounding view and shadow extension
+///Rounding view and shadow extension
 extension UIView {
     func setRadius(radius: CGFloat? = nil) {
         self.layer.cornerRadius = radius ?? self.frame.width / 8
