@@ -37,7 +37,7 @@
 * **The sideviews:** 
 	* Shows the range and mean average of blood glucose levels for the user on that particular day.
 
-
+## Proof read to here
 ## ChartBase Setup
 The bifocal display consists of three parts: 
   * Leftside view container
@@ -96,7 +96,7 @@ In this section we do everything graph related. For example:
 * Update popups and attached messages.
 
 
-Modifications are made on top of an iOS chart library which can be found here: https://github.com/i-schuetz/SwiftCharts.git 
+Modifications are made on top of an iOS chart library which can be found here: https://github.com/i-schuetz/SwiftCharts.git [[2]]
 
 * Layers: xAxisLayer, yAxisLayer, yHighAxes, guidelinesLayer, pointslineLayer, prediction, chartPointsCircleLayer
 
@@ -115,63 +115,6 @@ Modifications are made on top of an iOS chart library which can be found here: h
 **chartPointsCircleLayer** is where popups are set up. It has a touchHandler to deal with touch events which is to print a message based on the points being tapped.
 
 The touchHandler detects where the finger tapped on the screen and compares the x-position of the touch with x coordinates of popups it stored. If they match or close to a certain degree the infoBubble is enabled which prints a message to user. If touches happens outside screen frame it returns the edge cases.
-### Functions below this line
----
-
-Methods implemented are: 
-#### *rightGesture* 
-* **Description:** An IBAction func. Once a right swpie gesture is detected, main graph would be replaced by data from one day on the LHS. All other views update accordingly. (Everything shifts to the right)
-
-* **Parameter:** The sender is UISwipeGestureRecognizer
-
-#### *leftGesture* 
-* **Description:** An IBAction func. Similar to rightGesture but detects left swipes. When a left swipe is made, it bring RHS data to the centre. (Everything shifts left) 
-
-* **Parameter:** The sender is UISwipeGestureRecognizer
-
-#### *sideTransforms()*
-* **Description:** Skews the sideView containers into Bifocal shape. Left view container is 3D rotated 45 degrees around y - axis and right view container is rotated by -45 degrees.
-
-* **Output:** The reshaped version of sideViews as required by clients
-
-#### *loadData()*
-* **Description:** Loads data into core data. Produces array of glucose items on selected day
-
-* **Improvements:** Can be made to access data from a csv file
-
-#### *addNotifications()*
-* **Description:** Adds popups on to main graph immediately when activity are added
-
-#### *settingPreferences()*
-* **Description:** Registers settings bundle. Updates app when settings changed so the UI responds to preferences user selected. For example, user may rather have the basal rate turned off, and when they switch off that button, the basal rate would disappear from graph.
-
-#### *setDay()*
-* **Description:** When users swiping across and the chart lands on a certain day or the user picks a date from the picker field, the popups list would be fetched for that day. So users get correct past activities for selected day.
-
-#### *updateViews()*
-* **Description:** Removes current drawings and plots on the main graph, replots chart, adds events popups and updates sideviews.
-
-* **Output:** Updated bifocal section
-
-#### *createDatePicker()*
-* **Description:** Creates a date picker field on top of bifocal display. Sets it to current date initially. Allows users to pick a date in the past. Chart updates according to date selected. Side views update as well.
-
-#### *calcRanges()*
-* **Description:** Finds a maximum, a minimum in a array as well as calculates an average value.
-
-* **Parameters:** An array of Doubles: data in the array to be calculated 
-
-* **Returns:** Passes results to side views. Side view redraws range bar accordingly.
-
-#### *initChart()*
-* **Description:** 
-  * Chart is constructed using layers. 
-  * Draws popups and attaches messages to them.
-  * Dates changes accordingly with swipes and plots changes accordingly.
-  * Changes of dates gets passed in to update chart. 
-
-  
-### Keep this stuff below this line
----
 
 [[1]](https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-problems/low-blood-glucose-hypoglycemia):"Hypoglycemia". National Institute of Diabetes and Digestive and Kidney Diseases. October 2008. Archived from the original on 1 July 2015. Retrieved 28 June 2015.
+[[2]](https://github.com/i-schuetz/SwiftCharts.git)
