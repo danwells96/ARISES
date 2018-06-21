@@ -279,9 +279,8 @@ class ViewControllerGraph: UIViewController {
 
     
     /**
-	*	Takes the date as argument and converts it to the format 'weekday day month, year'
+	*	Takes the date as argument and converts it to the format 'weekday day month, year', then places it in the DatePicker.
     * - Parameter date: Date to be transformed
-    * - Returns: String, date in required string format
     */
     func formatWeekday(date: Date){
         let weekdayFormatter = DateFormatter()
@@ -292,7 +291,7 @@ class ViewControllerGraph: UIViewController {
     
     
     /**
-    * Create a date picker and formats the date as required and displays it.
+    *	Create a date picker and formats today's date as required and displays it.
     */
     func createDatePicker(){
         
@@ -358,7 +357,7 @@ class ViewControllerGraph: UIViewController {
     
     
     /**
-    *	Plot glucose, meals, exercise, insulin and predicted glucose data in Layers to create the chart featured in the Bifocal Display.
+    *	Plots glucose, meals, exercise, insulin and predicted glucose data in Layers to create the chart featured in the Bifocal Display.
     *	Draws popups and attach messages to them based on Core Data.
     *	Change of dates gets passed in to update chart.
     */
@@ -448,7 +447,8 @@ class ViewControllerGraph: UIViewController {
                 points.append(ChartPoint(x: dateArray[dateArray.endIndex - 1], y: valueArray[valueArray.endIndex - 1]))
             }
         }
-        points.sort(by: {$0.x.scalar < $1.x.scalar})   //sort points by time
+		//sort points by time in ascending order
+        points.sort(by: {$0.x.scalar < $1.x.scalar})  
         
         for item in tPlus1Array{
             if(item.value != 0){
@@ -476,7 +476,7 @@ class ViewControllerGraph: UIViewController {
         calcRanges(Arr: tPlus3Compare, view: rightView3)
         
         
-        // y-position of activity POPUPs on the graph:
+        // position of activity POPUPs on the graph:
         for meal in todayFoodArray{
             let combinedDate = keyDay + " " + meal.time!
             extraPoints.append(ChartPoint(x: ChartAxisValueDate(date: dateFormatter.date(from: combinedDate)!, formatter: dateFormatter), y: ChartAxisValueInt(Int(meal.carbs))))
@@ -491,7 +491,9 @@ class ViewControllerGraph: UIViewController {
             let combinedDate = keyDay + " " + insulin.time!
             extraPoints.append(ChartPoint(x: ChartAxisValueDate(date: dateFormatter.date(from: combinedDate)!, formatter: dateFormatter), y: ChartAxisValueDouble(195.0)))
         }
-        extraPoints.sort(by: {$0.x.scalar < $1.x.scalar})   //sort pop-ups after events added
+		
+		//sort pop-ups after events added by ascending time.
+        extraPoints.sort(by: {$0.x.scalar < $1.x.scalar})  
         
         
         //Axis Labels settings
@@ -499,7 +501,9 @@ class ViewControllerGraph: UIViewController {
         let xLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 8), fontColor: UIColor.black, rotation: 0, rotationKeep: .top)
         let yLabelSettingsCarbs = ChartLabelSettings(font: UIFont.systemFont(ofSize: 0))
         var carbChartSettings = chartSettings
-        carbChartSettings.axisStrokeWidth = 0   //Removes carb axis from chart
+		
+		//Makes carbs axis to be not visible
+        carbChartSettings.axisStrokeWidth = 0  
         
         //Generate axis labels
         let xValues = ChartAxisValuesGeneratorDate(unit: .hour, preferredDividers: 4, minSpace: 0.5, maxTextSize: 12)
@@ -553,7 +557,8 @@ class ViewControllerGraph: UIViewController {
                 )
             }
         }
-        //pred made continuous with non-empty arr
+		
+        //prediction made continuous with non-empty arr
         if(points.count > 0){
             nowIndicator = points.last!
         }else{
@@ -674,11 +679,23 @@ class ViewControllerGraph: UIViewController {
     }
 }
 
+/**
+*	Extension to the ChartPointEllipseView class from the SwiftCharts library allowing a string to be associated with an individual 
+*	point on the chart, which gives the method for determining what text should be displayed on the point's popup.
+*/
 extension ChartPointEllipseView{
+
+	/**
+	*	Structure to store the string in an individual point.
+	*/
     private struct extra{
         static var data:String? = nil
     }
     
+	/**
+	*	Getters and Setters for the String variable using objective C methods in order to allow for unique strings to be set for an 
+	*	individual point instead of for all points.
+	*/
     var data:String?{
         get{
             return objc_getAssociatedObject(self, &extra.data) as? String
