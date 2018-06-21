@@ -22,7 +22,8 @@ Method: Firstly, to check that it works trivially swipe back to the previous few
 Result: The graph should change to show previous day's data and the food and exercise logs should change to show previous day's activities.<br/>
 <br/>
 Checking: Date Selection<br/>
-Method: Click on the date above the bi-focal display <br/>
+Method: Click on the date above the bi-focal display to trigger a date picker from which you can select any date and go straight there. Select one of these dates and trivially check that the graph, food and exercise logs change. Now go to a date by scrolling through the bi-focal and make a note of the content of the logs, then go to the same date using the data selector and check that they are the same.<br/>
+Result: It correctly takes you to the selected date with the graph and logs for that day.<br/>
 <br/>
 Checking: Food Entry (from scratch)<br/>
 Method: Enter a food name, time and amount of carbs, protein and fat and click add. Then Click on the it's cell to expand it and click on the newly appeared orange dot on the bi-focal display<br/>
