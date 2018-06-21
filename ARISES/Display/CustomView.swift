@@ -8,7 +8,10 @@
 //  This view draws glucose range bar on a day
 
 import UIKit
-
+/**
+*   The class is a subclass of UIView and is used in the bifocal display as the sideViews. It includes methods to draw the daily glucose
+*   ranges calculated using the member data and to draw the upper band for the background 'safe' range.
+*/
 class CustomView: UIView {
     
     var dailyHigh: CGFloat
