@@ -359,8 +359,8 @@ class ViewControllerGraph: UIViewController {
     
     
     /**
-    *	Plot glucose data in Layers.
-    *	Draw popups and attach messages to them.
+    *	Plot glucose, meals, exercise, insulin and predicted glucose data in Layers to create the chart featured in the Bifocal Display.
+    *	Draws popups and attach messages to them based on Core Data.
     *	Change of dates gets passed in to update chart.
     */
     private func initChart(){
