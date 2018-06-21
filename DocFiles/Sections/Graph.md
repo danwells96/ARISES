@@ -1,7 +1,7 @@
 # Bifocal Display Breakdown
 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/ARISES/Display/Bifocal.png" alt="Image of Bifocal"/>
+	<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/Bifocal.png" alt="Image of Bifocal"/>
 </p>
 
 
@@ -64,7 +64,7 @@ This function draws a rectangle with orgin (0,0) - top left corner, and extends 
 This would give the background of image below (without the range bars).
 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/ARISES/Display/sideview.png" alt="Image of sideview"/>
+	<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/sideview.png" alt="Image of sideview"/>
 </p>
 
     
@@ -80,7 +80,7 @@ It takes no parameters but the output of sorting the glucose array on certain da
 
 A view it creates would be: 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/ARISES/Display/rangeBar.png" alt="Image of range bar"/>
+	<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/rangeBar.png" alt="Image of range bar"/>
 </p>
 
 
