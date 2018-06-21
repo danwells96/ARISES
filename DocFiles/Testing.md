@@ -7,7 +7,7 @@ The following test protocol was used to check that everything worked as expected
 
 Checking: Insulin Entry
 Method: Type in an insulin dose and a time
-result: green dot appears on the graph clicking on this dot yeilds a pop-up containing the number of units.
+result: green dot appears on the graph clicking on this dot yeilds a pop-up containing the number of units.  
 
 Checking: Working Settings
 Method: Click on the settings button and then toggle the switch entitled 'Basal rate'. Return to the app to observe the result
