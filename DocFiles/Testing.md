@@ -93,7 +93,10 @@ Result: A second row should appear with the text 'try eating a larger breakfast'
 </details>
 
 <br/>
-Internal Workings:
-<br/>
-Edge cases:
 
+<details><summary>Show Test Protocol</summary>
+<p>
+Internal Workings:
+
+</p>
+</details>
