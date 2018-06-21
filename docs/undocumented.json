@@ -9,56 +9,56 @@
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/CustomView.swift",
-      "line": 17,
+      "line": 18,
       "symbol": "CustomView.dailyHigh",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/CustomView.swift",
-      "line": 18,
+      "line": 19,
       "symbol": "CustomView.dailyLow",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/CustomView.swift",
-      "line": 19,
+      "line": 20,
       "symbol": "CustomView.avgArrayValue",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/CustomView.swift",
-      "line": 21,
+      "line": 22,
       "symbol": "CustomView.init(frame:dailyHigh:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/CustomView.swift",
-      "line": 28,
+      "line": 29,
       "symbol": "CustomView.init(coder:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/CustomView.swift",
-      "line": 35,
+      "line": 36,
       "symbol": "CustomView.draw(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/CustomView.swift",
-      "line": 75,
+      "line": 76,
       "symbol": "CustomView.drawRangeBar()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/CustomView.swift",
-      "line": 102,
+      "line": 103,
       "symbol": "CustomView.traitCollectionDidChange(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -177,93 +177,65 @@
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/ViewControllerGraph.swift",
-      "line": 38,
-      "symbol": "ViewControllerGraph.picker",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/ViewControllerGraph.swift",
-      "line": 39,
+      "line": 40,
       "symbol": "ViewControllerGraph.currentGlucose",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/ViewControllerGraph.swift",
-      "line": 42,
-      "symbol": "ViewControllerGraph.rightGesture(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/ViewControllerGraph.swift",
-      "line": 49,
-      "symbol": "ViewControllerGraph.leftGesture(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/ViewControllerGraph.swift",
-      "line": 66,
+      "line": 80,
       "symbol": "ViewControllerGraph.tMinus1Compare",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/ViewControllerGraph.swift",
-      "line": 67,
+      "line": 81,
       "symbol": "ViewControllerGraph.tMinus2Compare",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/ViewControllerGraph.swift",
-      "line": 68,
+      "line": 82,
       "symbol": "ViewControllerGraph.tMinus3Compare",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/ViewControllerGraph.swift",
-      "line": 69,
+      "line": 83,
       "symbol": "ViewControllerGraph.tPlus1Compare",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/ViewControllerGraph.swift",
-      "line": 70,
+      "line": 84,
       "symbol": "ViewControllerGraph.tPlus2Compare",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/ViewControllerGraph.swift",
-      "line": 71,
+      "line": 85,
       "symbol": "ViewControllerGraph.tPlus3Compare",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/ViewControllerGraph.swift",
-      "line": 133,
+      "line": 143,
       "symbol": "ViewControllerGraph.viewDidLayoutSubviews()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/ViewControllerGraph.swift",
-      "line": 682,
-      "symbol": "ChartPointEllipseView.extra",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/ViewControllerGraph.swift",
-      "line": 686,
-      "symbol": "ChartPointEllipseView.data",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "line": 705,
+      "symbol": "ChartPointEllipseView.extra.data",
+      "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {

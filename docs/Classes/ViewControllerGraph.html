@@ -14,7 +14,7 @@
     <a title="ViewControllerGraph Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">ARISES Docs</a> (60% documented)</p>
+        <p><a href="../index.html">ARISES Docs</a> (61% documented)</p>
         <p class="header-right"><a href="https://github.com/danwells96/ARISES"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -110,6 +110,12 @@
               <li class="nav-group-task">
                 <a href="../Classes/CustomView.html">CustomView</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/ChartPointEllipseView.html">ChartPointEllipseView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/ChartPointEllipseView.html#/s:6ARISES5extra33_B71D914AD94168EA0A72EED549E247EDLLV">– extra</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -198,6 +204,33 @@ the documentation.</p>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:6ARISES19ViewControllerGraphC6pickerSo12UIDatePickerCvp"></a>
+                    <a name="//apple_ref/swift/Property/picker" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES19ViewControllerGraphC6pickerSo12UIDatePickerCvp">picker</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>DatePicker used to change and display date</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">picker</span><span class="p">:</span> <span class="kt">UIDatePicker</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:6ARISES19ViewControllerGraphC5today10Foundation4DateVvp"></a>
                     <a name="//apple_ref/swift/Property/today" class="dashAnchor"></a>
                     <a class="token" href="#/s:6ARISES19ViewControllerGraphC5today10Foundation4DateVvp">today</a>
@@ -208,7 +241,7 @@ the documentation.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>tmp variable till real-time data available</p>
+                        <p>Initializes the app to today</p>
 
                       </div>
                       <div class="declaration">
@@ -297,6 +330,75 @@ the documentation.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">rawValues</span><span class="p">:</span> <span class="p">[</span><span class="kt">Double</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Methods"></a>
+                <a name="//apple_ref/swift/Section/Methods" class="dashAnchor"></a>
+                <a href="#/Methods">
+                  <h3 class="section-name">Methods</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@ARISES@objc(cs)ViewControllerGraph(im)rightGesture:"></a>
+                    <a name="//apple_ref/swift/Method/rightGesture(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@ARISES@objc(cs)ViewControllerGraph(im)rightGesture:">rightGesture(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Outlet function for if the UISwipeGestureRecognizer detects a right swipe. It then proceeds to update the date by subtracting
+a day from the current viewed date and updates the bifocal display and creates a notification to synchronize the app.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBAction</span>
+<span class="kd">func</span> <span class="nf">rightGesture</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">UISwipeGestureRecognizer</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@ARISES@objc(cs)ViewControllerGraph(im)leftGesture:"></a>
+                    <a name="//apple_ref/swift/Method/leftGesture(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@ARISES@objc(cs)ViewControllerGraph(im)leftGesture:">leftGesture(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Outlet function for if the UISwipeGestureRecognizer detects a left swipe. It then proceeds to update the date by adding
+a day from the current viewed date and updates the bifocal display and creates a notification to synchronize the app.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBAction</span>
+<span class="kd">func</span> <span class="nf">leftGesture</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">UISwipeGestureRecognizer</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -519,7 +621,7 @@ It reloads the chart data and displays it.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Update popups according to days when swiping across.</p>
+                        <p>Function called when a Notification is detected upon the date being changed. Used to synchronize the app.</p>
 
                       </div>
                       <div class="declaration">
@@ -530,29 +632,6 @@ It reloads the chart data and displays it.</p>
 <span class="kd">func</span> <span class="nf">setDay</span><span class="p">(</span><span class="nv">notification</span><span class="p">:</span> <span class="kt">Notification</span><span class="p">)</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>notification</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Popups to be updated</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>Updated bifocal section with correct notifications/popups as date changes.</p>
                       </div>
                     </section>
                   </div>
@@ -624,11 +703,10 @@ It reloads the chart data and displays it.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Takes the date as argument and converts it to the format &lsquo;weekday day month, year&rsquo;</p>
+                        <p>Takes the date as argument and converts it to the format &lsquo;weekday day month, year&rsquo;, then places it in the DatePicker.</p>
 
 <ul>
 <li>- Parameter date: Date to be transformed</li>
-<li>- Returns: String, date in required string format</li>
 </ul>
 
                       </div>
@@ -656,7 +734,7 @@ It reloads the chart data and displays it.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Create a date picker and formats the date as required and displays it.</p>
+                        <p>Create a date picker and formats today&rsquo;s date as required and displays it.</p>
 
                       </div>
                       <div class="declaration">
@@ -796,8 +874,8 @@ It reloads the chart data and displays it.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Plot glucose data in Layers.
-Draw popups and attach messages to them.
+                        <p>Plots glucose, meals, exercise, insulin and predicted glucose data in Layers to create the chart featured in the Bifocal Display.
+Draws popups and attach messages to them based on Core Data.
 Change of dates gets passed in to update chart.</p>
 
                       </div>
