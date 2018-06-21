@@ -10,9 +10,9 @@ import UIKit
 
 ///Table cell delegate for button actions
 @objc protocol tableCellDelegate : class {
-    ///calls didPressButton in each ViewController with a table
+    ///Calls didPressButton in each ViewController with a table
     func didPressButton(_ tag: Int)
-    ///optional function for use in ViewControllerHealth, to set graph day to view from table
+    ///Optional function for use in ViewControllerHealth, to set graph day to view from table.
     @objc optional func didPressViewDayButton(_ tag: Int)
 }
 
@@ -52,7 +52,7 @@ class ViewControllerTableViewCell: UITableViewCell {
     @IBOutlet weak var loggedHealthHighLabel: UILabel!
     
     //MARK: - Properties
-    ///cell delegate property. Optional and weak to prevent retain cycles
+    ///Cell delegate property. Optional and weak to prevent retain cycles
     weak var cellDelegate: tableCellDelegate?
 
 
