@@ -237,10 +237,9 @@ class ViewControllerGraph: UIViewController {
     
     
     /**
-     Update popups according to days when swiping across.
-     - parameter notification: Popups to be updated
-     - returns: Updated bifocal section with correct notifications/popups as date changes.
-     */
+    *	Function called when a Notification is detected upon the date being changed. Used to synchronize the app.
+    *	- Parameter notification: Notification, detected by NotificationCenter's observer.
+    */
     @objc func setDay(notification: Notification){
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
