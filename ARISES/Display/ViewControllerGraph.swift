@@ -81,13 +81,12 @@ class ViewControllerGraph: UIViewController {
     var tPlus2Compare : [Double] = []
     var tPlus3Compare : [Double] = []
     
-    
-
-    
     //MARK: Methods
 	
 	/**
-	*
+	*	Outlet function for if the UISwipeGestureRecognizer detects a right swipe. It then proceeds to update the date by subtracting
+	*	a day from the current viewed date and updates the bifocal display and creates a notification to synchronize the app.
+	*	- Parameter	sender: UISwipeGestureRecognizer, the GestureRecognizer that detected the right swipe.
 	*/
     @IBAction func rightGesture(_ sender: UISwipeGestureRecognizer) {
         let tempDate = today
@@ -98,7 +97,9 @@ class ViewControllerGraph: UIViewController {
     }
 	
 	/**
-	*
+	*	Outlet function for if the UISwipeGestureRecognizer detects a left swipe. It then proceeds to update the date by adding
+	*	a day from the current viewed date and updates the bifocal display and creates a notification to synchronize the app.
+	*	- Parameter	sender: UISwipeGestureRecognizer, the GestureRecognizer that detected the left swipe.
 	*/
     @IBAction func leftGesture(_ sender: UISwipeGestureRecognizer) {
         let tempDate = today
