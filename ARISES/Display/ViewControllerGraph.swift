@@ -3,7 +3,7 @@
 //  ARISES
 //  This file deals with everything graph related. Base chart library (Podfile): https://github.com/i-schuetz/SwiftCharts.git
 //  Created by Ryan Armiger on 16/05/2018.
-//  Copyright © 2018 Ryan Armiger. All rights reserved.
+//  Copyright Â© 2018 Ryan Armiger. All rights reserved.
 //
 
 import UIKit
@@ -620,21 +620,21 @@ class ViewControllerGraph: UIViewController {
             //searches through activities and align popup with data point in terms of time for the day
             for meal in meals{
                 if(meal.time! == timeDate){
-                    circleView.data = "🍎"
+                    circleView.data = "ðŸŽ"
                     text = "C:\(meal.carbs) P:\(meal.protein) F:\(meal.fat)"
                     circleView.fillColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
                 }
             }
             for exercise in exercises{
                 if(exercise.time == timeDate){
-                    circleView.data = "🤾‍♀️"
+                    circleView.data = "ðŸ¤¾â€â™€ï¸"
                     text = "\(exercise.name!): \(exercise.duration!)"
                     circleView.fillColor = #colorLiteral(red: 0, green: 0.6383251441, blue: 1, alpha: 1)
                 }
             }
             for insulin in insulins{
                 if(insulin.time == timeDate){
-                    circleView.data = "💉"
+                    circleView.data = "ðŸ’‰"
                     text = "Insulin: \(insulin.units) units"
                     circleView.fillColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
                 }
@@ -658,7 +658,7 @@ class ViewControllerGraph: UIViewController {
                         let bu = InfoBubble(point: CGPoint(x: x + (24), y: chartViewScreenLoc.y), preferredSize: CGSize(width: w, height: h), superview: self.view, text: text, font: font, textColor: UIColor.white)
                         chart.addSubview(bu)
                         
-                        if((circleView.data == "🍎") || (circleView.data == "🤾‍♀️") || (circleView.data == "💉")){
+                        if((circleView.data == "ðŸŽ") || (circleView.data == "ðŸ¤¾â€â™€ï¸") || (circleView.data == "ðŸ’‰")){
                             UIView.animate(withDuration: 5.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
                                 bu.alpha = 0.0
                             }, completion: {finished in bu.removeFromSuperview()})

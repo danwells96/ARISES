@@ -10,10 +10,15 @@ import UIKit
 
 ///Table cell delegate for button actions
 @objc protocol tableCellDelegate : class {
+    ///Calls didPressButton in each ViewController with a table
     func didPressButton(_ tag: Int)
+    ///Optional function for use in ViewControllerHealth, to set graph day to view from table.
     @objc optional func didPressViewDayButton(_ tag: Int)
 }
 
+/**
+ View Controller For Table Cells: Links outlets to be set in other ViewControllers and Button Actions to call delegate functions
+ */
 class ViewControllerTableViewCell: UITableViewCell {
 
     //MARK: - Outlets
@@ -47,30 +52,24 @@ class ViewControllerTableViewCell: UITableViewCell {
     @IBOutlet weak var loggedHealthHighLabel: UILabel!
     
     //MARK: - Properties
-    //cell delegate property
+    ///Cell delegate property. Optional and weak to prevent retain cycles
     weak var cellDelegate: tableCellDelegate?
 
-    
-    //MARK: - Overrides
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
     //MARK: - Cell button delegates
+    ///Food log favourites button action
     @IBAction func buttonPressed(_ sender: UIButton) {
         cellDelegate?.didPressButton(self.tag)
     }
+    ///Exercsie log favourites button action
     @IBAction func buttonPressedExercise(_ sender: UIButton) {
         cellDelegate?.didPressButton(self.tag)
     }
+    ///Health log favourites button action
     @IBAction func buttonPressedHealth(_ sender: UIButton) {
         cellDelegate?.didPressButton(self.tag)
     }
+    ///Health log `view` button action
     @IBAction func didPressViewDay(_ sender: Any) {
         cellDelegate?.didPressViewDayButton!(self.tag)
     }
