@@ -1,6 +1,9 @@
 # Testing
 
-A list of things to test
+The following test protocol was used to check that everything worked as expected on the user end.
+
+<details><summary>Show Test Protocol</summary>
+<p>
 
 Checking: Insulin Entry
 Method: Type in an insulin dose and a time
@@ -55,11 +58,24 @@ Method: Now click on the 30 days and 7 days buttons
 Result: Confirm that the oldest dates were 30 and 7 days ago respectively.
 
 Checking: Tag filters
+Method: Click on each of the tag filters (e.g. hypo) in turn and then try every combination of filters
+Result: Every row should have the selected tag filters corresponding icon green
 
 Checking: Links to days
+Method: Click on a row in the days log in the health section to expand it. Then click on the view button. Repeat the process with multiple days to thoroughly confirm correct operation.
+Result: The date at the top of the bi-focal display should be the same as the date you clicked on in health
 
 Checking: Favouriting days
+Method: Clic
 
 Checking: Expanding Advice
 
 Checking: Graph?
+
+</p>
+</details>
+
+Internal Workings:
+
+Edge cases:
+
