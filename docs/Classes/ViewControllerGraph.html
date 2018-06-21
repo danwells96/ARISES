@@ -14,7 +14,7 @@
     <a title="ViewControllerGraph Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">ARISES Docs</a> (53% documented)</p>
+        <p><a href="../index.html">ARISES Docs</a> (56% documented)</p>
         <p class="header-right"><a href="https://github.com/danwells96/ARISES"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -220,10 +220,10 @@
           <section class="section task-group-section">
             <div class="task-group">
               <div class="task-name-container">
-                <a name="/Properties"></a>
-                <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
-                <a href="#/Properties">
-                  <h3 class="section-name">Properties</h3>
+                <a name="/Chart%20Area%20Variables"></a>
+                <a name="//apple_ref/swift/Section/Chart Area Variables" class="dashAnchor"></a>
+                <a href="#/Chart%20Area%20Variables">
+                  <h3 class="section-name">Chart Area Variables</h3>
                 </a>
               </div>
               <ul>
@@ -1066,7 +1066,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>This function is an override of the same function in the superclass which is called after the view has loaded. It calls the functions 
+responsible for rotating the sideView containers, creating the DatePicker, update any settings and add the notification listeners.</p>
 
                       </div>
                       <div class="declaration">
@@ -1076,6 +1077,10 @@
                           <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Null</p>
                       </div>
                     </section>
                   </div>
@@ -1120,7 +1125,10 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Load data from arrays into core data</p>
+                        <pre class="highlight swift"><code><span class="kt">Loads</span> <span class="n">data</span> <span class="n">from</span> <span class="n">arrays</span> <span class="n">into</span> <span class="n">core</span> <span class="n">data</span> <span class="n">on</span> <span class="n">first</span> <span class="n">launch</span> <span class="k">for</span> <span class="n">test</span> <span class="n">purposes</span>
+
+<span class="o">-</span> <span class="kt">Returns</span><span class="p">:</span> <span class="kt">Null</span>
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -1147,7 +1155,10 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Shape sideView containers into Bifocal</p>
+                        <pre class="highlight swift"><code><span class="kt">Rotates</span> <span class="n">the</span> <span class="n">sideView</span> <span class="kt">Containers</span> <span class="nf">by</span> <span class="p">(</span><span class="o">+/-</span><span class="p">)</span><span class="mi">45</span><span class="n">degrees</span> <span class="n">about</span> <span class="n">the</span> <span class="n">y</span> <span class="n">axis</span> <span class="n">to</span> <span class="n">give</span> <span class="n">the</span> <span class="n">impression</span> <span class="n">of</span> <span class="n">perspective</span><span class="o">.</span>
+
+<span class="o">-</span> <span class="kt">Returns</span><span class="p">:</span> <span class="kt">Null</span>
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -1191,9 +1202,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6ARISES19ViewControllerGraphC12mealsUpdated33_B71D914AD94168EA0A72EED549E247EDLLyyF"></a>
-                    <a name="//apple_ref/swift/Method/mealsUpdated()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6ARISES19ViewControllerGraphC12mealsUpdated33_B71D914AD94168EA0A72EED549E247EDLLyyF">mealsUpdated()</a>
+                    <a name="/s:6ARISES19ViewControllerGraphC11dataUpdated33_B71D914AD94168EA0A72EED549E247EDLLyyF"></a>
+                    <a name="//apple_ref/swift/Method/dataUpdated()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES19ViewControllerGraphC11dataUpdated33_B71D914AD94168EA0A72EED549E247EDLLyyF">dataUpdated()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1201,7 +1212,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Called when a notification is received after food, exercise or insulin has been added to Core Data. 
+It reloads the chart data and displays it.</p>
 
                       </div>
                       <div class="declaration">
@@ -1209,7 +1221,7 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">private</span> <span class="kd">func</span> <span class="nf">mealsUpdated</span><span class="p">()</span></code></pre>
+<span class="kd">private</span> <span class="kd">func</span> <span class="nf">dataUpdated</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -1229,7 +1241,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Registers settings bundle. Updates app when settings changed</p>
+                        <p>Registers settings bundle. Creates a Notification Listener to detect when a change has been made to the Settings.</p>
 
                       </div>
                       <div class="declaration">
@@ -1256,7 +1268,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Detects which changes that have been made to the Settings and apply them to the UI.</p>
 
                       </div>
                       <div class="declaration">
@@ -1317,7 +1329,7 @@
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>Updated bifocal section with correct notifications/popups as date changes</p>
+                        <p>Updated bifocal section with correct notifications/popups as date changes.</p>
                       </div>
                     </section>
                   </div>
@@ -1335,7 +1347,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates a Notification used to synchronize the Date throughout the app.</p>
 
                       </div>
                       <div class="declaration">
@@ -1362,7 +1374,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Remove current data and plots on the central chart, redraw chart with events and update side views.</p>
+                        <p>Re-initializes the chart and sideViews with the new data corresponding to the updated Date.</p>
 
                       </div>
                       <div class="declaration">
@@ -1372,10 +1384,6 @@
                           <pre class="highlight swift"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">updateViews</span><span class="p">()</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>The updated bifocal section</p>
                       </div>
                     </section>
                   </div>
@@ -1393,7 +1401,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Combine weekday and date for pickerfield</p>
+                        <p>Takes the date as argument and converts it to the format &lsquo;weekday day month, year&rsquo;</p>
+
+<ul>
+<li>- Parameter date: Date to be transformed</li>
+<li>- Returns: String, date in required string format</li>
+</ul>
 
                       </div>
                       <div class="declaration">
@@ -1403,29 +1416,6 @@
                           <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">formatWeekday</span><span class="p">(</span><span class="nv">date</span><span class="p">:</span> <span class="kt">Date</span><span class="p">)</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>date</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Date to be transformed</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>date in string format</p>
                       </div>
                     </section>
                   </div>
@@ -1443,7 +1433,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Create a date picker and format the date as required. Pass picker date to tmp&#39;today&rsquo; when done</p>
+                        <p>Create a date picker and formats the date as required and displays it.</p>
 
                       </div>
                       <div class="declaration">
@@ -1453,10 +1443,6 @@
                           <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">createDatePicker</span><span class="p">()</span></code></pre>
 
                         </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>date in string format</p>
                       </div>
                     </section>
                   </div>
@@ -1474,7 +1460,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Function called after the user has finished with the DatePicker and synchronizes the date used for the chart with the viewController.</p>
 
                       </div>
                       <div class="declaration">
@@ -1502,7 +1488,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Calculate max, min and average for sideView glucose</p>
+                        <p>Calculates the minimum, maximum and mean average for daily glucose measurements and updates the CustomView&rsquo;s member data.</p>
 
                       </div>
                       <div class="declaration">
@@ -1525,7 +1511,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>Glucose measurements on a day</p>
+                                  <p>Double Array, Glucose measurements for a day.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1537,7 +1523,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>SideView to be updated with calculated values</p>
+                                  <p>CustomView, to be updated with calculated values.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1560,7 +1546,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Frame settings for graph</p>
+                        <p>Frame settings for chart area and axis.</p>
 
                       </div>
                       <div class="declaration">
@@ -1600,10 +1586,6 @@ Change of dates gets passed in to update chart.</p>
 
                         </div>
                       </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>updated ChartView</p>
-                      </div>
                     </section>
                   </div>
                 </li>
@@ -1612,7 +1594,7 @@ Change of dates gets passed in to update chart.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">Ryan Armiger, Becky Elkington, Xiaoyu Ma, Dan Wells</a>. All rights reserved. (Last updated: 2018-06-20)</p>
+          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">Ryan Armiger, Becky Elkington, Xiaoyu Ma, Dan Wells</a>. All rights reserved. (Last updated: 2018-06-21)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
