@@ -5,13 +5,13 @@ The following test protocol was used to check that everything worked as expected
 <details><summary>Show Test Protocol</summary>
 <p>
 
-Checking: Insulin Entry
-Method: Type in an insulin dose and a time
+Checking: Insulin Entry.<br/>
+Method: Type in an insulin dose and a time.<br/>
 result: green dot appears on the graph clicking on this dot yeilds a pop-up containing the number of units.<br/>
-
-Checking: Working Settings
-Method: Click on the settings button and then toggle the switch entitled 'Basal rate'. Return to the app to observe the result
-Result: Redirects you to an iOS settings menu containing a switch entitled 'basal rate'. After toggling this, the presence of the grey line on the graph will toggle
+<br/>
+Checking: Working Settings.<br/>
+Method: Click on the settings button and then toggle the switch entitled 'Basal rate'. Return to the app to observe the result.<br/>
+Result: Redirects you to an iOS settings menu containing a switch entitled 'basal rate'. After toggling this, the presence of the grey line on the graph will toggle.<br/>
 
 Checking: Data plotting
 Method: Since there is no real data present yet this is just testing that some plotting mechanism is working so simply look at the graph to observe the line
