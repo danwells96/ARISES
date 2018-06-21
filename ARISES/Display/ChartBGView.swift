@@ -8,6 +8,10 @@
 //this view acts as chart BG color holder, does not contain range bar
 import UIKit
 
+/**
+*   This class is a subclass of UIView used to create the three bands of the 'safe' range for the background of the chart using it's 
+*   methods.
+*/
 class ChartBGView: UIView {
     
     override func draw(_ rect: CGRect) {

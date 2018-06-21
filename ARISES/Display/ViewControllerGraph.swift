@@ -10,6 +10,10 @@ import UIKit
 import Foundation
 import SwiftCharts
 
+/**
+*	The UIViewController subclass for the top half of the app's UI. It controls the bifocal display utilising the SwiftCharts library, referenced in
+*	the documentation.
+*/
 class ViewControllerGraph: UIViewController {
 
     //MARK: Chart Area Variables
