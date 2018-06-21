@@ -1,5 +1,9 @@
 # Design Process
 
+<p align="center">
+	<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/ARISES/Display/Bifocal.png" alt="Image of Bifocal"/>
+</p>
+
 There were many things that were changed from the original design, or ideas that were added during the process based on discussions in meetings, technical constraints or the focus group. The most import design changes and the rationale behind them are detailed below:
 
 **1.	  Architecture**
