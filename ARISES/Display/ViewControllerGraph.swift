@@ -32,43 +32,17 @@ class ViewControllerGraph: UIViewController {
     @IBOutlet var rightGestureRecognizer: UISwipeGestureRecognizer!
     @IBOutlet var leftGestureRecognizer: UISwipeGestureRecognizer!
     @IBOutlet weak var pickerTextField: UITextField!
+	///DatePicker used to change and display date
     let picker = UIDatePicker()
     @IBOutlet weak var currentGlucose: UILabel!
-    
-    //Actions: swpie to bring side data to the centre
-    @IBAction func rightGesture(_ sender: UISwipeGestureRecognizer) {
-        let tempDate = today
-        let tempDate2 = Calendar.current.date(byAdding: .day, value: -1, to: tempDate)
-        today = tempDate2!
-        updateDay()
-        updateViews()
-    }
-    @IBAction func leftGesture(_ sender: UISwipeGestureRecognizer) {
-        let tempDate = today
-        let tempDate2 = Calendar.current.date(byAdding: .day, value: +1, to: tempDate)
-        today = tempDate2!
-        updateDay()
-        updateViews()
-    }
-    
-    
-    
-    /// tmp variable till real-time data available
+	
+	/// Initializes the app to today
     var today = Calendar.current.startOfDay(for: Date())
     
     /// Declares Notifications
     let nc = NotificationCenter.default
-    
-    /* arrays storing sideviews' data: (Minus -> leftView, Plus -> rightView)  */
-    var tMinus1Compare : [Double] = []
-    var tMinus2Compare : [Double] = []
-    var tMinus3Compare : [Double] = []
-    var tPlus1Compare : [Double] = []
-    var tPlus2Compare : [Double] = []
-    var tPlus3Compare : [Double] = []
-    
-    
-    /// Array storing date and time info needed for plot. To be updated with real-time data.
+	
+	/// Array storing date and time info needed for plot. To be updated with real-time data.
     var rawData: [String] = ["10/06/2018 2:30", "10/06/2018 6:30", "10/06/2018 7:30", "10/06/2018 8:30", "10/06/2018 9:30",
                              "10/06/2018 14:00","10/06/2018 16:30", "10/06/2018 18:30", "10/06/2018 20:30", "10/06/2018 22:30",
                              
@@ -98,7 +72,42 @@ class ViewControllerGraph: UIViewController {
                                5, 8, 8.7, 9, 7.6,
                                
                                ]
+	
+	/* arrays storing sideviews' data: (Minus -> leftView, Plus -> rightView)  */
+    var tMinus1Compare : [Double] = []
+    var tMinus2Compare : [Double] = []
+    var tMinus3Compare : [Double] = []
+    var tPlus1Compare : [Double] = []
+    var tPlus2Compare : [Double] = []
+    var tPlus3Compare : [Double] = []
+    
+    
 
+    
+    //MARK: Methods
+	
+	/**
+	*
+	*/
+    @IBAction func rightGesture(_ sender: UISwipeGestureRecognizer) {
+        let tempDate = today
+        let tempDate2 = Calendar.current.date(byAdding: .day, value: -1, to: tempDate)
+        today = tempDate2!
+        updateDay()
+        updateViews()
+    }
+	
+	/**
+	*
+	*/
+    @IBAction func leftGesture(_ sender: UISwipeGestureRecognizer) {
+        let tempDate = today
+        let tempDate2 = Calendar.current.date(byAdding: .day, value: +1, to: tempDate)
+        today = tempDate2!
+        updateDay()
+        updateViews()
+    }
+    
     /**
 	*	This function is an override of the same function in the superclass which is called after the view has loaded. It calls the functions 
 	*	responsible for rotating the sideView containers, creating the DatePicker, update any settings and add the notification listeners.
