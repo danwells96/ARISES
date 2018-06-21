@@ -3,7 +3,7 @@
 //  ARISES
 //  This file deals with everything graph related. Base chart library (Podfile): https://github.com/i-schuetz/SwiftCharts.git
 //  Created by Ryan Armiger on 16/05/2018.
-//  Copyright © 2018 Ryan Armiger. All rights reserved.
+//  Copyright Â© 2018 Ryan Armiger. All rights reserved.
 //
 
 import UIKit
@@ -35,43 +35,17 @@ class ViewControllerGraph: UIViewController {
     @IBOutlet var rightGestureRecognizer: UISwipeGestureRecognizer!
     @IBOutlet var leftGestureRecognizer: UISwipeGestureRecognizer!
     @IBOutlet weak var pickerTextField: UITextField!
+	///DatePicker used to change and display date
     let picker = UIDatePicker()
     @IBOutlet weak var currentGlucose: UILabel!
-    
-    //Actions: swpie to bring side data to the centre
-    @IBAction func rightGesture(_ sender: UISwipeGestureRecognizer) {
-        let tempDate = today
-        let tempDate2 = Calendar.current.date(byAdding: .day, value: -1, to: tempDate)
-        today = tempDate2!
-        updateDay()
-        updateViews()
-    }
-    @IBAction func leftGesture(_ sender: UISwipeGestureRecognizer) {
-        let tempDate = today
-        let tempDate2 = Calendar.current.date(byAdding: .day, value: +1, to: tempDate)
-        today = tempDate2!
-        updateDay()
-        updateViews()
-    }
-    
-    
-    
-    /// tmp variable till real-time data available
+	
+	/// Initializes the app to today
     var today = Calendar.current.startOfDay(for: Date())
     
     /// Declares Notifications
     let nc = NotificationCenter.default
-    
-    /* arrays storing sideviews' data: (Minus -> leftView, Plus -> rightView)  */
-    var tMinus1Compare : [Double] = []
-    var tMinus2Compare : [Double] = []
-    var tMinus3Compare : [Double] = []
-    var tPlus1Compare : [Double] = []
-    var tPlus2Compare : [Double] = []
-    var tPlus3Compare : [Double] = []
-    
-    
-    /// Array storing date and time info needed for plot. To be updated with real-time data.
+	
+	/// Array storing date and time info needed for plot. To be updated with real-time data.
     var rawData: [String] = ["10/06/2018 2:30", "10/06/2018 6:30", "10/06/2018 7:30", "10/06/2018 8:30", "10/06/2018 9:30",
                              "10/06/2018 14:00","10/06/2018 16:30", "10/06/2018 18:30", "10/06/2018 20:30", "10/06/2018 22:30",
                              
@@ -101,7 +75,43 @@ class ViewControllerGraph: UIViewController {
                                5, 8, 8.7, 9, 7.6,
                                
                                ]
-
+	
+	/* arrays storing sideviews' data: (Minus -> leftView, Plus -> rightView)  */
+    var tMinus1Compare : [Double] = []
+    var tMinus2Compare : [Double] = []
+    var tMinus3Compare : [Double] = []
+    var tPlus1Compare : [Double] = []
+    var tPlus2Compare : [Double] = []
+    var tPlus3Compare : [Double] = []
+    
+    //MARK: Methods
+	
+	/**
+	*	Outlet function for if the UISwipeGestureRecognizer detects a right swipe. It then proceeds to update the date by subtracting
+	*	a day from the current viewed date and updates the bifocal display and creates a notification to synchronize the app.
+	*	- Parameter	sender: UISwipeGestureRecognizer, the GestureRecognizer that detected the right swipe.
+	*/
+    @IBAction func rightGesture(_ sender: UISwipeGestureRecognizer) {
+        let tempDate = today
+        let tempDate2 = Calendar.current.date(byAdding: .day, value: -1, to: tempDate)
+        today = tempDate2!
+        updateDay()
+        updateViews()
+    }
+	
+	/**
+	*	Outlet function for if the UISwipeGestureRecognizer detects a left swipe. It then proceeds to update the date by adding
+	*	a day from the current viewed date and updates the bifocal display and creates a notification to synchronize the app.
+	*	- Parameter	sender: UISwipeGestureRecognizer, the GestureRecognizer that detected the left swipe.
+	*/
+    @IBAction func leftGesture(_ sender: UISwipeGestureRecognizer) {
+        let tempDate = today
+        let tempDate2 = Calendar.current.date(byAdding: .day, value: +1, to: tempDate)
+        today = tempDate2!
+        updateDay()
+        updateViews()
+    }
+    
     /**
 	*	This function is an override of the same function in the superclass which is called after the view has loaded. It calls the functions 
 	*	responsible for rotating the sideView containers, creating the DatePicker, update any settings and add the notification listeners.
@@ -240,10 +250,9 @@ class ViewControllerGraph: UIViewController {
     
     
     /**
-     Update popups according to days when swiping across.
-     - parameter notification: Popups to be updated
-     - returns: Updated bifocal section with correct notifications/popups as date changes.
-     */
+    *	Function called when a Notification is detected upon the date being changed. Used to synchronize the app.
+    *	- Parameter notification: Notification, detected by NotificationCenter's observer.
+    */
     @objc func setDay(notification: Notification){
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
@@ -283,9 +292,8 @@ class ViewControllerGraph: UIViewController {
 
     
     /**
-	*	Takes the date as argument and converts it to the format 'weekday day month, year'
+	*	Takes the date as argument and converts it to the format 'weekday day month, year', then places it in the DatePicker.
     * - Parameter date: Date to be transformed
-    * - Returns: String, date in required string format
     */
     func formatWeekday(date: Date){
         let weekdayFormatter = DateFormatter()
@@ -296,7 +304,7 @@ class ViewControllerGraph: UIViewController {
     
     
     /**
-    * Create a date picker and formats the date as required and displays it.
+    *	Create a date picker and formats today's date as required and displays it.
     */
     func createDatePicker(){
         
@@ -362,8 +370,8 @@ class ViewControllerGraph: UIViewController {
     
     
     /**
-    *	Plot glucose data in Layers.
-    *	Draw popups and attach messages to them.
+    *	Plots glucose, meals, exercise, insulin and predicted glucose data in Layers to create the chart featured in the Bifocal Display.
+    *	Draws popups and attach messages to them based on Core Data.
     *	Change of dates gets passed in to update chart.
     */
     private func initChart(){
@@ -452,7 +460,8 @@ class ViewControllerGraph: UIViewController {
                 points.append(ChartPoint(x: dateArray[dateArray.endIndex - 1], y: valueArray[valueArray.endIndex - 1]))
             }
         }
-        points.sort(by: {$0.x.scalar < $1.x.scalar})   //sort points by time
+		//sort points by time in ascending order
+        points.sort(by: {$0.x.scalar < $1.x.scalar})  
         
         for item in tPlus1Array{
             if(item.value != 0){
@@ -480,7 +489,7 @@ class ViewControllerGraph: UIViewController {
         calcRanges(Arr: tPlus3Compare, view: rightView3)
         
         
-        // y-position of activity POPUPs on the graph:
+        // position of activity POPUPs on the graph:
         for meal in todayFoodArray{
             let combinedDate = keyDay + " " + meal.time!
             extraPoints.append(ChartPoint(x: ChartAxisValueDate(date: dateFormatter.date(from: combinedDate)!, formatter: dateFormatter), y: ChartAxisValueInt(Int(meal.carbs))))
@@ -495,7 +504,9 @@ class ViewControllerGraph: UIViewController {
             let combinedDate = keyDay + " " + insulin.time!
             extraPoints.append(ChartPoint(x: ChartAxisValueDate(date: dateFormatter.date(from: combinedDate)!, formatter: dateFormatter), y: ChartAxisValueDouble(195.0)))
         }
-        extraPoints.sort(by: {$0.x.scalar < $1.x.scalar})   //sort pop-ups after events added
+		
+		//sort pop-ups after events added by ascending time.
+        extraPoints.sort(by: {$0.x.scalar < $1.x.scalar})  
         
         
         //Axis Labels settings
@@ -503,7 +514,9 @@ class ViewControllerGraph: UIViewController {
         let xLabelSettings = ChartLabelSettings(font: UIFont.systemFont(ofSize: 8), fontColor: UIColor.black, rotation: 0, rotationKeep: .top)
         let yLabelSettingsCarbs = ChartLabelSettings(font: UIFont.systemFont(ofSize: 0))
         var carbChartSettings = chartSettings
-        carbChartSettings.axisStrokeWidth = 0   //Removes carb axis from chart
+		
+		//Makes carbs axis to be not visible
+        carbChartSettings.axisStrokeWidth = 0  
         
         //Generate axis labels
         let xValues = ChartAxisValuesGeneratorDate(unit: .hour, preferredDividers: 4, minSpace: 0.5, maxTextSize: 12)
@@ -557,7 +570,8 @@ class ViewControllerGraph: UIViewController {
                 )
             }
         }
-        //pred made continuous with non-empty arr
+		
+        //prediction made continuous with non-empty arr
         if(points.count > 0){
             nowIndicator = points.last!
         }else{
@@ -606,21 +620,21 @@ class ViewControllerGraph: UIViewController {
             //searches through activities and align popup with data point in terms of time for the day
             for meal in meals{
                 if(meal.time! == timeDate){
-                    circleView.data = "🍎"
+                    circleView.data = "ðŸŽ"
                     text = "C:\(meal.carbs) P:\(meal.protein) F:\(meal.fat)"
                     circleView.fillColor = #colorLiteral(red: 0.9764705882, green: 0.6235294118, blue: 0.2196078431, alpha: 1)
                 }
             }
             for exercise in exercises{
                 if(exercise.time == timeDate){
-                    circleView.data = "🤾‍♀️"
+                    circleView.data = "ðŸ¤¾â€â™€ï¸"
                     text = "\(exercise.name!): \(exercise.duration!)"
                     circleView.fillColor = #colorLiteral(red: 0, green: 0.6383251441, blue: 1, alpha: 1)
                 }
             }
             for insulin in insulins{
                 if(insulin.time == timeDate){
-                    circleView.data = "💉"
+                    circleView.data = "ðŸ’‰"
                     text = "Insulin: \(insulin.units) units"
                     circleView.fillColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
                 }
@@ -644,7 +658,7 @@ class ViewControllerGraph: UIViewController {
                         let bu = InfoBubble(point: CGPoint(x: x + (24), y: chartViewScreenLoc.y), preferredSize: CGSize(width: w, height: h), superview: self.view, text: text, font: font, textColor: UIColor.white)
                         chart.addSubview(bu)
                         
-                        if((circleView.data == "🍎") || (circleView.data == "🤾‍♀️") || (circleView.data == "💉")){
+                        if((circleView.data == "ðŸŽ") || (circleView.data == "ðŸ¤¾â€â™€ï¸") || (circleView.data == "ðŸ’‰")){
                             UIView.animate(withDuration: 5.0, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
                                 bu.alpha = 0.0
                             }, completion: {finished in bu.removeFromSuperview()})
@@ -678,11 +692,23 @@ class ViewControllerGraph: UIViewController {
     }
 }
 
+/**
+*	Extension to the ChartPointEllipseView class from the SwiftCharts library allowing a string to be associated with an individual 
+*	point on the chart, which gives the method for determining what text should be displayed on the point's popup.
+*/
 extension ChartPointEllipseView{
+
+	/**
+	*	Structure to store the string in an individual point.
+	*/
     private struct extra{
         static var data:String? = nil
     }
     
+	/**
+	*	Getters and Setters for the String variable using objective C methods in order to allow for unique strings to be set for an 
+	*	individual point instead of for all points.
+	*/
     var data:String?{
         get{
             return objc_getAssociatedObject(self, &extra.data) as? String
