@@ -14,6 +14,7 @@ import UIKit
 */
 class ChartBGView: UIView {
     
+	//MARK: Methods
 	/**
 		The draw method is called on the instantiation of the ChartBGView. It calls methods to create the 3 bands that show the 'safe'
 		range of blood glucose measurements.

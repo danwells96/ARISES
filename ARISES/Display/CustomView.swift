@@ -23,7 +23,7 @@ class CustomView: UIView {
 	///CGFloat containing the mean average of the glucose measurements for that day.
     var avgArrayValue: CGFloat
     
-	//MARK: Member Methods
+	//MARK: Methods
 	/**
 		The init method is called on the instantiation of a CustomView. It initializes the member variables to 0 which is used to determine
 		if there is any data stored for this CustomView.
