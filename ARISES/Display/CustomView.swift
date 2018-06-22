@@ -79,7 +79,7 @@ class CustomView: UIView {
         UIRectFill(middleRect)
     }
     
-    ///fill bgcolor of 'high/low' bands
+    ///Creates a rectangle with a size of the top half of the CustomView giving the top band (between 10 and 20 on the graph).
     private func colourTopBand(){
         
         let topRect = CGRect(
@@ -89,6 +89,10 @@ class CustomView: UIView {
         UIRectFill(topRect)
     }
     
+	/**
+		Method used to draw the glucose range bar and create the mark for the average glucose measurement. It uses a UIBezierPath for the 
+		range and average. It is able to do this accurately due to the relative size nature of the CustomView.
+	*/
     private func drawRangeBar(){
         
         let h = bounds.height
