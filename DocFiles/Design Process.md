@@ -1,9 +1,5 @@
 # Design Process
 
-<p align="center">
-	<img src="https://github.com/danwells96/ARISES/blob/master/DocFiles/img/Food.png" alt="Tabs image"/>
-</p>
-
 There were many things that were changed from the original design, or ideas that were added during the process based on discussions in meetings, technical constraints or the focus group. The most import design changes and the rationale behind them are detailed below:
 
 **1.	  Architecture**
@@ -13,6 +9,13 @@ Based on the requirement of having no navigational hierarchy some additional des
 The first one (figure 3) featured four tiles which started at equal sizes, but any can be clicked on to expand them and then        clicked again to reduce to the home state. The principal motivation behind this design was limitations in technical knowledge at the start of the project and ultimately it was decided that this design was inferior to the original one as it requires more clicks for the user to access information.
 
 The second design used the more conventional approach of using tabs and is shown in figure 4. The motivations behind this design were firstly user familiarity as tabs are used across many iOS apps and secondly it is a more efficient use of screen space, so all the sections can be larger. Ultimately, however, it was decided that the client’s design was better as it allows more space for the status indicators described in the previous section and the decrease in usable space by each domain was acceptable.
+
+<p align="center">
+	<img src="https://github.com/danwells96/ARISES/blob/master/DocFiles/img/Food.png" alt="Tabs image"/>
+</p>
+<p align="center">
+	Tab design
+</p>
 
 **2.	  Dead space**
     
