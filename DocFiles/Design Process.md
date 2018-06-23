@@ -6,28 +6,33 @@ There were many things that were changed from the original design, or ideas that
 
 Based on the requirement of having no navigational hierarchy some additional designs to the overlapping bubbles were devised.
       
-The first one (figure 3) featured four tiles which started at equal sizes, but any can be clicked on to expand them and then        clicked again to reduce to the home state. The principal motivation behind this design was limitations in technical knowledge at the start of the project and ultimately it was decided that this design was inferior to the original one as it requires more clicks for the user to access information.
-
-The second design used the more conventional approach of using tabs and is shown in figure 4. The motivations behind this design were firstly user familiarity as tabs are used across many iOS apps and secondly it is a more efficient use of screen space, so all the sections can be larger. Ultimately, however, it was decided that the client’s design was better as it allows more space for the status indicators described in the previous section and the decrease in usable space by each domain was acceptable.
+The first one (pictured below) featured four tiles which started at equal sizes, but any can be clicked on to expand them and then        clicked again to reduce to the home state. The principal motivation behind this design was limitations in technical knowledge at the start of the project and ultimately it was decided that this design was inferior to the original one as it requires more clicks for the user to access information.
 
 <p align="center">
-	<img src="https://github.com/danwells96/ARISES/blob/master/DocFiles/img/Food.png" alt="Tabs image"/>
+	<img src="https://github.com/danwells96/ARISES/blob/master/DocFiles/img/squares%20version.png" alt="Squares version"/>
 </p>
 <p align="center">
-	Tab design
+	Initial interpretation of client design
 </p>
 
-**2.	  Dead space**
+The second design used the more conventional approach of using tabs and is shown below. The motivations behind this design were firstly user familiarity as tabs are used across many iOS apps and secondly it is a more efficient use of screen space, so all the sections can be larger. Ultimately, however, it was decided that the client’s design was better as it allows more space for the status indicators described in the previous section and the decrease in usable space by each domain was acceptable.
+
+<p align="center">
+	<img src="https://github.com/danwells96/ARISES/blob/master/DocFiles/img/tabs%20version.png" alt="Tabs image"/>
+</p>
+<p align="center">
+	Interface prototype of tabs design
+</p>
+
+**2.	 Usage of non-active space**
     
 There was then a question of what to do with the content on the tiles when not in use as if you could just see starts of information poking out behind it would be very ugly and visually confusing for the user. If the information moved around to make sure it was always fully or not at all in view this would likewise be visually confusing and unappealing. Consequently, it was decided that tiles not currently at the fore should have a solid fill colour.
-      
    
 There was then discussion on what to do with the status indicators when their tile was in front, as it would take a lot of useful space out of the app if it was there and would make finding a nice layout difficult. It was eventually decided that the status indicators should be hidden when the tile was in use, and both this and the other decision can be seen on the final design in figure 4.3.
     
 **3.    Bi-focal Display**
 
 The client’s initial design for the bi-focal had the side bars containing the full previous day’s graph but tilted so it appeared to be going off into the distance. The problem with this is that it looked incredibly cluttered and since blood glucose level goes up and down several times during a day it was difficult to get any useful contextual information from this. Consequently, it was decided early on in the process that the sidebars should show summary data (i.e. max, min and average).
-There was also much discussion about whether continuous scrolling (i.e. you can see partial days) or discrete scrolling (only one entire day at a time on the main face) should be used. It would be useful for diabetics to see what would happen to their blood glucose overnight (technically the next day), but similarly it would be more easy to get lost while scrolling.  Ultimately it was decided that it is not too inconvenient to swipe a day into the future to see night time predictions, whereas continuous scrolling could get very confusing.
 
 There was also much discussion about whether continuous scrolling (i.e. you can see partial days) or discrete scrolling (only one entire day at a time on the main face) should be used. It would be useful for diabetics to see what would happen to their blood glucose overnight (technically the next day), but similarly it would be more easy to get lost while scrolling.  Ultimately it was decided that it is not too inconvenient to swipe a day into the future to see night time predictions, whereas continuous scrolling could get very confusing.
       
@@ -43,7 +48,7 @@ The final design of having insulin accessible in its own area at the top of scre
       
 **6.    Data Entry Methods**
 
-There were also questions about the most user friendly way to input meals and exercise information. Especially with regards to the carbs, fat and protein information there was lots of discussion about whether using a sliding scale (the client’s initial proposal) and a number pad. Eventually a number pad was chosen firstly because a slider would need a maximum value and secondly it would be difficult to get a high enough resolution with a large range of values, and users would struggle to get the right number.
+There were also questions about the most user friendly way to input meals and exercise information. Especially with regards to the carbs, fat and protein information there was lots of discussion about whether to use a sliding scale (the client’s initial proposal) and a number pad. Eventually a number pad was chosen firstly because a slider would need a maximum value and secondly it would be difficult to get a high enough resolution with a large range of values, and users would struggle to get the right number.
       
 Drop down picker menus were used for times and exercise intensity and duration since these have a discrete set of values they can take and it would not take too long on average to scroll to reach the desired value.
       
