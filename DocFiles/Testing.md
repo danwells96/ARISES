@@ -103,7 +103,7 @@ Meals, exercise activities, Days, insulin doses, stress, illness and favourited 
 |<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/ExerciseLog.png" width="150" />|<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/ExerciseDatabase.png" width="650" />|
 |<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/InsulinEntry.png" width="150" />|<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/InsulinDatabase.png" width="650" />|
 
-The illness and stress tags create a record when they are turned on which ends when they are turned off. The start and end times (ZSTART and ZEND) are stored in unix time which is the number of seconds since the 1st of January 1970 and the start and end days are recorded. The screenshots below show correct operation of the illness and the stress entities.
+The illness and stress tags create a record when they are turned on which ends when they are turned off. The start and end times (ZSTART and ZEND) are stored in unix time which is the number of seconds since the 1st of January 1970 and the start and end days are recorded.  The screenshots below show correct operation of the illness and the stress entities.
 
 <p align="center">
  <b>Illness</b>
@@ -116,4 +116,12 @@ The illness and stress tags create a record when they are turned on which ends w
 </p>
 <p align="center">
  <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/StressDatabase.png" width="650" />
+</p>
+
+All the entities shown above have a relationship to the Day entitiy, so the ZDAY column contains the index of the apprioriate entry in the Day entity stored within the same database. In all the cases shown above the day is 6, as this testing was carried out on the sixth day since the app was last deleted and re-installed on the phone, which confirms proper relational operation. Below is a screenshot of the day entries to confirm they are being stored and linked to favourites - all other attributes relevant to days are accessed from it's relaitonship to the other entries described above.
+
+</br>
+
+<p align="center">
+ <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/DaysDatabase.png" width="650" />
 </p>
