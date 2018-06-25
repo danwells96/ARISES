@@ -9,7 +9,7 @@ Based on the requirement of having no navigational hierarchy some additional des
 The first one (pictured below) featured four tiles which started at equal sizes, but any can be clicked on to expand them and then        clicked again to reduce to the home state. The principal motivation behind this design was limitations in technical knowledge at the start of the project and ultimately it was decided that this design was inferior to the original one as it requires more clicks for the user to access information.
 
 <p align="center">
-	<img src="https://github.com/danwells96/ARISES/blob/master/DocFiles/img/squares%20version.png" alt="Squares version"/>
+	<img src="https://github.com/danwells96/ARISES/blob/master/DocFiles/img/squaresversion.png" alt="Squares version"/>
 </p>
 <p align="center">
 	Initial interpretation of client design
@@ -18,7 +18,7 @@ The first one (pictured below) featured four tiles which started at equal sizes,
 The second design used the more conventional approach of using tabs and is shown below. The motivations behind this design were firstly user familiarity as tabs are used across many iOS apps and secondly it is a more efficient use of screen space, so all the sections can be larger. Ultimately, however, it was decided that the client’s design was better as it allows more space for the status indicators described in the previous section and the decrease in usable space by each domain was acceptable.
 
 <p align="center">
-	<img src="https://github.com/danwells96/ARISES/blob/master/DocFiles/img/tabs%20version.png" alt="Tabs image"/>
+	<img src="https://github.com/danwells96/ARISES/blob/master/DocFiles/img/tabsversion.png" alt="Tabs image"/>
 </p>
 <p align="center">
 	Interface prototype of tabs design
