@@ -3,16 +3,16 @@
 
 ## Design Process and Consequences
 
-### `Client Design`
-### `Final Design`
-### `Design Process`
-### `Program Architecture`
-### `Testing`
-### `Future Work`
-### `Ethics Report`
-### `Sustainability Report`
-### `Meeting Minutes`
-### `Focus Group Report`
+### [Client Design](https://danwells96.github.io/ARISES/client-design.html)
+### [Final Design](https://danwells96.github.io/ARISES/final-design.html)
+### [Design Process](https://danwells96.github.io/ARISES/design-process.html)
+### [Program Architecture](https://danwells96.github.io/ARISES/program-architecture.html)
+### [Testing](https://danwells96.github.io/ARISES/testing.html)
+### [Future Work](https://danwells96.github.io/ARISES/future-work.html)
+### [Ethics Report](https://danwells96.github.io/ARISES/ethics-report.html)
+### [Sustainability Report](https://danwells96.github.io/ARISES/sustainability-report.html)
+### [Meeting Minutes](https://danwells96.github.io/ARISES/meeting-minutes.html)
+### [Focus Group Report](https://danwells96.github.io/ARISES/focus-group-report.html)
 
 
 ## Program Specification
