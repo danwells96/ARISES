@@ -97,9 +97,8 @@ Result: A second row should appear with the text 'try eating a larger breakfast'
 
 Meals, exercise activities, Days, insulin doses, stress, illness and favourited items are all entities in a core data database into which all entered data is stored. For the case of meals, exercise, and insulin data was entered into the relevant fields, and the core database was examined to check all data entered had been appropriately stored here. Screenshots of the database (which can be viewed in the development environment) and corresponding data logs are shown below and confirm correct operation.
 
-
-
-
-
-
-
+| Data Log | Record in Database | 
+|    :---:     |     :---:      |
+|<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/ExerciseLog.png" width="150" />|<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/ExerciseDatabase.png" width="650" />|
+|<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/FoodLog.png" width="150" />|<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/MealsDatabase.png" width="650" />|
+|<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/InsulinEntry.png" width="150" />|<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/InsulinDatabase.png" width="650" />|
