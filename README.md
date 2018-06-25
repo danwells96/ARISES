@@ -19,7 +19,8 @@ Download the repository into Xcode10 or higher, build the project and run it on 
 
 ## Built With
 
-* [SwiftCharts](https://github.com/i-schuetz/SwiftCharts) - Library used to create the Graph
+* [CocoaPods](https://cocoapods.org/) - Dependency Management
+* [SwiftCharts](https://github.com/i-schuetz/SwiftCharts) - Library used to generate the Graph
 
 ## Versioning
 
@@ -39,7 +40,3 @@ See also the list of [contributors](https://github.com/danwells96/ARISES/contrib
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
