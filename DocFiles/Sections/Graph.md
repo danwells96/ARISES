@@ -59,7 +59,7 @@ The high and low bands are coloured differently to draw users attention. Colour 
 
 #### `drawMiddleBand`
 * **Description:**
-This function draws a rectangle with orgin (0,0) - top left corner, and extends itself to the reqired height (30% of total height). After it draws/marks, it colours the marked area with selected color.
+This function draws a rectangle with orgin (0,0) - top left corner, and extends itself to the required height (30% of total height). After it draws/marks, it colours the marked area with the selected color.
 
 * **Returns:**
 This would give the background of image below (without the range bars).
