@@ -16,7 +16,7 @@ Image of open settings page
 ##Current State
 * Handler has been created to detect changes made to the settings.
 * Setting to display/hide basal rate on the graph is implemented.
-* Placeholders for additional search filters have been added to the setttings page.
+* Placeholders for additional search filters and future app functionality have been added to the setttings page.
 
 ##Future Work
 * Add more options to the settings page based on the feedback from the focus group.
