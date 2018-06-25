@@ -3,7 +3,7 @@
 The following test protocol was used to check that everything worked as expected on the user end.
 
 <details><summary> 
-## Show Test Protocol
+ Show Test Protocol
 </summary>
 <p>
 
