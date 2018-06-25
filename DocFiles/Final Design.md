@@ -4,12 +4,12 @@ During the project many things were changed about the design based on discussion
 
 
 <p align="center">
- <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/fooddomain.png" width="250" />
- <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/exercisedomain.png" width="250" />
+ <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/FoodDomain.png" width="250" />
+ <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/ExerciseDomain.png" width="250" />
 </p>
 <p align="center">
- <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/healthdomain.png" width="250" />
- <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/advicedomain.png" width="250" />
+ <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/HealthDomain.png" width="250" />
+ <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/AdviceDomain.png" width="250" />
 </p>
   
 ### Architecture
