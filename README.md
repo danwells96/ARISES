@@ -1,6 +1,6 @@
 # ARISES
 
-ARISES is an Adaptive, Real-time, Intelligent System to Enhance Self-care of chronic disease.
+ARISES is an Adaptive, Real-time, Intelligent System to Enhance Self-care of chronic disease. In this case, we are creating an iOS application to help patients suffering with Diabetes live with their condition.
 
 ## Getting Started
 
