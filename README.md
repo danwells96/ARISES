@@ -1,4 +1,3 @@
-
 # ARISES
 
 ARISES is an Adaptive, Real-time, Intelligent System to Enhance Self-care of chronic disease.
