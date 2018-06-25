@@ -35,7 +35,7 @@ Image of Health table cell
 <p align="center">
 Summary icons from left to right: Hypo, Hyper, Exercise, Stress and Illness
 </p>
-* View button: `tableCellDelegate` optional function `didPressViewDayButton(_:)` allows a button in the cell to post a notification that `ViewControllerGraph` picks up using an observer, to display that `Day` on the graph.
+* View button: Optional function `tableCellDelegate.didPressViewDayButton(_:)` allows a button in the cell to post a notification that `ViewControllerGraph` picks up using an observer, to display that `Day` on the graph.
 
 ```swift 
 func didPressViewDayButton(_ tag: Int) {
@@ -44,7 +44,7 @@ func didPressViewDayButton(_ tag: Int) {
 }
 ```
 <p align="center">
-Image of code in ViewControllerHealth to allow cell to change day displayed on graph
+Image of code in ViewControllerHealth to allow cell view buttons to change day displayed on graph
 </p>
 
 ### Favouriting System
