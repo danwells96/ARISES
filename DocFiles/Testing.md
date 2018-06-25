@@ -94,8 +94,6 @@ Result: A second row should appear with the text 'try eating a larger breakfast'
 </p>
 </details>
 
-<br/>
-
 ### Confirmation of successful core memory operation
 
 Meals, exercise activities, Days, insulin doses and favourited items are all entities in a core data database into which all entered data is stored. Below are screenshots of some things from the database to confirm that that all works.
