@@ -6,8 +6,6 @@ ARISES is an Adaptive, Real-time, Intelligent System to Enhance Self-care of chr
 
 **Documentation can be found [here](https://danwells96.github.io/ARISES)**
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
 See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
