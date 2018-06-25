@@ -1,12 +1,22 @@
 
 
+## `ViewControllerFood`:  Controlls all UI elements in the open food domain
+
 <p align="center">
-<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/Bifocal.png" alt="Image of Bifocal"/>
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/fooddomain.png" alt="Image of food domain"/>
+</p>
+<p align="center">
+Image of open food domain
 </p>
 
-## Files
-* `ViewControllerFood`: 
-* `IndicatorControllerFood`: 
+## `IndicatorControllerFood`: Controlls status indicators shown when food domain is hidden
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/foodindicator.png" alt="Image of food domain status indicators"/>
+</p>
+<p align="center">
+Image of food domain status indicators
+</p>
 
 ## Features
 * Data entry fields for adding information about meals
@@ -20,3 +30,5 @@ lorem ipsum
 ### Table
 
 ### Favouriting System
+
+### Status Indicators
