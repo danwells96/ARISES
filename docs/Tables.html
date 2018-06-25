@@ -181,7 +181,50 @@
         <section>
           <section class="section">
             <h1>Tables</h1>
-            <p>Add brief model description to DocFiles/Sections/Tables.md to make it appear here</p>
+            <hr>
+<h3 id='code-viewcontrollertableviewcell-code' class='heading'><code><a href="Classes/ViewControllerTableViewCell.html">ViewControllerTableViewCell</a></code></h3>
+
+<p>View Controller for Table Cells in all domains</p>
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/foodcell.png" alt="Image of table cell for food domain"/>
+</p>
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/exercisecell.png" alt="Image of table cell for exercise domain"/>
+</p>
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/healthcell.png" alt="Image of table cell for health domain"/>
+</p>
+
+<p align="center">
+Images of cells for food, exercise and health domain 
+</p>
+<h3 id='code-tablecelldelegate-code' class='heading'><code><a href="Protocols/tableCellDelegate.html">tableCellDelegate</a></code></h3>
+
+<p>Table cell delegate for button actions</p>
+
+<p>&ldquo;`@objc protocol tableCellDelegate : class {
+///Calls didPressButton in each ViewController with a table
+func didPressButton(_ tag: Int)
+///Optional function for use in ViewControllerHealth, to set graph day to view from table.
+@objc optional func didPressViewDayButton(_ tag: Int)
+}</p>
+<pre class="highlight plaintext"><code>&lt;p align="center"&gt;
+Table Cell Delegate code
+&lt;/p&gt;
+
+## Features
+* Displays important information for its respective domain 
+* Delegate system to allow working buttons for favouriting and other cell functions
+
+### Displaying information
+
+### Cell button actions
+
+
+</code></pre>
 
           </section>
           <section class="section task-group-section">
