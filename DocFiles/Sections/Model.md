@@ -12,7 +12,7 @@ Image of relational database graph
 
 ### `PersistenceService`
 
-### Category/Extension files
+### `Category/Extension files`
 
 
 ## Features
