@@ -5,7 +5,7 @@ github_url: https://github.com/danwells96/ARISES
 
 clean: true
 exclude: [Packages]
-theme: apple
+theme: fullwidth
 skip_undocumented: true
 hide_documentation_coverage: true
 min_acl: private

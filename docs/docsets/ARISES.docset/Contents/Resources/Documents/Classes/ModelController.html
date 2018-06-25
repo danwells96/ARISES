@@ -4,182 +4,205 @@
     <title>ModelController Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
+
     <a name="//apple_ref/swift/Class/ModelController" class="dashAnchor"></a>
+
     <a title="ModelController Class Reference"></a>
-    <header>
-      <div class="content-wrapper">
-        <p><a href="../index.html">ARISES Docs</a></p>
-        <p class="header-right"><a href="https://github.com/danwells96/ARISES"><img src="../img/gh.png"/>View on GitHub</a></p>
-      </div>
-    </header>
-    <div class="content-wrapper">
-      <p id="breadcrumbs">
-        <a href="../index.html">ARISES Reference</a>
-        <img id="carat" src="../img/carat.png" />
-        ModelController Class Reference
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          ARISES Docs
+        </a>
+        
       </p>
-    </div>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/danwells96/ARISES">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">ARISES Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      ModelController Class Reference
+    </p>
+
     <div class="content-wrapper">
-      <nav class="sidebar">
+      <nav class="navigation">
         <ul class="nav-groups">
           <li class="nav-group-name">
-            <a href="../Documentation.html">Documentation</a>
+            <a class="nav-group-name-link" href="../Documentation.html">Documentation</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../client-design.html">Client Design</a>
+                <a class="nav-group-task-link" href="../client-design.html">Client Design</a>
               </li>
               <li class="nav-group-task">
-                <a href="../final-design.html">Final Design</a>
+                <a class="nav-group-task-link" href="../final-design.html">Final Design</a>
               </li>
               <li class="nav-group-task">
-                <a href="../design-process.html">Design Process</a>
+                <a class="nav-group-task-link" href="../design-process.html">Design Process</a>
               </li>
               <li class="nav-group-task">
-                <a href="../program-architecture.html">Program Architecture</a>
+                <a class="nav-group-task-link" href="../program-architecture.html">Program Architecture</a>
               </li>
               <li class="nav-group-task">
-                <a href="../testing.html">Testing</a>
+                <a class="nav-group-task-link" href="../testing.html">Testing</a>
               </li>
               <li class="nav-group-task">
-                <a href="../future-work.html">Future Work</a>
+                <a class="nav-group-task-link" href="../future-work.html">Future Work</a>
               </li>
               <li class="nav-group-task">
-                <a href="../ethics-report.html">Ethics Report</a>
+                <a class="nav-group-task-link" href="../ethics-report.html">Ethics Report</a>
               </li>
               <li class="nav-group-task">
-                <a href="../sustainability-report.html">Sustainability Report</a>
+                <a class="nav-group-task-link" href="../sustainability-report.html">Sustainability Report</a>
               </li>
               <li class="nav-group-task">
-                <a href="../meeting-minutes.html">Meeting Minutes</a>
+                <a class="nav-group-task-link" href="../meeting-minutes.html">Meeting Minutes</a>
               </li>
               <li class="nav-group-task">
-                <a href="../focus-group-report.html">Focus Group Report</a>
+                <a class="nav-group-task-link" href="../focus-group-report.html">Focus Group Report</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Model.html">Model</a>
+            <a class="nav-group-name-link" href="../Model.html">Model</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Classes/ModelController.html">ModelController</a>
+                <a class="nav-group-task-link" href="../Classes/ModelController.html">ModelController</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/PersistenceService.html">PersistenceService</a>
+                <a class="nav-group-task-link" href="../Classes/PersistenceService.html">PersistenceService</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Insulin.html">Insulin</a>
+                <a class="nav-group-task-link" href="../Classes/Insulin.html">Insulin</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Glucose.html">Glucose</a>
+                <a class="nav-group-task-link" href="../Classes/Glucose.html">Glucose</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Day.html">Day</a>
+                <a class="nav-group-task-link" href="../Classes/Day.html">Day</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Favourites.html">Favourites</a>
+                <a class="nav-group-task-link" href="../Classes/Favourites.html">Favourites</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Meals.html">Meals</a>
+                <a class="nav-group-task-link" href="../Classes/Meals.html">Meals</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Exercise.html">Exercise</a>
+                <a class="nav-group-task-link" href="../Classes/Exercise.html">Exercise</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Illness.html">Illness</a>
+                <a class="nav-group-task-link" href="../Classes/Illness.html">Illness</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Stress.html">Stress</a>
+                <a class="nav-group-task-link" href="../Classes/Stress.html">Stress</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Graph.html">Graph</a>
+            <a class="nav-group-name-link" href="../Graph.html">Graph</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Classes/ViewControllerGraph.html">ViewControllerGraph</a>
+                <a class="nav-group-task-link" href="../Classes/ViewControllerGraph.html">ViewControllerGraph</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/ChartBGView.html">ChartBGView</a>
+                <a class="nav-group-task-link" href="../Classes/ChartBGView.html">ChartBGView</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/CustomView.html">CustomView</a>
+                <a class="nav-group-task-link" href="../Classes/CustomView.html">CustomView</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/ChartPointEllipseView.html">ChartPointEllipseView</a>
+                <a class="nav-group-task-link" href="../Extensions/ChartPointEllipseView.html">ChartPointEllipseView</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/ChartPointEllipseView.html#/s:6ARISES5extra33_B71D914AD94168EA0A72EED549E247EDLLV">– extra</a>
+                <a class="nav-group-task-link" href="../Extensions/ChartPointEllipseView.html#/s:6ARISES5extra33_B71D914AD94168EA0A72EED549E247EDLLV">– extra</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Main View.html">Main View</a>
+            <a class="nav-group-name-link" href="../Main View.html">Main View</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Classes/ViewControllerMain.html">ViewControllerMain</a>
+                <a class="nav-group-task-link" href="../Classes/ViewControllerMain.html">ViewControllerMain</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/MainViewState.html">MainViewState</a>
+                <a class="nav-group-task-link" href="../Enums/MainViewState.html">MainViewState</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Food Domain.html">Food Domain</a>
+            <a class="nav-group-name-link" href="../Food Domain.html">Food Domain</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Classes/ViewControllerFood.html">ViewControllerFood</a>
+                <a class="nav-group-task-link" href="../Classes/ViewControllerFood.html">ViewControllerFood</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/IndicatorControllerFood.html">IndicatorControllerFood</a>
+                <a class="nav-group-task-link" href="../Classes/IndicatorControllerFood.html">IndicatorControllerFood</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Exercise Domain.html">Exercise Domain</a>
+            <a class="nav-group-name-link" href="../Exercise Domain.html">Exercise Domain</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Classes/ViewControllerExercise.html">ViewControllerExercise</a>
+                <a class="nav-group-task-link" href="../Classes/ViewControllerExercise.html">ViewControllerExercise</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Health Domain.html">Health Domain</a>
+            <a class="nav-group-name-link" href="../Health Domain.html">Health Domain</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Classes/ViewControllerHealth.html">ViewControllerHealth</a>
+                <a class="nav-group-task-link" href="../Classes/ViewControllerHealth.html">ViewControllerHealth</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Advice Domain.html">Advice Domain</a>
+            <a class="nav-group-name-link" href="../Advice Domain.html">Advice Domain</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Classes/ViewControllerAdvice.html">ViewControllerAdvice</a>
+                <a class="nav-group-task-link" href="../Classes/ViewControllerAdvice.html">ViewControllerAdvice</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Tables.html">Tables</a>
+            <a class="nav-group-name-link" href="../Tables.html">Tables</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Classes/ViewControllerTableViewCell.html">ViewControllerTableViewCell</a>
+                <a class="nav-group-task-link" href="../Classes/ViewControllerTableViewCell.html">ViewControllerTableViewCell</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/tableCellDelegate.html">tableCellDelegate</a>
+                <a class="nav-group-task-link" href="../Protocols/tableCellDelegate.html">tableCellDelegate</a>
               </li>
             </ul>
           </li>
         </ul>
       </nav>
       <article class="main-content">
-        <section>
-          <section class="section">
+
+        <section class="section">
+          <div class="section-content">
             <h1>ModelController</h1>
               <div class="declaration">
                 <div class="language">
@@ -189,8 +212,11 @@
               </div>
             <p>Provides fuctions to safely add and fetch objects from the persistent relational database &lsquo;Core Data&rsquo;</p>
 
-          </section>
-          <section class="section task-group-section">
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
             <div class="task-group">
               <div class="task-name-container">
                 <a name="/Basic%20date%20formatting%20functions"></a>
@@ -199,7 +225,7 @@
                   <h3 class="section-name">Basic date formatting functions</h3>
                 </a>
               </div>
-              <ul>
+              <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
@@ -308,7 +334,7 @@
                   <h3 class="section-name">Private functions</h3>
                 </a>
               </div>
-              <ul>
+              <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
@@ -400,7 +426,7 @@
                   <h3 class="section-name">Data object setting (add/toggle)</h3>
                 </a>
               </div>
-              <ul>
+              <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
@@ -1020,7 +1046,7 @@
                   <h3 class="section-name">Data object getting (fetch/return)</h3>
                 </a>
               </div>
-              <ul>
+              <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
@@ -1433,14 +1459,15 @@
                 </li>
               </ul>
             </div>
-          </section>
+          </div>
         </section>
-        <section id="footer">
-          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">Ryan Armiger, Becky Elkington, Xiaoyu Ma, Dan Wells</a>. All rights reserved. (Last updated: 2018-06-25)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
-        </section>
+
       </article>
     </div>
+    <section class="footer">
+      <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external">Ryan Armiger, Becky Elkington, Xiaoyu Ma, Dan Wells</a>. All rights reserved. (Last updated: 2018-06-25)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
   </body>
 </div>
 </html>
