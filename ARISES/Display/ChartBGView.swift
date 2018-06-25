@@ -14,6 +14,12 @@ import UIKit
 */
 class ChartBGView: UIView {
     
+	//MARK: Methods
+	/**
+		The draw method is called on the instantiation of the ChartBGView. It calls methods to create the 3 bands that show the 'safe'
+		range of blood glucose measurements.
+		- Paramater rect: CGRect, the bounds of the View.
+	*/
     override func draw(_ rect: CGRect) {
         let path = UIBezierPath(rect: bounds)
         path.addClip()
@@ -23,7 +29,8 @@ class ChartBGView: UIView {
         drawTopBand()
         
     }
-    ///color 'good' range
+	
+    ///Creates a rectangle of colour White from the mid-point of the CustomView (~10 on graph to ~4) to create the 'safe' region.
     private func drawMiddleBand(){
         let middleRect = CGRect(
             origin: CGPoint(x: 0.0, y: bounds.height/2),
@@ -33,7 +40,7 @@ class ChartBGView: UIView {
         UIRectFill(middleRect)
     }
     
-    ///color high and low ranges
+    ///Creates a rectangle with a size of the top half of the CustomView giving the top band (between 10 and 20 on the graph).
     private func drawTopBand(){
         let topRect = CGRect(
             origin: bounds.origin,

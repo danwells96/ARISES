@@ -168,9 +168,8 @@ class ViewControllerGraph: UIViewController {
     
     
     /**
-	*	Loads data from arrays into core data on first launch for test purposes
-	*
-	*	- Returns: Null
+		Loads data from arrays into core data on first launch for test purposes
+		- Returns: Null
 	*/
     func loadData(){
         let dateFormatter = DateFormatter()
@@ -202,9 +201,8 @@ class ViewControllerGraph: UIViewController {
     
     
     /**
-	*	Rotates the sideView Containers by (+/-)45degrees about the y axis to give the impression of perspective.
-	*
-	*	- Returns: Null
+		Rotates the sideView Containers by (+/-)45degrees about the y axis to give the impression of perspective.
+		- Returns: Null
 	*/
     func sideTransforms(){
         var transform = CATransform3DIdentity
