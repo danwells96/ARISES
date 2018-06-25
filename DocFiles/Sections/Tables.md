@@ -36,7 +36,7 @@ Table Cell Delegate code
 * Delegate system to allow working buttons for favouriting and other cell functions
 
 ### Displaying information
-
+* Outlets connected to allow respective table's domain's view controllers to set labels for each cell 
 ### Cell button actions
-
+* Actions connected to functions that call cell delegate function in respective table's domain's view controller when buttons are pressed E.g. Favourites star
 
