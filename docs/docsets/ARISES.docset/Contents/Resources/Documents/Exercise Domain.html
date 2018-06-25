@@ -212,8 +212,59 @@ Image of open exercise domain
 <li>Favouriting system to save and choose from favourited exercise</li>
 </ul>
 <h3 id='data-entry' class='heading'>Data Entry</h3>
+
+<ul>
+<li>Name Text field: Keyboard pops up when tapped and the user presses Done when finished</li>
+<li>Time: Time Picker pops up to allow the user to choose a time. Dismissed when user presses Done.
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/Time%20Picker.png" alt="Image of Time Picker" width="200"/>
+</p>
+<p align="center">
+Image of Time Picker
+</p></li>
+<li>Intensity: A View Picker pops up to allow the user to choose an intensity. Dismissed when user presses Done.
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/intensitypicker.png" alt="Image of View Picker" width="200"/>
+</p>
+<p align="center">
+Image of View Picker
+</p></li>
+<li>Duration: A View Picker pops up to allow the user to choose a duration for their exercise. Dismissed when user presses Done.
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/durationpicker.png" alt="Image of Duration Picker" width="200"/>
+</p>
+<p align="center">
+Image of Duration Picker
+</p></li>
+</ul>
 <h3 id='table' class='heading'>Table</h3>
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/exercisecell.png" alt="Image of exercise table cell" width="200"/>
+</p>
+
+<p align="center">
+Image of Exercise table cell
+</p>
+
+<ul>
+<li>Setting cell labels: <code><a href="Classes/ViewControllerExercise.html#/c:@M@ARISES@objc(cs)ViewControllerExercise(im)tableView:cellForRowAtIndexPath:">ViewControllerExercise.tableView(_:cellForRowAt:)</a></code> uses fetched objects to set the labels of the cells</li>
+<li>Displaying exercise logs for current day shown on graph: An observer is used to watch for notifications from <code><a href="Classes/ViewControllerGraph.html">ViewControllerGraph</a></code> and update the class&rsquo; <code>currentDay</code> property. The data for the table is then fetched again for exercise logs which match <code>currentDay</code><br></li>
+</ul>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">nc</span> <span class="o">=</span> <span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span>
+<span class="c1">//Observer to update currentDay variable to match graph's day</span>
+<span class="n">nc</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kd">#selector(</span><span class="nf">updateDay(notification:)</span><span class="kd">)</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">Notification</span><span class="o">.</span><span class="kt">Name</span><span class="p">(</span><span class="s">"dayChanged"</span><span class="p">),</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+
+<p align="center">
+Instantiation of observer for when day displayed on the graph changes
+</p>
 <h3 id='favouriting-system' class='heading'>Favouriting System</h3>
+
+<ul>
+<li>Favouriting: If a user clicks the star of an exercise&rsquo;s cell it will highlight in the colour of the domain to symbolise it has been favourited. This will call a function to add the exercise to the favourites object&rsquo;s relationships.</li>
+<li>Choosing from favourites: When the star in the data entry section is selected, it will highlight in the colour of the domain. The table will update to display exercise logs which are favourited instead of the current day&rsquo;s exercise. If a user selects one of these cells, it will automatically fill in the text fields with that exercise&rsquo;s information and the current time. The user can then adjust or add this exercise as normal.</li>
+</ul>
 <h2 id='future-work' class='heading'>Future Work</h2>
 
 <ul>

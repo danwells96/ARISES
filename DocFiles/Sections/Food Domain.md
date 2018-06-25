@@ -65,6 +65,7 @@ If a user uses an external keyboard and enters a value that cannot be rounded or
 Image of Food table cell
 </p>
 * Setting cell labels: `ViewControllerFood.tableView(_:cellForRowAt:)` uses fetched objects to set the labels of the cells
+* Expanding table cells: When a cell is selected it will expand or contract to show/hide the macro-nutrients of that meal
 * Displaying meal logs for current day shown on graph: An observer is used to watch for notifications from `ViewControllerGraph` and update the class' `currentDay` property. The data for the table is then fetched again for meal logs which match `currentDay`  
 
 ````swift 
