@@ -95,10 +95,25 @@ Result: A second row should appear with the text 'try eating a larger breakfast'
 
 ### Confirmation of successful core memory operation
 
-Meals, exercise activities, Days, insulin doses, stress, illness and favourited items are all entities in a core data database into which all entered data is stored. For the case of meals, exercise, and insulin data was entered into the relevant fields, and the core database was examined to check all data entered had been appropriately stored here. Screenshots of the database (which can be viewed in the development environment) and corresponding data logs are shown below and confirm correct operation.
+Meals, exercise activities, Days, insulin doses, stress, illness and favourited items are all entities in a core data database into which all entered data is stored. For the case of meals, exercise, and insulin data was entered into the relevant fields, and the core database was examined to check all data entered had been appropriately stored here. The table below shows screenshots of the database (which can be viewed in the development environment) and corresponding data logs for food, exercise and insulin as evidence of correct operation.
 
 | Data Log | Record in Database | 
 |    :---:     |     :---:      |
-|<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/ExerciseLog.png" width="150" />|<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/ExerciseDatabase.png" width="650" />|
 |<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/FoodLog.png" width="150" />|<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/MealsDatabase.png" width="650" />|
+|<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/ExerciseLog.png" width="150" />|<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/ExerciseDatabase.png" width="650" />|
 |<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/InsulinEntry.png" width="150" />|<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/InsulinDatabase.png" width="650" />|
+
+The illness and stress tags create a record when they are turned on which ends when they are turned off. The start and end times (ZSTART and ZEND) are stored in unix time which is the number of seconds since the 1st of January 1970 and the start and end days are recorded. The screenshots below show correct operation of the illness and the stress entities.
+
+<p align="center">
+ <b>Illness</b>
+</p>
+<p align="center">
+ <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/IllnessDatabase.png" width="650" />
+</p>
+<p align="center">
+ <b>Stress</b>
+</p>
+<p align="center">
+ <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/StressDatabase.png" width="650" />
+</p>
