@@ -40,4 +40,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-Designer of the User Interface was by Emeritus Professor [Robert Spence](https://www.imperial.ac.uk/people/r.spence) of Imperial College London
+Design of the User Interface was by Emeritus Professor [Robert Spence](https://www.imperial.ac.uk/people/r.spence) of Imperial College London
