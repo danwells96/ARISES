@@ -46,7 +46,7 @@ The bifocal display consists of three parts:
 
 ## Left & Right Sideview Containers
 Each of the side view containers has three subviews of type CustomView (UIView) which are customized to show colours bands as a background. 
-#### *ChartBGView.swift* and *CustomView.swift*
+#### `ChartBGView` and `CustomView`
 The same colour bands are used on the main chart as well thus *ChartBGView.swift* follows the same logic as the *CustomView.swift* in term of filling the background color bands. But *CustomView.swift* is also used to draw range bars on each sideview using calculated values for glucose values storing in core data on a day.
 
 ###### Bands calculations
@@ -56,7 +56,7 @@ Therefore, the top half of chart would be in **high** range, the bottom 4/20 (20
 
 The high and low bands are coloured differently to draw users attention. Colour palette here is simple and can be modified. (Colour combinations particularly red & green are avoided as diabetes suffering from retinopathy have problems distinguishing between them.)
 
-#### *drawMiddleBand()*
+#### `drawMiddleBand()`
 * **Description:**
 This function draws a rectangle with orgin (0,0) - top left corner, and extends itself to the reqired height (30% of total height). After it draws/marks, it colours the marked area with selected color.
 
@@ -68,7 +68,7 @@ This would give the background of image below (without the range bars).
 </p>
 
     
-#### *drawRangeBar()*
+#### `drawRangeBar()`
 * **Description:**
 This function is created to draw maximun and minimum dashes as well as the average circle on side views. 
 It uses UIBezierPath() as a drawing tool. Both line width and stroke colour can be set using this method.
