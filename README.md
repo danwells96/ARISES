@@ -23,7 +23,7 @@ Download the repository into Xcode10 or higher, build the project and run it on 
 
 ## Versioning
 
-We are currently in pre-alpha as the app is still under development. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+We are currently in pre-alpha as the app is still under development. For the versions available, see the [tags on this repository](https://github.com/danwells96/ARISES/tags). 
 
 ## Authors
 
