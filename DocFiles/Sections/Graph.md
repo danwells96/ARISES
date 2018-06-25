@@ -57,7 +57,7 @@ Therefore, the top half of chart would be in **high** range, the bottom 4/20 (20
 
 The high and low bands are coloured differently to draw users attention. Colour palette here is simple and can be modified. (Colour combinations particularly red & green are avoided as diabetes suffering from retinopathy have problems distinguishing between them.)
 
-#### `drawMiddleBand`
+#### `drawMiddleBand()`
 * **Description:**
 This function draws a rectangle with orgin (0,0) - top left corner, and extends itself to the required height (30% of total height). After it draws/marks, it colours the marked area with the selected color.
 
@@ -69,7 +69,7 @@ This would give the background of image below (without the range bars).
 </p>
 
     
-#### `drawRangeBar`
+#### `drawRangeBar()`
 * **Description:**
 This function is created to draw maximun and minimum dashes as well as the average circle on side views. 
 It uses UIBezierPath() as a drawing tool. Both line width and stroke colour can be set using this method.
