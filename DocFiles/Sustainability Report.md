@@ -6,7 +6,7 @@ The sustainability report for the overall prouct will focus chiefly on the accom
 
 The app will need to be updated every few years to keep it compatable with the latest version of iOS and the latest models of phones. In addition, it may need to be updated for bug fixes and as new features are added, and this process should occur automatically and via online download.
 
-//Talk about release strategy.// Before any new updates are released to the public they need to pass through a thorough testing process, which in the long run would be quicker and more reliable using an automaic testbench instead of the lengthy procedure described in the testing document.
+Before any new updates are released to the public they need to pass through a thorough testing process, which in the long run would be quicker and more reliable using an automaic testbench instead of the lengthy procedure described in the testing document.
 
 ### Legal Compliance of Data Storage
 
@@ -14,8 +14,8 @@ As the public becomes more concerned about data privacy more data protection law
 
 To comply with the current GDPR legislation there has to be a way for users to clear their data at any time, so it an option to clear all stored data must be accessable, for instance via the settings menu. for the app to be used in the UK currently. This is also an example of the kind of legislation that could present a sustainability concern for the product, although as long as it is not sold to third party's and common sense is used in the development process this should not present a large problem going forward.
 
-//there will need to be some form of account for if they change phone - this information will also need to be encrypted and as a result data may need to be backed up into a secure online location//
+It may be that user's want to have the app synced across multiple devices in which case there would need to be an option in settings to store data online to allow this. Storing data online would require greater encryption and other forms of protection since it is inherently more vulnerable. However, this service would not be pivotal to the operation of the app so is not a sustainability threat.
 
 ### End of product life cycle
 
-The end of the product life cycle will occur either when the user chooses to delete the app or updates cease to be created that would keep it compatable with commonly used versions of iOS.
+The end of the product life cycle will occur either when the user chooses to delete the app or updates cease to be created that would keep it compatable with commonly used versions of iOS. In the first case all personal data would need to be cleared from the phone and any online storage locations. In the second, this is a concern of the product life cycle of the phone as a whole and not under our purview.
