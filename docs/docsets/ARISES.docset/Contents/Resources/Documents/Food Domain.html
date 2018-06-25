@@ -235,29 +235,28 @@ Image of food domain status indicators
 Image of Time Picker
 </p></li>
 <li>Carbs, Protein, Fat: 
+Numpad pops up when tapped to allow the user to enter numbers. 
 <p align="center">
 <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/keypad.png" alt="Image of numpad" width="200"/>
 </p>
 <p align="center">
 Image of numpad
 </p>
-
-<ul>
-<li>Numpad pops up when tapped to allow the user to enter numbers. No decimal point is available on the numpad to provide safety to inputs. Input value is presumed to be in grams, as the logical unit of macro-nutrients typical in other apps, pumps and labels. </br></li>
-</ul></li>
+No decimal point is available on the numpad to provide safety to inputs. Input value is presumed to be in grams, as the logical unit of macro-nutrients typical in other apps, pumps and labels. </br></li>
 </ul>
 <pre class="highlight swift"><code>    <span class="nv">carbs</span><span class="p">:</span> <span class="kt">Int32</span><span class="p">((</span><span class="kt">Double</span><span class="p">(</span><span class="n">carbsTextField</span><span class="o">.</span><span class="n">text</span><span class="o">!</span><span class="p">)?</span><span class="o">.</span><span class="nf">rounded</span><span class="p">())</span><span class="o">!</span><span class="p">),</span>
 </code></pre>
 
 <p align="center">
-Code for assignment of text field value for carbs
-</p>
-<pre class="highlight plaintext"><code>* If a user uses an external keyboard and enters a decimal e.g. 5.5 this will be rounded to nearest integer
-* If a user uses an external keyboard and enters a value that cannot be rounded or converted to an int32 e.g. "jkl", the app will crash but will not add this to the log, so the database will not be corrupted and the user can reopen and continue to use the app. This is very unlikely to occur anyway.
-</code></pre>
+    Code for assignment of text field value for carbs
+</p> 
+
+<p>If a user uses an external keyboard and enters a decimal e.g. 5.5 this will be rounded to nearest integer.  </br>
+If a user uses an external keyboard and enters a value that cannot be rounded or converted to an int32 e.g. <q>jkl</q>, the app will crash but will not add this to the log, so the database will not be corrupted and the user can reopen and continue to use the app. This is very unlikely to occur anyway.</p>
 
 <ul>
 <li>Add button: Only calls function to add new log to database if all fields contain some text.</li>
+<li>Disabled for past days: Data entry fields are hidden if the user is not viewing the current day on the graph.</li>
 </ul>
 <h3 id='table' class='heading'>Table</h3>
 
@@ -270,21 +269,37 @@ Image of Food table cell
 </p>
 
 <ul>
-<li>Setting cell labels: lorem ipsum</li>
-<li>Displaying meal logs for current day shown on graph: lorem ipsuum</li>
+<li>Setting cell labels: <code><a href="Classes/ViewControllerFood.html#/c:@M@ARISES@objc(cs)ViewControllerFood(im)tableView:cellForRowAtIndexPath:">ViewControllerFood.tableView(_:cellForRowAt:)</a></code> uses fetched objects to set the labels of the cells</li>
+<li>Displaying meal logs for current day shown on graph: An observer is used to watch for notifications from <code><a href="Classes/ViewControllerGraph.html">ViewControllerGraph</a></code> and update the class&rsquo; <code>currentDay</code> property. The data for the table is then fetched again for meal logs which match <code>currentDay</code><br></li>
 </ul>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">nc</span> <span class="o">=</span> <span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span>
+<span class="c1">//Observer to update currentDay variable to match graph's day</span>
+<span class="n">nc</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kd">#selector(</span><span class="nf">updateDay(notification:)</span><span class="kd">)</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">Notification</span><span class="o">.</span><span class="kt">Name</span><span class="p">(</span><span class="s">"dayChanged"</span><span class="p">),</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+
+<p align="center">
+Instantiation of observer for when day displayed on the graph changes
+</p>
 <h3 id='favouriting-system' class='heading'>Favouriting System</h3>
 
 <ul>
-<li>Favouriting: lorem ipsuum</li>
-<li>Choosing from favourites: lorem ipsum</li>
+<li>Favouriting: If a user clicks the star of a meals cell it will highlight in the colour of the domain to symbolise it has been favourited. This will call a function to add the meal to the favourites object&rsquo;s relationships.</li>
+<li>Choosing from favourites: When the star in the data entry section is selected, it will highlight in the colour of the domain. The table will update to display meals which are favourited instead of the current day&rsquo;s meals. If a user selects one of these cells, it will automatically fill in the text fields with that meal&rsquo;s macro-nutrients and the current time. The user can then adjust or add this meal as normal.</li>
 </ul>
 <h3 id='status-indicators' class='heading'>Status Indicators</h3>
 
 <ul>
-<li>Displaying information: lorem ipsum</li>
-<li>Updating: lorem ipsum</li>
+<li>Displaying information: <code><a href="Classes/IndicatorControllerFood.html">IndicatorControllerFood</a></code> contains a viewDidLoad override to set the value of the labels to the total carbs, protein and fat for the day shown. These values are available as a computed property in the <code><a href="Classes/Day.html">Day</a></code> category/extension file.<br></li>
+<li>Updating: Similarly to the table, an observer is used to track the currently displayed day on the graph. A second observer is used to update the values when a new meal is added to the current day.</li>
 </ul>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">nc</span> <span class="o">=</span> <span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span>
+<span class="c1">//Observer to update indicators when new meal added</span>
+<span class="n">nc</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kd">#selector(</span><span class="nf">foodStatsUpdated</span><span class="kd">)</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">Notification</span><span class="o">.</span><span class="kt">Name</span><span class="p">(</span><span class="s">"FoodAdded"</span><span class="p">),</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+
+<p align="center">
+Instantiation of observer for updating indicator when new meal is added
+</p>
 
           </section>
           <section class="section task-group-section">
