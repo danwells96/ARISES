@@ -1,7 +1,7 @@
 
 # ARISES
 
-One Paragraph of project description goes here
+ARISES is an Adaptive, Real-time, Intelligent System to Enhance Self-care of chronic disease.
 
 ## Getting Started
 
@@ -40,3 +40,5 @@ See also the list of [contributors](https://github.com/danwells96/ARISES/contrib
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
+
+Designer of the User Interface was by Emeritus Professor [Robert Spence](https://www.imperial.ac.uk/people/r.spence) of Imperial College London
