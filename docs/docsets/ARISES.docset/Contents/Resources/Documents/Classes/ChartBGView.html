@@ -175,6 +175,17 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+            <a href="../Settings.html">Settings</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/SettingsBundleHelper.html">SettingsBundleHelper</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SettingsBundleHelper.html#/s:6ARISES20SettingsBundleHelperC0bC4KeysV">– SettingsBundleKeys</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -193,7 +204,46 @@ methods.</p>
           </section>
           <section class="section task-group-section">
             <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Methods"></a>
+                <a name="//apple_ref/swift/Section/Methods" class="dashAnchor"></a>
+                <a href="#/Methods">
+                  <h3 class="section-name">Methods</h3>
+                </a>
+              </div>
               <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@ARISES@objc(cs)ChartBGView(im)drawRect:"></a>
+                    <a name="//apple_ref/swift/Method/draw(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@ARISES@objc(cs)ChartBGView(im)drawRect:">draw(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The draw method is called on the instantiation of the ChartBGView. It calls methods to create the 3 bands that show the &lsquo;safe&rsquo;
+range of blood glucose measurements.</p>
+
+<ul>
+<li>Paramater rect: CGRect, the bounds of the View.</li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">draw</span><span class="p">(</span><span class="n">_</span> <span class="nv">rect</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -207,7 +257,7 @@ methods.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>color &lsquo;good&rsquo; range</p>
+                        <p>Creates a rectangle of colour White from the mid-point of the CustomView (~10 on graph to ~4) to create the &lsquo;safe&rsquo; region.</p>
 
                       </div>
                       <div class="declaration">
@@ -234,7 +284,7 @@ methods.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>color high and low ranges</p>
+                        <p>Creates a rectangle with a size of the top half of the CustomView giving the top band (between 10 and 20 on the graph).</p>
 
                       </div>
                       <div class="declaration">

@@ -1,64 +1,15 @@
 {
   "warnings": [
     {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/ChartBGView.swift",
-      "line": 17,
-      "symbol": "ChartBGView.draw(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/CustomView.swift",
-      "line": 18,
-      "symbol": "CustomView.dailyHigh",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/CustomView.swift",
-      "line": 19,
-      "symbol": "CustomView.dailyLow",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/CustomView.swift",
-      "line": 20,
-      "symbol": "CustomView.avgArrayValue",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/CustomView.swift",
-      "line": 22,
-      "symbol": "CustomView.init(frame:dailyHigh:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/CustomView.swift",
-      "line": 29,
+      "line": 40,
       "symbol": "CustomView.init(coder:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/CustomView.swift",
-      "line": 36,
-      "symbol": "CustomView.draw(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/CustomView.swift",
-      "line": 76,
-      "symbol": "CustomView.drawRangeBar()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/CustomView.swift",
-      "line": 103,
+      "line": 123,
       "symbol": "CustomView.traitCollectionDidChange(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -233,7 +184,7 @@
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Display/ViewControllerGraph.swift",
-      "line": 705,
+      "line": 703,
       "symbol": "ChartPointEllipseView.extra.data",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
@@ -268,9 +219,16 @@
     },
     {
       "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Supporting Files/SettingsBundleHelper.swift",
-      "line": 11,
-      "symbol": "SettingsBundleHelper",
-      "symbol_kind": "source.lang.swift.decl.class",
+      "line": 18,
+      "symbol": "SettingsBundleHelper.SettingsBundleKeys.basalEnabled",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/ryanarmiger/Documents/Developer/ARISES/ARISES/Supporting Files/SettingsBundleHelper.swift",
+      "line": 19,
+      "symbol": "SettingsBundleHelper.SettingsBundleKeys.reset",
+      "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {

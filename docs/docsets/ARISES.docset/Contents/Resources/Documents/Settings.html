@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Exercise Domain  Reference</title>
+    <title>Settings  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Section/Exercise Domain" class="dashAnchor"></a>
-    <a title="Exercise Domain  Reference"></a>
+    <a name="//apple_ref/swift/Section/Settings" class="dashAnchor"></a>
+    <a title="Settings  Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="index.html">ARISES Docs</a></p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="index.html">ARISES Reference</a>
         <img id="carat" src="img/carat.png" />
-        Exercise Domain  Reference
+        Settings  Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -191,33 +191,36 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Exercise Domain</h1>
+            <h1>Settings</h1>
             <hr>
-<h3 id='code-viewcontrollerexercise-code' class='heading'><code><a href="Classes/ViewControllerExercise.html">ViewControllerExercise</a></code></h3>
+<h3 id='code-settingsbundlehelper-code' class='heading'><code><a href="Classes/SettingsBundleHelper.html">SettingsBundleHelper</a></code></h3>
 
-<p>Controlls all UI elements in the open food domain</p>
+<p>Handles user changes to the settings based upon options in the app preference list.</p>
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/exercisedomain.png" alt="Image of exercise domain"/>
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/settings.png" alt="Image of open settings page"/>
 </p>
 
 <p align="center">
-Image of open exercise domain
+Image of open settings page
 </p>
 <h2 id='features' class='heading'>Features</h2>
 
 <ul>
-<li>Data entry fields for adding information about exercise</li>
-<li>Table showing information about exercise for the displayed day</li>
-<li>Favouriting system to save and choose from favourited exercise</li>
+<li>Customization of the UI for the user.</li>
 </ul>
-<h3 id='data-entry' class='heading'>Data Entry</h3>
-<h3 id='table' class='heading'>Table</h3>
-<h3 id='favouriting-system' class='heading'>Favouriting System</h3>
+<h2 id='current-state' class='heading'>Current State</h2>
+
+<ul>
+<li>Handler has been created to detect changes made to the settings.</li>
+<li>Setting to display/hide basal rate on the graph is implemented.</li>
+<li>Placeholders for additional search filters and future app functionality have been added to the setttings page.</li>
+</ul>
 <h2 id='future-work' class='heading'>Future Work</h2>
 
 <ul>
-<li>Add status indicators to show next planned exercise or other useful information</li>
+<li>Add more options to the settings page based on the feedback from the focus group.</li>
+<li>Add in functionality to relevant View Controllers to handle the options in the settings page.</li>
 </ul>
 
           </section>
@@ -227,9 +230,9 @@ Image of open exercise domain
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@ARISES@objc(cs)ViewControllerExercise"></a>
-                    <a name="//apple_ref/swift/Class/ViewControllerExercise" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@ARISES@objc(cs)ViewControllerExercise">ViewControllerExercise</a>
+                    <a name="/s:6ARISES20SettingsBundleHelperC"></a>
+                    <a name="//apple_ref/swift/Class/SettingsBundleHelper" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES20SettingsBundleHelperC">SettingsBundleHelper</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -237,15 +240,15 @@ Image of open exercise domain
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Controls all UI elements within the exercise domain. This includes data entry, favouriting system and managing the exercise log.</p>
+                        <p>Handler class to detect and store any changes made to the app&rsquo;s preference list in Settings.</p>
 
-                        <a href="Classes/ViewControllerExercise.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/SettingsBundleHelper.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">ViewControllerExercise</span> <span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span> <span class="kt">UIPickerViewDelegate</span><span class="p">,</span> <span class="kt">UIPickerViewDataSource</span><span class="p">,</span> <span class="kt">UITableViewDataSource</span><span class="p">,</span> <span class="kt">UITableViewDelegate</span><span class="p">,</span> <span class="n"><a href="Protocols/tableCellDelegate.html">tableCellDelegate</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">SettingsBundleHelper</span></code></pre>
 
                         </div>
                       </div>

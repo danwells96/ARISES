@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Illness Class Reference</title>
+    <title>SettingsBundleHelper Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Class/Illness" class="dashAnchor"></a>
-    <a title="Illness Class Reference"></a>
+    <a name="//apple_ref/swift/Class/SettingsBundleHelper" class="dashAnchor"></a>
+    <a title="SettingsBundleHelper Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">ARISES Docs</a></p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">ARISES Reference</a>
         <img id="carat" src="../img/carat.png" />
-        Illness Class Reference
+        SettingsBundleHelper Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -191,23 +191,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Illness</h1>
+            <h1>SettingsBundleHelper</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">Illness</span> <span class="p">:</span> <span class="kt">NSManagedObject</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">SettingsBundleHelper</span></code></pre>
 
                 </div>
               </div>
-            <p>Illness NSManagedObject category/extension file: Contains a computed property <code>duration</code> to compute duration of an illness log</p>
-<div class="aside aside-note">
-    <p class="aside-title">Note</p>
-    The following auto-generated properties are managed within ARISES.xcdatamodeld:
-fetchRequest(),
-end,
-start,
-day
-
-</div>
+            <p>Handler class to detect and store any changes made to the app&rsquo;s preference list in Settings.</p>
 
           </section>
           <section class="section task-group-section">
@@ -216,9 +207,9 @@ day
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6ARISES7IllnessC8durationSdvp"></a>
-                    <a name="//apple_ref/swift/Property/duration" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6ARISES7IllnessC8durationSdvp">duration</a>
+                    <a name="/s:6ARISES20SettingsBundleHelperC0bC4KeysV"></a>
+                    <a name="//apple_ref/swift/Struct/SettingsBundleKeys" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES20SettingsBundleHelperC0bC4KeysV">SettingsBundleKeys</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -226,45 +217,14 @@ day
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns total duration of the illness log</p>
+                        <p>Structure to store key names for the preference list so that settings can be accessed in other classes.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">duration</span><span class="p">:</span> <span class="kt">Double</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:6ARISES7IllnessC12fetchRequestSo07NSFetchD0CyACGyFZ"></a>
-                    <a name="//apple_ref/swift/Method/fetchRequest()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6ARISES7IllnessC12fetchRequestSo07NSFetchD0CyACGyFZ">fetchRequest()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@nonobjc</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">fetchRequest</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">NSFetchRequest</span><span class="o">&lt;</span><span class="kt">Illness</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">SettingsBundleKeys</span></code></pre>
 
                         </div>
                       </div>
@@ -274,9 +234,9 @@ day
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@CM@ARISES@objc(cs)Illness(py)end"></a>
-                    <a name="//apple_ref/swift/Property/end" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@CM@ARISES@objc(cs)Illness(py)end">end</a>
+                    <a name="/s:6ARISES20SettingsBundleHelperC015checkAndExecuteB0yyFZ"></a>
+                    <a name="//apple_ref/swift/Method/checkAndExecuteSettings()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES20SettingsBundleHelperC015checkAndExecuteB0yyFZ">checkAndExecuteSettings()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -284,14 +244,14 @@ day
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Function to implement any changes that don&rsquo;t need to be processed in the viewControllers.</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@NSManaged</span>
-<span class="kd">public</span> <span class="k">var</span> <span class="nv">end</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">checkAndExecuteSettings</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -301,9 +261,9 @@ day
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@CM@ARISES@objc(cs)Illness(py)start"></a>
-                    <a name="//apple_ref/swift/Property/start" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@CM@ARISES@objc(cs)Illness(py)start">start</a>
+                    <a name="/s:6ARISES20SettingsBundleHelperC24setVersionAndBuildNumberyyFZ"></a>
+                    <a name="//apple_ref/swift/Method/setVersionAndBuildNumber()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6ARISES20SettingsBundleHelperC24setVersionAndBuildNumberyyFZ">setVersionAndBuildNumber()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -311,41 +271,14 @@ day
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@NSManaged</span>
-<span class="kd">public</span> <span class="k">var</span> <span class="nv">start</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+                        <p>Function to set the app version in settings.</p>
 
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@CM@ARISES@objc(cs)Illness(py)day"></a>
-                    <a name="//apple_ref/swift/Property/day" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@CM@ARISES@objc(cs)Illness(py)day">day</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@NSManaged</span>
-<span class="kd">public</span> <span class="k">var</span> <span class="nv">day</span><span class="p">:</span> <span class="kt"><a href="../Classes/Day.html">Day</a></span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">setVersionAndBuildNumber</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>

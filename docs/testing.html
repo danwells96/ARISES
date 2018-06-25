@@ -174,6 +174,17 @@
               </li>
             </ul>
           </li>
+          <li class="nav-group-name">
+            <a href="Settings.html">Settings</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/SettingsBundleHelper.html">SettingsBundleHelper</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/SettingsBundleHelper.html#/s:6ARISES20SettingsBundleHelperC0bC4KeysV">– SettingsBundleKeys</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <article class="main-content">
@@ -298,7 +309,7 @@ Result: A second row should appear with the text &lsquo;try eating a larger brea
 </tr>
 </tbody></table>
 
-<p>The illness and stress tags create a record when they are turned on which ends when they are turned off. The start and end times (ZSTART and ZEND) are stored in unix time which is the number of seconds since the 1st of January 1970 and the start and end days are recorded. The screenshots below show correct operation of the illness and the stress entities.</p>
+<p>The illness and stress tags create a record when they are turned on which ends when they are turned off. The start and end times (ZSTART and ZEND) are stored in unix time which is the number of seconds since the 1st of January 1970 and the start and end days are recorded.  The screenshots below show correct operation of the illness and the stress entities.</p>
 
 <p align="center">
  <b>Illness</b>
@@ -314,6 +325,14 @@ Result: A second row should appear with the text &lsquo;try eating a larger brea
 
 <p align="center">
  <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/StressDatabase.png" width="650" />
+</p>
+
+<p>All the entities shown above have a relationship to the Day entitiy, so the ZDAY column contains the index of the apprioriate entry in the Day entity stored within the same database. In all the cases shown above the day is 6, as this testing was carried out on the sixth day since the app was last deleted and re-installed on the phone, which confirms proper relational operation. Below is a screenshot of the day entries to confirm they are being stored and linked to favourites - all other attributes relevant to days are accessed from it&rsquo;s relaitonship to the other entries described above.</p>
+
+<p></br></p>
+
+<p align="center">
+ <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/DaysDatabase.png" width="650" />
 </p>
 
           </section>
