@@ -9,7 +9,7 @@ Based on the requirement of having no navigational hierarchy some additional des
 The first one (pictured below) featured four tiles which started at equal sizes, but any can be clicked on to expand them and then        clicked again to reduce to the home state. The principal motivation behind this design was limitations in technical knowledge at the start of the project and ultimately it was decided that this design was inferior to the original one as it requires more clicks for the user to access information.
 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/squaresversion.png" alt="Squares version"/>
+	<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/squaresversion.png" width="300"/>
 </p>
 <p align="center">
 	Initial interpretation of client design
@@ -18,7 +18,7 @@ The first one (pictured below) featured four tiles which started at equal sizes,
 The second design used the more conventional approach of using tabs and is shown below. The motivations behind this design were firstly user familiarity as tabs are used across many iOS apps and secondly it is a more efficient use of screen space, so all the sections can be larger. Ultimately, however, it was decided that the client’s design was better as it allows more space for the status indicators described in the previous section and the decrease in usable space by each domain was acceptable.
 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/tabsversion.png" alt="Tabs image"/>
+	<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/tabsversion.png" width="300"/>
 </p>
 <p align="center">
 	Interface prototype of tabs design
@@ -49,6 +49,13 @@ The final design of having insulin accessible in its own area at the top of scre
 **6.    Data Entry Methods**
 
 There were also questions about the most user friendly way to input meals and exercise information. Especially with regards to the carbs, fat and protein information there was lots of discussion about whether to use a sliding scale (the client’s initial proposal) and a number pad. Eventually a number pad was chosen firstly because a slider would need a maximum value and secondly it would be difficult to get a high enough resolution with a large range of values, and users would struggle to get the right number.
+
+<p align="center">
+	<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/SliderMealEntry.png" width="300"/>
+</p>
+<p align="center">
+	Sliding Scale
+</p>
       
 Drop down picker menus were used for times and exercise intensity and duration since these have a discrete set of values they can take and it would not take too long on average to scroll to reach the desired value.
       
@@ -63,6 +70,13 @@ Originally to add a meal from favourites it would simply need to be clicked on i
 **8.    Food Carousel**
 
 Another way of selecting meals from favourites that was proposed by the client was to be able to take pictures of favourite meals and then the choose from favourites button would create a wheel of these images to appear and slowly fan out until the user selected the desired one. There are some problems with this idea in that it may be difficult to discern between similar looking meals and would take a lot of time to use. This being said time constraints and technical difficult were the main reasons this feature wasn’t implemented.
+
+<p align="center">
+	<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/FoodCarousel.png" width="300"/>
+</p>
+<p align="center">
+	Food Carousel
+</p>
       
 **9.    The Purpose of the Advice Section**
 
