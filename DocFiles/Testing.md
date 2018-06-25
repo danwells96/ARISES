@@ -2,7 +2,9 @@
 
 The following test protocol was used to check that everything worked as expected on the user end.
 
-<details><summary>Show Test Protocol</summary>
+<details><summary> 
+## Show Test Protocol
+</summary>
 <p>
 
 Checking: Insulin Entry.<br/>
@@ -94,10 +96,7 @@ Result: A second row should appear with the text 'try eating a larger breakfast'
 
 <br/>
 
-<details><summary>Show Confirmation of Core Memory Working</summary>
-<p>
-<br/>
+### Confirmation of successful core memory operation
+
 Meals, exercise activities, Days, insulin doses and favourited items are all entities in a core data database into which all entered data is stored. Below are screenshots of some things from the database to confirm that that all works.
 
-</p>
-</details>
