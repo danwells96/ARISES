@@ -27,9 +27,12 @@ We are currently in pre-alpha as the app is still under development. For the ver
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Ryan Armiger** - *Initial work* - [RyanArmiger](https://github.com/RyanArmiger)
+* **Becky Elkington** - *Initial work* - [rElkington](https://github.com/rElkington)
+* **Xiaoyu Ma** - *Initial work* - [MXYs](https://github.com/MXYs)
+* **Dan Wells** - *Initial work* - [danwells96](https://github.com/danwells96)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/danwells96/ARISES/contributors) who participated in this project.
 
 ## License
 
