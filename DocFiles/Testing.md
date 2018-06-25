@@ -90,11 +90,14 @@ Result: The day will now be present in the favourites list and clicking on the v
 Checking: Expanding Advice<br/>
 Method: Go into the advice section and click on the plus arrow next to the advice suggestion provided<br/>
 Result: A second row should appear with the text 'try eating a larger breakfast'<br/>
-<br/>
 </p>
 </details>
 
 ### Confirmation of successful core memory operation
 
-Meals, exercise activities, Days, insulin doses and favourited items are all entities in a core data database into which all entered data is stored. Below are screenshots of some things from the database to confirm that that all works.
+Meals, exercise activities, Days, insulin doses and favourited items are all entities in a core data database into which all entered data is stored. For the case of meals, exercise, and insulin data was entered into the relevant fields, and the core database was examined to check all data entered had been appropriately stored here. Screenshots of the database (which can be viewed in the development environment) and corresponding data logs are shown below and confirm correct operation.
+
+
+
+
 
