@@ -95,7 +95,9 @@ Result: A second row should appear with the text 'try eating a larger breakfast'
 
 ### Confirmation of successful core memory operation
 
-Meals, exercise activities, Days, insulin doses and favourited items are all entities in a core data database into which all entered data is stored. For the case of meals, exercise, and insulin data was entered into the relevant fields, and the core database was examined to check all data entered had been appropriately stored here. Screenshots of the database (which can be viewed in the development environment) and corresponding data logs are shown below and confirm correct operation.
+Meals, exercise activities, Days, insulin doses, stress, illness and favourited items are all entities in a core data database into which all entered data is stored. For the case of meals, exercise, and insulin data was entered into the relevant fields, and the core database was examined to check all data entered had been appropriately stored here. Screenshots of the database (which can be viewed in the development environment) and corresponding data logs are shown below and confirm correct operation.
+
+
 
 
 
