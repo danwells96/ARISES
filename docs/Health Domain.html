@@ -212,8 +212,45 @@ Image of open health domain
 <li>Favouriting system to save and view previous day logs</li>
 </ul>
 <h3 id='illness-and-stress-switches' class='heading'>Illness and Stress switches</h3>
+
+<ul>
+<li>When turned on, stores start date. When turned off, adds start and end date to a illness log. This allows duration to be calculated as a computer property of <code><a href="Classes/Illness.html">Illness</a></code> and <code><a href="Classes/Stress.html">Stress</a></code>.</li>
+</ul>
 <h3 id='table' class='heading'>Table</h3>
+
+<ul>
+<li>Setting cell labels: <code><a href="Classes/ViewControllerHealth.html#/c:@M@ARISES@objc(cs)ViewControllerHealth(im)tableView:cellForRowAtIndexPath:">ViewControllerHealth.tableView(_:cellForRowAt:)</a></code> uses fetched objects to set the labels of the cells
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/healthcell.png" alt="Image of health table cell" width="200"/>
+</p>
+<p align="center">
+Image of Health table cell
+</p></li>
+<li>Expanding table cells: When a cell is selected it will expand or contract to show/hide the low/avg/high of that day&rsquo;s glucose logs</li>
+<li>Displaying summaries of previous day&rsquo;s information: Previous <code><a href="Classes/Day.html">Day</a></code> logs are fetched, then filtered based on user&rsquo;s selected filters such as whether the user had a hypoglycemic glucose value on that day and the number of previous days to show. Icons highlighted green display whether that day contained a Hypo, Hyper, Exercise log, Stress or Illness.
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/healthicons.png" alt="Image of health summary icons" width="200"/>
+</p>
+<p align="center">
+Summary icons from left to right: Hypo, Hyper, Exercise, Stress and Illness
+</p></li>
+<li>View button: <code><a href="Protocols/tableCellDelegate.html">tableCellDelegate</a></code> optional function <code>didPressViewDayButton(_:)</code> allows a button in the cell to post a notification that <code><a href="Classes/ViewControllerGraph.html">ViewControllerGraph</a></code> picks up using an observer, to display that <code><a href="Classes/Day.html">Day</a></code> on the graph.</li>
+</ul>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">didPressViewDayButton</span><span class="p">(</span><span class="n">_</span> <span class="nv">tag</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">nc</span> <span class="o">=</span> <span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span>
+    <span class="n">nc</span><span class="o">.</span><span class="nf">post</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">Notification</span><span class="o">.</span><span class="kt">Name</span><span class="p">(</span><span class="s">"setDay"</span><span class="p">),</span> <span class="nv">object</span><span class="p">:</span> <span class="p">(</span><span class="n">loggedDays</span><span class="p">[</span><span class="n">tag</span><span class="p">]</span><span class="o">.</span><span class="n">date</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+<p align="center">
+Image of code in ViewControllerHealth to allow cell to change day displayed on graph
+</p>
 <h3 id='favouriting-system' class='heading'>Favouriting System</h3>
+
+<ul>
+<li>Favouriting: If a user clicks the star of a day cell it will highlight in the colour of the domain to symbolise it has been favourited. This will call a function to add the <code><a href="Classes/Day.html">Day</a></code> to the favourites object&rsquo;s relationships.</li>
+<li>Choosing from favourites: When the star in the data entry section is selected, it will highlight in the colour of the domain. The table will update to display <code><a href="Classes/Day.html">Day</a></code>&lsquo;s which are favourited instead of the previous day summaries. The user can use the view button to display it on the graph.</li>
+</ul>
 <h2 id='future-work' class='heading'>Future Work</h2>
 
 <ul>
