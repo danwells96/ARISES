@@ -227,7 +227,13 @@ Image of food domain status indicators
 
 <ul>
 <li>Name Text field: Keyboard pops up when tapped and the user presses Done when finished</li>
-<li>Time: Time Picker pops up to allow the user to choose a time. Dismissed when user presses Done.</li>
+<li>Time: Time Picker pops up to allow the user to choose a time. Dismissed when user presses Done.
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/Time%20Picker.png" alt="Image of Time Picker" width="200"/>
+</p>
+<p align="center">
+Image of Time Picker
+</p></li>
 <li>Carbs, Protein, Fat: 
 <p align="center">
 <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/keypad.png" alt="Image of numpad" width="200"/>
@@ -237,21 +243,48 @@ Image of numpad
 </p>
 
 <ul>
-<li>Numpad pops up when tapped to allow the user to enter numbers. No decimal point is available on the numpad to provide safety to inputs. Input value is presumed to be in grams, as the logical unit of macro-nutrients typical in other apps, pumps and labels. 
-<code>swift
-carbs: Int32((Double(carbsTextField.text!)?.rounded())!),
-</code>
+<li>Numpad pops up when tapped to allow the user to enter numbers. No decimal point is available on the numpad to provide safety to inputs. Input value is presumed to be in grams, as the logical unit of macro-nutrients typical in other apps, pumps and labels. </br></li>
+</ul></li>
+</ul>
+<pre class="highlight swift"><code>    <span class="nv">carbs</span><span class="p">:</span> <span class="kt">Int32</span><span class="p">((</span><span class="kt">Double</span><span class="p">(</span><span class="n">carbsTextField</span><span class="o">.</span><span class="n">text</span><span class="o">!</span><span class="p">)?</span><span class="o">.</span><span class="nf">rounded</span><span class="p">())</span><span class="o">!</span><span class="p">),</span>
+</code></pre>
+
 <p align="center">
 Code for assignment of text field value for carbs
-</p></li>
-<li>If a user uses an external keyboard and enters a decimal e.g. 5.5 this will be rounded to nearest integer</li>
-<li>If a user uses an external keyboard and enters a value that cannot be rounded or converted to an int32 e.g. <q>jkl</q>, the app will crash but will not add this to the log, so the database will not be corrupted and the user can reopen and continue to use the app. This is very unlikely to occur anyway.</li>
-</ul></li>
+</p>
+<pre class="highlight plaintext"><code>* If a user uses an external keyboard and enters a decimal e.g. 5.5 this will be rounded to nearest integer
+* If a user uses an external keyboard and enters a value that cannot be rounded or converted to an int32 e.g. "jkl", the app will crash but will not add this to the log, so the database will not be corrupted and the user can reopen and continue to use the app. This is very unlikely to occur anyway.
+</code></pre>
+
+<ul>
 <li>Add button: Only calls function to add new log to database if all fields contain some text.</li>
 </ul>
 <h3 id='table' class='heading'>Table</h3>
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/foodcell.png" alt="Image of food table cell" width="200"/>
+</p>
+
+<p align="center">
+Image of Food table cell
+</p>
+
+<ul>
+<li>Setting cell labels: lorem ipsum</li>
+<li>Displaying meal logs for current day shown on graph: lorem ipsuum</li>
+</ul>
 <h3 id='favouriting-system' class='heading'>Favouriting System</h3>
+
+<ul>
+<li>Favouriting: lorem ipsuum</li>
+<li>Choosing from favourites: lorem ipsum</li>
+</ul>
 <h3 id='status-indicators' class='heading'>Status Indicators</h3>
+
+<ul>
+<li>Displaying information: lorem ipsum</li>
+<li>Updating: lorem ipsum</li>
+</ul>
 
           </section>
           <section class="section task-group-section">

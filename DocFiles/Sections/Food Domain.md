@@ -29,6 +29,12 @@ Image of food domain status indicators
 ### Data Entry
 * Name Text field: Keyboard pops up when tapped and the user presses Done when finished
 * Time: Time Picker pops up to allow the user to choose a time. Dismissed when user presses Done.
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/Time%20Picker.png" alt="Image of Time Picker" width="200"/>
+</p>
+<p align="center">
+Image of Time Picker
+</p>
 * Carbs, Protein, Fat: 
 <p align="center">
 <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/keypad.png" alt="Image of numpad" width="200"/>
@@ -36,9 +42,10 @@ Image of food domain status indicators
 <p align="center">
 Image of numpad
 </p>
-    * Numpad pops up when tapped to allow the user to enter numbers. No decimal point is available on the numpad to provide safety to inputs. Input value is presumed to be in grams, as the logical unit of macro-nutrients typical in other apps, pumps and labels. 
+    * Numpad pops up when tapped to allow the user to enter numbers. No decimal point is available on the numpad to provide safety to inputs. Input value is presumed to be in grams, as the logical unit of macro-nutrients typical in other apps, pumps and labels. </br>
+    
 ```swift
-        carbs: Int32((Double(carbsTextField.text!)?.rounded())!),
+    carbs: Int32((Double(carbsTextField.text!)?.rounded())!),
 ```
 <p align="center">
 Code for assignment of text field value for carbs
@@ -48,8 +55,19 @@ Code for assignment of text field value for carbs
 * Add button: Only calls function to add new log to database if all fields contain some text.
 
 ### Table
-
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/foodcell.png" alt="Image of food table cell" width="200"/>
+</p>
+<p align="center">
+Image of Food table cell
+</p>
+* Setting cell labels: lorem ipsum
+* Displaying meal logs for current day shown on graph: lorem ipsuum
 
 ### Favouriting System
+* Favouriting: lorem ipsuum
+* Choosing from favourites: lorem ipsum
 
 ### Status Indicators
+* Displaying information: lorem ipsum
+* Updating: lorem ipsum
