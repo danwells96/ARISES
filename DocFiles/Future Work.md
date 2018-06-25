@@ -10,3 +10,4 @@
 * Make it be able to create summary graphs from the data, for instance average blood glucose level against time of day, number of hypos against day of the week etc.
 * Allow the user to swipe through these charts in the advice section.
 * Let the user click a button to expand any of these charts as a pop-up for more detail.
+* Include an option under settings to let the user clear their data.
