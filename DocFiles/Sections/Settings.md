@@ -1,7 +1,7 @@
 ---
 
 ### `SettingsBundleHelper`
-Handles user changes to the settings
+Handles user changes to the settings based upon options in the app preference list.
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/settings.png" alt="Image of open settings page"/>
