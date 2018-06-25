@@ -14,8 +14,8 @@ Before we joined the project, the client team had come up with a design of what 
 * The education section should contain advice and links to new information about diabetes management.
 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/client%20design.png" alt="Client design"/>
+	<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/client%20design.png" width="300"/>
 </p>
 <p align="center">
-	Drawing of design supplied by the client
+	<b>Drawing of design supplied by the client</b>
 </p>
