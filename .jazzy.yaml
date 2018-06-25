@@ -7,7 +7,7 @@ clean: true
 exclude: [Packages]
 theme: apple
 skip_undocumented: true
-hide_documentation_coverage: false
+hide_documentation_coverage: true
 min_acl: private
 documentation: DocFiles/*.md
 abstract: DocFiles/Sections/*.md
