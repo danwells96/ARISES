@@ -236,7 +236,7 @@
 <h2 id='left-amp-right-sideview-containers' class='heading'>Left &amp; Right Sideview Containers</h2>
 
 <p>Each of the side view containers has three subviews of type CustomView (UIView) which are customized to show colours bands as a background. </p>
-<h4 id='em-chartbgview-swift-em-and-em-customview-swift-em' class='heading'><em>ChartBGView.swift</em> and <em>CustomView.swift</em></h4>
+<h4 id='code-chartbgview-code-and-code-customview-code' class='heading'><code><a href="Classes/ChartBGView.html">ChartBGView</a></code> and <code><a href="Classes/CustomView.html">CustomView</a></code></h4>
 
 <p>The same colour bands are used on the main chart as well thus <em>ChartBGView.swift</em> follows the same logic as the <em>CustomView.swift</em> in term of filling the background color bands. But <em>CustomView.swift</em> is also used to draw range bars on each sideview using calculated values for glucose values storing in core data on a day.</p>
 <h6 id='bands-calculations' class='heading'>Bands calculations</h6>
@@ -246,7 +246,7 @@
 <p>Therefore, the top half of chart would be in <strong>high</strong> range, the bottom 4/20 (20%) of chart would be in <strong>low</strong> range and 6/20 (~30%)section in the middle would be of normal. </p>
 
 <p>The high and low bands are coloured differently to draw users attention. Colour palette here is simple and can be modified. (Colour combinations particularly red &amp; green are avoided as diabetes suffering from retinopathy have problems distinguishing between them.)</p>
-<h4 id='em-drawmiddleband-em' class='heading'><em>drawMiddleBand()</em></h4>
+<h4 id='code-drawmiddleband-code' class='heading'><code>drawMiddleBand()</code></h4>
 
 <ul>
 <li><p><strong>Description:</strong>
@@ -258,7 +258,7 @@ This would give the background of image below (without the range bars).</p></li>
 <p align="center">
     <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/sideview.png" alt="Image of sideview"/>
 </p>
-<h4 id='em-drawrangebar-em' class='heading'><em>drawRangeBar()</em></h4>
+<h4 id='code-drawrangebar-code' class='heading'><code>drawRangeBar()</code></h4>
 
 <ul>
 <li><p><strong>Description:</strong>
