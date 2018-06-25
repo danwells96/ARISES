@@ -41,13 +41,13 @@ Image of Duration Picker
 </p>
 
 ### Table
+* Setting cell labels: `ViewControllerExercise.tableView(_:cellForRowAt:)` uses fetched objects to set the labels of the cells
 <p align="center">
 <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/exercisecell.png" alt="Image of exercise table cell" width="200"/>
 </p>
 <p align="center">
 Image of Exercise table cell
 </p>
-* Setting cell labels: `ViewControllerExercise.tableView(_:cellForRowAt:)` uses fetched objects to set the labels of the cells
 * Displaying exercise logs for current day shown on graph: An observer is used to watch for notifications from `ViewControllerGraph` and update the class' `currentDay` property. The data for the table is then fetched again for exercise logs which match `currentDay`  
 
 ````swift 

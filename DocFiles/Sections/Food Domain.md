@@ -58,13 +58,13 @@ If a user uses an external keyboard and enters a value that cannot be rounded or
 * Disabled for past days: Data entry fields are hidden if the user is not viewing the current day on the graph. 
 
 ### Table
+* Setting cell labels: `ViewControllerFood.tableView(_:cellForRowAt:)` uses fetched objects to set the labels of the cells
 <p align="center">
 <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/foodcell.png" alt="Image of food table cell" width="200"/>
 </p>
 <p align="center">
 Image of Food table cell
 </p>
-* Setting cell labels: `ViewControllerFood.tableView(_:cellForRowAt:)` uses fetched objects to set the labels of the cells
 * Expanding table cells: When a cell is selected it will expand or contract to show/hide the macro-nutrients of that meal
 * Displaying meal logs for current day shown on graph: An observer is used to watch for notifications from `ViewControllerGraph` and update the class' `currentDay` property. The data for the table is then fetched again for meal logs which match `currentDay`  
 

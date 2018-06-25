@@ -239,16 +239,14 @@ Image of Duration Picker
 </ul>
 <h3 id='table' class='heading'>Table</h3>
 
+<ul>
+<li>Setting cell labels: <code><a href="Classes/ViewControllerExercise.html#/c:@M@ARISES@objc(cs)ViewControllerExercise(im)tableView:cellForRowAtIndexPath:">ViewControllerExercise.tableView(_:cellForRowAt:)</a></code> uses fetched objects to set the labels of the cells
 <p align="center">
 <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/exercisecell.png" alt="Image of exercise table cell" width="200"/>
 </p>
-
 <p align="center">
 Image of Exercise table cell
-</p>
-
-<ul>
-<li>Setting cell labels: <code><a href="Classes/ViewControllerExercise.html#/c:@M@ARISES@objc(cs)ViewControllerExercise(im)tableView:cellForRowAtIndexPath:">ViewControllerExercise.tableView(_:cellForRowAt:)</a></code> uses fetched objects to set the labels of the cells</li>
+</p></li>
 <li>Displaying exercise logs for current day shown on graph: An observer is used to watch for notifications from <code><a href="Classes/ViewControllerGraph.html">ViewControllerGraph</a></code> and update the class&rsquo; <code>currentDay</code> property. The data for the table is then fetched again for exercise logs which match <code>currentDay</code><br></li>
 </ul>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">nc</span> <span class="o">=</span> <span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span>

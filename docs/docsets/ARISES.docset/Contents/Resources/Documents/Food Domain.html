@@ -260,16 +260,14 @@ If a user uses an external keyboard and enters a value that cannot be rounded or
 </ul>
 <h3 id='table' class='heading'>Table</h3>
 
+<ul>
+<li>Setting cell labels: <code><a href="Classes/ViewControllerFood.html#/c:@M@ARISES@objc(cs)ViewControllerFood(im)tableView:cellForRowAtIndexPath:">ViewControllerFood.tableView(_:cellForRowAt:)</a></code> uses fetched objects to set the labels of the cells
 <p align="center">
 <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/foodcell.png" alt="Image of food table cell" width="200"/>
 </p>
-
 <p align="center">
 Image of Food table cell
-</p>
-
-<ul>
-<li>Setting cell labels: <code><a href="Classes/ViewControllerFood.html#/c:@M@ARISES@objc(cs)ViewControllerFood(im)tableView:cellForRowAtIndexPath:">ViewControllerFood.tableView(_:cellForRowAt:)</a></code> uses fetched objects to set the labels of the cells</li>
+</p></li>
 <li>Expanding table cells: When a cell is selected it will expand or contract to show/hide the macro-nutrients of that meal</li>
 <li>Displaying meal logs for current day shown on graph: An observer is used to watch for notifications from <code><a href="Classes/ViewControllerGraph.html">ViewControllerGraph</a></code> and update the class&rsquo; <code>currentDay</code> property. The data for the table is then fetched again for meal logs which match <code>currentDay</code><br></li>
 </ul>
