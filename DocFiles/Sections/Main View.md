@@ -4,7 +4,7 @@
 Controls transitions between domains by showing and hiding domain and indicator views. Also controls insulin entry fields.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/mainview.png" alt="Image of main view storyboard"/>
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/mainview.png" alt="Image of main view storyboard" width="150" />
 </p>
 <p align="center">
 Main View Storyboard 

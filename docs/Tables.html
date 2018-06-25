@@ -204,27 +204,25 @@ Images of cells for food, exercise and health domain
 <h3 id='code-tablecelldelegate-code' class='heading'><code><a href="Protocols/tableCellDelegate.html">tableCellDelegate</a></code></h3>
 
 <p>Table cell delegate for button actions</p>
-
-<p>&ldquo;`@objc protocol tableCellDelegate : class {
-///Calls didPressButton in each ViewController with a table
-func didPressButton(_ tag: Int)
-///Optional function for use in ViewControllerHealth, to set graph day to view from table.
-@objc optional func didPressViewDayButton(_ tag: Int)
-}</p>
-<pre class="highlight plaintext"><code>&lt;p align="center"&gt;
-Table Cell Delegate code
-&lt;/p&gt;
-
-## Features
-* Displays important information for its respective domain 
-* Delegate system to allow working buttons for favouriting and other cell functions
-
-### Displaying information
-
-### Cell button actions
-
-
+<pre class="highlight swift"><code><span class="kd">@objc</span> <span class="kd">protocol</span> <span class="nv">tableCellDelegate</span> <span class="p">:</span> <span class="kd">class</span> <span class="p">{</span>
+    <span class="c1">///Calls didPressButton in each ViewController with a table</span>
+    <span class="kd">func</span> <span class="nf">didPressButton</span><span class="p">(</span><span class="n">_</span> <span class="nv">tag</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span>
+    <span class="c1">///Optional function for use in ViewControllerHealth, to set graph day to view from table.</span>
+    <span class="kd">@objc</span> <span class="kd">optional</span> <span class="kd">func</span> <span class="nf">didPressViewDayButton</span><span class="p">(</span><span class="n">_</span> <span class="nv">tag</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span>
+<span class="p">}</span>
 </code></pre>
+
+<p align="center">
+Table Cell Delegate code
+</p>
+<h2 id='features' class='heading'>Features</h2>
+
+<ul>
+<li>Displays important information for its respective domain</li>
+<li>Delegate system to allow working buttons for favouriting and other cell functions</li>
+</ul>
+<h3 id='displaying-information' class='heading'>Displaying information</h3>
+<h3 id='cell-button-actions' class='heading'>Cell button actions</h3>
 
           </section>
           <section class="section task-group-section">

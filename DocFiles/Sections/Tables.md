@@ -19,11 +19,12 @@ Images of cells for food, exercise and health domain
 ### `tableCellDelegate`
 Table cell delegate for button actions
 
-```@objc protocol tableCellDelegate : class {
-///Calls didPressButton in each ViewController with a table
-func didPressButton(_ tag: Int)
-///Optional function for use in ViewControllerHealth, to set graph day to view from table.
-@objc optional func didPressViewDayButton(_ tag: Int)
+```swift
+@objc protocol tableCellDelegate : class {
+    ///Calls didPressButton in each ViewController with a table
+    func didPressButton(_ tag: Int)
+    ///Optional function for use in ViewControllerHealth, to set graph day to view from table.
+    @objc optional func didPressViewDayButton(_ tag: Int)
 }
 ```
 <p align="center">
