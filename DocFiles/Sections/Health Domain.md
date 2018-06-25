@@ -4,7 +4,7 @@
 Controlls all UI elements in the open health domain
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/healthdomain.png" alt="Image of healthdomain"/>
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/healthdomain.png" alt="Image of healthdomain" width="400"/>
 </p>
 <p align="center">
 Image of open health domain

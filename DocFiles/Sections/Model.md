@@ -29,3 +29,9 @@ Image of relational database graph
 ### Fetching objects
 
 ### Extensions of objects
+
+## Future Work
+* Functions for removing/editting logs to incorporate with future edit button functionality
+* Potentially refactor using generic types to reduce boilerplate code
+* Adjust to work as a framework for use with continuous blood glucose monitor and activity band
+

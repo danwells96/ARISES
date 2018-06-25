@@ -4,7 +4,7 @@
 Controlls all UI elements in the open food domain
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/exercisedomain.png" alt="Image of exercise domain"/>
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/exercisedomain.png" alt="Image of exercise domain" width="400"/>
 </p>
 <p align="center">
 Image of open exercise domain

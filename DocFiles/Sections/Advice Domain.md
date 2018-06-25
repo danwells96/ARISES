@@ -4,7 +4,7 @@
 Controlls all UI elements in the open advice domain
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/advicedomain.png" alt="Image of advice domain"/>
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/advicedomain.png" alt="Image of advice domain" width="400"/>
 </p>
 <p align="center">
 Image of open advice domain
