@@ -87,7 +87,7 @@ A view it creates would be:
 
 ## Main graph section
 
-### *ViewControllerGraph.swift*
+### `ViewControllerGraph`
 In this section we do everything graph related. For example:
 * Transform sideView containers into bifocal. 
 * Load tmp arrays into Core Data.
@@ -100,9 +100,9 @@ Modifications are made on top of an iOS chart library which can be found [here][
 
 * Layers: xAxisLayer, yAxisLayer, yHighAxes, guidelinesLayer, pointslineLayer, prediction, chartPointsCircleLayer
 
-**xAxisLayer** conatins x-axis model and x-axis label settings. It displays time in a day with an interval of 6 hours thus 4 dividers.
+**xAxisLayer** contains x-axis model and x-axis label settings. It displays time in a day with an interval of 6 hours thus 4 dividers.
 
-**yAxisLayer** conatins glucose axis model and label settings. The axis ranges from 0 to 20 (mM/L) with an interval of 4. 
+**yAxisLayer** contains glucose axis model and label settings. The axis ranges from 0 to 20 (mM/L) with an interval of 4. 
 
 **yHighAxes** contains an invisible carbs axis on the right side of chart. Meals popups are plotted based on carbs axis and shares the same x-axis with glucose points.
 
