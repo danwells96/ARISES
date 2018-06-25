@@ -47,6 +47,7 @@ The bifocal display consists of three parts:
 ## Left & Right Sideview Containers
 Each of the side view containers has three subviews of type CustomView (UIView) which are customized to show colours bands as a background. 
 #### `ChartBGView` and `CustomView`
+
 The same colour bands are used on the main chart as well thus *ChartBGView.swift* follows the same logic as the *CustomView.swift* in term of filling the background color bands. But *CustomView.swift* is also used to draw range bars on each sideview using calculated values for glucose values storing in core data on a day.
 
 ###### Bands calculations
