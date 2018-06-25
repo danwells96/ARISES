@@ -1,12 +1,11 @@
 ---
 ## How to use this Documentation
 
-## Design Process and Consequences
+## Project Overview
 
 ### [Client Design](https://danwells96.github.io/ARISES/client-design.html)
 ### [Final Design](https://danwells96.github.io/ARISES/final-design.html)
 ### [Design Process](https://danwells96.github.io/ARISES/design-process.html)
-### [Program Architecture](https://danwells96.github.io/ARISES/program-architecture.html)
 ### [Testing](https://danwells96.github.io/ARISES/testing.html)
 ### [Future Work](https://danwells96.github.io/ARISES/future-work.html)
 ### [Ethics Report](https://danwells96.github.io/ARISES/ethics-report.html)
@@ -16,7 +15,7 @@
 
 
 ## Program Specification
-
+### [Program Architecture](https://danwells96.github.io/ARISES/program-architecture.html)
 ### [Model](https://danwells96.github.io/ARISES/Model.html)
 ### [Graph](https://danwells96.github.io/ARISES/Graph.html)
 ### [Main View](https://danwells96.github.io/ARISES/Main%20View.html)
@@ -27,4 +26,4 @@
 ### [Tables](https://danwells96.github.io/ARISES/Tables.html)
 ### [Settings](https://danwells96.github.io/ARISES/Settings.html)
 
-
+## Bibliography
