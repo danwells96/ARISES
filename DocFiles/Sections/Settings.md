@@ -1,2 +1,23 @@
- Add brief model description to DocFiles/Sections/Settings.md to make it appear here
+---
 
+### `SettingsBundleHelper`
+Handles user changes to the settings
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/settings.png" alt="Image of open settings page"/>
+</p>
+<p align="center">
+Image of open settings page
+</p>
+
+##Features
+* Customization of the UI for the user.
+
+##Current State
+* Handler has been created to detect changes made to the settings.
+* Setting to display/hide basal rate on the graph is implemented.
+* Placeholders for additional search filters have been added to the setttings page.
+
+##Future Work
+* Add more options to the settings page based on the feedback from the focus group.
+* Add in functionality to relevant View Controllers to handle the options in the settings page.
