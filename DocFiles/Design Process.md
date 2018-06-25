@@ -12,7 +12,7 @@ The first one (pictured below) featured four tiles which started at equal sizes,
 	<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/squaresversion.png" width="300"/>
 </p>
 <p align="center">
-	Initial interpretation of client design
+	<b>Initial interpretation of client design</b>
 </p>
 
 The second design used the more conventional approach of using tabs and is shown below. The motivations behind this design were firstly user familiarity as tabs are used across many iOS apps and secondly it is a more efficient use of screen space, so all the sections can be larger. Ultimately, however, it was decided that the client’s design was better as it allows more space for the status indicators described in the previous section and the decrease in usable space by each domain was acceptable.
@@ -21,7 +21,7 @@ The second design used the more conventional approach of using tabs and is shown
 	<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/tabsversion.png" width="300"/>
 </p>
 <p align="center">
-	Interface prototype of tabs design
+	<b>Interface prototype of tabs design</b>
 </p>
 
 **2.	 Usage of non-active space**
@@ -54,7 +54,7 @@ There were also questions about the most user friendly way to input meals and ex
 	<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/SliderMealEntry.png" width="300"/>
 </p>
 <p align="center">
-	Sliding Scale
+	<b>Sliding Scale</b>
 </p>
       
 Drop down picker menus were used for times and exercise intensity and duration since these have a discrete set of values they can take and it would not take too long on average to scroll to reach the desired value.
@@ -75,7 +75,7 @@ Another way of selecting meals from favourites that was proposed by the client w
 	<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/FoodCarousel.png" width="300"/>
 </p>
 <p align="center">
-	Food Carousel
+	<b>Food Carousel</b>
 </p>
       
 **9.    The Purpose of the Advice Section**
