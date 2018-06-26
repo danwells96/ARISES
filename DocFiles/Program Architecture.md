@@ -21,24 +21,25 @@ Image of app storyboard
 Controls transitions between domains by showing and hiding domain and indicator views. Also controls insulin entry fields.
 
 ### `ViewControllerFood`
-Controlls all UI elements in the open food domain
+Controlls all UI elements in the open food domain. Calls functions in `ModelController` to add and fetch `Meals` logs.
 
 ### `ViewControllerExercise`
-Controlls all UI elements in the open food domain
+Controlls all UI elements in the open exercise domain. Calls functions in `ModelController` to add and fetch `Exercise` logs.
 
 ### `ViewControllerHealth`
-Controlls all UI elements in the open health domain
+Controlls all UI elements in the open health domain.  Calls functions in `ModelController` to add `Stress` and `Illness` logs and fetch `Day` logs.
+
+### `ViewControllerAdvice`
+Controlls all UI elements in the open advice domain. Currently placeholder images and labels.
 
 ### `ViewControllerTableViewCell`
-View Controller for Table Cells in all domains
+Adds outlets and actions for table view cells, to allow other View Controllers to create tables, set cell labels and run functions when cell buttons are pressed.
 
 ### `ModelController`
 Provides fuctions to safely add and fetch objects from the persistent relational database in ‘Core Data’
 
-### `ViewControllerAdvice`
-Controlls all UI elements in the open advice domain
-
 ### `ViewControllerGraph`
+Controls initalising graphs and displaying graphs. Calls functions in `ModelController` to fetch `Glucose` logs, and the `Meals`, `Exercise` and `Insulin` for the displayed day.
 
 
 ## Interactions
@@ -55,11 +56,12 @@ Image showing communication between the main classes
 ### [Open Image](https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/hierarchy.png) 
 
 ### Calling functions in other classes
-* What is it?
-* Where is it used?
-* Why?
+* View Controllers can call non-private functions in other classes. 
+* In this case, `ModelController` contains a set of functions to safely interact with the database, adding logs and fetching arrays of objects. It also provides some convenient filtering and sorting
+* This is done to provide a level of insulation between the View Controllers and the database to increase safety and reduce complexity of view controllers. 
+* It also allows functions to be called in several places without repeating code, and is a step towards creating a framework suitable for integration with the planned wearables
 
 ### Radio/ Notifications
-* What is it?
-* Where is it used?
-* Why?
+* ios libraries contain a radio system called the Notification Center. This allows one section of code to 'post' a notification that an event has occured. Separate sections of code can be set up to perform certain functions when an 'Observer' notices this notification.
+* This is primarily used to update views when events occur. In this project, for example, when the day displayed on the graph is changed, a notification is posted and several View Controllers update their views to display information relative to the new day.
+* Within the scope of the project, this seemed the best way to ensure the separate views were displaying updated information. 

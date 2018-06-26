@@ -222,23 +222,25 @@ Image of app storyboard
 <p>Controls transitions between domains by showing and hiding domain and indicator views. Also controls insulin entry fields.</p>
 <h3 id='code-viewcontrollerfood-code' class='heading'><code><a href="Classes/ViewControllerFood.html">ViewControllerFood</a></code></h3>
 
-<p>Controlls all UI elements in the open food domain</p>
+<p>Controlls all UI elements in the open food domain. Calls functions in <code><a href="Classes/ModelController.html">ModelController</a></code> to add and fetch <code><a href="Classes/Meals.html">Meals</a></code> logs.</p>
 <h3 id='code-viewcontrollerexercise-code' class='heading'><code><a href="Classes/ViewControllerExercise.html">ViewControllerExercise</a></code></h3>
 
-<p>Controlls all UI elements in the open food domain</p>
+<p>Controlls all UI elements in the open exercise domain. Calls functions in <code><a href="Classes/ModelController.html">ModelController</a></code> to add and fetch <code><a href="Classes/Exercise.html">Exercise</a></code> logs.</p>
 <h3 id='code-viewcontrollerhealth-code' class='heading'><code><a href="Classes/ViewControllerHealth.html">ViewControllerHealth</a></code></h3>
 
-<p>Controlls all UI elements in the open health domain</p>
+<p>Controlls all UI elements in the open health domain.  Calls functions in <code><a href="Classes/ModelController.html">ModelController</a></code> to add <code><a href="Classes/Stress.html">Stress</a></code> and <code><a href="Classes/Illness.html">Illness</a></code> logs and fetch <code><a href="Classes/Day.html">Day</a></code> logs.</p>
+<h3 id='code-viewcontrolleradvice-code' class='heading'><code><a href="Classes/ViewControllerAdvice.html">ViewControllerAdvice</a></code></h3>
+
+<p>Controlls all UI elements in the open advice domain. Currently placeholder images and labels.</p>
 <h3 id='code-viewcontrollertableviewcell-code' class='heading'><code><a href="Classes/ViewControllerTableViewCell.html">ViewControllerTableViewCell</a></code></h3>
 
-<p>View Controller for Table Cells in all domains</p>
+<p>Adds outlets and actions for table view cells, to allow other View Controllers to create tables, set cell labels and run functions when cell buttons are pressed.</p>
 <h3 id='code-modelcontroller-code' class='heading'><code><a href="Classes/ModelController.html">ModelController</a></code></h3>
 
 <p>Provides fuctions to safely add and fetch objects from the persistent relational database in ‘Core Data’</p>
-<h3 id='code-viewcontrolleradvice-code' class='heading'><code><a href="Classes/ViewControllerAdvice.html">ViewControllerAdvice</a></code></h3>
-
-<p>Controlls all UI elements in the open advice domain</p>
 <h3 id='code-viewcontrollergraph-code' class='heading'><code><a href="Classes/ViewControllerGraph.html">ViewControllerGraph</a></code></h3>
+
+<p>Controls initalising graphs and displaying graphs. Calls functions in <code><a href="Classes/ModelController.html">ModelController</a></code> to fetch <code><a href="Classes/Glucose.html">Glucose</a></code> logs, and the <code><a href="Classes/Meals.html">Meals</a></code>, <code><a href="Classes/Exercise.html">Exercise</a></code> and <code><a href="Classes/Insulin.html">Insulin</a></code> for the displayed day.</p>
 <h2 id='interactions' class='heading'>Interactions</h2>
 
 <p>View Controllers communicate via 2 methods:</p>
@@ -259,16 +261,17 @@ Image showing communication between the main classes
 <h3 id='calling-functions-in-other-classes' class='heading'>Calling functions in other classes</h3>
 
 <ul>
-<li>What is it?</li>
-<li>Where is it used?</li>
-<li>Why?</li>
+<li>View Controllers can call non-private functions in other classes.</li>
+<li>In this case, <code><a href="Classes/ModelController.html">ModelController</a></code> contains a set of functions to safely interact with the database, adding logs and fetching arrays of objects. It also provides some convenient filtering and sorting</li>
+<li>This is done to provide a level of insulation between the View Controllers and the database to increase safety and reduce complexity of view controllers.</li>
+<li>It also allows functions to be called in several places without repeating code, and is a step towards creating a framework suitable for integration with the planned wearables</li>
 </ul>
 <h3 id='radio-notifications' class='heading'>Radio/ Notifications</h3>
 
 <ul>
-<li>What is it?</li>
-<li>Where is it used?</li>
-<li>Why?</li>
+<li>ios libraries contain a radio system called the Notification Center. This allows one section of code to &lsquo;post&rsquo; a notification that an event has occured. Separate sections of code can be set up to perform certain functions when an &lsquo;Observer&rsquo; notices this notification.</li>
+<li>This is primarily used to update views when events occur. In this project, for example, when the day displayed on the graph is changed, a notification is posted and several View Controllers update their views to display information relative to the new day.</li>
+<li>Within the scope of the project, this seemed the best way to ensure the separate views were displaying updated information.</li>
 </ul>
 
           </section>
