@@ -1,6 +1,7 @@
 ---
 * Project Overview provides an insight into the design process and other real-world considerations that must be taken into account within this project.
 * Program Specification provides a detailed explanation of the current state of the app, from high-level feature descriptions to the return parameters of each class' function declarations.
+
 ## Project Overview
 
 ### [Client Design](https://danwells96.github.io/ARISES/client-design.html)
