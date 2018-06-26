@@ -19,7 +19,7 @@ Main View Storyboard
 * Insulin entry button: Shaped like a drop of blood with a cross in it, clicking on it expands a field for entering a number of units of insulin. This is done with a numpad with a decimal point available and accepts doubles. A clock icon also appears, allowing the user to optionally select a time that the insulin was entered, using a time picker. If unopened, the current time is used. When the insulin button is pressed again, the log is added to the database.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/insulinentry.png" alt="Image of insulin entry fields" width="200" />
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/InsulinEntry.png" alt="Image of insulin entry fields" width="200" />
 </p>
 <p align="center">
 Image of Insulin entry fields when open 

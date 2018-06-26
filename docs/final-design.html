@@ -191,9 +191,9 @@
         <section>
           <section class="section">
             
-            <h1 id='final-design' class='heading'>Final Design</h1>
+            <h1 id='final-design-specification' class='heading'>Final Design Specification</h1>
 
-<p>During the project many things were changed about the design based on discussions in our weekly meetings, technical feasibility within the time frame and a focus group which was conducted towards the end of our time on the project. The final design is described below, and rationale for the changes made from the original design or additional features are included in the design process section.</p>
+<p>During the project many things many changes were made from the client design to the final one, the rationale for which is procided in Design Process. A descriptive overview of the final design is provided here, with images of final design, all four domains and the graph pictured directly below for context.</p>
 
 <p align="center">
  <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/fooddomain.png" width="300" />
@@ -207,14 +207,14 @@
   
 <h3 id='architecture' class='heading'>Architecture</h3>
 
-<p>Much like in the client design the app consists of 4 main sections which overlap and can be brought to the front with only one click, and a bi-focal display to show blood glucose level. There is also a settings button in the top left which will redirect the user to the iOS settings menu for customisation. Ultimately it may be better for clicking on that button to produce a pop-up in which settings can be altered, however that would not have been feasible to implement within our timeframe.</p>
+<p>Exactly as in the client design the app consists of 4 main sections which overlap and can be brought to the front with only one click, as well as a bi-focal display to show blood glucose level. There is also a settings button in the top left which will redirect the user to the iOS settings menu for customisation. </p>
 <h3 id='insulin' class='heading'>Insulin</h3>
 
-<p>At the top right of the screen is an insulin button which if clicked will allow the user to enter how many doses of insulin they took and at what time.</p>
+<p>At the top right of the screen there is an insulin button which if clicked will let the user enter how many units of insulin they took and at what time.</p>
 <h3 id='food' class='heading'>Food</h3>
 
 <ul>
-<li><strong>Meal Entry</strong> – The user can enter the name, time and amount of carbs, fat and protein of each meal they have in the day. The name entry is done via a normal keypad, the nutritional information entry is done via a number pad and the time entry is done via a drop-down picker view. When you click on the field and the keyboard appears, the entire box moves up the screen to stop the field from being obscured.</li>
+<li><strong>Meal Entry</strong> – The user can enter the name, time and amount of carbs, fat and protein of each meal they have in the day. The name entry is done via a normal keypad, the nutritional information entry is done via a number pad and the time entry is done via a drop-down picker view. When you click on the field and the keyboard appears, the entire food section moves up the screen to stop the field from being obscured.</li>
 <li><strong>Food Daily Log</strong> – all entered meals appear in the log and clicking on any cell lets them expand to reveal the amount of carbs, protein and fat in the meal and an edit button which lets you change the information.</li>
 <li><strong>Favouriting System</strong> – Meals can be added to favourites by highlighting the star on their row. Clicking on the star in the top right of the section changes the food daily log list to a list of favourited meals and clicking on any of these will auto-fill the meal entry fields so the user can change the time and nutritional information as necessary and then click add to add the meal as normal.</li>
 </ul>
@@ -224,8 +224,8 @@
 <h3 id='health' class='heading'>Health</h3>
 
 <ul>
-<li><strong>Tag Switches</strong> – The health section contains a stress and an unwell switch which the user can turn on to tag that they were under unusual stress or ill on that day. This can be used either just allow users to keep track of how certain things effect their condition, or possibly factored in by the algorithm in the future.</li>
-<li><strong>Previous Days Log</strong> – The health section contains a list of the previous 7, 30 or 60 days at the user’s discretion. Each row contains the date and a series of 5 symbols (hyper, hypo, exercise, stress and illness) which are highlighted green if a day contained that event. Clicking on a row makes it expand to also show the minimum, maximum and average blood glucose level for that day and a link to that day which if pressed will change all the domains and the graph to contain the data for that day.</li>
+<li><strong>Tag Switches</strong> – The health section contains a stress and an illness switch which the user can turn on to tag that they were under unusual stress or ill on that day. This allows users to keep track of how certain things effect their condition, and could possibly be factored in by the underlying algorithm in the future.</li>
+<li><strong>Previous Days Log</strong> – The health section contains a list of the previous 7, 30 or 60 days at the user’s discretion. Each row contains the date and a series of 5 symbols (to represent hyper, hypo, exercise, stress and illness) which are highlighted green if a day contained that event. Clicking on a row makes it expand to also show the minimum, maximum and average blood glucose level for that day and a link to that day which if pressed will change all the domains and the graph to contain the data for that day.</li>
 <li><strong>Tag Filters</strong> – you can select any of hyper, hypo, exercise, stress and illness to make the list only show the days from within the specified period which contain these tags.</li>
 <li><strong>Favouriting System</strong> - Days can be favourited so you can more easily show your doctor any unusual or significant days.</li>
 </ul>
@@ -234,23 +234,25 @@
 <p>It is worth noting that at this stage the advice section is largely cosmetic and a lot of the features don’t actually work yet. This is because of a lot of these ideas came out in the focus group at the end of the project so there wasn’t time to implement them, and it would be difficult to do so anyway without much data to work with.</p>
 
 <ul>
-<li><strong>Trendspotter</strong> – Identifies patterns, for instance ‘Hypos are most common on Wednesday morning’ which the user’s may be able to attribute to something in their behaviour not used by the app and modify their behaviour accordingly. Clicking on the plus button gives you a recommended solution, for instance ‘eat a larger breakfast’. These notifications can be dismissed if the user wants.</li>
+<li><strong>Trendspotter</strong> – Identifies patterns, for instance ‘Hypos are most common on Wednesday morning’ which the user may be able to attribute to something in their behaviour not taken into account by the app and modify their behaviour accordingly. Clicking on the plus button gives you a recommended solution, for instance ‘eat a larger breakfast’. These notifications can be dismissed if the user wants.</li>
 <li><strong>Statistical Summaries</strong> – The advice section will also contain a series of plots (for instance average blood glucose level for each day of the week) which can be swiped through or expanded into a pop-up so the user can see it in more detail.</li>
 </ul>
 <h3 id='the-bi-focal-graph' class='heading'>The Bi-focal Graph</h3>
 
 <ul>
-<li><strong>The Main Face</strong> – Plots one day’s worth of blood glucose against time. A blue line indicates recorded levels and a dotted red line indicates predicted levels.</li>
-<li><strong>Bi-Focal Sidebars</strong> – Each side bar represents one day in the past and the maximum, minimum and average blood glucose levels for that day are shown. If you swipe backwards in time ‘future’ side bars appear on the other side for days after the one currently on the main face. As you swipe through days, the food and exercise logs also change to show the activities from the day the graph is on.</li>
+<li><strong>The Main Face</strong> – Plots one day’s worth of blood glucose level against time. A blue line indicates recorded levels and a dotted red line indicates predicted levels.</li>
+<li><strong>Bi-Focal Sidebars</strong> – Each side bar represents one day in the past and the maximum, minimum and average blood glucose levels for that day are shown. If you swipe backwards in time ‘future’ side bars appear on the other side for days after the one currently on the main face. As the days are swiped through, the food and exercise sections change to show the logs from the same day as the graph.</li>
 <li><strong>Current Blood Glucose Level</strong> – The current blood glucose level is shown in a large font on the graph along with an arrow showing its trajectory (e.g. gently decreasing).</li>
 <li><strong>Activity Indicators</strong> – The green, orange and blue dots on the graph represent insulin, food and exercise activities respectively and clicking on them creates a small pop-up with details about that activity.</li>
 </ul>
 <h3 id='status-indicators' class='heading'>Status Indicators</h3>
 
+<p>The status indicators are pieces of key information which are shown on all sections that aren&rsquo;t currently active and temporarily vanish once that section is clicked on. The contents of each status indicator is:</p>
+
 <ul>
-<li><strong>Food</strong> – The total number of grams of carbs, protein and fat consumed that day</li>
-<li><strong>Exercise</strong> – The time until the next exercise activity</li>
-<li><strong>Health</strong> – The users current heart rate (to be taken from the sensors once fully integrated)</li>
+<li><strong>Food</strong> – The total number of grams of carbs, protein and fat consumed that day.</li>
+<li><strong>Exercise</strong> – The time until the next exercise activity.</li>
+<li><strong>Health</strong> – The users current heart rate (to be taken from the sensors once fully integrated).</li>
 <li><strong>Advice</strong> – The number of notifications available.</li>
 </ul>
 
