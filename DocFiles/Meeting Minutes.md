@@ -4,12 +4,13 @@
 
 **Discussion:**
 * Given basic design requirements 
-  * No hierarchy - all content accessible on one/page 
+  * No hierarchy - all content accessible on one page 
   * All key information visible at all times 
-  * 'Bi-focal display' of one day's glucose levels and important info highlighted e.g. meals, hypos 
-  * Button to access summary data 
-* Briefed on basic aims 
-  * Demonstrate app, UI, inputting of food/exercise data and trends sorting 
+  * 'Bi-focal display' of one day's glucose levels, summaries of previous day's information and important info highlighted e.g. meals, hypos, exercist activites...
+  * Ability to access summary data 
+* Briefed on basic aims of the project
+  * Demonstrate an app with a functional UI and as much of the outlined design as possible completed (not expected to fully finish within the time frame)
+* Link to the full requirements spec and initial client design: [Client Design](https://danwells96.github.io/ARISES/client-design.html)
 
 **Decisions:**
 * Weekly meetings
@@ -103,6 +104,8 @@
 *DOTS
 *ANIMATIONS (value smoothness)
 *How to favourite things
+* The contents of the advice section
+* How to add from favourites
 
 **Decisions:** 
 
@@ -112,6 +115,7 @@
 * Fix the graph skew
 * Add swiping animations to the graph
 * Add animations to bringing sections to the fore
+*Allow swiping through days
 
 
 30/05/18 - Meeting 6
@@ -121,46 +125,46 @@
 * Meals and exercise can be stored and added from favourites using persistent storage
 * Entering meals and exercise create dots on the bi-focal display which if clicked on produce a pop-up detailing information about that event
 * Glucose data on graph stored in and accessed from core data
+* Tags
+* Swipe through days
 
 **Discussion:** 
+* Animations not posible
+* Swiping through status indicators
+* How to add insulin
 
 **Decisions:** 
 
 **To action:**
 * Get status indicators working
+* Get health days log working
+* Expanding cells
+* Health filters working
 
-06/06/18 - Meeting 7
+06/06/18 - Meeting 7 (Focus group)
 
 **Actioned:**
 * Food status indicator working
-* Tags
+* Health filters
 * Expanding cells
 
-**Discussion:** 
-* Animations not posible
-* Swiping through status indicators
-
-**Decisions:** 
-
-**To action:**
+/////////////////link to minutes
 
 13/06/18 - Meeting 8
 
 **Actioned:** 
+* Settings
+* Insulin
+* Dots for insulin
+* Change food days log
+* Health days log day filters
+* cosmetics for advice section
 
 **Discussion:** 
-* How to add from favourites
+* Handover
+* Colour scheme
+* Independent insulin adding
 
-**Decisions:** 
+**Decisions:**
+* documentation shoudl be sufficient for future work section etc., meet up to do a code review
 
-**To action:**
-
-20/06/18 - Meeting 9
-
-**Actioned:** 
-
-**Discussion:** 
-
-**Decisions:** 
-
-**To action:**
