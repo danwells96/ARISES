@@ -26,6 +26,10 @@ At the top right of the screen there is an insulin button which, if clicked, wil
 <b>Image of Insulin entry fields when open</b>
 </p>
 
+### Settings 
+
+On the top left there is a settings button which, if pressed, redirects the user to the iOS settings menu. Currently all that can be customised here is whether or not temporary basal rate is present on the graph, but in the future there will be many more options in here (described in [Future Work](https://danwells96.github.io/ARISES/future-work.html)).
+
 ### Food
 * **Meal Entry** – The user can enter the name, time and amount of carbs, fat and protein of each meal they have in the day. The name entry is done via a normal keypad, the nutritional information entry is done via a number pad and the time entry is done via a drop-down picker view. When you click on the field and the keyboard appears, the entire food domain moves up the screen to stop the field from being obscured. 
 
@@ -97,12 +101,12 @@ It is worth noting that at this stage the advice section is largely cosmetic and
 
 ### The Bifocal Graph
 
-
-
 * **The Main Face** – Plots one day’s worth of blood glucose logs against time. A blue line indicates recorded levels and a dotted red line indicates predicted levels.
 * **Bifocal Sidebars** – Each side bar represents one day in the past and the maximum, minimum and average blood glucose levels for that day are shown. If you swipe backwards in time ‘future’ side bars appear on the other side for days after the one currently on the main face. As the days are swiped through, the food and exercise sections change to show the logs from the same day as the graph.
 * **Current Blood Glucose Level** – The current blood glucose level is shown in a large font on the graph along with an arrow showing its trajectory (e.g. gently decreasing).
 * **Activity Indicators** – The green, orange and blue dots on the graph represent insulin, food and exercise activities respectively. Clicking on them creates a small pop-up with details about that activity.
+* **Date Selection** - The date on top of the graph shows the date of the data currently being displayed. Clicking on this date triggers a date picker, from which any date can be selected and you will be taken to that date on both the graph and the domains below. This date picker will default to today's date to make navigation easier.
+* **Chart Colouring** - The chart has two peach coloured bands going from 0 to 4 mMol/L and from 10 to 20 and then a white band covering the middle region. The peach bands indicate an unhealthy blood glucose level with the higher one indicating a hyper and the lower one indicating a hypo.
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/Bifocal.png"/>
