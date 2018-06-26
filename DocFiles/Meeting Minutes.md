@@ -141,29 +141,29 @@
 * What the status indicators should contain 
 * How insulin should be added - should it be added in the food section as it is normally taken with meals
 * It may be technically infeasable within the time frame to make it able to take photos of meals since this feature can only be tested on an actual phone (rather than the standard simulation), so this is a more time consuming and difficult process
-* How the user can check whether the nutritional information
-* health section
+* How the user can check whether the nutritional information they entered is accurate and change it if not
+* Dsicussed how trends should be shown in the health section
 
 **Decisions:** 
-* Deprioritse taking photos
+* Deprioritse ability to take pictures of meals based on technical challenges
 * The animations would be shown to the focus group and they would be asked their opinion
-*Status swiping since too many ideas
-*edit using expansion
+* Since there are many things to show on status indicators the user should be able to swipe through them
+* Cells in the food section should be able to expand when selected to reveal nutritional information and an edit button
 
 **To action:**
-* Get status indicators working
-* Get health days log working
-* Expanding cells
-* Health filters working
+* Get basic status indicators working
+* Make cells in the food section expand if selected
+* Have a list of days accessable in the health section which can be filtered down to a certain number of days and filtered based on tags
 
 06/06/18 - Meeting 7 (Focus group)
 
 **Actioned:**
-* Food status indicator working
-* Health filters
-* Expanding cells
+* Status indicator for food working
+* In the health section the number of days shown in the table can be changed and they can be filtered based on tags
+* Cells in the food section expand to show nutritional information and in the health section expand to show glucose information summaries and a view button, which if pressed takes you to that day on the bi-focal display.
+* A favouriting system is operational in the healt hdomain.
 
-/////////////////link to minutes
+Focus group minutes: [Focus Group Report](https://danwells96.github.io/ARISES/focus-group-report.html)
 
 13/06/18 - Meeting 8
 
@@ -176,7 +176,9 @@
 * cosmetics for advice section
 * Sections move up to make room for keyboard
 * Food dots moves up
-*Auto fil from favourites
+* Auto fil from favourites
+* Date selection
+*View in health
 
 **Discussion:** 
 * Handover
