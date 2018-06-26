@@ -205,7 +205,11 @@
 Image of relational database graph
 </p>
 <h3 id='code-persistenceservice-code' class='heading'><code><a href="Classes/PersistenceService.html">PersistenceService</a></code></h3>
+
+<p>Initialises a persistent store and provides functions to allow ModelController to add objects to it’s context and save that context.</p>
 <h3 id='code-category-extension-files-code' class='heading'><code>Category/Extension files</code></h3>
+
+<p>One file for each NSManagedObject E.g. <code><a href="Classes/Glucose.html">Glucose</a></code>. Allows computed properties and methods to be added to objects in the database to extend their functionality, while automatically generating base property declarations from information added to the <code>ARISES.xcdatamodeld</code> relational database chart. </p>
 <h2 id='features' class='heading'>Features</h2>
 
 <ul>
@@ -215,9 +219,34 @@ Image of relational database graph
 <li>Extending objects with computed properties to access key information easier</li>
 </ul>
 <h3 id='adding-to-database' class='heading'>Adding to database</h3>
+
+<ul>
+<li><code><a href="Classes/ModelController.html">ModelController</a></code> adds functions that search for existing objects with known links to the object to be added, then adds the new object as a relationship. E.g. When a new <code><a href="Classes/Meals.html">Meals</a></code> object is added, the function searches for a <code><a href="Classes/Day.html">Day</a></code> log with a matching day component of their dates, and adds the meals to that day&rsquo;s meals relationship. If no matching <code><a href="Classes/Day.html">Day</a></code> log is found, one is created with the new date&rsquo;s day component.</li>
+<li>When objects are added to the database, they often post notifications, so that <code><a href="Classes/ViewControllerGraph.html">ViewControllerGraph</a></code> or other classes can observe them and update their views accordingly.
+<code>swift
+let nc = NotificationCenter.default
+nc.post(name: Notification.Name(&quot;FoodAdded&quot;), object: nil)
+</code>
+<p align="center">
+Code for notification posted when food is added to database
+</p></li>
+</ul>
 <h3 id='persistent-storage' class='heading'>Persistent storage</h3>
+
+<ul>
+<li><code><a href="Classes/PersistenceService.html">PersistenceService</a></code> adds functions that allow <code><a href="Classes/ModelController.html">ModelController</a></code> to find a shared context, make changes to objects within that context and then save it so that is persists on the device.</li>
+</ul>
 <h3 id='fetching-objects' class='heading'>Fetching objects</h3>
+
+<ul>
+<li><code><a href="Classes/ModelController.html">ModelController</a></code> adds functions to fetch arrays of objects, primarily for use in creating tables of information. These arrays are filtered, and sorted in a logical order, depending on their contents. E.g. <code><a href="Classes/Meals.html">Meals</a></code> in ascending time, Favourite meals in alphabetical order.</li>
+</ul>
 <h3 id='extensions-of-objects' class='heading'>Extensions of objects</h3>
+
+<ul>
+<li>Many category/extension files contain computed properties which provide easy access to a summary of information. These properties are used in many places. E.g. <code>Day.foodstats</code> which returns a tuple containing the total carbs, protein and fat for that day, which is used to create the food domain status indicator.</li>
+<li>The duration property visible in <code><a href="Classes/Illness.html">Illness</a></code>, <code><a href="Classes/Stress.html">Stress</a></code> and <code><a href="Classes/Day.html">Day</a></code> is working, but currently unused within the app</li>
+</ul>
 <h2 id='future-work' class='heading'>Future Work</h2>
 
 <ul>

@@ -10,7 +10,6 @@ Controls transitions between domains by showing and hiding domain and indicator 
 Main View Storyboard 
 </p>
 
-
 ## Features
 * Insulin data entry
 * Layoutting for all views
