@@ -1,13 +1,23 @@
 # Future Work
 
-* Create a list of customisable options for the settings menu (e.g. new tags) and possibly make the button trigger a pop-up rather than a redirect.
-* Make the trend arrow rotate to correspond to blood glucose level trajectory.
+* Expand the number of customisable features accessable via the settings menu and possibly make the settings button trigger a pop-up rather than a redirect. Options that need to be added to the settings menu:
+  * Which tags are present in the health section (e.g. stress, illness, menstruation, travel)
+  * Which filters are present in the health section
+  * The ability to define new tags
+  * How much information about insulin dose calculations is displayed
+  * Whether an add alcohol option is present
+  * Allow them to clear all stored data
+  * Add a do not disturb period for alerts at different severity levels
+* Have the app send notification alerts to the user if they're blood glucose level is entering a dangerous region
+* Add a mechanism for alcohol entry (potentially much like insulin have an icon on the right hand side which if clicked on allows entry of  name, number of units and time drank)
+* Make the trend arrow rotate to correspond to blood glucose level trajectory
+* Add the insulin dose calculated by the algorithm to the graph and have the option to expand it to access more detailed information.
+* Add a temporary basal rate y-axis on the right hand side of the display
 * Get the edit meal button in the food section working.
-* Ability to take pictures of meals by clicking on the camera icon in the corresponding row and possibly allow favourite meal selection via the food carousel described in the design process seciton.
-* All the cells in the exercise log to expand to make room for an edit button and then get this button working so users can cancel or change the duration/time of exercise.
-* Allow the user to change which tag switches are present and define new ones, either through the settings method or directly in the health domain. Also need to make tag filters customisable.
-* Make it identify and report trends to the user in the advice section.
-* Make it be able to create summary graphs from the data, for instance average blood glucose level against time of day, number of hypos against day of the week etc.
-* Allow the user to swipe through these charts in the advice section.
-* Let the user click a button to expand any of these charts as a pop-up for more detail.
-* Include an option under settings to let the user clear their data.
+* Ability to take pictures of meals by clicking on the camera icon in the corresponding row and possibly allow favourite meal selection via the food carousel described in the design process seciton
+* Add a 'cancel' or 'remove' button below the edit one for meals so user's can inform the app they have changed their mind about having a certain meal
+* All the cells in the exercise log to expand to make room for an edit button and then get this button working so users can cancel or change the duration/time of exercise
+* Change the exercise intensity picker to a dual picker so the user can select whether their exercise activity was aerboic, anaerobic or mixed as well as it's low, medium, high intensity.
+* Make the app able to identify and report trends to the user in the advice section
+* Allow it aumtomatically create summary graphs from the data, for instance average blood glucose level against time of day, number of hypos against day of the week etc. Then allow the user to swipe through these charts and click on the expand button to display them in a pop-up for a more detailed view
+* Link the exercise and advice status indicators up to the actual content in the sections (currently they are just cosmetic) and the option to swipe through the indicators.
