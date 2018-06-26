@@ -43,13 +43,6 @@ custom_categories:
     - Illness
     - Stress
 
-  - name: Graph
-    children:
-    - ViewControllerGraph
-    - ChartBGView
-    - CustomView
-    - ChartPointEllipseView
-
   - name: Main View
     children:
     - ViewControllerMain
@@ -76,6 +69,13 @@ custom_categories:
     children:
     - ViewControllerTableViewCell
     - tableCellDelegate
+
+  - name: Graph
+    children:
+    - ViewControllerGraph
+    - ChartBGView
+    - CustomView
+    - ChartPointEllipseView
 
   - name: Settings
     children:
