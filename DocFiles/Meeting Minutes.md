@@ -57,8 +57,11 @@
 * Research how to create a bi-focal graph
 
 </p>
-
-### 09/05/18 - Meeting 3
+</details>
+<details><summary> 
+09/05/18 - Meeting 3
+</summary>
+<p>
 
 **Actioned:**
 * Basic floating bubbles created 
@@ -78,8 +81,12 @@
 * Create two different app layouts to compare 
 * Add stand in text fields, buttons and tables to the different domains 
 * Have the bi-focal graph plot data and start working on sidebands
-
-### 16/05/18 - Meeting 4
+</p>
+</details>
+<details><summary> 
+16/05/18 - Meeting 4
+</summary>
+<p>
 
 **Actioned:**  
 * Both tabs and floating bubbles concepts produced 
@@ -106,8 +113,12 @@
 * Create time, duration and intensity pickers to allow meal and exercise entry
 * Work on then displaying this information in a table
 * Have the sidebands displaying low, average and high blood glucose levels on the bi-focal display
-
-### 23/05/18 – Meeting 5 
+</p>
+</details>
+<details><summary> 
+23/05/18 – Meeting 5 
+</summary>
+<p>
 
 **Actioned:** 
 * Top and bottom half of the app merged to create a framework for the finished project
@@ -133,8 +144,12 @@
 * Fix the skew of the graph's sidebars
 * Add animations on swiping through the days on the graph and bringing sections to the fore.
 * Implement the favourites system described above
-
+</p>
+</details>
+<details><summary> 
 30/05/18 - Meeting 6
+</summary>
+<p>
 
 **Actioned:**
 * Skew on the graph's sidebars fixed
@@ -164,8 +179,12 @@
 * Get basic status indicators working
 * Make cells in the food section expand if selected
 * Have a list of days accessable in the health section which can be filtered down to a certain number of days and filtered based on tags
-
+</p>
+</details>
+<details><summary> 
 06/06/18 - Meeting 7 (Focus group)
+</summary>
+<p>
 
 **Actioned:**
 * Status indicator for food working
@@ -174,8 +193,12 @@
 * A favouriting system is operational in the healt hdomain.
 
 Focus group minutes: [Focus Group Report](https://danwells96.github.io/ARISES/focus-group-report.html)
-
+</p>
+</details>
+<details><summary> 
 13/06/18 - Meeting 8
+</summary>
+<p>
 
 **Actioned:** 
 * Settings
