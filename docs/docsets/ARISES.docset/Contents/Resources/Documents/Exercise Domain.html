@@ -236,7 +236,13 @@ Image of View Picker
 <p align="center">
 Image of Duration Picker
 </p></li>
+<li>Moving view to prevent keyboard/picker obscuring field: An observer in ViewDidLoad allows the controller to tell when a keyboard/picker is open, and calls a function to move the view 65px upwards, to prevent the input field from being obscured.</li>
 </ul>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">nc</span> <span class="o">=</span> <span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span>
+<span class="c1">//Observers to determine keyboard state and move view so that fields aren't obscured</span>
+<span class="n">nc</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kd">#selector(</span><span class="nf">keyboardWillShow(sender:)</span><span class="kd">)</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">NSNotification</span><span class="o">.</span><span class="kt">Name</span><span class="o">.</span><span class="kt">UIKeyboardWillShow</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="n">nc</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kd">#selector(</span><span class="nf">keyboardWillHide(sender:)</span><span class="kd">)</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">NSNotification</span><span class="o">.</span><span class="kt">Name</span><span class="o">.</span><span class="kt">UIKeyboardWillHide</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre>
 <h3 id='table' class='heading'>Table</h3>
 
 <ul>
@@ -249,8 +255,7 @@ Image of Exercise table cell
 </p></li>
 <li>Displaying exercise logs for current day shown on graph: An observer is used to watch for notifications from <code><a href="Classes/ViewControllerGraph.html">ViewControllerGraph</a></code> and update the class&rsquo; <code>currentDay</code> property. The data for the table is then fetched again for exercise logs which match <code>currentDay</code><br></li>
 </ul>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">nc</span> <span class="o">=</span> <span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span>
-<span class="c1">//Observer to update currentDay variable to match graph's day</span>
+<pre class="highlight swift"><code><span class="c1">//Observer to update currentDay variable to match graph's day</span>
 <span class="n">nc</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="kd">#selector(</span><span class="nf">updateDay(notification:)</span><span class="kd">)</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">Notification</span><span class="o">.</span><span class="kt">Name</span><span class="p">(</span><span class="s">"dayChanged"</span><span class="p">),</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
 </code></pre>
 

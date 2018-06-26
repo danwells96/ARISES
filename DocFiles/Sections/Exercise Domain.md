@@ -39,6 +39,15 @@ Image of View Picker
 <p align="center">
 Image of Duration Picker
 </p>
+* Moving view to prevent keyboard/picker obscuring field: An observer in ViewDidLoad allows the controller to tell when a keyboard/picker is open, and calls a function to move the view 65px upwards, to prevent the input field from being obscured.
+
+````swift
+let nc = NotificationCenter.default
+//Observers to determine keyboard state and move view so that fields aren't obscured
+nc.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+nc.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+````
+
 
 ### Table
 * Setting cell labels: `ViewControllerExercise.tableView(_:cellForRowAt:)` uses fetched objects to set the labels of the cells
@@ -51,7 +60,6 @@ Image of Exercise table cell
 * Displaying exercise logs for current day shown on graph: An observer is used to watch for notifications from `ViewControllerGraph` and update the class' `currentDay` property. The data for the table is then fetched again for exercise logs which match `currentDay`  
 
 ````swift 
-let nc = NotificationCenter.default
 //Observer to update currentDay variable to match graph's day
 nc.addObserver(self, selector: #selector(updateDay(notification:)), name: Notification.Name("dayChanged"), object: nil)
 ````

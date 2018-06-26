@@ -44,6 +44,7 @@ Numpad pops up when tapped to allow the user to enter numbers.
 Image of numpad
 </p>
 No decimal point is available on the numpad to provide safety to inputs. Input value is presumed to be in grams, as the logical unit of macro-nutrients typical in other apps, pumps and labels. </br>
+
     
 ````swift
     carbs: Int32((Double(carbsTextField.text!)?.rounded())!),
@@ -56,6 +57,14 @@ If a user uses an external keyboard and enters a decimal e.g. 5.5 this will be r
 If a user uses an external keyboard and enters a value that cannot be rounded or converted to an int32 e.g. "jkl", the app will crash but will not add this to the log, so the database will not be corrupted and the user can reopen and continue to use the app. This is very unlikely to occur anyway.
 * Add button: Only calls function to add new log to database if all fields contain some text.
 * Disabled for past days: Data entry fields are hidden if the user is not viewing the current day on the graph. 
+* Moving view to prevent keyboard/picker obscuring field: An observer in ViewDidLoad allows the controller to tell when a keyboard/picker is open, and calls a function to move the view 65px upwards, to prevent the input field from being obscured.
+
+````swift
+let nc = NotificationCenter.default
+//Observers to determine keyboard state and move view so that fields aren't obscured
+nc.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+nc.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+````
 
 ### Table
 * Setting cell labels: `ViewControllerFood.tableView(_:cellForRowAt:)` uses fetched objects to set the labels of the cells

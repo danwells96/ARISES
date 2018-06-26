@@ -202,7 +202,7 @@
 </p>
 
 <p align="center">
-Image of relational database graph
+Image of relational database graph ARISES.xcdatamodeld
 </p>
 <h3 id='code-persistenceservice-code' class='heading'><code><a href="Classes/PersistenceService.html">PersistenceService</a></code></h3>
 
@@ -222,15 +222,15 @@ Image of relational database graph
 
 <ul>
 <li><code><a href="Classes/ModelController.html">ModelController</a></code> adds functions that search for existing objects with known links to the object to be added, then adds the new object as a relationship. E.g. When a new <code><a href="Classes/Meals.html">Meals</a></code> object is added, the function searches for a <code><a href="Classes/Day.html">Day</a></code> log with a matching day component of their dates, and adds the meals to that day&rsquo;s meals relationship. If no matching <code><a href="Classes/Day.html">Day</a></code> log is found, one is created with the new date&rsquo;s day component.</li>
-<li>When objects are added to the database, they often post notifications, so that <code><a href="Classes/ViewControllerGraph.html">ViewControllerGraph</a></code> or other classes can observe them and update their views accordingly.
-<code>swift
-let nc = NotificationCenter.default
-nc.post(name: Notification.Name(&quot;FoodAdded&quot;), object: nil)
-</code>
+<li>When objects are added to the database, they often post notifications, so that <code><a href="Classes/ViewControllerGraph.html">ViewControllerGraph</a></code> or other classes can observe them and update their views accordingly.</li>
+</ul>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">nc</span> <span class="o">=</span> <span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span>
+<span class="n">nc</span><span class="o">.</span><span class="nf">post</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">Notification</span><span class="o">.</span><span class="kt">Name</span><span class="p">(</span><span class="s">"FoodAdded"</span><span class="p">),</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+
 <p align="center">
 Code for notification posted when food is added to database
-</p></li>
-</ul>
+</p>
 <h3 id='persistent-storage' class='heading'>Persistent storage</h3>
 
 <ul>
@@ -244,7 +244,7 @@ Code for notification posted when food is added to database
 <h3 id='extensions-of-objects' class='heading'>Extensions of objects</h3>
 
 <ul>
-<li>Many category/extension files contain computed properties which provide easy access to a summary of information. These properties are used in many places. E.g. <code>Day.foodstats</code> which returns a tuple containing the total carbs, protein and fat for that day, which is used to create the food domain status indicator.</li>
+<li>Many category/extension files contain computed properties which provide easy access to a summary of information. These properties are used in many places. E.g. <code><a href="Classes/Day.html#/s:6ARISES3DayC9foodStatss5Int32V8totCarbs_AF0F7ProteinAF0F3FattSgvp">Day.foodStats</a></code> which returns a tuple containing the total carbs, protein and fat for that day, which is used to create the food domain status indicator.</li>
 <li>The duration property visible in <code><a href="Classes/Illness.html">Illness</a></code>, <code><a href="Classes/Stress.html">Stress</a></code> and <code><a href="Classes/Day.html">Day</a></code> is working, but currently unused within the app</li>
 </ul>
 <h2 id='future-work' class='heading'>Future Work</h2>
