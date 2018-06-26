@@ -38,7 +38,7 @@ There was also consideration about whether continuous scrolling (i.e. you can se
       
 ### 4.    Settings Button
 
-The decision to include a settings button came about as a result of the focus group meeting where the attendees expressed a desire to customise the amount of technical information about dosage calculation and the nature of the tag switches. As previously mentioned the optimum design would involve a pop-up but this was not possible due to time constraints so a design where the button redirects you to the iOS settings menu was instead used. 
+The decision to include a settings button came about as a result of the focus group meeting where the attendees expressed a desire to customise the amount of technical information about dosage calculation and the nature of the tag switches. Ultimately it may be better for clicking on that button to produce a pop-up in which settings can be altered, however that could not be implemented within our limited timeframe. 
       
 ### 5.    Insulin Entry
 
