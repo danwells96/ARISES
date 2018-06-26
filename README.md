@@ -35,12 +35,6 @@ We are currently in pre-alpha as the app is still under development. For the ver
 See also the list of [contributors](https://github.com/danwells96/ARISES/contributors) who participated in this project.
 
 ---
-## License
-**(*DO WE NEED THIS?*)**
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
----
 ## Acknowledgments
 
 Design of the User Interface was by Emeritus Professor [Robert Spence](https://www.imperial.ac.uk/people/r.spence) of Imperial College London
