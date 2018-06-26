@@ -3,7 +3,7 @@
 The following test protocol was used to check that everything worked as expected, and all test elements were passed.
 
 <details><summary> 
- <H3> Show Test Protocol </H3>
+  <font size="+2">Show Test Protocol</font>
 </summary>
 <p>
 
