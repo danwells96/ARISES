@@ -1,8 +1,9 @@
+</br>
 <p align="center">
 	<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/Bifocal.png" width="650"/>
 </p>
 
-### Features
+## Features
 * The most important information is displayed on the main graph while less relevant, contextual data is displayed on the side views. 
 * Swiping left and right lets users change which days data is being shown on the main face.
 * The date above the graph bifocal corresponds to the date of the data being shown on the main face. Tapping on this date triggers a picker which lets the user jump to any day. The default date on the picker is set to today’s date for ease of navigation.
@@ -14,6 +15,7 @@
 	* For exercise it contains name duration and intensity 
 	* For insulin it contains number of units and time administered.
 * The side views show the users’ minimum, maximum and mean blood glucose levels on that particular day.
+
 ## ChartBase Setup
 The bifocal display consists of three parts: 
   * Leftside view container

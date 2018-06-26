@@ -1,7 +1,7 @@
 ---
 
 ### `ViewControllerExercise`
-Controlls all UI elements in the open exercise domain
+Controls all UI elements in the open exercise domain
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/exercisedomain.png" alt="Image of exercise domain" width="400"/>
@@ -74,4 +74,5 @@ Instantiation of observer for when day displayed on the graph changes
 
 
 ## Future Work
-* Add status indicators to show next planned exercise or other useful information
+* Add status indicators to show next planned exercise or other useful information.
+* Add expanding cells and buttons to edit or remove an exercise log from the database in the table.

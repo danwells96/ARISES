@@ -1,7 +1,7 @@
 ---
 
 ### `ViewControllerFood`
-Controlls all UI elements in the open food domain
+Controls all UI elements in the open food domain
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/fooddomain.png" alt="Image of food domain" width="400" />
@@ -11,7 +11,7 @@ Image of open food domain
 </p>
 
 ### `IndicatorControllerFood`
-Controlls status indicators shown when food domain is hidden
+Controls status indicators shown when food domain is hidden
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/foodindicator.png" alt="Image of food domain status indicators"/>
@@ -102,4 +102,7 @@ nc.addObserver(self, selector: #selector(foodStatsUpdated), name: Notification.N
 <p align="center">
 Instantiation of observer for updating indicator when new meal is added
 </p>
+
+## Future Work
+* Add buttons to edit or remove a meal log from the databse in the table.
 

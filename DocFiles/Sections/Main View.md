@@ -29,8 +29,8 @@ Image of Insulin entry fields when open
 * Buttons to open views: A series of overlapping buttons and embedded container views which are hidden and shown depending on the `MainViewState` allow the user to easily move between domains. When a domain is closed, its status indicator is visible, to provide important summary information. 
 * Transitioning when keyboard is open: If a keyboard is open while transitioning between domains (only possible for food and exercise), this is tracked using observers and a delay is provided to create a smooth transition animation. 
 
-### Layoutting
-* Layout constraints: Set to ensure each status indicator is 100 x 100 px and each domain expands to fulfill the remaining space on all phone sizes. 
+### Layout
+* Layout constraints: Set to ensure each status indicator is 100 x 100 px and each domain expands to fulfil the remaining space on all phone sizes. 
 
 ## Future Work
-* Layoutting for horizontal view (currently disabled). Requires layoutting of graph within container and making sure certain elements are not installed or constrained differently when viewed horizontally.
+* Layout for horizontal view (currently disabled). Requires layout constraints for graph within container and making sure certain elements are not installed or constrained differently when viewed horizontally.

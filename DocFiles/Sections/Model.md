@@ -1,7 +1,7 @@
 ---
 
 ### `ModelController`
-Provides fuctions to safely add and fetch objects from the persistent relational database in ‘Core Data’
+Provides functions to safely add and fetch objects from the persistent relational database in ‘Core Data’
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/database.png" alt="Image of relational database graph"/>
@@ -11,7 +11,7 @@ Image of relational database graph ARISES.xcdatamodeld
 </p>
 
 ### `PersistenceService`
-Initialises a persistent store and provides functions to allow ModelController to add objects to it’s context and save that context.
+Initialises a persistent store and provides functions to allow ModelController to add objects to its context and save that context.
 
 ### `Category/Extension files`
 One file for each NSManagedObject E.g. `Glucose`. Allows computed properties and methods to be added to objects in the database to extend their functionality, while automatically generating base property declarations from information added to the `ARISES.xcdatamodeld` relational database chart. 
@@ -48,7 +48,7 @@ Code for notification posted when food is added to database
 * The duration property visible in `Illness`, `Stress` and `Day` is working, but currently unused within the app
 
 ## Future Work
-* Functions for removing/editting logs to incorporate with future edit button functionality
+* Functions for removing/editing logs to incorporate with future edit button functionality
 * Potentially refactor using generic types to reduce boilerplate code
 * Adjust to work as a framework for use with continuous blood glucose monitor and activity band
 

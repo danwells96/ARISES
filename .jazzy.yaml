@@ -73,9 +73,9 @@ custom_categories:
   - name: Graph
     children:
     - ViewControllerGraph
-    - ChartBGView
-    - CustomView
     - ChartPointEllipseView
+    - CustomView
+    - ChartBGView
 
   - name: Settings
     children:

@@ -1,7 +1,7 @@
 ---
 
 ### `ViewControllerHealth`
-Controlls all UI elements in the open health domain
+Controls all UI elements in the open health domain
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/healthdomain.png" alt="Image of healthdomain" width="400"/>
@@ -28,7 +28,7 @@ Image of open health domain
 Image of Health table cell
 </p>
 * Expanding table cells: When a cell is selected it will expand or contract to show/hide the low/avg/high of that day's glucose logs
-* Displaying summaries of previous day's information: Previous `Day` logs are fetched, then filtered based on user's selected filters such as whether the user had a hypoglycemic glucose value on that day and the number of previous days to show. Icons highlighted green display whether that day contained a Hypo, Hyper, Exercise log, Stress or Illness.
+* Displaying summaries of previous day's information: Previous `Day` logs are fetched, then filtered based on user's selected filters such as whether the user had a hypoglycaemic glucose value on that day and the number of previous days to show. Icons highlighted green display whether that day contained a Hypo, Hyper, Exercise log, Stress or Illness.
 <p align="center">
 <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/healthicons.png" alt="Image of health summary icons" width="200"/>
 </p>
@@ -49,7 +49,7 @@ Image of code in ViewControllerHealth to allow cell view buttons to change day d
 
 ### Favouriting System
 * Favouriting: If a user clicks the star of a day cell it will highlight in the colour of the domain to symbolise it has been favourited. This will call a function to add the `Day` to the favourites object's relationships. 
-* Choosing from favourites: When the star in the data entry section is selected, it will highlight in the colour of the domain. The table will update to display `Day`'s which are favourited instead of the previous day summaries. The user can use the view button to display it on the graph.
+* Choosing from favourites: When the star in the data entry section is selected, it will highlight in the colour of the domain. The table will update to display `Day`' logs which are favourited instead of the previous day summaries. The user can use the view button to display it on the graph.
 
 ## Future Work
 * Add status indicators to show summary information for that day or other useful information
