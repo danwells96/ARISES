@@ -193,13 +193,75 @@
             
             <h1 id='program-architecture' class='heading'>Program Architecture</h1>
 
+<ul>
+<li>The following document gives an overview of the high-level architecture of the app, the interactions between and some justifications for these choices.</li>
+<li>While Swift supports other programming archetypes, such as function or protocol oriented programming, the majority of this app is UI based so Object-Oriented programming used. Due to limitations on project time and developer knowledge, the architecture likely does not follow strict MVC (Model View Controller) architecture, borrowing some concepts from MVVM due to the database model being shared between all classes.</li>
+</ul>
+<h2 id='storyboard' class='heading'>Storyboard</h2>
+
+<ul>
+<li>What is the storyboard?
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/storyboard.png" alt="Image of app storyboard"/>
+</p>
+<p align="center">
+Image of app storyboard
+</p></li>
+</ul>
+<h2 id='class-responsibilities' class='heading'>Class responsibilities</h2>
+
+<ul>
+<li>Why were they split?</li>
+</ul>
+<h3 id='code-viewcontrollermain-code' class='heading'><code><a href="Classes/ViewControllerMain.html">ViewControllerMain</a></code></h3>
+
+<p>Controls transitions between domains by showing and hiding domain and indicator views. Also controls insulin entry fields.</p>
+<h3 id='code-viewcontrollerfood-code' class='heading'><code><a href="Classes/ViewControllerFood.html">ViewControllerFood</a></code></h3>
+
+<p>Controlls all UI elements in the open food domain</p>
+<h3 id='code-viewcontrollerexercise-code' class='heading'><code><a href="Classes/ViewControllerExercise.html">ViewControllerExercise</a></code></h3>
+
+<p>Controlls all UI elements in the open food domain</p>
+<h3 id='code-viewcontrollerhealth-code' class='heading'><code><a href="Classes/ViewControllerHealth.html">ViewControllerHealth</a></code></h3>
+
+<p>Controlls all UI elements in the open health domain</p>
+<h3 id='code-viewcontrollertableviewcell-code' class='heading'><code><a href="Classes/ViewControllerTableViewCell.html">ViewControllerTableViewCell</a></code></h3>
+
+<p>View Controller for Table Cells in all domains</p>
+<h3 id='code-modelcontroller-code' class='heading'><code><a href="Classes/ModelController.html">ModelController</a></code></h3>
+
+<p>Provides fuctions to safely add and fetch objects from the persistent relational database in ‘Core Data’</p>
+<h3 id='code-viewcontrolleradvice-code' class='heading'><code><a href="Classes/ViewControllerAdvice.html">ViewControllerAdvice</a></code></h3>
+
+<p>Controlls all UI elements in the open advice domain</p>
+<h3 id='code-viewcontrollergraph-code' class='heading'><code><a href="Classes/ViewControllerGraph.html">ViewControllerGraph</a></code></h3>
+<h2 id='interactions' class='heading'>Interactions</h2>
+
+<p>View Controllers communicate via 2 methods:</p>
+
+<ul>
+<li>Calling functions in other classes</li>
+<li>Observing notifications from other classes</li>
+</ul>
+
 <p align="center">
 <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/hierarchy.png" alt="Image of comunication between classes"/>
 </p>
 
 <p align="center">
-Image showing communication between classes
+Image showing communication between the main classes
 </p>
+<h3 id='calling-functions-in-other-classes' class='heading'>Calling functions in other classes</h3>
+
+<ul>
+<li>What is it?</li>
+<li>Where is it used?</li>
+<li>Why?
+### Radio/ Notifications</li>
+<li>What is it?</li>
+<li>Where is it used?</li>
+<li>Why?</li>
+</ul>
 
           </section>
         </section>
