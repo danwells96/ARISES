@@ -7,7 +7,7 @@
 <b>Image of design progression</b>
 </p>
 
-Many changes were made from the original design due to technical feasibility and developer input. In addition, ideas were added based on discussions in meetings and in the focus group. The results of these decisions are featured in the final design which is pictured at the bottom of this page. The most import design changes and the rationale behind them are detailed below for future reference.
+Many changes were made from the original design due to technical feasibility and developer input. In addition, ideas were added based on discussions in meetings and in the focus group. The results of these decisions are shown in the interface progession graphic above. The most import design changes and the rationale behind them are detailed below for future reference.
 
 ### 1.	  Architecture
 
