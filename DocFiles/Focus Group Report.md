@@ -2,49 +2,51 @@
 
 **Attendees**
 * Patients – Megan Blisset, Philippa Cooper
-* Investigators – Chukwuma Uduku, Robert Spence, Kehzi Li, John Daniels, Narvada Jungee, Rebecca Elkington, Ryan Armiger, Jack Pearson, Camille Demasson
+* Investigators – Chukwuma Uduku, Robert Spence, Kehzi Li, John Daniels, Narvada Jungee, Rebecca Elkington, Ryan Armiger, Dan Wells, Camille Demasson
+* Minutes and report compiled by - Chukwuma Uduku
 
 **Hone Screen*** 
 * General layout of domains and bifocal display well received
-* Integrate function to swipe and reveal customisable data in the corners of domains. Suggestions below
+Agreed Prroposals
+* Allow the user to swipe through different (customisable) information in the status indicators. Content suggestions below:
   * Meals domain - Last meal (total CHO and bolus insulin delivered), Insulin on-board, Active Carbs
   * Exercise domain - Heart rate
   
 **Bi-Focal Display**
-Agreed proposals
+Agreed Proposals
 * Current Blood glucose to be large & central with trend arrow
-* Date should include day of the week
-* Ability click on current date and select a historical date for interrogation
-* Limit previous days represented on bifocal display to 3
-* Increase size of display to maximise screen real estate
+* Date at the top should include day of the week
+* Ability to click on current date and  from their select any historical date to jump to
+* Limit number of previous days represented on the bi-focal sidebands to three
+* Increase size to maximise usage of screen real estate
 * Timestamped food to be placed on the graph at different heights relative to CHO content (High CHO meal plotted above low CHO)
 * Consider loss of predicted future glucose trajectory & historical glucose data when approaching the end & entering a new day respectively
-* Consider use of empty bifocal display once entering a new day
-* Insulin is a priority
-  * Correction in food and add to food logs
-  * Insulin section, displaying on board etc
+* Consider use of a new, empty bifocal display when entering a new day
+* Ability to enter insulin doses is essential. A few ideas:
+  * Eter correction in food and add to food logs. This is a problem for doses not taken with meals.
+  * Insulin section, displaying on board etc.
 Ideas in debrief
-* Incorporation of basal rate graph (possibly in the target glucose space with Y-axis values on the right)
-* Use of pastel colours for graph background. Considering darker shades out of range with a smooth gradient to a light shade in target range (feedback on ideas would be appreciated)
-* Timestamped Insulin bolus function added to bifocal display
+* Incorporation of temporary basal rate on the graph (possibly with Y-axis values on the right)
+* Use of pastel colours for graph background. Considering darker shades out of range with a smooth gradient to a light shade in target range
+* Add insulin bolus to the bi-focal display, similar to with food and exercise activities
 
 **Meals/Food Domain**
 Agreed proposals
 * To overcome time discrepancies around pre-bolus insulin, all meals require user to enter planned time of ingestion
-* Preference to manually enter figures for macronutrients
+* Preference to manually enter figures for macronutrients above using a picker
 * Adding photos to favourite meals well received
 * Consider use of scanning barcodes to pull macronutrient content. (Potential drawbacks include: - portion size, units, cooking methods)
 * Show previous delta blood glucose rise and bolus insulin required when choosing a previously selected meal
 * Incorporate alcohol (units)
-* Display how recommended bolus insulin split (Correction & Meal)
+* Be able to access detailed information about a recommended insulin dose (e.g. Amount in correction and amount for meal)
 Ideas in debrief
 * Quantitative CHO log & qualitative protein and fat (low, mid, high)
 * Incorporate a library with macronutrient content common meals
 
 **Exercise**
 Agreed Proposals
-* Factor aerobic, anaerobic & mixed exercise
-* Consider app logging periods of increased activity for future review (not an alert)
+* Be able to specify if exercise is aerobic, anaerobic or mixed
+* Consider the app logging periods of increased activity for future review (not an alert)
 
 **Health**
 Agreed Proposals
