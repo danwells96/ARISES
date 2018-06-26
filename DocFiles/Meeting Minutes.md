@@ -51,6 +51,7 @@
 **Discussion:** 
 * Whether floating bubbles or more conventual tab navigational system would be better. Advantages of tab system include user familiarity, more space being available for content in each window and a standard library of features to make coding easier. Advantages of floating bubbles include the ability to put status indicators in the corner, innovation and reduction in cognitive load for user. 
 * How should data be entered to meals and exercise. 
+* Favourites inc carousel
 
 **Decisions:** 
 * To create two prototype apps, one using tabs and the other using floating bubbles. 
@@ -59,27 +60,107 @@
 **To Action:** 
 * Create two different app layouts to compare 
 * Add stand in text fields, buttons and tables to the different domains 
-* Make further progress on the bifocal display 
-* //Question mark about how far we were at on bifocal 
+* Have the bi-focal graph plot data and start working on sidebands
 
 ### 16/05/18 - Meeting 4
 
 **Actioned:**  
 * Both Tabs and Floating bubbles concepts produced 
+* All four sections filled with placeholder content
 * Basic graph with skewed (but not functional) sidebands produced and demonstrated 
 
 **Discussion:** 
-* Navigation functionality 
-* User experience 
-* Basal rates 
+* Navigation functionality and user experience of both layouts
+* Aesthetics, e.g. colour scheme
+* How to input insulin doses
+* How to display temporary basal rates (a continuous insulin injection supplied by a pump used by some diabetics)
+* How information should be entered (e.g. sliders, keyboard or picker)
 
 **Decisions:** 
 * Standard IOS tabs concept rejected by client based on months of investment the team hadn’t been briefed on 
 * Mac will be made available to use in Bob’s office 
-* Colour scheme will avoid those difficult for colour-blind users 
+* Colour scheme will avoid colours difficult for colour-blind users (e.g. red) since this is a common symptom of diabetes
 * In-depth user experience will be delayed in favour of progress of functionality 
 * Exercise will be moved to top right to allow keyboard space 
-* Insulin input/information will be on graph not bottom section 
+* Insulin input/information will be on graph not bottom section
+* Decided against using sliders due to requiring a maximum value and difficulties with hitting values precisely. Use pickers or keyboards instead
 * A focus group will be scheduled in June 
 
 **To Action:**
+* Create working time, duration and intensity pickers to allow meal and exercise entry
+* Work on then displaying this information in a table
+* Have the sidebands displaying low, average and high blood glucose levels on the bi-focal display
+
+### 23/05/18 – Meeting 5 
+
+**Actioned:** 
+* Top and bottom half of the app merged to create a framework for the finished project
+* The chosen 'floating bubbles' concept seperated out into a network of several connected views to speed up development in the long run
+* The sidebands show the correct data (although are still not correctly skewed)
+* Entered meals and exercise are displayed in their respective tables
+
+**Discussion:**
+*DOTS
+*ANIMATIONS (value smoothness)
+*How to favourite things
+
+**Decisions:** 
+
+**To action:**
+* Create a persistent storage relational database in which the meal and exercise information is stored
+* Create and connect save and fetch functions to this database
+* Fix the graph skew
+* Add swiping animations to the graph
+* Add animations to bringing sections to the fore
+
+
+30/05/18 - Meeting 6
+
+**Actioned:**
+* Graph skew fixed
+* Meals and exercise can be stored and added from favourites using persistent storage
+* Entering meals and exercise create dots on the bi-focal display which if clicked on produce a pop-up detailing information about that event
+* Glucose data on graph stored in and accessed from core data
+
+**Discussion:** 
+
+**Decisions:** 
+
+**To action:**
+* Get status indicators working
+
+06/06/18 - Meeting 7
+
+**Actioned:**
+* Food status indicator working
+* Tags
+* Expanding cells
+
+**Discussion:** 
+* Animations not posible
+* Swiping through status indicators
+
+**Decisions:** 
+
+**To action:**
+
+13/06/18 - Meeting 8
+
+**Actioned:** 
+
+**Discussion:** 
+* How to add from favourites
+
+**Decisions:** 
+
+**To action:**
+
+20/06/18 - Meeting 9
+
+**Actioned:** 
+
+**Discussion:** 
+
+**Decisions:** 
+
+**To action:**
