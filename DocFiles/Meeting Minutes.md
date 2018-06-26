@@ -9,7 +9,7 @@
 * Given basic design requirements 
   * No hierarchy - all content accessible on one page 
   * All key information visible at all times 
-  * 'Bi-focal display' of one day's glucose levels, summaries of previous day's information and important info highlighted e.g. meals, hypos, exercist activites...
+  * 'Bifocal display' of one day's glucose levels, summaries of previous day's information and important info highlighted e.g. meals, hypos, exercist activites...
   * Ability to access summary data 
 * Briefed on basic aims of the project
   * Demonstrate an app with a functional UI and as much of the outlined design as possible completed (not expected to fully finish within the time frame)
@@ -38,7 +38,7 @@
 **Discussion:**
 * Bottom Half
   * Food/Exercise: Discussed whether we need a record of entered meals/exercise and how they would be entered in the first place, i.e. using text fields, selection from a series of pictures or in a pop-up
-* Top Half (bi-focal display): 
+* Top Half (bifocal display): 
   * Bifocal side bars should show dots indicating minimum, maximum and average blood glucose level for that day  
   * Discussed whether separating things into breakfast, lunch and dinner on both the graph and in the food domain (as in the client design) was a good idea given people don't necessarily have regular eating habits
 * Should the architecture be a series of overlapping bubbles with no home state (as in the client design) or four squares which can be maximised and minimised
@@ -47,14 +47,14 @@
 * No need to separate based on breakfast, lunch and dinner
 * Food/exercise to be entered without requiring a pop-up or expansion to minimise clicks
 * A log of entered food and exercise is crucial
-* To split development team into two groups: Rebecca and Ryan to work on bottom half, Dan and Xiaoyu to work on bi-focal display
+* To split development team into two groups: Rebecca and Ryan to work on bottom half, Dan and Xiaoyu to work on bifocal display
 * Decided to go for the 'overlapping bubbles' architecture for reasons of aesthetic and click minimisation
 * The client to provide us with sample data to use in the bifocal display
 
 **To Action:**
 * Create the bubbles for the domain and make them come to the front if clicked on
 * Familiarise ourselves with the XCode software and continue to learn swift
-* Research how to create a bi-focal graph
+* Research how to create a bifocal graph
 
 </p>
 </details>
@@ -80,7 +80,7 @@
 **To Action:** 
 * Create two different app layouts to compare 
 * Add stand in text fields, buttons and tables to the different domains 
-* Have the bi-focal graph plot data and start working on sidebands
+* Have the bifocal graph plot data and start working on sidebands
 </p>
 </details>
 <details><summary> 
@@ -90,7 +90,7 @@
 
 **Actioned:**  
 * Both tabs and floating bubbles concepts produced 
-* All four sections filled with placeholder content
+* All four domain filled with placeholder content
 * Basic graph with skewed (but not functional) sidebands produced and demonstrated 
 
 **Discussion:** 
@@ -105,14 +105,14 @@
 * Mac will be made available for use in Bob Spence's office 
 * Colour scheme will avoid colours difficult for colour-blind users (e.g. red) since this is a common symptom of diabetes
 * Exercise will be moved to top right to allow keyboard space 
-* Insulin input/information will be on the graph instead of within the health section
+* Insulin input/information will be on the graph instead of within the health domain
 * Decided against using sliders for data input since they have to be capped at a certain value and it is difficult to hit values precisely. Pickers, keypads and numpads to be used instead.
 * A focus group will be scheduled in June 
 
 **To Action:**
 * Create time, duration and intensity pickers to allow meal and exercise entry
 * Work on then displaying this information in a table
-* Have the sidebands displaying low, average and high blood glucose levels on the bi-focal display
+* Have the sidebands displaying low, average and high blood glucose levels on the bifocal display
 </p>
 </details>
 <details><summary> 
@@ -127,14 +127,14 @@
 * Entered meals and exercise are displayed in their respective tables
 
 **Discussion:**
-* Should the user be able to see something like icons or lines to represent food and exercise on the bi-focal display so they can put information in context
+* Should the user be able to see something like icons or lines to represent food and exercise on the bifocal display so they can put information in context
 * What sorts of animations should be added to various actions within the app to create a more fluid user experience
 * How meals should be chosen from favourites
 * How meals should be added from favourites
-* What should the layout of the advice section look like
+* What should the layout of the advice domain look like
 
 **Decisions:** 
-* Dots should be used to represent meals and exercise on the bi-focal display
+* Dots should be used to represent meals and exercise on the bifocal display
 * Research into animations should be prioritised
 * The star system was created where a meal is added/removed from favourites by selecting/deselecting the star on its row and then clicking on the star in the top right replaces a food log with a list of favourite meals. These meals can then be added to the daily log by clicking on them.
 
@@ -142,7 +142,7 @@
 * Create a persistent storage relational database to store meal and exercise information
 * Create and connect save and fetch functions to this database
 * Fix the skew of the graph's sidebars
-* Add animations on swiping through the days on the graph and bringing sections to the fore.
+* Add animations on swiping through the days on the graph and bringing domain to the fore.
 * Implement the favourites system described above
 </p>
 </details>
@@ -154,31 +154,31 @@
 **Actioned:**
 * Skew on the graph's sidebars fixed
 * Meals and exercise can be stored and added from favourites using persistent storage and the star method discussed at the previous meeting
-* Entering meals and exercise to the logs causes corresponding dots to appear at the right time on the bi-focal display
+* Entering meals and exercise to the logs causes corresponding dots to appear at the right time on the bifocal display
 * Clicking on the dots triggers a pop-up with information about that event
 * Glucose data on graph stored in and accessed from core data
-* The stress and illness tags in the health section are now stored as entities in core data and turning them on and off records start and end time and based on that works out which days they were active for
-* Days can be swiped through on the bi-focal as detailed in the requirements spec, and when in previous days today's information turns into a summary on the future bands
+* The stress and illness tags in the health domain are now stored as entities in core data and turning them on and off records start and end time and based on that works out which days they were active for
+* Days can be swiped through on the bifocal as detailed in the requirements spec, and when in previous days today's information turns into a summary on the future bands
 * Three different animation options were created for the bottom sections, but none of them look very good
 
 **Discussion:** 
 * Whether any of the tested animation options for bringing tiles to the fore were acceptable
 * What the status indicators should contain 
-* How insulin should be added - should it be added in the food section as it is normally taken with meals
+* How insulin should be added - should it be added in the food domain as it is normally taken with meals
 * It may be technically infeasable within the time frame to make it able to take photos of meals since this feature can only be tested on an actual phone (rather than the standard simulation), so this is a more time consuming and difficult process
 * How the user can check whether the nutritional information they entered is accurate and change it if not
-* Dsicussed how trends should be shown in the health section
+* Dsicussed how trends should be shown in the health domain
 
 **Decisions:** 
 * Deprioritse ability to take pictures of meals based on technical challenges
 * The animations would be shown to the focus group and they would be asked their opinion
 * Since there are many things to show on status indicators the user should be able to swipe through them
-* Cells in the food section should be able to expand when selected to reveal nutritional information and an edit button
+* Cells in the food domain should be able to expand when selected to reveal nutritional information and an edit button
 
 **To action:**
 * Get basic status indicators working
-* Make cells in the food section expand if selected
-* Have a list of days accessable in the health section which can be filtered down to a certain number of days and filtered based on tags
+* Make cells in the food domain expand if selected
+* Have a list of days accessable in the health domain which can be filtered down to a certain number of days and filtered based on tags
 </p>
 </details>
 <details><summary> 
@@ -188,9 +188,10 @@
 
 **Actioned:**
 * Status indicator for food working
-* In the health section the number of days shown in the table can be changed and they can be filtered based on tags
-* Cells in the food section expand to show nutritional information and in the health section expand to show glucose information summaries and a view button, which if pressed takes you to that day on the bi-focal display.
-* A favouriting system is operational in the healt hdomain.
+* In the health domain the number of days shown in the table can be changed and they can be filtered based on tags
+* Cells in the food domain expand to show nutritional information and in the health domain expand to show glucose information summaries and a view button, which if pressed takes you to that day on the bifocal display.
+* A favouriting system is operational in the health domain.
+* Added a line for temporary basal rate on the graph
 
 Focus group minutes: [Focus Group Report](https://danwells96.github.io/ARISES/focus-group-report.html)
 </p>
@@ -201,23 +202,23 @@ Focus group minutes: [Focus Group Report](https://danwells96.github.io/ARISES/fo
 <p>
 
 **Actioned:** 
-* Settings
-* Insulin
-* Dots for insulin
-* Change food days log on swipe
-* Health days log day filters
-* cosmetics for advice section
-* Sections move up to make room for keyboard
-* Food dots moves up
-* Auto fil from favourites
-* Date selection
-*View in health
+* Created a settings button which redirects the user to the iOS settings menu. From here they can turn the temporary basal trace on and off
+* Let the user enter insulin doses and the time they were taken
+* These insulin doses appear as dots on the graph which can produce pop-ups much like with food and exercise 
+* As the day's are swiped through on the bifocal the contents of the food and exercise logs changes to match the logs from those days
+* The cosmetic design for the advice domain was created based on the focus group feedback to act as a placeholder for future work
+* The food and exercise domains move up when the keyboard is in use to avoid text fields being obscured
+* The food dots on the bifocal display are higher up the graph if they contain more carbs so the user can instantly identify them
+* Instead of meals added from favourites appearing directly in the food log and the user having to edit them to adjust for time and portion size they now auto-fill the meal entry text to reduce the number of clicks needed to change the time
+* The ability to select a date from a picker menu accessed by clicking on the large date at the top of the bifocal. Once selected you will be taken to that date
 
 **Discussion:** 
-* Handover
+* The logistics of handing the project over to a new team of developers
+* Summary of progress made and future work required
 * Colour scheme
-* Independent insulin adding
+* The benefits of the solution for adding insulin
 
 **Decisions:**
-* documentation shoudl be sufficient for future work section etc., meet up to do a code review
+* The documentation required by the project should be sufficient for a smooth handover
+* We are to meet up with the team who will be continuing with this project after us to do a full code review
 
