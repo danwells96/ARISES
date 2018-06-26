@@ -3,7 +3,8 @@
 ARISES is an **A**daptive, **R**eal-time, **I**ntelligent **S**ystem to **E**nhance **S**elf-care of chronic disease. In this case, we are creating an iOS application to help patients suffering with Diabetes live with their condition.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/appscreenshot.png" alt="Screenshot of app" height=500 />
+  <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/appscreenshot.png" alt="Screenshot of app" height=500 /> <br />
+<b> Screenshot of the app </b>
 </p>
 
 ## Getting Started
