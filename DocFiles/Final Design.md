@@ -1,6 +1,6 @@
 # Final Design Specification
 
-During the project many things many changes were made from the client design to the final one, the rationale for which is procided in Design Process. A descriptive overview of the final design is provided here, with images of final design, all four domains and the graph pictured directly below for context.
+During the project many changes were made from the client design to the final one, the rationale for which is provided in [Design Process](file:///Users/ryanarmiger/Documents/Developer/ARISES/docs/design-process.html). A descriptive overview of the final design is provided here, with images of final design, all four domains and the graph pictured directly below for context.
 
 <p align="center">
  <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/fooddomain.png" width="300" />
@@ -19,19 +19,77 @@ Exactly as in the client design the app consists of 4 main sections which overla
 
 At the top right of the screen there is an insulin button which if clicked will let the user enter how many units of insulin they took and at what time.
 
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/InsulinEntry.png"/>
+</p>
+<p align="center">
+<b>Image of Insulin entry fields when open</b>
+</p>
+
 ### Food
 * **Meal Entry** – The user can enter the name, time and amount of carbs, fat and protein of each meal they have in the day. The name entry is done via a normal keypad, the nutritional information entry is done via a number pad and the time entry is done via a drop-down picker view. When you click on the field and the keyboard appears, the entire food section moves up the screen to stop the field from being obscured. 
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/keypad.png" width="300" />
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/Time%20Picker.png" width="300" />
+</p>
+<p align="center">
+<b>Image of number pad keyboard and time picker</b>
+</p>
+
 * **Food Daily Log** – all entered meals appear in the log and clicking on any cell lets them expand to reveal the amount of carbs, protein and fat in the meal and an edit button which lets you change the information.
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/foodcell.png" />
+</p>
+<p align="center">
+<b>Image of food table cell</b>
+</p>
+
 * **Favouriting System** – Meals can be added to favourites by highlighting the star on their row. Clicking on the star in the top right of the section changes the food daily log list to a list of favourited meals and clicking on any of these will auto-fill the meal entry fields so the user can change the time and nutritional information as necessary and then click add to add the meal as normal.
 
 ### Exercise
 The exercise section works identically to the food one, with the ability to enter, view and favourite exercise activities. To enter an exercise activity the user needs to enter it’s name (via a keypad), time (via a drop down picker), intensity (select low, medium, high from a drop down picker) and it’s duration (also from a drop down picker).
 
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/keypad.png" width="150" />
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/Time%20Picker" width="150" />
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/intensitypicker.png" width="150" />
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/durationpicker.png" width="150" />
+</p>
+<p align="center">
+<b>Image of number pad keyboard and time, intensity and duration pickers</b>
+</p>
+
 ### Health
 *	**Tag Switches** – The health section contains a stress and an illness switch which the user can turn on to tag that they were under unusual stress or ill on that day. This allows users to keep track of how certain things effect their condition, and could possibly be factored in by the underlying algorithm in the future.
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/switches.png" />
+</p>
+<p align="center">
+<b>Image of stress and illness switches</b>
+</p>
+
 * **Previous Days Log** – The health section contains a list of the previous 7, 30 or 60 days at the user’s discretion. Each row contains the date and a series of 5 symbols (to represent hyper, hypo, exercise, stress and illness) which are highlighted green if a day contained that event. Clicking on a row makes it expand to also show the minimum, maximum and average blood glucose level for that day and a link to that day which if pressed will change all the domains and the graph to contain the data for that day.
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/healthcell.png" />
+</p>
+<p align="center">
+<b>Image of health table cell</b>
+</p>
+
 * **Tag Filters** – you can select any of hyper, hypo, exercise, stress and illness to make the list only show the days from within the specified period which contain these tags.
+
 * **Favouriting System** - Days can be favourited so you can more easily show your doctor any unusual or significant days.
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/filters.png" />
+</p>
+<p align="center">
+<b>Image of health table filters and 'show favourites' button</b>
+</p>
 
 ### Advice
 It is worth noting that at this stage the advice section is largely cosmetic and a lot of the features don’t actually work yet. This is because of a lot of these ideas came out in the focus group at the end of the project so there wasn’t time to implement them, and it would be difficult to do so anyway without much data to work with.
@@ -39,10 +97,20 @@ It is worth noting that at this stage the advice section is largely cosmetic and
 *	**Statistical Summaries** – The advice section will also contain a series of plots (for instance average blood glucose level for each day of the week) which can be swiped through or expanded into a pop-up so the user can see it in more detail.
 
 ### The Bi-focal Graph
+
+
+
 *	**The Main Face** – Plots one day’s worth of blood glucose level against time. A blue line indicates recorded levels and a dotted red line indicates predicted levels.
 * **Bi-Focal Sidebars** – Each side bar represents one day in the past and the maximum, minimum and average blood glucose levels for that day are shown. If you swipe backwards in time ‘future’ side bars appear on the other side for days after the one currently on the main face. As the days are swiped through, the food and exercise sections change to show the logs from the same day as the graph.
 *	**Current Blood Glucose Level** – The current blood glucose level is shown in a large font on the graph along with an arrow showing its trajectory (e.g. gently decreasing).
 * **Activity Indicators** – The green, orange and blue dots on the graph represent insulin, food and exercise activities respectively and clicking on them creates a small pop-up with details about that activity.
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/Bifocal.png"/>
+</p>
+<p align="center">
+<b>Image of Bi-focal Graph</b>
+</p>
 
 ### Status Indicators
 The status indicators are pieces of key information which are shown on all sections that aren't currently active and temporarily vanish once that section is clicked on. The contents of each status indicator is:
@@ -50,3 +118,10 @@ The status indicators are pieces of key information which are shown on all secti
 * **Exercise** – The time until the next exercise activity.
 * **Health** – The users current heart rate (to be taken from the sensors once fully integrated).
 * **Advice** – The number of notifications available.
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/foodindicator.png"/>
+</p>
+<p align="center">
+<b>Image of food status indicator</b>
+</p>

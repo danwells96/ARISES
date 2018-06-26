@@ -53,6 +53,14 @@ The client's original ideas for insulin entry, were for either the app to assume
       
 The final design of being able to input insulin independantly of anything else at the top of screen circumvents the problems mentioned above and is justifiable due to it’s importance. While it does not have a log associated with it, doses are represented by green dots on the graph and can be clicked on to reveal more information.
 
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/InsulinEntry.png"/>
+</p>
+<p align="center">
+<b>Image of Insulin entry fields when open</b>
+</p>
+
+
 ### 6.    Data Entry Methods
 
 There were also questions about the most user friendly way to input meals and exercise information. Especially with regards to the carbs, fat and protein information there was discussion about whether to use a sliding scale (the client’s initial proposal and pictured below) or a number pad. Eventually a number pad was chosen, because firstly a slider would need a maximum value and secondly it would be difficult to get a high enough resolution with a large range of values, and users would struggle to get the right number.
@@ -98,6 +106,14 @@ The use of stress and illness tags were featured in the client design, however t
 ### 11.   Status indicators
 
 Status indicators were a key part of the initial design and one of the key advantages of the chosen architecture.  When discussing what these indicators should contain several ideas were generated, so it was decided that each section should have multiple status indicators which the user could swipe through the get as much information as possible. This features has not yet been implemented.
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/foodindicator.png"/>
+</p>
+<p align="center">
+<b>Image of food status indicator</b>
+</p>
+
       
 ### 12.   Current blood glucose
 
