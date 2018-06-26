@@ -3,7 +3,7 @@
 During the project many changes were made from the client design to the final one, the rationale for which is provided in [Design Process](file:///Users/ryanarmiger/Documents/Developer/ARISES/docs/design-process.html). A descriptive overview of the final design is provided here, with images of final design, all four domains and the graph pictured directly below for context.
 
 <p align="center">
- <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/bi-focal.png" width="300"/>
+ <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/bi-focal.png" width="350"/>
 </p>
 <p align="center">
  <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/fooddomain.png" width="300" />
@@ -35,6 +35,12 @@ At the top right of the screen there is an insulin button which, if clicked, wil
 ### Settings 
 
 On the top left there is a settings button which, if pressed, redirects the user to the iOS settings menu. Currently all that can be customised here is whether or not temporary basal rate is present on the graph, but in the future there will be many more options in here (described in [Future Work](https://danwells96.github.io/ARISES/future-work.html)).
+<p align="center">
+ <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/SettingsIcon.png" width="50" />
+</p>
+<p align="center">
+ <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/settings.png" width="200" />
+</p>
 
 ### Food
 * **Meal Entry** – The user can enter the name, time and amount of carbs, fat and protein of each meal they have in the day. The name entry is done via a normal keypad, the nutritional information entry is done via a number pad and the time entry is done via a drop-down picker view. When you click on the field and the keyboard appears, the entire food domain moves up the screen to stop the field from being obscured. 
