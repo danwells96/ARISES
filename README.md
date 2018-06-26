@@ -9,7 +9,7 @@ ARISES is an **A**daptive, **R**eal-time, **I**ntelligent **S**ystem to **E**nha
 
 ## Getting Started
 
-**Documentation can be found [here](https://danwells96.github.io/ARISES)**
+**Documentation can be found [here](https://danwells96.github.io/ARISES/Documentation.html)**
 
 See deployment for notes on how to deploy the project on a live system.
 
@@ -25,6 +25,7 @@ Download the repository into Xcode10 or higher, build the project and run it on 
 
 * [CocoaPods](https://cocoapods.org/) - Dependency Management
 * [SwiftCharts](https://github.com/i-schuetz/SwiftCharts) - Library used to generate the Graph
+* [Jazzy](https://github.com/realm/jazzy) - Creating docs
 
 ## Versioning
 

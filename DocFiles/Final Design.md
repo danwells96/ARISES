@@ -49,16 +49,15 @@ At the top right of the screen there is an insulin button which if clicked will 
 * **Favouriting System** – Meals can be added to favourites by highlighting the star on their row. Clicking on the star in the top right of the section changes the food daily log list to a list of favourited meals and clicking on any of these will auto-fill the meal entry fields so the user can change the time and nutritional information as necessary and then click add to add the meal as normal.
 
 ### Exercise
-The exercise section works identically to the food one, with the ability to enter, view and favourite exercise activities. To enter an exercise activity the user needs to enter it’s name (via a keypad), time (via a drop down picker), intensity (select low, medium, high from a drop down picker) and it’s duration (also from a drop down picker).
+The exercise section works identically to the food one, with the ability to enter, view and favourite exercise activities. To enter an exercise activity the user needs to enter it’s name (via a keyboard), time (via a drop down picker), intensity (select low, medium, high from a drop down picker) and it’s duration (also from a drop down picker).
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/keypad.png" width="150" />
-<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/Time%20Picker" width="150" />
-<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/intensitypicker.png" width="150" />
-<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/durationpicker.png" width="150" />
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/Time%20Picker.png" width="200" />
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/intensitypicker.png" width="200" />
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/durationpicker.png" width="200" />
 </p>
 <p align="center">
-<b>Image of number pad keyboard and time, intensity and duration pickers</b>
+<b>Image of time, intensity and duration pickers</b>
 </p>
 
 ### Health

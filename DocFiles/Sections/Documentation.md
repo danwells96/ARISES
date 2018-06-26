@@ -1,6 +1,4 @@
 ---
-## How to use this Documentation
-
 ## Project Overview
 
 ### [Client Design](https://danwells96.github.io/ARISES/client-design.html)
