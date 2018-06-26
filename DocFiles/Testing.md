@@ -3,7 +3,7 @@
 The following test protocol was used to check that everything worked as expected, and all test elements were passed.
 
 <details><summary> 
- Show Test Protocol
+ <H3> Show Test Protocol </H3>
 </summary>
 <p>
 
@@ -95,7 +95,7 @@ Result: A second row should appear with the text 'try eating a larger breakfast'
 
 ### Confirmation of successful core memory operation
 
-Meals, exercise activities, Days, insulin doses, stress, illness and favourited items are all entities in a core data database into which all entered data is stored. For the case of meals, exercise, and insulin data was entered into the relevant fields, and the core database was examined to check all data entered had been appropriately stored here. The table below shows screenshots of the database (which can be viewed in the development environment) and corresponding data logs for food, exercise and insulin as evidence of correct operation.
+Meals, exercise activities, Days, insulin doses, stress, illness and favourited items are all entities in a core database where all the user data is stored. For the case of meals, exercise, and insulin, data was entered into the relevant fields and the core database was examined to check all data entered had been appropriately stored here. The table below shows screenshots of the database (which can be viewed in the development environment) and corresponding data logs for food, exercise and insulin as evidence of correct operation.
 
 | Data Log | Record in Database | 
 |    :---:     |     :---:      |
