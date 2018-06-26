@@ -12,10 +12,12 @@ Before any new updates are released to the public they need to pass through a th
 
 As the public becomes more concerned about data privacy, more data protection laws are introduced, which could interfere with the long term ability for the product to operate. As such, it is crucial that as many measures as possible are taken to protect user's data from the start, although updates can be introduced at any stage via the process described in the previous section. One of these measures is encryption of user's data, as discussed in the [ethics report](https://danwells96.github.io/ARISES/ethics-report.html).
 
-To comply with the current GDPR legislation there has to be a way for users to clear their data at any time, so an option to clear all stored data must be accessible (for instance, via the settings menu) for the app to be used in the UK currently. This is also an example of the kind of legislation that could present a sustainability concern for the product, although as long as it is not sold to third parties and common sense is used in the development process, this should not present a large problem going forward.
+To comply with the current [GDPR legislation][1] there has to be a way for users to clear their data at any time, so an option to clear all stored data must be accessible (for instance, via the settings menu) for the app to be used in the UK currently. This is also an example of the kind of legislation that could present a sustainability concern for the product, although as long as it is not sold to third parties and common sense is used in the development process, this should not present a large problem going forward.
 
 It may be that user's want to have their data synced across multiple devices, in which case there would need to be an option in settings to store data online to allow this. Storing data online would require greater encryption and other forms of protection, since it is inherently more vulnerable. However, this service would not be pivotal to the operation of the app so is not a sustainability threat.
 
 ### End of product life cycle
 
 The end of the product life cycle will occur either when the user chooses to delete the app or updates cease to be created to keep it compatible with commonly used versions of iOS. In the first case, all personal data would need to be cleared from the phone and any online storage locations. In the second, this is a concern of the product life cycle of the phone as a whole and as such not under our purview.
+
+[1]: https://ico.org.uk/for-organisations/guide-to-the-general-data-protection-regulation-gdpr/
