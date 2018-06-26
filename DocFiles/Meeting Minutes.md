@@ -1,8 +1,11 @@
 # Meeting Minutes
 
-### 01/05/18 – Meeting 1  
-
-**Discussion:**
+<details><summary> 
+01/05/18 – Meeting 1  
+</summary>
+<p>
+ 
+ **Discussion:**
 * Given basic design requirements 
   * No hierarchy - all content accessible on one page 
   * All key information visible at all times 
@@ -20,9 +23,14 @@
 * Start learning the swift programming language
 * Create a rough project timeline and plan
 * Come up with specific design ideas to implement the requirements spec
+</p>
 
-### 04/05/18 - Meeting 2
-
+</details>
+<details><summary> 
+04/05/18 - Meeting 2 
+</summary>
+<p>
+ 
 **Actioned:** 
 * Project timeline and plan produced 
 * Mockup designs of an interpretation of the requirements spec created
@@ -47,6 +55,8 @@
 * Create the bubbles for the domain and make them come to the front if clicked on
 * Familiarise ourselves with the XCode software and continue to learn swift
 * Research how to create a bi-focal graph
+
+</p>
 
 ### 09/05/18 - Meeting 3
 
