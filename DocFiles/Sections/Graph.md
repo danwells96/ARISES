@@ -1,119 +1,63 @@
 <p align="center">
-	<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/Bifocal.png" alt="Image of Bifocal"/>
+	<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/Bifocal.png" width="650"/>
 </p>
 
-
-
 ### Functionalities
-* The most important infomation gets displayed on the main graph while less relevant data is displayed on the side views. 
-
-* Scrolling left and right allows users to change the day's data which is being viewed in more detail.
-
-* The *Add Insulin* icon on the top right corner allows user to add insulin.
-
-* The *Settings* icon on the top left allows the user to go to the settings page and make changes to the application.
-
-* *DatePicker* allows user the current date they are visualising. When tapped user can navigate to another day.
-
-* When the graph is currently not on today, tap on *DatePicker* where the default popup date is set to today and click on that would take the user back to today.
-
-* **The main graph:** 
-  * Shows monitored glucose level on a day (to be taken from patients' wearables).
-  
+* The most important information is displayed on the main graph while less relevant, contextual data is displayed on the side views. 
+* Swiping left and right lets users change which days data is being shown on the main face.
+* The date above the graph bifocal corresponds to the date of the data being shown on the main face. Tapping on this date triggers a picker which lets the user jump to any day. The default date on the picker is set to today’s date for ease of navigation.
+ * Shows monitored blood glucose level in mMol/L during a 24-hour period (to be taken from patients' wearable).
   * To keep the graph area as clean as possible the time interval displayed on the x axis is set to 6 hours.
-  
-  * Daily meals, execises and insulin dosage are updated on the main graph as soon as they are logged. Users can keep track on what time they did those activities. 
-  
-  * Messages of detailed information can be obtained when points are tapped. 
-
-    * A popup message displaying the amount of carbs, protein and fats associated with each meal will appear when you tap on a meal point. 
-
-    * A message for exercise would include exercise's name, duration and intensity. 
-
-    * An insulin message states how many units of insulin were logged and the time administered.
-
-* **The sideviews:** 
-	* Shows the range and mean average of blood glucose levels for the user on that particular day.
-
-## Proof read to here
+  * Meals, exercises and insulin are represented on the main graph using orange, blue and green dots respectively and are appear as soon as they are logged.   
+  * Pop-ups containing detailed information are triggered when the dots are tapped.
+* For meals this contains name, carbs, protein and fat
+* For exercise it contains name duration and intensity 
+* For insulin it contains number of units and time administered.
+* The side views show the users’ minimum, maximum and mean blood glucose levels on that particular day.
 ## ChartBase Setup
 The bifocal display consists of three parts: 
   * Leftside view container
   * Main graph section
   * Rightside view container
 
-## Left & Right Sideview Containers
-Each of the side view containers has three subviews of type CustomView (UIView) which are customized to show colours bands as a background. 
+## Left & Right Side View Containers
+Each of the side view containers has three subviews of type CustomView (UIView) which are set up to show colours bands as a background. 
 #### `ChartBGView` and `CustomView`
-
-The same colour bands are used on the main chart as well thus *ChartBGView.swift* follows the same logic as the *CustomView.swift* in term of filling the background color bands. But *CustomView.swift* is also used to draw range bars on each sideview using calculated values for glucose values storing in core data on a day.
-
-###### Bands calculations
-The bands are calculated based on glucose level. If the total height of the Custom View is considered as an equivalent glucose level of 20 (mM/)L  then a 'safe'[[1]] range for patients to stay in would be between 4 and 10. Above 10 would be classified as a hyper and below 4 would be seen as a hypo.
-
-Therefore, the top half of chart would be in **high** range, the bottom 4/20 (20%) of chart would be in **low** range and 6/20 (~30%)section in the middle would be of normal. 
-
-The high and low bands are coloured differently to draw users attention. Colour palette here is simple and can be modified. (Colour combinations particularly red & green are avoided as diabetes suffering from retinopathy have problems distinguishing between them.)
-
+The same colour bands are also used on the main chart, so the same logic is used for both*ChartBGView.swift* and *CustomView.swift*. Additionally, *CustomView.swift* is used to draw the range bars on each side view, using values calculated from the glucose readings, which are stored in core data where they relate to a certain day.
 #### `CustomView.colourMiddleBand()`
 * **Description:**
-This function draws a rectangle with orgin (0,0) - top left corner, and extends itself to the required height (30% of total height). After it draws/marks, it colours the marked area with the selected color.
-
+This function draws a white rectangle starting from the midpoint of the view and extending down to cover 20% of it. 
 * **Returns:**
-This would give the background of image below (without the range bars).
+Given the view background colour is set to peach, this yields the image pictured below
 
 <p align="center">
 	<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/sideview.png" alt="Image of sideview"/>
 </p>
-
-    
 #### `CustomView.drawRangeBar()`
 * **Description:**
-This function is created to draw maximun and minimum dashes as well as the average circle on side views. 
-It uses UIBezierPath() as a drawing tool. Both line width and stroke colour can be set using this method.
-
-* **Parameter:**
-It takes no parameters but the output of sorting the glucose array on certain day would gives maximum and minimum. The difference  in heights of maximum & minimum with respect to glucose level of 20(mM/L) would be the stroke length of the range bar.
-
-* **Returns:** An UIView with a drawn range bar
-
-A view it creates would be: 
+This function draws the maximun and minimum dashes as well as the average circle on side views. It does this using the function UIBezierPath (documented [here]), which allows line width and stroke colour to be set. The stroke length is set based on the difference between the maximum and minimum glucose values for the day
+* **Returns:** A UIView with the range bar drawn on it as pictured below
 <p align="center">
 	<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/rangeBar.png" alt="Image of range bar"/>
 </p>
-
-
-
 ## Main graph section
-
 ### `ViewControllerGraph`
-In this section we do everything graph related. For example:
-* Transform sideView containers into bifocal. 
-* Load tmp arrays into Core Data.
-* Show date picker.  
-* Update settings.  
-* Update popups and attached messages.
+This view controller handles everything directly related to the graph. These features are:
+* Transform side view containers into skewed bi-focal ones 
+* Load temporary arrays into Core Data
+* Create the date picker when the current date is clicked on  
+* Update graph based on settings  
+* Trigger pop-ups based as activities dots are selected
 
-
-Modifications are made on top of an iOS chart library which can be found [here][2]
-
-* Layers: xAxisLayer, yAxisLayer, yHighAxes, guidelinesLayer, pointslineLayer, prediction, chartPointsCircleLayer
-
-**xAxisLayer** contains x-axis model and x-axis label settings. It displays time in a day with an interval of 6 hours thus 4 dividers.
-
-**yAxisLayer** contains glucose axis model and label settings. The axis ranges from 0 to 20 (mM/L) with an interval of 4. 
-
-**yHighAxes** contains an invisible carbs axis on the right side of chart. Meals popups are plotted based on carbs axis and shares the same x-axis with glucose points.
-
-**guidelinesLayer** provides dotted grid lines on graph
-
+To do this, modifications are made on top of an iOS chart library which can be found [here][2]
+The layers used are described below.
+**xAxisLayer** contains model and label settings for the time axis (x-axis). It spans 24 hours from, starting and ending at midnight, with time intervals of 6 hours.
+**yAxisLayer** contains model and label settings for the glucose axis (y-axis). The axis range is set to go from 0 to 20 (mM/L) with an interval of 4. 
+**yHighAxes** contains an invisible carbs axis on the right side of chart against which meal dots are plotted to make them higher up if they contain more carbs.
+**guidelinesLayer** provides dotted grid lines on graph.
 **pointslineLayer** draws glucose curve on graph in a solid blue line
+**prediction** shows the red dotted prediction line for the next half hour of the patient’s glucose levels
+**chartPointsCircleLayer** is where the pop-ups are set. It uses a touchHandler to determine which dot has been tapped so the correct message can be displayed. The touchHandler detects where the finger taps on the screen and compares the x-position of the touch with the x coordinates of stored pop-ups. If they match within a degree of tolerance the infoBubble is enabled which displays a message to user.
+[1]: https://developer.apple.com/documentation/uikit/uibezierpath?changes=_7
+[2]: https://github.com/i-schuetz/SwiftCharts.git
 
-**prediction** predicts patient's glucose in the next half an hour (now only tested with fixed data points)
-
-**chartPointsCircleLayer** is where popups are set up. It has a touchHandler to deal with touch events which is to print a message based on the points being tapped.
-
-The touchHandler detects where the finger tapped on the screen and compares the x-position of the touch with x coordinates of popups it stored. If they match or close to a certain degree the infoBubble is enabled which prints a message to user. If touches happens outside screen frame it returns the edge cases.
-
-[1]: https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-problems/low-blood-glucose-hypoglycemia
-[2]: https://github.com/i-schuetz/SwiftCharts.git 
