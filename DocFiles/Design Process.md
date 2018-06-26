@@ -1,5 +1,12 @@
 # Design Process
 
+<p align="center">
+<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/designprogression.png"/>
+</p>
+<p align="center">
+<b>Image of design progression</b>
+</p>
+
 Many changes were made from the original design and ideas were added during the process based on discussions in meetings, technical constraints or the focus group. The results of these decisions are feature in the final design which is pictured at the bottom of this page. The most import design changes and the rationale behind them are detailed below for future reference:
 
 ### 1.	  Architecture
