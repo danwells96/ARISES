@@ -206,7 +206,7 @@ Image of open food domain
 </p>
 <h3 id='code-indicatorcontrollerfood-code' class='heading'><code><a href="Classes/IndicatorControllerFood.html">IndicatorControllerFood</a></code></h3>
 
-<p>Controls status indicators shown when food domain is hidden</p>
+<p>Controls status indicators shown when the food domain is hidden</p>
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/foodindicator.png" alt="Image of food domain status indicators"/>
@@ -227,7 +227,7 @@ Image of food domain status indicators
 
 <ul>
 <li>Name Text field: Keyboard pops up when tapped and the user presses Done when finished</li>
-<li>Time: Time Picker pops up to allow the user to choose a time. Dismissed when user presses Done.
+<li>Time: Time Picker pops up to allow the user to choose a time. This is dismissed when user presses Done.
 <p align="center">
 <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/Time%20Picker.png" alt="Image of Time Picker" width="200"/>
 </p>
@@ -242,7 +242,7 @@ Numpad pops up when tapped to allow the user to enter numbers.
 <p align="center">
 Image of numpad
 </p>
-No decimal point is available on the numpad to provide safety to inputs. Input value is presumed to be in grams, as the logical unit of macro-nutrients typical in other apps, pumps and labels. </br></li>
+No decimal point is available on the numpad to provide safety to inputs. Input value is presumed to be in grams, as the logical unit of macro-nutrients typical in other apps, diabetic pumps and food packaging labels. </br></li>
 </ul>
 <pre class="highlight swift"><code>    <span class="nv">carbs</span><span class="p">:</span> <span class="kt">Int32</span><span class="p">((</span><span class="kt">Double</span><span class="p">(</span><span class="n">carbsTextField</span><span class="o">.</span><span class="n">text</span><span class="o">!</span><span class="p">)?</span><span class="o">.</span><span class="nf">rounded</span><span class="p">())</span><span class="o">!</span><span class="p">),</span>
 </code></pre>
@@ -275,7 +275,7 @@ If a user uses an external keyboard and enters a value that cannot be rounded or
 Image of Food table cell
 </p></li>
 <li>Expanding table cells: When a cell is selected it will expand or contract to show/hide the macro-nutrients of that meal</li>
-<li>Displaying meal logs for current day shown on graph: An observer is used to watch for notifications from <code><a href="Classes/ViewControllerGraph.html">ViewControllerGraph</a></code> and update the class&rsquo; <code>currentDay</code> property. The data for the table is then fetched again for meal logs which match <code>currentDay</code><br></li>
+<li>Displaying meal logs for the day shown on graph: An observer is used to watch for notifications from <code><a href="Classes/ViewControllerGraph.html">ViewControllerGraph</a></code> and update the class&rsquo; <code>currentDay</code> property. The data for the table is then fetched again for meal logs which match <code>currentDay</code><br></li>
 </ul>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">nc</span> <span class="o">=</span> <span class="kt">NotificationCenter</span><span class="o">.</span><span class="k">default</span>
 <span class="c1">//Observer to update currentDay variable to match graph's day</span>
@@ -283,12 +283,12 @@ Image of Food table cell
 </code></pre>
 
 <p align="center">
-Instantiation of observer for when day displayed on the graph changes
+Instantiation of observer for when the day displayed on the graph changes
 </p>
 <h3 id='favouriting-system' class='heading'>Favouriting System</h3>
 
 <ul>
-<li>Favouriting: If a user clicks the star of a meals cell it will highlight in the colour of the domain to symbolise it has been favourited. This will call a function to add the meal to the favourites object&rsquo;s relationships.</li>
+<li>Favouriting: If a user clicks the star of a meal&rsquo;s cell it will highlight in the colour of the domain, to symbolise it has been favourited. This will call a function to add the meal to the <code><a href="Classes/Favourites.html">Favourites</a></code> object&rsquo;s relationships.</li>
 <li>Choosing from favourites: When the star in the data entry section is selected, it will highlight in the colour of the domain. The table will update to display meals which are favourited instead of the current day&rsquo;s meals. If a user selects one of these cells, it will automatically fill in the text fields with that meal&rsquo;s macro-nutrients and the current time. The user can then adjust or add this meal as normal.</li>
 </ul>
 <h3 id='status-indicators' class='heading'>Status Indicators</h3>
@@ -308,7 +308,7 @@ Instantiation of observer for updating indicator when new meal is added
 <h2 id='future-work' class='heading'>Future Work</h2>
 
 <ul>
-<li>Add buttons to edit or remove a meal log from the databse in the table.</li>
+<li>Add buttons to edit or remove a meal log from the databse to the table cells.</li>
 </ul>
 
           </section>

@@ -11,7 +11,7 @@ Image of open food domain
 </p>
 
 ### `IndicatorControllerFood`
-Controls status indicators shown when food domain is hidden
+Controls status indicators shown when the food domain is hidden
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/foodindicator.png" alt="Image of food domain status indicators"/>
@@ -28,7 +28,7 @@ Image of food domain status indicators
 
 ### Data Entry
 * Name Text field: Keyboard pops up when tapped and the user presses Done when finished
-* Time: Time Picker pops up to allow the user to choose a time. Dismissed when user presses Done.
+* Time: Time Picker pops up to allow the user to choose a time. This is dismissed when user presses Done.
 <p align="center">
 <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/Time%20Picker.png" alt="Image of Time Picker" width="200"/>
 </p>
@@ -43,7 +43,7 @@ Numpad pops up when tapped to allow the user to enter numbers.
 <p align="center">
 Image of numpad
 </p>
-No decimal point is available on the numpad to provide safety to inputs. Input value is presumed to be in grams, as the logical unit of macro-nutrients typical in other apps, pumps and labels. </br>
+No decimal point is available on the numpad to provide safety to inputs. Input value is presumed to be in grams, as the logical unit of macro-nutrients typical in other apps, diabetic pumps and food packaging labels. </br>
 
     
 ````swift
@@ -75,7 +75,7 @@ nc.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: NSNot
 Image of Food table cell
 </p>
 * Expanding table cells: When a cell is selected it will expand or contract to show/hide the macro-nutrients of that meal
-* Displaying meal logs for current day shown on graph: An observer is used to watch for notifications from `ViewControllerGraph` and update the class' `currentDay` property. The data for the table is then fetched again for meal logs which match `currentDay`  
+* Displaying meal logs for the day shown on graph: An observer is used to watch for notifications from `ViewControllerGraph` and update the class' `currentDay` property. The data for the table is then fetched again for meal logs which match `currentDay`  
 
 ````swift 
 let nc = NotificationCenter.default
@@ -83,11 +83,11 @@ let nc = NotificationCenter.default
 nc.addObserver(self, selector: #selector(updateDay(notification:)), name: Notification.Name("dayChanged"), object: nil)
 ````
 <p align="center">
-Instantiation of observer for when day displayed on the graph changes
+Instantiation of observer for when the day displayed on the graph changes
 </p>
 
 ### Favouriting System
-* Favouriting: If a user clicks the star of a meals cell it will highlight in the colour of the domain to symbolise it has been favourited. This will call a function to add the meal to the favourites object's relationships. 
+* Favouriting: If a user clicks the star of a meal's cell it will highlight in the colour of the domain, to symbolise it has been favourited. This will call a function to add the meal to the `Favourites` object's relationships. 
 * Choosing from favourites: When the star in the data entry section is selected, it will highlight in the colour of the domain. The table will update to display meals which are favourited instead of the current day's meals. If a user selects one of these cells, it will automatically fill in the text fields with that meal's macro-nutrients and the current time. The user can then adjust or add this meal as normal.
 
 ### Status Indicators
@@ -104,5 +104,5 @@ Instantiation of observer for updating indicator when new meal is added
 </p>
 
 ## Future Work
-* Add buttons to edit or remove a meal log from the databse in the table.
+* Add buttons to edit or remove a meal log from the databse to the table cells.
 

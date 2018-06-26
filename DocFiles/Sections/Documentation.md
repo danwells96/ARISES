@@ -1,4 +1,6 @@
 ---
+* Project Overview provides an insight into the design process and other real-world considerations that must be taken into account within this project.
+* Program Specification provides a detailed explanation of the current state of the app, from high-level feature descriptions to the return parameters of each class' function declarations.
 ## Project Overview
 
 ### [Client Design](https://danwells96.github.io/ARISES/client-design.html)
@@ -24,6 +26,23 @@
 ### [Tables](https://danwells96.github.io/ARISES/Tables.html)
 ### [Settings](https://danwells96.github.io/ARISES/Settings.html)
 
+---
+
+## About this documentation
+
+This documentation has been generated using [Jazzy](https://github.com/realm/jazzy). The [.jazzy.yaml](https://github.com/danwells96/ARISES/blob/master/.jazzy.yaml) file in the project folder is a configuration file used to direct the program to the location of the markdown files to be included. It also defines custom categories for each included file, to create a more logical documentation format. 
+
+### Installing Jazzy
+* Jazzy must be installed in the command line using ``` [sudo] gem install jazzy ```
+* The Xcode command-line developer tools must be installed using  ``` xcode-select --install ``` if not already
+
+### Updating Documentation with Jazzy
+* Edit the markdown files provided in [DocFiles](https://github.com/danwells96/ARISES/tree/master/DocFiles) or add comments to functions within the code
+* Navigate to the project file in the terminal and type ```jazzy```
+* Check out your newly updated documentation website in [docs](https://github.com/danwells96/ARISES/tree/master/docs)
+
+
+---
 ## Bibliography
 
 Apple Inc. (2018). UIBezierPath. [online] Apple Developer. Available at: https://developer.apple.com/documentation/uikit/uibezierpath?changes=_7 [Accessed: 17/05/2018]

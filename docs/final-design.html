@@ -196,6 +196,10 @@
 <p>During the project many changes were made from the client design to the final one, the rationale for which is provided in <a href="file:///Users/ryanarmiger/Documents/Developer/ARISES/docs/design-process.html">Design Process</a>. A descriptive overview of the final design is provided here, with images of final design, all four domains and the graph pictured directly below for context.</p>
 
 <p align="center">
+ <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/bi-focal.png" width="350"/>
+</p>
+
+<p align="center">
  <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/fooddomain.png" width="300" />
  <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/exercisedomain.png" width="300" />
 </p>
@@ -203,6 +207,10 @@
 <p align="center">
  <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/healthdomain.png" width="300" />
  <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/advicedomain.png" width="300" />
+</p>
+
+<p align="center">
+ <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/appscreenshot.png" width="300" />
 </p>
   
 <h3 id='architecture' class='heading'>Architecture</h3>
@@ -218,6 +226,17 @@
 
 <p align="center">
 <b>Image of Insulin entry fields when open</b>
+</p>
+<h3 id='settings' class='heading'>Settings</h3>
+
+<p>On the top left there is a settings button which, if pressed, redirects the user to the iOS settings menu. Currently all that can be customised here is whether or not temporary basal rate is present on the graph, but in the future there will be many more options in here (described in <a href="https://danwells96.github.io/ARISES/future-work.html">Future Work</a>).</p>
+
+<p align="center">
+ <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/SettingsIcon.png" width="50" />
+</p>
+
+<p align="center">
+ <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/settings.png" width="200" />
 </p>
 <h3 id='food' class='heading'>Food</h3>
 
@@ -315,6 +334,8 @@
 <li><strong>Bifocal Sidebars</strong> – Each side bar represents one day in the past and the maximum, minimum and average blood glucose levels for that day are shown. If you swipe backwards in time ‘future’ side bars appear on the other side for days after the one currently on the main face. As the days are swiped through, the food and exercise sections change to show the logs from the same day as the graph.</li>
 <li><strong>Current Blood Glucose Level</strong> – The current blood glucose level is shown in a large font on the graph along with an arrow showing its trajectory (e.g. gently decreasing).</li>
 <li><strong>Activity Indicators</strong> – The green, orange and blue dots on the graph represent insulin, food and exercise activities respectively. Clicking on them creates a small pop-up with details about that activity.</li>
+<li><strong>Date Selection</strong> - The date on top of the graph shows the date of the data currently being displayed. Clicking on this date triggers a date picker, from which any date can be selected and you will be taken to that date on both the graph and the domains below. This date picker will default to today&rsquo;s date to make navigation easier.</li>
+<li><strong>Chart Colouring</strong> - The chart has two peach coloured bands going from 0 to 4 mMol/L and from 10 to 20 and then a white band covering the middle region. The peach bands indicate an unhealthy blood glucose level with the higher one indicating a hyper and the lower one indicating a hypo.</li>
 </ul>
 
 <p align="center">

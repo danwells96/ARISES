@@ -208,13 +208,13 @@ Main View Storyboard
 
 <ul>
 <li>Insulin data entry</li>
-<li>Layoutting for all views</li>
+<li>Layout constraints for all views</li>
 <li>Smooth transitioning between domain views</li>
 </ul>
 <h3 id='insulin-data-entry' class='heading'>Insulin data entry</h3>
 
 <ul>
-<li>Insulin entry button: Shaped like a drop of blood with a cross in it, clicking on it expands a field for entering a number of units of insulin. This is done with a numpad with a decimal point available and accepts doubles. A clock icon also appears, allowing the user to optionally select a time that the insulin was entered, using a time picker. If unopened, the current time is used. When the insulin button is pressed again, the log is added to the database.</li>
+<li>Insulin entry button: Shaped like a drop of blood with a cross in it, clicking on it expands a field for entering a number of units of insulin. This is done with a numpad with a decimal point available for the user to use and accepts values of type <code>double</code>. A clock icon also appears, allowing the user to optionally select a time that the insulin was entered, using a time picker. If unopened, the current time is used. When the insulin button is pressed again, the log is added to the database.</li>
 </ul>
 
 <p align="center">
@@ -227,7 +227,7 @@ Image of Insulin entry fields when open
 <h3 id='transitioning-between-views' class='heading'>Transitioning between views</h3>
 
 <ul>
-<li>Buttons to open views: A series of overlapping buttons and embedded container views which are hidden and shown depending on the <code><a href="Enums/MainViewState.html">MainViewState</a></code> allow the user to easily move between domains. When a domain is closed, its status indicator is visible, to provide important summary information.</li>
+<li>Buttons to open views: A series of overlapping buttons and embedded container views, which are hidden and shown depending on the <code><a href="Enums/MainViewState.html">MainViewState</a></code> allow the user to easily move between domains. When a domain is closed, its status indicator is visible, to provide important summary information.</li>
 <li>Transitioning when keyboard is open: If a keyboard is open while transitioning between domains (only possible for food and exercise), this is tracked using observers and a delay is provided to create a smooth transition animation.</li>
 </ul>
 <h3 id='layout' class='heading'>Layout</h3>

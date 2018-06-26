@@ -12,11 +12,11 @@ Main View Storyboard
 
 ## Features
 * Insulin data entry
-* Layoutting for all views
+* Layout constraints for all views
 * Smooth transitioning between domain views
 
 ### Insulin data entry
-* Insulin entry button: Shaped like a drop of blood with a cross in it, clicking on it expands a field for entering a number of units of insulin. This is done with a numpad with a decimal point available and accepts doubles. A clock icon also appears, allowing the user to optionally select a time that the insulin was entered, using a time picker. If unopened, the current time is used. When the insulin button is pressed again, the log is added to the database.
+* Insulin entry button: Shaped like a drop of blood with a cross in it, clicking on it expands a field for entering a number of units of insulin. This is done with a numpad with a decimal point available for the user to use and accepts values of type `double`. A clock icon also appears, allowing the user to optionally select a time that the insulin was entered, using a time picker. If unopened, the current time is used. When the insulin button is pressed again, the log is added to the database.
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/InsulinEntry.png" alt="Image of insulin entry fields" width="200" />
@@ -26,7 +26,7 @@ Image of Insulin entry fields when open
 </p>
 
 ### Transitioning between views
-* Buttons to open views: A series of overlapping buttons and embedded container views which are hidden and shown depending on the `MainViewState` allow the user to easily move between domains. When a domain is closed, its status indicator is visible, to provide important summary information. 
+* Buttons to open views: A series of overlapping buttons and embedded container views, which are hidden and shown depending on the `MainViewState` allow the user to easily move between domains. When a domain is closed, its status indicator is visible, to provide important summary information. 
 * Transitioning when keyboard is open: If a keyboard is open while transitioning between domains (only possible for food and exercise), this is tracked using observers and a delay is provided to create a smooth transition animation. 
 
 ### Layout
