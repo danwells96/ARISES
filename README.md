@@ -37,4 +37,11 @@ See also the list of [contributors](https://github.com/danwells96/ARISES/contrib
 ---
 ## Acknowledgments
 
-Design of the User Interface was by Emeritus Professor [Robert Spence](https://www.imperial.ac.uk/people/r.spence) of Imperial College London
+* Design of the User Interface was by Emeritus Professor [Robert Spence](https://www.imperial.ac.uk/people/r.spence) of Imperial College London.
+* Created in partnership with <sup>1</sup>Dr C Uduku, <sup>2</sup>Dr K Li, <sup>2</sup>J Daniels, <sup>1</sup>Dr M Reddy, <sup>2</sup>Dr P Herrero, <sup>2</sup>Prof R Spence, <sup>2</sup>Prof C Toumazou, <sup>1</sup>Prof N Oliver and <sup>2</sup>Dr P Georgiou
+
+<sup>1</sup>Centre for Bio-Inspired Technology, Department of Electrical and Electronic Engineering
+
+Institute of Biomedical Engineering, Imperial College London, UK
+
+<sup>2</sup>Diabetes, Endocrinology & Metabolism, Imperial College London, UK
