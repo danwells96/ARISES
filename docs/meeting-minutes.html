@@ -200,16 +200,17 @@
 <li>Given basic design requirements 
 
 <ul>
-<li>No hierarchy - all content accessible on one/page</li>
+<li>No hierarchy - all content accessible on one page</li>
 <li>All key information visible at all times</li>
-<li>&lsquo;Bi-focal display&rsquo; of one day&rsquo;s glucose levels and important info highlighted e.g. meals, hypos</li>
-<li>Button to access summary data</li>
+<li>&lsquo;Bi-focal display&rsquo; of one day&rsquo;s glucose levels, summaries of previous day&rsquo;s information and important info highlighted e.g. meals, hypos, exercist activites&hellip;</li>
+<li>Ability to access summary data</li>
 </ul></li>
-<li>Briefed on basic aims 
+<li>Briefed on basic aims of the project
 
 <ul>
-<li>Demonstrate app, UI, inputting of food/exercise data and trends sorting</li>
+<li>Demonstrate an app with a functional UI and as much of the outlined design as possible completed (not expected to fully finish within the time frame)</li>
 </ul></li>
+<li>Link to the full requirements spec and initial client design: <a href="https://danwells96.github.io/ARISES/client-design.html">Client Design</a></li>
 </ul>
 
 <p><strong>Decisions:</strong></p>
@@ -279,6 +280,7 @@
 <ul>
 <li>Whether floating bubbles or more conventual tab navigational system would be better. Advantages of tab system include user familiarity, more space being available for content in each window and a standard library of features to make coding easier. Advantages of floating bubbles include the ability to put status indicators in the corner, innovation and reduction in cognitive load for user.</li>
 <li>How should data be entered to meals and exercise.</li>
+<li>Favourites inc carousel</li>
 </ul>
 
 <p><strong>Decisions:</strong> </p>
@@ -293,8 +295,7 @@
 <ul>
 <li>Create two different app layouts to compare</li>
 <li>Add stand in text fields, buttons and tables to the different domains</li>
-<li>Make further progress on the bifocal display</li>
-<li>//Question mark about how far we were at on bifocal</li>
+<li>Have the bi-focal graph plot data and start working on sidebands</li>
 </ul>
 <h3 id='16-05-18-meeting-4' class='heading'>16/05/18 - Meeting 4</h3>
 
@@ -302,15 +303,18 @@
 
 <ul>
 <li>Both Tabs and Floating bubbles concepts produced</li>
+<li>All four sections filled with placeholder content</li>
 <li>Basic graph with skewed (but not functional) sidebands produced and demonstrated</li>
 </ul>
 
 <p><strong>Discussion:</strong> </p>
 
 <ul>
-<li>Navigation functionality</li>
-<li>User experience</li>
-<li>Basal rates</li>
+<li>Navigation functionality and user experience of both layouts</li>
+<li>Aesthetics, e.g. colour scheme</li>
+<li>How to input insulin doses</li>
+<li>How to display temporary basal rates (a continuous insulin injection supplied by a pump used by some diabetics)</li>
+<li>How information should be entered (e.g. sliders, keyboard or picker)</li>
 </ul>
 
 <p><strong>Decisions:</strong> </p>
@@ -318,14 +322,125 @@
 <ul>
 <li>Standard IOS tabs concept rejected by client based on months of investment the team hadn’t been briefed on</li>
 <li>Mac will be made available to use in Bob’s office</li>
-<li>Colour scheme will avoid those difficult for colour-blind users</li>
+<li>Colour scheme will avoid colours difficult for colour-blind users (e.g. red) since this is a common symptom of diabetes</li>
 <li>In-depth user experience will be delayed in favour of progress of functionality</li>
 <li>Exercise will be moved to top right to allow keyboard space</li>
 <li>Insulin input/information will be on graph not bottom section</li>
+<li>Decided against using sliders due to requiring a maximum value and difficulties with hitting values precisely. Use pickers or keyboards instead</li>
 <li>A focus group will be scheduled in June</li>
 </ul>
 
 <p><strong>To Action:</strong></p>
+
+<ul>
+<li>Create working time, duration and intensity pickers to allow meal and exercise entry</li>
+<li>Work on then displaying this information in a table</li>
+<li>Have the sidebands displaying low, average and high blood glucose levels on the bi-focal display</li>
+</ul>
+<h3 id='23-05-18-meeting-5' class='heading'>23/05/18 – Meeting 5</h3>
+
+<p><strong>Actioned:</strong> </p>
+
+<ul>
+<li>Top and bottom half of the app merged to create a framework for the finished project</li>
+<li>The chosen &lsquo;floating bubbles&rsquo; concept seperated out into a network of several connected views to speed up development in the long run</li>
+<li>The sidebands show the correct data (although are still not correctly skewed)</li>
+<li>Entered meals and exercise are displayed in their respective tables</li>
+</ul>
+
+<p><strong>Discussion:</strong>
+*DOTS
+*ANIMATIONS (value smoothness)
+*How to favourite things</p>
+
+<ul>
+<li>The contents of the advice section</li>
+<li>How to add from favourites</li>
+</ul>
+
+<p><strong>Decisions:</strong> </p>
+
+<p><strong>To action:</strong></p>
+
+<ul>
+<li>Create a persistent storage relational database in which the meal and exercise information is stored</li>
+<li>Create and connect save and fetch functions to this database</li>
+<li>Fix the graph skew</li>
+<li>Add swiping animations to the graph</li>
+<li>Add animations to bringing sections to the fore
+*Allow swiping through days</li>
+</ul>
+
+<p>30/05/18 - Meeting 6</p>
+
+<p><strong>Actioned:</strong></p>
+
+<ul>
+<li>Graph skew fixed</li>
+<li>Meals and exercise can be stored and added from favourites using persistent storage</li>
+<li>Entering meals and exercise create dots on the bi-focal display which if clicked on produce a pop-up detailing information about that event</li>
+<li>Glucose data on graph stored in and accessed from core data</li>
+<li>Tags</li>
+<li>Swipe through days</li>
+</ul>
+
+<p><strong>Discussion:</strong> </p>
+
+<ul>
+<li>Animations not posible</li>
+<li>Swiping through status indicators</li>
+<li>How to add insulin</li>
+</ul>
+
+<p><strong>Decisions:</strong> </p>
+
+<p><strong>To action:</strong></p>
+
+<ul>
+<li>Get status indicators working</li>
+<li>Get health days log working</li>
+<li>Expanding cells</li>
+<li>Health filters working</li>
+</ul>
+
+<p>06/06/18 - Meeting 7 (Focus group)</p>
+
+<p><strong>Actioned:</strong></p>
+
+<ul>
+<li>Food status indicator working</li>
+<li>Health filters</li>
+<li>Expanding cells</li>
+</ul>
+
+<p>/////////////////link to minutes</p>
+
+<p>13/06/18 - Meeting 8</p>
+
+<p><strong>Actioned:</strong> </p>
+
+<ul>
+<li>Settings</li>
+<li>Insulin</li>
+<li>Dots for insulin</li>
+<li>Change food days log</li>
+<li>Health days log day filters</li>
+<li>cosmetics for advice section</li>
+</ul>
+
+<p><strong>Discussion:</strong> </p>
+
+<ul>
+<li>Handover</li>
+<li>Colour scheme</li>
+<li>Independent insulin adding</li>
+</ul>
+
+<p><strong>Decisions:</strong></p>
+
+<ul>
+<li>documentation shoudl be sufficient for future work section etc., meet up to do a code review</li>
+</ul>
 
           </section>
         </section>
