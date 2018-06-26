@@ -1,7 +1,6 @@
 # Final Design
 
-During the project many things were changed about the design based on discussions in our weekly meetings, technical feasibility within the time frame and a focus group which was conducted towards the end of our time on the project. The final design is described below, and rationale for the changes made from the original design or additional features are included in the design process section.
-
+During the project many things many changes were made from the client design to the final one, the rationale for which is procided in Design Process. A descriptive overview of the final design is provided here, with images of final design, all four domains and the graph pictured directly below for context.
 
 <p align="center">
  <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/fooddomain.png" width="300" />
@@ -14,7 +13,7 @@ During the project many things were changed about the design based on discussion
   
 ### Architecture
 
-Much like in the client design the app consists of 4 main sections which overlap and can be brought to the front with only one click, and a bi-focal display to show blood glucose level. There is also a settings button in the top left which will redirect the user to the iOS settings menu for customisation. Ultimately it may be better for clicking on that button to produce a pop-up in which settings can be altered, however that would not have been feasible to implement within our timeframe.
+Exactly as in the client design the app consists of 4 main sections which overlap and can be brought to the front with only one click, as well as a bi-focal display to show blood glucose level. There is also a settings button in the top left which will redirect the user to the iOS settings menu for customisation. 
 
 ### Insulin
 
