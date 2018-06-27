@@ -5,7 +5,7 @@
 * Investigators – Chukwuma Uduku, Robert Spence, Kehzi Li, John Daniels, Narvada Jungee, Rebecca Elkington, Ryan Armiger, Dan Wells, Camille Demasson
 * Minutes and report compiled by - Chukwuma Uduku
 
-**Hone Screen*** 
+**Hone Screen**
 * General layout of domains and bifocal display well received
 Agreed Prroposals
 * Allow the user to swipe through different (customisable) information in the status indicators. Content suggestions below:

@@ -1,6 +1,6 @@
 ---
 
-## `SettingsBundleHelper`
+### `SettingsBundleHelper`
 Handles changes in the app settings
 <p align="center">
 <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/settings.png" alt="Image of open settings page" width="200"/>
@@ -11,7 +11,8 @@ Image of open settings page
 
 ## Features
 * Customisation of the UI for the user.
-##Current State
+
+## Current State
 * Handler has been created to detect changes made to the settings.
 * There is an option in settings to display/hide basal rate on the graph is implemented.
 * Placeholders for more settings options have been created.

@@ -30,6 +30,7 @@ When the user changes phone their data will need to be uploaded to an online sto
 
 Bugs in the algorithm could lead to miscalculation of an insulin dose, which a patient might follow and subsequently enter hypo/hyperglycaemia. To mitigate this, it would be wise to have as much information as possible about how the dosage was calculated available (i.e. how much of it is basal correction, how much is meal correction etc.) to let the user sanity check the result. A rigorous testing process on the eventual algorithm will have to be carried out to quantify and minimise this risk, however this does not relate to the part of the project we are working on.
 
+---
 ### References
 
 N, H., C, B., Wright, D., M, T., & D, V. (2012). Estimating the current and future costs of Type 1 and
