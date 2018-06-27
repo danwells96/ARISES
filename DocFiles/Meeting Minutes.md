@@ -46,7 +46,7 @@ Show Feature Implementation Date Record
 </details>
 
 ## 01/05/18 – Meeting 1  
-</br>
+
 
  **Discussion:**
 * Given basic design requirements 
@@ -68,7 +68,7 @@ Show Feature Implementation Date Record
 * Come up with specific design ideas to implement the requirements spec
 
 ## 04/05/18 - Meeting 2 
- </br>
+
  
 **Actioned:** 
 * Project timeline and plan produced 
@@ -96,7 +96,7 @@ Show Feature Implementation Date Record
 * Research how to create a bifocal graph
  
 ## 09/05/18 - Meeting 3
-</br>
+
 
 **Actioned:**
 * Basic floating bubbles created 
@@ -118,7 +118,7 @@ Show Feature Implementation Date Record
 * Have the bifocal graph plot data and start working on sidebands
 
 ## 16/05/18 - Meeting 4
-</br>
+
 
 **Actioned:**  
 * Both tabs and floating bubbles concepts produced 
@@ -147,7 +147,7 @@ Show Feature Implementation Date Record
 * Have the sidebands displaying low, average and high blood glucose levels on the bifocal display
 
 ## 23/05/18 – Meeting 5 
-</br>
+
 
 **Actioned:** 
 * Top and bottom half of the app merged to create a framework for the finished project
@@ -175,7 +175,7 @@ Show Feature Implementation Date Record
 * Implement the favourites system described above
 
 ## 30/05/18 - Meeting 6
-</br>
+
 
 **Actioned:**
 * Skew on the graph's sidebars fixed
@@ -207,7 +207,7 @@ Show Feature Implementation Date Record
 * Have a list of days accessable in the health domain which can be filtered down to a certain number of days and filtered based on tags
 
 ## 06/06/18 - Meeting 7 (Focus group)
-</br>
+
 
 **Actioned:**
 * Status indicator for food working
@@ -219,7 +219,7 @@ Show Feature Implementation Date Record
 Focus group minutes: [Focus Group Report](https://danwells96.github.io/ARISES/focus-group-report.html)
 
 ## 13/06/18 - Meeting 8
-</br>
+
 
 **Actioned:** 
 * Created a settings button which redirects the user to the iOS settings menu. From here they can turn the temporary basal trace on and off
