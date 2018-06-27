@@ -7,7 +7,7 @@ Below is a list of all the features that were implemented during the project and
 Show Feature Implementation Date Record
 </summary>
 <p>
-
+</br>
 07/05/18 - Design basic square expanding idea </br>
 11/05/18 - Complete tabs and 'floating bubbles' prototypes</br>
 14/05/18 - Fill placeholder content for all windows</br>
@@ -45,7 +45,7 @@ Show Feature Implementation Date Record
 </details>
 
 ## 01/05/18 – Meeting 1  
-
+</br>
  **Discussion:**
 * Given basic design requirements 
   * No hierarchy - all content accessible on one page 
@@ -66,7 +66,7 @@ Show Feature Implementation Date Record
 * Come up with specific design ideas to implement the requirements spec
 
 ## 04/05/18 - Meeting 2 
- 
+ </br>
 **Actioned:** 
 * Project timeline and plan produced 
 * Mockup designs of an interpretation of the requirements spec created
@@ -93,7 +93,7 @@ Show Feature Implementation Date Record
 * Research how to create a bifocal graph
  
 ## 09/05/18 - Meeting 3
-
+</br>
 **Actioned:**
 * Basic floating bubbles created 
 * Progress made towards bifocal display 
@@ -114,7 +114,7 @@ Show Feature Implementation Date Record
 * Have the bifocal graph plot data and start working on sidebands
 
 ## 16/05/18 - Meeting 4
-
+</br>
 **Actioned:**  
 * Both tabs and floating bubbles concepts produced 
 * All four domain filled with placeholder content
@@ -142,7 +142,7 @@ Show Feature Implementation Date Record
 * Have the sidebands displaying low, average and high blood glucose levels on the bifocal display
 
 ## 23/05/18 – Meeting 5 
-
+</br>
 **Actioned:** 
 * Top and bottom half of the app merged to create a framework for the finished project
 * The chosen 'floating bubbles' concept seperated out into a network of several connected views to speed up development in the long run
@@ -169,7 +169,7 @@ Show Feature Implementation Date Record
 * Implement the favourites system described above
 
 ## 30/05/18 - Meeting 6
-
+</br>
 **Actioned:**
 * Skew on the graph's sidebars fixed
 * Meals and exercise can be stored and added from favourites using persistent storage and the star method discussed at the previous meeting
@@ -200,7 +200,7 @@ Show Feature Implementation Date Record
 * Have a list of days accessable in the health domain which can be filtered down to a certain number of days and filtered based on tags
 
 ## 06/06/18 - Meeting 7 (Focus group)
-
+</br>
 **Actioned:**
 * Status indicator for food working
 * In the health domain the number of days shown in the table can be changed and they can be filtered based on tags
@@ -211,7 +211,7 @@ Show Feature Implementation Date Record
 Focus group minutes: [Focus Group Report](https://danwells96.github.io/ARISES/focus-group-report.html)
 
 ## 13/06/18 - Meeting 8
-
+</br>
 **Actioned:** 
 * Created a settings button which redirects the user to the iOS settings menu. From here they can turn the temporary basal trace on and off
 * Let the user enter insulin doses and the time they were taken
