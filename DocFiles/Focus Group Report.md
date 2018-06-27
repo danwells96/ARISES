@@ -14,7 +14,7 @@ Agreed Prroposals
   
 **Bi-Focal Display**
 Agreed Proposals
-* Current Blood glucose to be large & central with trend arrow
+* Current Blood glucose to be large and central with trend arrow
 * Date at the top should include day of the week
 * Ability to click on current date and  from their select any historical date to jump to
 * Limit number of previous days represented on the bi-focal sidebands to three
