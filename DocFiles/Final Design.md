@@ -1,6 +1,6 @@
 # Final Design Specification
 
-During the project many changes were made from the client design to the final one, the rationale for which is provided in [Design Process](file:///Users/ryanarmiger/Documents/Developer/ARISES/docs/design-process.html). A descriptive overview of the final design is provided here, with images of final design, all four domains and the graph pictured directly below for context.
+During the project many changes were made from the client design to the final one, the rationale for which is provided in [Design Process](https://danwells96.github.io/ARISES/design-process.html). A descriptive overview of the final design is provided here, with images of final design, all four domains and the graph pictured directly below for context.
 
 <p align="center">
  <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/bi-focal.png" width="350"/>
