@@ -5,7 +5,7 @@
 * Investigators – Chukwuma Uduku, Robert Spence, Kehzi Li, John Daniels, Narvada Jungee, Rebecca Elkington, Ryan Armiger, Dan Wells, Camille Demasson
 * Minutes and report compiled by - Chukwuma Uduku
 
-**Hone Screen**
+**Home Screen**
 * General layout of domains and bifocal display well received
 Agreed Prroposals
 * Allow the user to swipe through different (customisable) information in the status indicators. Content suggestions below:
@@ -15,7 +15,7 @@ Agreed Prroposals
 **Bi-Focal Display**
 Agreed Proposals
 * Current Blood glucose to be large and central with trend arrow
-* Date at the top should include day of the week
+* Label at the tsop should include day of the week
 * Ability to click on current date and  from their select any historical date to jump to
 * Limit number of previous days represented on the bi-focal sidebands to three
 * Increase size to maximise usage of screen real estate
