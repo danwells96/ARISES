@@ -27,8 +27,8 @@ Image of food domain status indicators
 * Status indicator to show important information when other domains are being viewed
 
 ### Data Entry
-* Name Text field: Keyboard pops up when tapped and the user presses Done when finished
-* Time: Time Picker pops up to allow the user to choose a time. This is dismissed when user presses Done.
+* Name Text field: Keyboard pops up when tapped and the user presses 'Done' when finished
+* Time: Time Picker pops up to allow the user to choose a time. This is dismissed when user presses 'Done'.
 <p align="center">
 <img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/Time%20Picker.png" alt="Image of Time Picker" width="200"/>
 </p>

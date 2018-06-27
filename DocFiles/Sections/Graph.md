@@ -1,4 +1,5 @@
-</br>
+---
+
 <p align="center">
 	<img src="https://raw.githubusercontent.com/danwells96/ARISES/master/DocFiles/img/Bifocal.png" width="650"/>
 </p>
