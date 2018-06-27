@@ -118,3 +118,54 @@ Status indicators were a key part of the initial design and one of the key advan
 ### 12.   Current blood glucose
 
 In the original design current blood glucose is displayed in one of the status indicators, which is reasonably small and not visible if that section has been selected. Given the importance of always having access to this figure, it was decided that it should be put in large letters at the top of the bifocal display. The trajectory arrow was suggested by the focus group and will be implemented in the next stage of project development.
+
+### Feature Implementation Date Record
+
+Below is a list of all the features that were implemented during the project and the dates on which they were carried out, provided for future reference and in case of intellectual property disputes.
+
+<details><summary> 
+Show Feature Implementation Date Record
+</summary>
+<p>
+
+07/05/18 - Design basic square expanding idea </br>
+11/05/18 - Complete tabs and 'floating bubbles' prototypes</br>
+14/05/18 - Fill placeholder content for all windows</br>
+15/05/18 - Graph plotting data</br>
+15/05/18 - Created time, duration and intensity pickers</br>
+18/05/18 - Sidebands diaplying maximum, mean and minimum blood glucose levels</br>
+21/05/18 - Top and Botton sections merged</br>
+22/05/18 - Finished core data storage for food and displaying it in the table</br>
+23/05/18 - Core data implemented for exercise</br>
+24/05/18 - Ability to swipe through days on the graph</br>
+24/05/18 - Final colour palette selected</br>
+28/05/18 - Adding from and storing to favourites working</br>
+28/05/18 - Favourite stars toggling correctly</br>
+28/05/18 - Activity dots can appear on grap</br>
+28/05/18 - Days list in health correctly displaying</br>
+29/05/18 - Tags added to data model</br>
+29/05/18 - Insulin and glucose added to the data model</br>
+29/05/18 - Pop-ups appear when activity dots are tapped</br>
+30/05/18 - Food status indicator (total carbs, protein and fat) created</br>
+01/06/18 - Correct data attached in the pop-ups</br>
+03/06/18 - Expandable table cells created</br>
+04/06/18 - Prediction line created</br>
+05/06/18 - Days list can be filtered by tags</br>
+06/06/18 - Number of days in list can be chosen</br>
+09/06/18 - Added meals now auto-fill the data entry fields instead of appearing straight away</br>
+09/06/18 - Food and exercise domains move up with the keyboard is in use</br>
+09/06/18 - Food dots are higher up the graph if they contain more carbs</br>
+10/06/18 - Settings button created</br>
+10/06/18 - Cosmetic mockup of advice section created</br>
+11/06/18 - Can see previous days' food and exercise logs when on previous days' graphs</br>
+12/06/18 - Insulin dose entry added</br>
+12/06/18 - Entered insulin doses are added to the graph</br>
+12/06/18 - Date selector for the bifocal display added</br>
+
+
+
+
+
+
+
+
